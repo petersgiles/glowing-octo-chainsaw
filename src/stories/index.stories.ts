@@ -5,21 +5,41 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Welcome, Button } from '@storybook/angular/demo';
 import { FilterModule } from 'src/app/filter/filter.module';
+import { RefinerGroup } from 'src/app/filter/filter.model';
 
 storiesOf('Filters', module)
   .addDecorator(
     moduleMetadata({
-      imports: [        
+      imports: [
         FilterModule
       ]
     })
   )
-  .add('Single list of filters', () => ({
-
-    template: `
-      <app-filter><app-filter>
-    `
-  }));
+  .add('Single list of filters', () => {
+    return ({
+      template: `
+      <app-filter [refinerGroups]="refinerGroups" (onClear)="onClear($event)"><app-filter>
+    `,
+      props: {
+        refinerGroups: [
+          {
+            id: 1,
+            title: "Refiner Group A",
+            expanded: false,
+            children: [
+              {
+                id: 11,
+                title: "Refiner #1",
+                groupId: 1,
+                selected: false
+              }
+            ]
+          }
+        ] as RefinerGroup[],
+        onClear: () => action("Cleared!")("wat?")
+      }
+    })
+  });
 
 storiesOf('Welcome', module).add('to Storybook', () => ({
   component: Welcome,

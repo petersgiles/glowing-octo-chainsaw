@@ -54,6 +54,7 @@ export class FilterComponent implements OnInit {
 
   handleOnClear($event) {
     this.searchControl.reset()
+    this.onClear.emit()
   }
 
 }
