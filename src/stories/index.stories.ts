@@ -1,18 +1,25 @@
-import { storiesOf } from '@storybook/angular';
+import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { withNotes } from '@storybook/addon-notes';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Welcome, Button } from '@storybook/angular/demo';
+import { FilterModule } from 'src/app/filter/filter.module';
 
-import { FilterComponent } from '../app/filter/filter.component';
+storiesOf('Filters', module)
+  .addDecorator(
+    moduleMetadata({
+      imports: [        
+        FilterModule
+      ]
+    })
+  )
+  .add('Single list of filters', () => ({
 
-storiesOf('Filters', module).add('Single list of filters', () => ({
-  component: FilterComponent,
-  props: {
-    
-  },
-}));
+    template: `
+      <app-filter><app-filter>
+    `
+  }));
 
 storiesOf('Welcome', module).add('to Storybook', () => ({
   component: Welcome,
