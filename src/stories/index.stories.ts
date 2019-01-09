@@ -4,21 +4,20 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Welcome, Button } from '@storybook/angular/demo';
-import { FilterModule } from 'src/app/filter/filter.module';
-import { RefinerGroup } from 'src/app/filter/filter.model';
+import { RefinerModule, RefinerGroup } from 'src/app/refiner'
 
 storiesOf('Filters', module)
   .addDecorator(
     moduleMetadata({
       imports: [
-        FilterModule
+        RefinerModule
       ]
     })
   )
   .add('Single list of filters', () => {
     return ({
       template: `
-      <app-filter [refinerGroups]="refinerGroups" (onClear)="onClear($event)"><app-filter>
+      <df-refiner [refinerGroups]="refinerGroups" (onClear)="onClear($event)"><df-refiner>
     `,
       props: {
         refinerGroups: [

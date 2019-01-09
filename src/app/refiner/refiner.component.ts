@@ -1,14 +1,14 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms'
 import { debounceTime, distinctUntilChanged, flatMap } from 'rxjs/operators'
-import { RefinerGroup, RefinerType } from './filter.model';
+import { RefinerGroup, RefinerType } from './refiner.model';
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  selector: 'df-refiner',
+  templateUrl: './refiner.component.html',
+  styleUrls: ['./refiner.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class RefinerComponent implements OnInit {
 
   searchControl: FormControl
 
