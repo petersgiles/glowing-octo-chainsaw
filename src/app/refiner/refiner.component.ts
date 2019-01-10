@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RefinerGroup, RefinerType } from './refiner.model';
+import { RefinerGroup, RefinerType } from './refiner.models';
 
 @Component({
   selector: 'df-refiner',

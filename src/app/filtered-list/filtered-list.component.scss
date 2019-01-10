@@ -1,0 +1,36 @@
+.mda-list-item {
+    cursor: pointer;
+}
+
+.mda-list-item:hover {
+    background-color: #e3f2fd;
+}
+
+.mda-list-item-icon {
+    position: absolute;
+}
+
+.mda-list-item-text {
+    line-height: 1.2em;
+    // margin-left: 70px;
+}
+
+.mda-list > .mda-list-item > .mda-list-item-text h4,
+.mda-list > .mda-list-item > .mda-list-item-text h3 {
+    line-height: 1.2em;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.sticky h4 {
+    padding: 24px 0;
+    margin: 0;
+}
+
+.selected {
+    background-color: #e3f2fd
+}

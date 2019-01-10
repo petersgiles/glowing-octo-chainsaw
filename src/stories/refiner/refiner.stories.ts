@@ -3,10 +3,10 @@ import { withNotes } from '@storybook/addon-notes';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import { RefinerModule, RefinerGroup } from 'src/app/refiner'
-import { SimpleRefinerGroups } from './refiner.data';
+import { RefinerModule } from 'src/app/refiner'
+import { ComplexFruitCategories, SimpleFruitCategories } from './refiner.data';
 
-storiesOf('Refiners', module)
+storiesOf('Refiner', module)
 .addDecorator(
   moduleMetadata({
     imports: [
@@ -14,14 +14,23 @@ storiesOf('Refiners', module)
     ]
   })
 )
-.add('Simple refiner', () => {
+.add('Simple', () => {
   return ({
     template: `
-    <df-refiner [refinerGroups]="refinerGroups" (onClear)="onClear($event)"><df-refiner>
+    <df-refiner [refinerGroups]="refinerGroups"><df-refiner>
   `,
     props: {
-      refinerGroups: SimpleRefinerGroups,
-      onClear: () => action("Cleared!")("wat?")
+      refinerGroups: SimpleFruitCategories
     }
   })
-});
+})
+.add('Multi', () => {
+  return ({
+    template: `
+    <df-refiner [refinerGroups]="refinerGroups"><df-refiner>
+  `,
+    props: {
+      refinerGroups: ComplexFruitCategories
+    }
+  })
+})

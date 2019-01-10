@@ -1,0 +1,30 @@
+<div class="sticky">
+  <h4 *ngIf="label">{{label}}</h4>
+  <div class="mda-form-group ">
+    <div class="mda-form-control">
+      <input name="filter" [(ngModel)]="filter" tabindex="0" aria-invalid="false" class="form-control" />
+      <div class="mda-form-control-line"></div>
+      <label>{{filterLabel}}</label>
+    </div>
+  </div>
+</div>
+<div class="mda-list mda-list-bordered bg-white">
+  <div *ngFor="let item of filteredList" class="mda-list-item" (click)="handleClick(item)" [class.selected]="item.id === selectedId" 
+      [routerLink]="item.link ? item.link : []">
+    
+    <div *ngIf="!item.info" class="mda-list-item-text">
+      <h3>
+        {{item.name}}
+      </h3>
+    </div>
+
+    <div *ngIf="item.info" class="mda-list-item-text mda-2-line">
+      <h3>
+        {{item.name}}
+      </h3>
+      <h4>{{item.info}}</h4>
+    </div>
+
+  </div>
+</div>
+

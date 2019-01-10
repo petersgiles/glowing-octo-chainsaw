@@ -1,2 +1,2 @@
 export * from './refiner.module'
-export * from './refiner.model'
+export * from './refiner.models'
