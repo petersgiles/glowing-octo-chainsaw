@@ -4,7 +4,7 @@ $groups = (
     [PSCustomObject]@{
         id       = (New-Guid)
         title    = "Genera"
-        children = $fruit | % {
+        refiners = $fruit | % {
             $_.ScientificName.Split(' ')[0]
         } | Group-Object | % {
             [PSCustomObject]@{
@@ -16,7 +16,7 @@ $groups = (
     }, [PSCustomObject]@{
         id       = (New-Guid)
         title    = "Starts with"
-        children = $fruit | % {
+        refiners = $fruit | % {
             $_.Name.Substring(0, 1)
         } | Group-Object | % {
             [PSCustomObject]@{

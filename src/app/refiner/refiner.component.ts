@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RefinerGroup, RefinerItem } from './refiner.models';
+import { RefinerGroup, Refiner } from './refiner.models';
 
 @Component({
   selector: 'df-refiner',
@@ -11,10 +11,13 @@ export class RefinerComponent  {
   refinerGroups: RefinerGroup[]
   
   @Output()
-  selectRefiner: EventEmitter<RefinerItem> = new EventEmitter()
+  refine: EventEmitter<RefinerGroup[]> = new EventEmitter()
 
-  handleClickRefiner(refiner: RefinerItem) {
+  handleClickRefiner(refiner: Refiner) {
     refiner.selected = !refiner.selected
-    this.selectRefiner.emit(refiner)
+    this.refine.emit(this.refinerGroups.map(group => ({
+      ...group,
+      refiners: group.refiners.filter(refiner => refiner.selected)
+    })))
   }
 }

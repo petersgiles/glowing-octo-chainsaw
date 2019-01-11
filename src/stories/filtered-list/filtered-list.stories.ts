@@ -8,7 +8,9 @@ import { FilteredListModule, ListItem } from 'src/app/filtered-list';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { FruitGroups } from '../refiner/refiner.data';
-import { RefinerModule } from 'src/app/refiner';
+import { RefinerModule, RefinerGroup } from 'src/app/refiner';
+
+const fruits = FruitList
 
 storiesOf('Filtered List', module)
   .addDecorator(
@@ -28,10 +30,16 @@ storiesOf('Filtered List', module)
   )
   .add('Simple', () => ({
     template: `
-    <df-filtered-list label="Filter" [items]="fruits" (select)="handleSelectFruit($event)"></df-filtered-list>
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell">
+          <df-filtered-list label="Filter" [items]="fruits" (select)="handleSelectFruit($event)"></df-filtered-list>
+        </div>
+      </div>
+    </div>
   `,
     props: {
-      fruits: FruitList,
+      fruits: fruits,
       handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title)
     }
   })
@@ -40,8 +48,8 @@ storiesOf('Filtered List', module)
     template: `
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell--span-2">
-          <df-refiner [refinerGroups]="refinerGroups"></df-refiner>
+        <div class="mdc-layout-grid__cell">
+          <df-refiner [refinerGroups]="refinerGroups" (refine)="handleSelectRefiner($event)"></df-refiner>
         </div>
         <div class="mdc-layout-grid__cell">
           <df-filtered-list label="Filter" [items]="fruits" (select)="handleSelectFruit($event)"></df-filtered-list>
@@ -50,8 +58,9 @@ storiesOf('Filtered List', module)
     </div>
     `,
     props: {
-      fruits: FruitList,
+      fruits: fruits,
+      refinerGroups: FruitGroups,
       handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title),
-      refinerGroups: FruitGroups
+      handleSelectRefiner: (refinerGroups: RefinerGroup[]) => action("Selected refiners")(refinerGroups)
     }
   }))

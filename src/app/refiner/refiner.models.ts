@@ -1,4 +1,4 @@
-export interface RefinerItem {
+export interface Refiner {
     id: string
     title: string
     selected?: boolean
@@ -8,7 +8,7 @@ export interface RefinerItem {
 export interface RefinerGroup {
     id: string
     title: string
-    children: RefinerItem[]        
+    refiners: Refiner[]
     expanded?: boolean
     count?: number
 }

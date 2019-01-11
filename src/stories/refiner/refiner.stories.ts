@@ -16,7 +16,13 @@ storiesOf('Refiner', module)
   )
   .add('Multi', () => ({
     template: `
-    <df-refiner [refinerGroups]="refinerGroups"></df-refiner>
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell">
+          <df-refiner [refinerGroups]="refinerGroups"></df-refiner>
+        </div>
+      </div>
+    </div>
   `,
     props: {
       refinerGroups: FruitGroups

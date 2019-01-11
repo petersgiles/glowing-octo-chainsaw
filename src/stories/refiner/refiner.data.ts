@@ -2,327 +2,327 @@
 
 export const FruitGroups: RefinerGroup[] = [
     {
-        "id":  "b477028f-67bd-42de-8260-b6d6c44f5dab",
+        "id":  "51f31722-b1b0-4f08-b9ae-0f7b3148e4aa",
         "title":  "Genera",
-        "children":  [
+        "refiners":  [
                          {
-                             "id":  "b94e5c53-2243-492b-9aa0-48bbe0bb68d4",
+                             "id":  "0a077f53-e394-4fb2-854c-87bdf7cad65f",
                              "title":  "Actinidia",
                              "count":  1
                          },
                          {
-                             "id":  "ba28db56-bc15-4150-8920-d785244fbd80",
+                             "id":  "01c03a22-73d8-49fb-85e0-86a80ac0495d",
                              "title":  "Allium",
                              "count":  2
                          },
                          {
-                             "id":  "736bdcea-cc9d-492c-a01b-0b577140162a",
+                             "id":  "970b3a5a-5e6f-4f65-9558-c000b9519240",
                              "title":  "Anacardium",
                              "count":  1
                          },
                          {
-                             "id":  "62014792-317b-41f1-aa4c-eb691a52de00",
+                             "id":  "2c9e740b-9b00-44aa-8be4-019f55f590fe",
                              "title":  "Ananus",
                              "count":  1
                          },
                          {
-                             "id":  "948aeb6c-0473-44c1-b2c2-a105acd70afb",
+                             "id":  "7c301db2-ae9c-430e-8bfc-8a4e1401e22a",
                              "title":  "Artocarpus",
                              "count":  1
                          },
                          {
-                             "id":  "68017698-c4ab-4d79-9860-22ebfcd533e0",
+                             "id":  "6441c558-1f84-4029-a170-a7c072ad164a",
                              "title":  "Averrhoa",
                              "count":  1
                          },
                          {
-                             "id":  "bda790ed-c983-404c-bcc3-53e4428e9d3e",
+                             "id":  "57eaffd1-e4d0-44f1-9c73-5fb1e0b334ec",
                              "title":  "Capsicum",
                              "count":  2
                          },
                          {
-                             "id":  "8af82085-087c-41b4-a55c-0c014e57d8cc",
+                             "id":  "8bc7476a-2b3d-4655-ab31-5d1fda47a42c",
                              "title":  "Carica",
                              "count":  1
                          },
                          {
-                             "id":  "ae804722-3e68-4210-bc0a-28b275e6136a",
+                             "id":  "8ba669d3-35a3-4987-9082-79cf40f2754f",
                              "title":  "Citrullus",
                              "count":  1
                          },
                          {
-                             "id":  "1e2db5b2-0dd9-40fb-b356-68927222af6c",
+                             "id":  "5f24f33a-5d3a-405a-a207-5f4e5cf20736",
                              "title":  "Citrus",
                              "count":  4
                          },
                          {
-                             "id":  "09af58c2-58b1-4e12-a27a-3641504b26d4",
+                             "id":  "cbfa85fd-c991-45a0-87d4-cc7908c0fac8",
                              "title":  "Cocos",
                              "count":  1
                          },
                          {
-                             "id":  "91034c92-1aee-402b-a878-accffeeeec2b",
+                             "id":  "95d0ad54-cdea-4ca4-b9ef-2440f6963917",
                              "title":  "Coriandrum",
                              "count":  1
                          },
                          {
-                             "id":  "e83a4b2b-b1f0-410c-95cf-6f3cb1292baf",
+                             "id":  "6b56283a-1fbb-44f9-bdff-7569b372b20b",
                              "title":  "Cucumis",
                              "count":  3
                          },
                          {
-                             "id":  "410c991e-67cd-4cc4-aa2d-1d755b543c5d",
+                             "id":  "0c08ce6d-c888-4035-a64e-80db799ee123",
                              "title":  "Curcuma",
                              "count":  1
                          },
                          {
-                             "id":  "887684b2-310a-4f30-8abb-34bdc2a563b4",
+                             "id":  "20b927bd-44ee-4e49-8d5f-83d6b6b9387f",
                              "title":  "Cydonia",
                              "count":  1
                          },
                          {
-                             "id":  "71510367-b055-4e7c-8b42-c9c8d43cd23e",
+                             "id":  "2486f7bd-22cf-494e-9d32-41207ed822ae",
                              "title":  "Daucas",
                              "count":  1
                          },
                          {
-                             "id":  "9d8dc903-f057-4288-9ae0-2efa1548a9f8",
+                             "id":  "474db2be-e667-47aa-a44f-15a816ad82ca",
                              "title":  "Diospyros",
                              "count":  1
                          },
                          {
-                             "id":  "f5fc4ea2-c474-480d-b636-0f1c8047561a",
+                             "id":  "0f97cc60-aa25-43a7-ad23-83cf46086f3d",
                              "title":  "Ficus",
                              "count":  2
                          },
                          {
-                             "id":  "7888a9a1-8dd9-4380-bf75-98e3554aa786",
+                             "id":  "16333e54-d84f-4d65-b267-d35b2be1291c",
                              "title":  "Hylocereus",
                              "count":  1
                          },
                          {
-                             "id":  "680581f4-cb69-49b8-8f9c-2fcde513c4ec",
+                             "id":  "88c37d8a-8ab8-4404-93c4-9bab0d708214",
                              "title":  "Lactuca",
                              "count":  1
                          },
                          {
-                             "id":  "16ff9727-ec9c-4e03-ae2f-7cde83c859a3",
+                             "id":  "1f852d8f-28af-4106-9eec-0b6162c7e48b",
                              "title":  "Litchi",
                              "count":  1
                          },
                          {
-                             "id":  "504344fb-ec1c-4b0f-a475-de2e03735f76",
+                             "id":  "6dabb4ed-e8c5-4b7d-a1bc-f36f300ffdd2",
                              "title":  "Lycopersican",
                              "count":  1
                          },
                          {
-                             "id":  "35f3dcfd-4022-423c-a091-ad3daced6a36",
+                             "id":  "15ebf4dd-5879-4c00-8c5a-3fe2ad710791",
                              "title":  "Mangifera",
                              "count":  1
                          },
                          {
-                             "id":  "4eb362c8-9374-4162-b506-0132924a9e04",
+                             "id":  "2b0c4dd1-b4fb-4f2b-b7f4-b6e77effe61c",
                              "title":  "Morus",
                              "count":  1
                          },
                          {
-                             "id":  "9de7fe9f-cf3b-422e-a8b6-352f556c1d8a",
+                             "id":  "e99c9067-d8de-4e92-a959-544254815e0f",
                              "title":  "Musa",
                              "count":  1
                          },
                          {
-                             "id":  "08bccd3b-bcbc-4c58-9f52-cc828b56a0d1",
+                             "id":  "cc702028-8add-49cf-887e-002434143221",
                              "title":  "Opuntia",
                              "count":  1
                          },
                          {
-                             "id":  "9bb87c84-e9b9-4f32-a474-bb2fadfff128",
+                             "id":  "45c4ca82-bbd0-42eb-8f11-2c56dfe51aec",
                              "title":  "Passiflora",
                              "count":  1
                          },
                          {
-                             "id":  "efab5d8c-b9d7-48aa-ac1e-95cced0171c3",
+                             "id":  "81fc0a7b-0cd0-4878-ac62-0718e5df3cd8",
                              "title":  "Persea",
                              "count":  1
                          },
                          {
-                             "id":  "03bac906-5be8-439d-b7af-3efdfe11fe0e",
+                             "id":  "058736dc-1a8f-4c0f-a518-81ac16afd40e",
                              "title":  "Phoenix",
                              "count":  1
                          },
                          {
-                             "id":  "231a5e4f-e13c-4e2c-8bdc-92b44c3711f5",
+                             "id":  "fc9b87c9-ece6-4a43-9acb-806d9e47ba30",
                              "title":  "Pisum",
                              "count":  1
                          },
                          {
-                             "id":  "eea03090-090b-4cee-ba46-2bd1ee325730",
+                             "id":  "8514c60a-9d19-4b3f-95ca-ef26246b47f3",
                              "title":  "Prunus",
                              "count":  4
                          },
                          {
-                             "id":  "a4f84f4a-eaf5-421a-ba99-428b34381f9d",
+                             "id":  "b783c1a2-9b55-4c08-9f08-da302699b3b0",
                              "title":  "Psidium",
                              "count":  1
                          },
                          {
-                             "id":  "cacd4753-8c34-4de9-bda3-601a84fb78fc",
+                             "id":  "8f6e5ffc-0b82-4d31-90f9-c166469fdbb1",
                              "title":  "Punica",
                              "count":  1
                          },
                          {
-                             "id":  "eeabad8e-8f7a-43bd-894d-ca0ca7185ed2",
+                             "id":  "be753aec-5e77-48cb-b6ef-9370271612c7",
                              "title":  "Pyrus",
                              "count":  2
                          },
                          {
-                             "id":  "0c65210b-0f2f-4aca-af5e-629e83c17c3f",
+                             "id":  "d331c0c9-944c-493b-b765-538e0c458e31",
                              "title":  "Raphanus",
                              "count":  1
                          },
                          {
-                             "id":  "a825d71b-dd36-401a-aedf-b2b10f975c1f",
+                             "id":  "b34a2653-0ac7-4ff6-8870-29fb39b39ea0",
                              "title":  "Ribes",
                              "count":  3
                          },
                          {
-                             "id":  "154e0f80-b52f-416a-929b-9253e3e0715a",
+                             "id":  "25fb6751-a1a4-40f2-ac5b-760a03e9fe57",
                              "title":  "Rubus",
                              "count":  2
                          },
                          {
-                             "id":  "4deb52c0-a229-4d53-b377-c8ee85f463db",
+                             "id":  "2e08aa86-4486-4a84-8650-a913f150d587",
                              "title":  "Santalum",
                              "count":  1
                          },
                          {
-                             "id":  "1a053c42-b3db-4923-9428-34269f67425e",
+                             "id":  "01b1451d-a3ce-4d30-a021-304efd4c0f0b",
                              "title":  "Solanum",
                              "count":  3
                          },
                          {
-                             "id":  "80f67f45-5dc9-4801-89e3-21ac163e88a5",
+                             "id":  "ca143260-4b27-494e-9fdb-1b3ab7feaae4",
                              "title":  "Spinacia",
                              "count":  1
                          },
                          {
-                             "id":  "ffcbf364-4b04-4aac-954e-ef1bb79d70cf",
+                             "id":  "bfc6c883-4efd-483a-b9b0-058f7338991e",
                              "title":  "Syzygium",
                              "count":  1
                          },
                          {
-                             "id":  "03faf78a-ea9a-4312-9c16-2d2feab42a9d",
+                             "id":  "40e200f7-e1ac-42ae-875d-0b9f69a6820a",
                              "title":  "Vaccinium",
                              "count":  1
                          },
                          {
-                             "id":  "c1e54bf0-474c-4d18-80bd-368dd9d66229",
+                             "id":  "5e405c64-1018-44d3-8113-86de4fd8a2ab",
                              "title":  "Vitis",
                              "count":  1
                          }
                      ]
     },
     {
-        "id":  "bb72766c-fc7f-481b-8d5e-8e58a7d818bc",
+        "id":  "8752182d-67cf-43a3-a578-d7479a894499",
         "title":  "Starts with",
-        "children":  [
+        "refiners":  [
                          {
-                             "id":  "c7b8cce5-ded2-40f3-9fca-eca6d2f02623",
+                             "id":  "fac35929-5c2c-4ed7-bf8d-642cea4877a8",
                              "title":  "A",
                              "count":  3
                          },
                          {
-                             "id":  "e42e130d-00b0-4864-b160-35028d421b19",
+                             "id":  "f190a532-c445-4836-b05a-05d8d6fe2c47",
                              "title":  "B",
                              "count":  5
                          },
                          {
-                             "id":  "f2194a06-89e6-469a-9524-d9e69cdbb501",
+                             "id":  "884d7773-9347-4541-b7ff-a38196e303a7",
                              "title":  "C",
                              "count":  10
                          },
                          {
-                             "id":  "2db7f004-8450-435d-9fc4-7123d03259bd",
+                             "id":  "ec3d865b-2ef9-4cd6-a110-9b73537312fd",
                              "title":  "D",
                              "count":  2
                          },
                          {
-                             "id":  "bdb94a20-cde2-4556-b4fb-29f70c15354c",
+                             "id":  "3996d762-6d9f-4f2a-8460-ba5e77ebc53d",
                              "title":  "E",
                              "count":  1
                          },
                          {
-                             "id":  "9eedbe7b-c9c9-4647-a5dd-1832dbac1ea3",
+                             "id":  "122dd8c0-87e9-4b60-b60f-789387d681bd",
                              "title":  "F",
                              "count":  1
                          },
                          {
-                             "id":  "2036baf2-b1c5-441d-8a8c-08515c697c71",
+                             "id":  "9cc96572-6372-489b-97eb-defff22e3372",
                              "title":  "G",
                              "count":  4
                          },
                          {
-                             "id":  "1efdf2de-50f6-4791-9154-1b44537e8559",
+                             "id":  "b0ba1b8a-f7a0-44f5-87c8-5c859209e774",
                              "title":  "H",
                              "count":  1
                          },
                          {
-                             "id":  "f093148c-b2b3-407f-b92c-86fb2f5e60c2",
+                             "id":  "0cc83067-ed3b-4918-8eff-3655fe85e6f8",
                              "title":  "J",
                              "count":  1
                          },
                          {
-                             "id":  "322f7e1b-a499-4f4c-82c0-5e710accaf20",
+                             "id":  "8637f00b-e5c3-42de-87e2-1fcace0dddc2",
                              "title":  "K",
                              "count":  1
                          },
                          {
-                             "id":  "da0b3266-6d3b-499c-b6d9-3046b0d8f84a",
+                             "id":  "a0e2ab1a-9d8a-4503-aa13-f94c9bd11cba",
                              "title":  "L",
                              "count":  4
                          },
                          {
-                             "id":  "2afbce4a-9e75-41f2-84e8-f91e27c46d0e",
+                             "id":  "bf095d30-bffe-4ed5-a92f-8d236f7cb049",
                              "title":  "M",
                              "count":  3
                          },
                          {
-                             "id":  "40d33e71-1b75-4f8c-a21b-e67db10cf126",
+                             "id":  "f1e2f2c2-8999-4489-8f2c-fd33a8ce1c2c",
                              "title":  "N",
                              "count":  1
                          },
                          {
-                             "id":  "673ae0a6-91f0-429f-a856-018fa28ff4f3",
+                             "id":  "4f14aef5-9f00-427b-9f8d-b6a630c1abac",
                              "title":  "O",
                              "count":  2
                          },
                          {
-                             "id":  "d084be06-e537-4a3c-a438-05424acf7c0e",
+                             "id":  "e9ca3caa-66db-432b-8f51-5dfccfc976c9",
                              "title":  "P",
                              "count":  11
                          },
                          {
-                             "id":  "86efb624-11d2-4f15-8239-69015225486e",
+                             "id":  "d199a634-126c-4c9c-bc6c-147673243a9a",
                              "title":  "Q",
                              "count":  2
                          },
                          {
-                             "id":  "e9cac657-1011-4072-bf98-ceeb521839ac",
+                             "id":  "1a0ac5a7-015b-4746-ac96-00bc60ee6173",
                              "title":  "R",
                              "count":  3
                          },
                          {
-                             "id":  "51b6a104-258e-4e3f-b756-e12a65082026",
+                             "id":  "aebf1141-08e2-47cf-bfdc-08bcbc1b6818",
                              "title":  "S",
                              "count":  2
                          },
                          {
-                             "id":  "7b32f22d-786b-47c2-b8a4-a7466ca3f463",
+                             "id":  "af3054e1-a212-447c-80bf-5c91f6f176f7",
                              "title":  "T",
                              "count":  2
                          },
                          {
-                             "id":  "aff60406-6f6f-44c9-80e5-edae37afaca4",
+                             "id":  "7a61f945-6974-42fb-a5bf-1c2495ded9c2",
                              "title":  "W",
                              "count":  1
                          }
