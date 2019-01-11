@@ -1,34 +1,14 @@
-export interface FilterItem {
+export interface RefinerItem {
     id: string
-    name: string
-}
-
-export interface FilterGroup {
-    id: string
-    name: string
-    items: FilterItem[]
-    internalOperand: Operand
-    externalOperand: Operand
-}
-
-export enum Operand {
-    AND,
-    OR
-}
-
-export interface RefinerType {
-    id: number | string
-    groupId: number | string
     title: string
-    selected: boolean
+    selected?: boolean
     count?: number
 }
 
 export interface RefinerGroup {
-    id: number | string
+    id: string
     title: string
-    expanded: boolean
-    custom?: boolean
+    children: RefinerItem[]        
+    expanded?: boolean
     count?: number
-    children: RefinerType[]
 }

@@ -4,7 +4,7 @@
 
 <mdc-list twoLine>
   <mdc-list-item *ngFor="let item of filteredList" (click)="handleClick(item)" [class.selected]="item.id === selectedId" [routerLink]="item.link ? item.link : []">
-    <mdc-list-item-text [secondaryText]="item.info ? item.info : ' '">{{item.name}}</mdc-list-item-text>
+    <mdc-list-item-text [secondaryText]="item.info ? item.info : ' '">{{item.title}}</mdc-list-item-text>
   </mdc-list-item>
 </mdc-list>
 

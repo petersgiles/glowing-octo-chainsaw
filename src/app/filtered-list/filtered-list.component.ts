@@ -11,7 +11,7 @@ export class FilteredListComponent<T> {
   @Input() items: ListItem<T>[]
   @Input() label = "Filter"
   @Input() filterExpression = (listItem: ListItem<T>, filter: string) =>
-    filter && listItem.name && listItem.name.toLowerCase().indexOf(filter.toLowerCase()) > -1
+    filter && listItem.title && listItem.title.toLowerCase().indexOf(filter.toLowerCase()) > -1
     || filter && listItem.info && listItem.info.toLowerCase().indexOf(filter.toLowerCase()) > -1
 
   @Output() select = new EventEmitter<ListItem<T>>()

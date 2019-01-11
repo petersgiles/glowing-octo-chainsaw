@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { RefinerModule } from 'src/app/refiner'
-import { ComplexFruitCategories, SimpleFruitCategories } from './refiner.data';
+import { FruitGroups } from './refiner.data';
 
 storiesOf('Refiner', module)
 .addDecorator(
@@ -14,23 +14,13 @@ storiesOf('Refiner', module)
     ]
   })
 )
-.add('Simple', () => {
-  return ({
-    template: `
-    <df-refiner [refinerGroups]="refinerGroups"><df-refiner>
-  `,
-    props: {
-      refinerGroups: SimpleFruitCategories
-    }
-  })
-})
 .add('Multi', () => {
   return ({
     template: `
     <df-refiner [refinerGroups]="refinerGroups"><df-refiner>
   `,
     props: {
-      refinerGroups: ComplexFruitCategories
+      refinerGroups: FruitGroups
     }
   })
 })
