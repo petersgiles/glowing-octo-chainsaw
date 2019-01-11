@@ -12,7 +12,7 @@ $groups = (
                 title = $_.Name
                 count = $_.Count
             }
-        }
+        } | Sort-Object -Property title
     }, [PSCustomObject]@{
         id       = (New-Guid)
         title    = "Starts with"
@@ -25,7 +25,7 @@ $groups = (
                 count = $_.Count
             }
         }
-    }
+    } | Sort-Object -Property title
 )
 
 $json = $groups | ConvertTo-Json -Depth 5

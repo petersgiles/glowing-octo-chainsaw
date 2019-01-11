@@ -1,302 +1,303 @@
-﻿    import { ListItem } from 'src/app/filtered-list';
-    export const FruitList: ListItem<any>[] = [
+﻿import { ListItem } from 'src/app/filtered-list';
+
+export const FruitList: ListItem<any>[] = [
     {
-        "id":  "325890e8-8799-4841-a3f4-1d6600c9d15b",
+        "id":  "6badd846-1232-4ccb-a031-93c72ce63795",
         "title":  "Apple",
         "info":  "Pyrus malus"
     },
     {
-        "id":  "a9feef43-a952-4b4d-91c3-f3efd2d85812",
+        "id":  "96f610a7-0999-4637-9001-774cc8b65cd2",
         "title":  "Apricot",
         "info":  "Prunus armeniaca"
     },
     {
-        "id":  "4774e64b-0581-4540-9c8c-a8d68e4fe09f",
+        "id":  "4cae1e8d-ff43-400b-9170-6ab0c18691fd",
         "title":  "Avocado",
         "info":  "Persea americana"
     },
     {
-        "id":  "ec2e96a4-0cc9-4864-ad92-1f903dacf83b",
+        "id":  "c63dd826-b04b-40d3-9134-b4301d74a7af",
         "title":  "Banana",
         "info":  "Musa paradisicum"
     },
     {
-        "id":  "33f0e242-5a05-42c0-967b-0c0a96dd56f5",
+        "id":  "282281d4-e61a-45c9-8569-26d293b78e17",
         "title":  "Black berry",
         "info":  "Rubus fruticosus"
     },
     {
-        "id":  "83b92e2c-d54f-4836-812c-2afca7496c0f",
+        "id":  "7ada94f9-555c-47ec-8b90-e0f707cd4c70",
         "title":  "Blackcurrant",
         "info":  "Ribes nigrum"
     },
     {
-        "id":  "a09e42dc-4439-4380-9ee4-3032abb8d6da",
+        "id":  "4e350016-e8ce-4dca-97b8-7f809a86b6dd",
         "title":  "Blueberry",
         "info":  "Vaccinium cyanococcus"
     },
     {
-        "id":  "3345b5da-9721-4bde-815a-45fe9c36b610",
+        "id":  "48ea1dc4-549a-4241-a30b-593f3f1cb653",
         "title":  "Brinjal",
         "info":  "Solanum melongena"
     },
     {
-        "id":  "2b72d794-29aa-48c4-9f38-64acf8f403e0",
+        "id":  "e511f6d7-a8f8-4122-b916-dce0aab9e025",
         "title":  "Cantaloupe",
         "info":  "Cucumis melo"
     },
     {
-        "id":  "ca98292a-9f28-410c-addd-048a3b068df6",
+        "id":  "b579154c-99a8-4d5a-87a5-930a6906a06f",
         "title":  "Capsicum",
         "info":  "Capsicum fruitscence"
     },
     {
-        "id":  "4ecb2059-5e25-4432-9347-d5805207261b",
+        "id":  "70ca4710-b295-4a43-8b8a-403fe0620082",
         "title":  "Carrot",
         "info":  "Daucas carota"
     },
     {
-        "id":  "5faa30fd-549f-4fce-98d8-bfd318835d6f",
+        "id":  "9147c789-6249-45b8-8108-77abe7f5b06e",
         "title":  "Cashew nut",
         "info":  "Anacardium occidentale"
     },
     {
-        "id":  "508e8d19-9c3c-4bd7-9faa-78f2d665f47a",
+        "id":  "39dfee79-05df-4c9b-8e1b-c5e64eed3045",
         "title":  "Cherry",
         "info":  "Prunus avium"
     },
     {
-        "id":  "fd60e6d6-a174-48bf-914c-fbb53816d60c",
+        "id":  "d5dc525f-d559-481f-8dba-8b6789f1b7bc",
         "title":  "Chili",
         "info":  "Capsicum annuum"
     },
     {
-        "id":  "1c72eb7a-8c8c-48ed-bc66-8b39ba6b216c",
+        "id":  "fb41995f-da09-43ab-978c-aac22b11c32a",
         "title":  "Clove",
         "info":  "Syzygium aromaticum"
     },
     {
-        "id":  "7ee3c54f-3933-49a8-837c-a719ab45052c",
+        "id":  "e278a516-56c0-49b6-b1d4-478a6bf31aab",
         "title":  "Coconut",
         "info":  "Cocos nucifera"
     },
     {
-        "id":  "37e2e2a5-2ac2-4af9-8810-2bd4f7fc454e",
+        "id":  "cb7335e9-6fc4-4187-a7b3-6115de13a672",
         "title":  "Coriander",
         "info":  "Coriandrum sativum"
     },
     {
-        "id":  "29734184-ff11-4abf-80e5-1fb1b1cba12b",
+        "id":  "eb7d3612-c221-4b30-97ba-296bad30763c",
         "title":  "Cucumber",
         "info":  "Cucumis sativas"
     },
     {
-        "id":  "579bff52-244b-41a7-8a8c-2c61748803d0",
+        "id":  "b47e3bef-abae-451c-b4bb-d975b7ce8f9f",
         "title":  "Date",
         "info":  "Phoenix dactylifera"
     },
     {
-        "id":  "b9d294d1-e792-432a-b2a6-a8d97562b752",
+        "id":  "8fc7e9dc-2fea-4540-b177-86f5bb5b2b16",
         "title":  "Dragon fruit",
         "info":  "Hylocereus undutus"
     },
     {
-        "id":  "fbdcfda7-1ca0-4ad2-aca4-664c7a1e4e9b",
+        "id":  "8e95a8fe-e2c5-4d41-a585-95a4db754494",
         "title":  "Eggplant",
         "info":  "Solanum melongena"
     },
     {
-        "id":  "f1125896-d3d5-42b4-8390-883238ce6dfa",
+        "id":  "038ddca4-d184-49e9-aa43-3113c543c349",
         "title":  "Fig",
         "info":  "Ficus carica"
     },
     {
-        "id":  "9e80aedf-a551-4029-8a4f-28c3f0681471",
+        "id":  "22e0f17a-ff90-4a4b-936b-dd6f01545376",
         "title":  "Garlic",
         "info":  "Allium sativum"
     },
     {
-        "id":  "44b50c9f-5307-42a3-b9fe-5a5f6d9173a5",
+        "id":  "5421335d-6def-4d15-a096-2265225ecd85",
         "title":  "Gooseberry",
         "info":  "Ribes uva-crispa"
     },
     {
-        "id":  "572211e5-426b-4dc6-9b9c-7653f9d78734",
+        "id":  "2b575e50-f14d-4b4c-9e26-9b50429f6d5c",
         "title":  "Grapes",
         "info":  "Vitis vinifera"
     },
     {
-        "id":  "64c7d98f-50de-4ae6-b6f4-864d35a62a41",
+        "id":  "32e3d9c8-2f88-47bc-9ef7-a8d81757ebe9",
         "title":  "Guava",
         "info":  "Psidium guava"
     },
     {
-        "id":  "d154bc29-99f9-4db2-8bc7-2caf89d92542",
+        "id":  "6a8c7311-321c-42d3-940a-1847fbaac2f4",
         "title":  "Honey dew",
         "info":  "Cucumis melo"
     },
     {
-        "id":  "64249ece-32db-46b7-b62e-c73effa254f4",
+        "id":  "247e9555-3cae-4fb7-92a1-9614d5700858",
         "title":  "Jack fruit",
         "info":  "Artocarpus integra"
     },
     {
-        "id":  "0bbf8231-bf4e-4671-a108-f23b17100210",
+        "id":  "e4b18f25-eff3-4e29-a634-b4ee0b6dec77",
         "title":  "Kiwi fruit",
         "info":  "Actinidia deliciosa"
     },
     {
-        "id":  "385b3435-3c4f-41de-b1ac-3cbb8005f9fd",
+        "id":  "e140f617-9e65-430c-a328-baf1d9a34743",
         "title":  "Lemon",
         "info":  "Citrus Limonium"
     },
     {
-        "id":  "8931beb2-50c9-48c0-aaf2-f1b150a9fb4a",
+        "id":  "3c037d28-36eb-49b4-a0bd-7a4b603f6446",
         "title":  "Lettuce",
         "info":  "Lactuca sativa"
     },
     {
-        "id":  "c70ed61a-f8dd-4280-b4f4-5171b7445652",
+        "id":  "f068b142-4b63-46b1-9603-a5b8ff380002",
         "title":  "Lime",
         "info":  "Citrus latifolia"
     },
     {
-        "id":  "021de7a6-96be-419e-8975-8a9cc2e19159",
+        "id":  "02c522b1-f14f-45c5-846b-f977ad28cbbd",
         "title":  "Lychee",
         "info":  "Litchi chinensis"
     },
     {
-        "id":  "ffd33092-380e-41cc-bfa8-570a94c1c74e",
+        "id":  "3cf3a47a-8ae6-4cac-9be3-b14b58784707",
         "title":  "Mandarin",
         "info":  "Citrus reticulata"
     },
     {
-        "id":  "46a30f5a-e2f5-43c7-bc22-34fc0c54dd8c",
+        "id":  "60a40fc0-4567-4c04-b590-f4ffb60fc6f6",
         "title":  "Mango",
         "info":  "Mangifera indica"
     },
     {
-        "id":  "bfd97ee2-78c5-42cc-8818-ba81eb958057",
+        "id":  "d691fe7b-3f56-4317-886f-3f5a1e9e0fb4",
         "title":  "Mulberry",
         "info":  "Morus alba"
     },
     {
-        "id":  "f30652ad-830b-4114-9ee6-e744f4e832ea",
+        "id":  "372bbb20-63b5-4401-a7a9-f54b6bd0342c",
         "title":  "Nectarine",
         "info":  "Prunus persica"
     },
     {
-        "id":  "87f4960a-88ce-49ed-812b-5166f95f0545",
+        "id":  "3cf0519e-478b-444b-b254-f4141c6a8584",
         "title":  "Onion",
         "info":  "Allium cepa"
     },
     {
-        "id":  "e094a1a5-afd5-4a1e-9e39-f1cedc7699fe",
+        "id":  "ce0372e9-64c8-4b96-9893-82e56c0a6a95",
         "title":  "Orange",
         "info":  "Citrus aurantium"
     },
     {
-        "id":  "4a9d30ca-8fc5-4170-91cb-e29766a631e7",
+        "id":  "84825064-1ec6-4006-8646-028f954e47eb",
         "title":  "Papaya",
         "info":  "Carica papaya"
     },
     {
-        "id":  "c2abf5e8-5fe5-4b5d-b56b-fc89b2d9337a",
+        "id":  "c4365738-4548-4347-aedb-92b0dfb6e36b",
         "title":  "Passionfruit",
         "info":  "Passiflora edulis"
     },
     {
-        "id":  "6e109682-920b-4477-9de6-aa08d1cc2234",
+        "id":  "6e22c03b-f1fd-4337-9af1-f6076789f943",
         "title":  "Pea",
         "info":  "Pisum sativam"
     },
     {
-        "id":  "b5506433-52d4-443c-bed4-604d3cd92ef8",
+        "id":  "6e239d44-29a5-47e5-9826-3d6728d1abb1",
         "title":  "Pear",
         "info":  "Pyrus communis"
     },
     {
-        "id":  "760a3ddf-d191-4772-946e-81c8c1cd2a31",
+        "id":  "98dfbbd7-f950-41e5-a46c-024c2c89fd92",
         "title":  "Peepal",
         "info":  "Ficus religiosa Linn"
     },
     {
-        "id":  "2bb1ca27-5eb4-425c-bcbd-73fd3513b9f2",
+        "id":  "69956cba-5e25-4083-992a-0973aaf3f1e2",
         "title":  "Persimmon",
         "info":  "Diospyros kaki"
     },
     {
-        "id":  "a750dc62-9ac9-4562-b7fc-ccf033fe6ff9",
+        "id":  "00a545b8-c661-4161-bb79-b4f9469198d5",
         "title":  "Pineapple",
         "info":  "Ananus sativus"
     },
     {
-        "id":  "41f616cc-be47-49b3-8a38-868f8c096078",
+        "id":  "c79ab052-90de-4055-94af-ea2c217e80bd",
         "title":  "Plum",
         "info":  "Prunus domestica"
     },
     {
-        "id":  "d935d942-0094-425e-8285-0debf07f53c3",
+        "id":  "5df6ae6f-d571-482d-9e7b-2aa0558448ff",
         "title":  "Pomegranate",
         "info":  "Punica granatum"
     },
     {
-        "id":  "09d7a24e-d56f-4ab5-9b41-1892b62f5e79",
+        "id":  "096cbcfd-2178-452b-b02a-dab5b2ccb619",
         "title":  "Potato",
         "info":  "Solanum tubersum "
     },
     {
-        "id":  "994a7e8a-9e8d-4b19-80e8-1700d32fac45",
+        "id":  "d43868d9-2141-4666-ab18-30dca1063c44",
         "title":  "Prickly pear",
         "info":  "Opuntia stricta"
     },
     {
-        "id":  "d9700bc3-89de-4c9b-b19e-fdef0a860b19",
+        "id":  "47e71a6f-6866-4011-9196-5266e5b1ce30",
         "title":  "Quandong",
         "info":  "Santalum acuminatum"
     },
     {
-        "id":  "d408d16b-45e0-44f7-9480-e31a10a8ce6b",
+        "id":  "b3aa7a48-8286-4c51-8161-94d2839b4a1f",
         "title":  "Quince",
         "info":  "Cydonia oblonga"
     },
     {
-        "id":  "1bea0137-eb10-40ac-b284-272f684137dc",
+        "id":  "83e1d450-3bef-47e4-92b4-0a27c09d0648",
         "title":  "Radish",
         "info":  "Raphanus sativus"
     },
     {
-        "id":  "0fbde72a-1440-4837-8b21-2b371823db8a",
+        "id":  "ea8dbc4d-bbf5-4d8d-97bf-1baa76ff2627",
         "title":  "Raspberry",
         "info":  "Rubus idaeobatus"
     },
     {
-        "id":  "10fbfd09-26b2-418c-9cfb-bd8b18e9a544",
+        "id":  "87997ce7-dc83-4cb8-952a-0f6f3546c031",
         "title":  "Redcurrant",
         "info":  "Ribes rubrum"
     },
     {
-        "id":  "b8583466-73b7-492c-a54e-2a20cbf1a49b",
+        "id":  "e29c5801-89b4-4dbd-97c7-203450f5f8f7",
         "title":  "Spinach",
         "info":  "Spinacia oleracea"
     },
     {
-        "id":  "2ef76db1-5378-46ca-925c-9ae3d5e786db",
+        "id":  "e5e8d206-f903-47d5-8aef-f74b2b43a508",
         "title":  "Star fruit",
         "info":  "Averrhoa carambola"
     },
     {
-        "id":  "cc794974-5b74-4074-a320-d00472e439e3",
+        "id":  "dc308a8f-2479-46c0-b835-e791c0e90096",
         "title":  "Tomato",
         "info":  "Lycopersican esculentum"
     },
     {
-        "id":  "f6d8ba4d-5014-4167-8b02-fdc1abab7a62",
+        "id":  "b40f2331-f18c-4805-9839-4bf795d3bdb3",
         "title":  "Turmeric",
         "info":  "Curcuma longa"
     },
     {
-        "id":  "c634a9a4-4956-4775-ad24-f99192aeafad",
+        "id":  "1a11941e-e4f4-4e5d-8150-3ef5629157fc",
         "title":  "Watermelon",
         "info":  "Citrullus vulgaris"
     }

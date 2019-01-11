@@ -6,7 +6,7 @@ $listItems = $fruit | % {
         title = $_.Name
         info = $_.ScientificName
     }
-}
+} | Sort-Object -Property title
 
 $json = $listItems | ConvertTo-Json -Depth 5
 

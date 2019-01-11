@@ -7,20 +7,19 @@ import { RefinerModule } from 'src/app/refiner'
 import { FruitGroups } from './refiner.data';
 
 storiesOf('Refiner', module)
-.addDecorator(
-  moduleMetadata({
-    imports: [
-      RefinerModule
-    ]
-  })
-)
-.add('Multi', () => {
-  return ({
+  .addDecorator(
+    moduleMetadata({
+      imports: [
+        RefinerModule
+      ]
+    })
+  )
+  .add('Multi', () => ({
     template: `
-    <df-refiner [refinerGroups]="refinerGroups"><df-refiner>
+    <df-refiner [refinerGroups]="refinerGroups"></df-refiner>
   `,
     props: {
       refinerGroups: FruitGroups
     }
   })
-})
+  )
