@@ -9,8 +9,7 @@ import { ListItem } from './filtered-list.models'
 
 export class FilteredListComponent<T> {
   @Input() items: ListItem<T>[]
-  @Input() label: string
-  @Input() filterLabel = "Filter"
+  @Input() label = "Filter"
   @Input() filterExpression = (listItem: ListItem<T>, filter: string) =>
     filter && listItem.name && listItem.name.toLowerCase().indexOf(filter.toLowerCase()) > -1
     || filter && listItem.info && listItem.info.toLowerCase().indexOf(filter.toLowerCase()) > -1

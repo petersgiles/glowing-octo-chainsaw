@@ -26,7 +26,7 @@ storiesOf('Filtered List', module)
 .add('Simple', () => {
   return ({
     template: `
-    <df-filtered-list label="Fruits" [items]="fruits" (select)="handleSelectFruit($event)"></df-filtered-list>
+    <df-filtered-list label="Filter" [items]="fruits" (select)="handleSelectFruit($event)"></df-filtered-list>
   `,
     props: {
       fruits: SimpleFruits,
