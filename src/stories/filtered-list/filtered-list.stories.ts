@@ -43,7 +43,6 @@ storiesOf('Filtered List', module)
   )
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
-  // .add('Readme', withReadme(Readme, () => ({})))
   .add('Simple', 
     () => ({
       template: `
