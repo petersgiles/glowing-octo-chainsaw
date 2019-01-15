@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilteredListComponent should contain a list of items 1`] = `
+<df-filtered-list
+  filterExpression={[Function Function]}
+  items={[Function Array]}
+  label={[Function String]}
+  select={[Function EventEmitter]}
+>
+  <div
+    class="sticky"
+  >
+    <mdc-text-field
+      class="mdc-text-field ng-untouched ng-pristine ng-valid"
+      ng-reflect-label="Filter"
+    >
+      
+      <input
+        aria-invalid="false"
+        class="mdc-text-field__input"
+        id="mdc-input-1"
+        tabindex="0"
+        type="text"
+      />
+      
+      <label
+        class="mdc-floating-label"
+        for="mdc-input-1"
+        mdcfloatinglabel=""
+        ng-reflect-for="mdc-input-1"
+      >
+        Filter
+      </label>
+      
+      <mdc-line-ripple
+        class="mdc-line-ripple"
+      />
+      
+    </mdc-text-field>
+  </div><mdc-list
+    aria-orientation="vertical"
+    class="mdc-list mdc-list--two-line"
+    ng-reflect-two-line=""
+    role="list"
+    twoline=""
+  >
+    
+    <mdc-list-item
+      class="mdc-list-item"
+      id="mdc-list-item-4"
+      ng-reflect-router-link="/"
+      role="listitem"
+      tabindex="-1"
+    >
+      <mdc-list-item-text
+        class="mdc-list-item__text"
+        ng-reflect-secondary-text="Pyrus malus"
+      >
+        
+        <span
+          class="mdc-list-item__primary-text"
+        >
+          Apple
+        </span>
+        
+        <span
+          class="mdc-list-item__secondary-text"
+        >
+          Pyrus malus
+        </span>
+      </mdc-list-item-text>
+    </mdc-list-item>
+    <mdc-list-item
+      class="mdc-list-item"
+      id="mdc-list-item-5"
+      ng-reflect-router-link=""
+      role="listitem"
+      tabindex="-1"
+    >
+      <mdc-list-item-text
+        class="mdc-list-item__text"
+        ng-reflect-secondary-text="Prunus armeniaca"
+      >
+        
+        <span
+          class="mdc-list-item__primary-text"
+        >
+          Apricot
+        </span>
+        
+        <span
+          class="mdc-list-item__secondary-text"
+        >
+          Prunus armeniaca
+        </span>
+      </mdc-list-item-text>
+    </mdc-list-item>
+    <mdc-list-item
+      class="mdc-list-item"
+      id="mdc-list-item-6"
+      ng-reflect-router-link=""
+      role="listitem"
+      tabindex="-1"
+    >
+      <mdc-list-item-text
+        class="mdc-list-item__text"
+        ng-reflect-secondary-text="Persea americana"
+      >
+        
+        <span
+          class="mdc-list-item__primary-text"
+        >
+          Avocado
+        </span>
+        
+        <span
+          class="mdc-list-item__secondary-text"
+        >
+          Persea americana
+        </span>
+      </mdc-list-item-text>
+    </mdc-list-item>
+    <mdc-list-item
+      class="mdc-list-item"
+      id="mdc-list-item-7"
+      ng-reflect-router-link=""
+      role="listitem"
+      tabindex="-1"
+    >
+      <mdc-list-item-text
+        class="mdc-list-item__text"
+        ng-reflect-secondary-text="Musa paradisicum"
+      >
+        
+        <span
+          class="mdc-list-item__primary-text"
+        >
+          Banana
+        </span>
+        
+        <span
+          class="mdc-list-item__secondary-text"
+        >
+          Musa paradisicum
+        </span>
+      </mdc-list-item-text>
+    </mdc-list-item>
+  </mdc-list>
+</df-filtered-list>
+`;
