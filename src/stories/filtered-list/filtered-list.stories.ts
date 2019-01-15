@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { withNotes } from '@storybook/addon-notes';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { withKnobs, object } from '@storybook/addon-knobs';
@@ -11,6 +10,8 @@ import { APP_BASE_HREF } from '@angular/common';
 import { FruitGroups } from '../refiner/refiner.data';
 import { RefinerModule, RefinerGroup } from 'src/app/refiner';
 import { BehaviorSubject } from 'rxjs';
+import { withReadme } from 'storybook-readme';
+import * as Readme from '../../app/filtered-list/README.md'
 
 const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(FruitList)
 
@@ -41,8 +42,11 @@ storiesOf('Filtered List', module)
     })
   )
   .addDecorator(withKnobs)
-  .add('Simple', () => ({
-    template: `
+  .addDecorator(withReadme(Readme))
+  // .add('Readme', withReadme(Readme, () => ({})))
+  .add('Simple', 
+    () => ({
+      template: `
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell">
@@ -51,11 +55,11 @@ storiesOf('Filtered List', module)
       </div>
     </div>
   `,
-    props: {
-      fruits: FruitList,
-      handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title)
-    }
-  })
+      props: {
+        fruits: FruitList,
+        handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title)
+      }
+    })
   )
   .add('Refined', () => ({
     template: `
@@ -74,16 +78,16 @@ storiesOf('Filtered List', module)
       fruits$: fruits$,
       refinerGroups: FruitGroups,
       handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title),
-      handleSelectRefiner: (refinerGroups: RefinerGroup[]) => {        
+      handleSelectRefiner: (refinerGroups: RefinerGroup[]) => {
         const expression = refinerGroups
-        .map(group => {
-          switch (group.title) {
-            case "Genera":
-              return `(${group.refiners.map(refiner => `fruit.info.split(' ')[0] === '${refiner.title}'`).join(' || ')})`
-            case "Starts with":
-              return `(${group.refiners.map(refiner => `fruit.title.substr(0, 1) === '${refiner.title}'`).join(' || ')})`
-          }
-        }).join(' && ')
+          .map(group => {
+            switch (group.title) {
+              case "Genera":
+                return `(${group.refiners.map(refiner => `fruit.info.split(' ')[0] === '${refiner.title}'`).join(' || ')})`
+              case "Starts with":
+                return `(${group.refiners.map(refiner => `fruit.title.substr(0, 1) === '${refiner.title}'`).join(' || ')})`
+            }
+          }).join(' && ')
         action("Selected refiners")(expression, refinerGroups)
         filterFruits(expression)
       }
