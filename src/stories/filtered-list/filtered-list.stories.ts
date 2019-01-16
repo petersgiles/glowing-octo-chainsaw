@@ -26,6 +26,7 @@ function filterFruits(expression: string) {
 }
 
 storiesOf('Filtered List', module)
+  .addParameters({ jest: ['filtered-list'] })
   .addDecorator(
     moduleMetadata({
       imports: [
