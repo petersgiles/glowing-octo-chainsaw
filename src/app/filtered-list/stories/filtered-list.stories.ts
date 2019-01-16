@@ -1,17 +1,14 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
-import { withKnobs, object } from '@storybook/addon-knobs';
-
 import { FruitList } from './filtered-list.data'
 import { FilteredListModule, ListItem } from 'src/app/filtered-list';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { FruitGroups } from '../refiner/refiner.data';
+import { FruitGroups } from '../../../stories/refiner/refiner.data';
 import { RefinerModule, RefinerGroup } from 'src/app/refiner';
 import { BehaviorSubject } from 'rxjs';
 import { withReadme } from 'storybook-readme';
-import * as Readme from '../../app/filtered-list/README.md'
+import * as Readme from '../README.md'
 
 const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(FruitList)
 
@@ -42,7 +39,6 @@ storiesOf('Filtered List', module)
       ]
     })
   )
-  .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
   .add('Simple', 
     () => ({

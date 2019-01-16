@@ -1,4 +1,4 @@
-$fruit = Import-Csv "$PSScriptRoot/../.data/fruits.csv"
+$fruit = Import-Csv "$PSScriptRoot/../../.data/fruits.csv"
 
 $listItems = $fruit | % { 
     [PSCustomObject] @{ 
@@ -11,7 +11,7 @@ $listItems = $fruit | % {
 $json = $listItems | ConvertTo-Json -Depth 5
 
 $typeDefs = @"
-import { ListItem } from 'src/app/filtered-list';
+import { ListItem } from '../index';
 
 export const FruitList: ListItem<any>[] = 
 "@
