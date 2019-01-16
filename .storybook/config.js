@@ -4,7 +4,8 @@ import { withOptions, Options } from '@storybook/addon-options';
 
 addDecorator(withOptions({
   name: "DF-Components",
-  url: 'https://cntfs.ssp.pmc.gov.au/DefaultCollection/DFC/_git/DF-Components'
+  url: 'https://cntfs.ssp.pmc.gov.au/DefaultCollection/DFC/_git/DF-Components',
+  addonPanelInRight: true
 }))
 
 // automatically import all files ending in *.stories.ts
