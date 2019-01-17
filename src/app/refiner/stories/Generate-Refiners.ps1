@@ -1,4 +1,4 @@
-$fruit = Import-Csv "$PSScriptRoot/../.data/fruits.csv"
+$fruit = Import-Csv "$PSScriptRoot/../../.data/fruits.csv"
 
 $groups = ( 
     [PSCustomObject]@{
@@ -31,7 +31,7 @@ $groups = (
 $json = $groups | ConvertTo-Json -Depth 5
 
 $typeDefs = @"
-import { RefinerGroup } from 'src/app/refiner';
+import { RefinerGroup } from '../index';
 
 export const FruitGroups: RefinerGroup[] = 
 "@

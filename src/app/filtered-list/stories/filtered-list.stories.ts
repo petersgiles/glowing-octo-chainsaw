@@ -4,7 +4,7 @@ import { FruitList } from './filtered-list.data'
 import { FilteredListModule, ListItem } from 'src/app/filtered-list';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { FruitGroups } from '../../../stories/refiner/refiner.data';
+import { FruitGroups } from '../../refiner/stories/refiner.data';
 import { RefinerModule, RefinerGroup } from 'src/app/refiner';
 import { BehaviorSubject } from 'rxjs';
 import { withReadme } from 'storybook-readme';
@@ -18,7 +18,6 @@ function filterFruits(expression: string) {
     return
   }
   const filtered = FruitList.filter(fruit => eval(expression))
-  console.log(filtered)
   fruits$.next(filtered)
 }
 

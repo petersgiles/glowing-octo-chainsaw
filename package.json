@@ -8,10 +8,10 @@
     "test": "jest",
     "watch-tests": "npm test -- --watch",
     "approve": "npm test -- -u",
-    "test:generate-output": "npm test -- --json --outputFile=jest-test-results.json || true",
+    "output-tests": "npm test -- --json --outputFile=jest-test-results.json || true",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prestorybook": "npm run test:generate-output",
+    "prestorybook": "npm run output-tests",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
