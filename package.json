@@ -1,6 +1,10 @@
 {
-  "name": "components",
-  "version": "0.0.0",
+  "name": "@df/components",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "http://nexus.cloud9.cabnet/repository/npm-digitalfirst/",
+    "_auth": "cHVibGlzaGVyOnB1Ymxpc2hlcjE="
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,7 +23,7 @@
     "preset": "jest-preset-angular",
     "setupTestFrameworkScriptFile": "<rootDir>/setupJest.ts"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular-mdc/web": "^0.42.6",
     "@angular/animations": "~7.1.0",
