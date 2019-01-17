@@ -1,6 +1,6 @@
 {
   "name": "@df/components",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "publishConfig": {
     "registry": "http://nexus.cloud9.cabnet/repository/npm-digitalfirst/",
     "_auth": "cHVibGlzaGVyOnB1Ymxpc2hlcjE="
