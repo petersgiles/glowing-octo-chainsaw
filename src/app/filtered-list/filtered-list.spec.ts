@@ -1,38 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilteredListComponent } from './filtered-list.component';
-import { MdcTextFieldModule, MdcListModule, MdcListItem, MdcTextField } from '@angular-mdc/web';
+import { MdcTextFieldModule, MdcListModule, MdcListItem } from '@angular-mdc/web';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ListItem } from './filtered-list.models';
 import { By } from '@angular/platform-browser';
-
-const testItems: ListItem<any>[] = [
-    {
-        "id":  "6badd846-1232-4ccb-a031-93c72ce63795",
-        "title":  "Apple",
-        "info":  "Pyrus malus",
-        "link": "/",
-        "entity": { colour: "red" }
-    },
-    {
-        "id":  "96f610a7-0999-4637-9001-774cc8b65cd2",
-        "title":  "Apricot",
-        "info":  "Prunus armeniaca"
-    },
-    {
-        "id":  "4cae1e8d-ff43-400b-9170-6ab0c18691fd",
-        "title":  "Avocado",
-        "info":  "Persea americana"
-    },
-    {
-        "id":  "c63dd826-b04b-40d3-9134-b4301d74a7af",
-        "title":  "Banana",
-        "info":  "Musa paradisicum"
-    }
-]
 
 describe('FilteredListComponent', () => {
     let component: FilteredListComponent<any>;
@@ -41,7 +15,6 @@ describe('FilteredListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            // schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 CommonModule,
                 FormsModule,      
@@ -99,3 +72,28 @@ describe('FilteredListComponent', () => {
         expect(component.filteredList).toHaveLength(1)
     });
 });
+
+const testItems: ListItem<any>[] = [
+    {
+        "id":  "6badd846-1232-4ccb-a031-93c72ce63795",
+        "title":  "Apple",
+        "info":  "Pyrus malus",
+        "link": "/",
+        "entity": { colour: "red" }
+    },
+    {
+        "id":  "96f610a7-0999-4637-9001-774cc8b65cd2",
+        "title":  "Apricot",
+        "info":  "Prunus armeniaca"
+    },
+    {
+        "id":  "4cae1e8d-ff43-400b-9170-6ab0c18691fd",
+        "title":  "Avocado",
+        "info":  "Persea americana"
+    },
+    {
+        "id":  "c63dd826-b04b-40d3-9134-b4301d74a7af",
+        "title":  "Banana",
+        "info":  "Musa paradisicum"
+    }
+]
