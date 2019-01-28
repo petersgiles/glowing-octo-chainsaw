@@ -1,0 +1,12 @@
+{
+  "name": "@df/components",
+  "version": "0.2.3",
+  "publishConfig": {
+    "registry": "http://nexus.cloud9.cabnet/repository/npm-digitalfirst/"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular-mdc/web": "^0.42.6"
+  }
+}

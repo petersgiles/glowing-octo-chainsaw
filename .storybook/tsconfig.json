@@ -1,5 +1,5 @@
 {
-  "extends": "../src/tsconfig.app.json",
+  "extends": "../projects/df-components/tsconfig.lib.json",
   "compilerOptions": {
     "types": [
       "node"

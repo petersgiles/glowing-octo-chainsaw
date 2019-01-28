@@ -1,7 +1,8 @@
 import { configure, addDecorator } from '@storybook/angular';
-import { configureViewport } from '@storybook/addon-viewport';
+import { configureViewport } from '@storybook/addon-viewport'
 import { withOptions } from '@storybook/addon-options';
 import { withTests } from '@storybook/addon-jest';
+import '!style-loader!css-loader!sass-loader!./styles.scss';
 import results from '../jest-test-results.json';
 
 addDecorator(withOptions({
@@ -18,7 +19,7 @@ addDecorator(
 );
 
 // automatically import all files ending in *.stories.ts
-const req = require.context('../src/app', true, /.stories.ts$/);
+const req = require.context('../projects', true, /.stories.ts$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
