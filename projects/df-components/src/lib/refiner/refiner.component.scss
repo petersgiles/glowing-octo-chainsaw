@@ -1,0 +1,18 @@
+@import "../../theme";
+
+.list {
+  cursor: pointer;
+}
+
+.refiner {
+  padding: 0 0 0 0;
+  text-overflow: ellipsis;
+}
+
+.refiner-metadata {
+  padding: 11px;
+}
+
+.digital-first-list-heading {
+  @include heading-color();
+}
