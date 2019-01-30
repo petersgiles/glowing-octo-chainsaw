@@ -1,26 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RefinerGroup, Refiner } from './refiner.models';
+import { Component, EventEmitter, Input, Output } from "@angular/core"
+import { Refiner, RefinerGroup } from "./refiner.models"
 
 @Component({
-  selector: 'df-refiner',
-  templateUrl: './refiner.component.html',
-  styleUrls: ['./refiner.component.scss']
+  selector: "df-refiner",
+  templateUrl: "./refiner.component.html",
+  styleUrls: ["./refiner.component.scss"]
 })
 export class RefinerComponent {
   @Input()
-  refinerGroups: RefinerGroup[]
+  public refinerGroups: RefinerGroup[]
 
   @Output()
-  refine: EventEmitter<RefinerGroup[]> = new EventEmitter()
+  public refine: EventEmitter<RefinerGroup[]> = new EventEmitter()
 
-  handleClickRefiner(refiner: Refiner) {
+  public handleClickRefiner(refiner: Refiner) {
     refiner.selected = !refiner.selected
-    this.refine.emit(this.refinerGroups
-      .map(group => ({
-        ...group,
-        refiners: group.refiners.filter(refiner => refiner.selected)
-      }))
-      .filter(group => group.refiners.length)
+    this.refine.emit(
+      this.refinerGroups
+        .map(group => ({
+          ...group,
+          refiners: group.refiners.filter(r => r.selected)
+        }))
+        .filter(group => group.refiners.length)
     )
   }
 }

@@ -1,47 +1,46 @@
-import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
-import { FruitList } from './filtered-list.data'
-import { FilteredListModule, ListItem } from '../';
-import { RouterModule } from '@angular/router';
-import { APP_BASE_HREF } from '@angular/common';
-import { FruitGroups } from '../../refiner/stories/refiner.data';
-import { RefinerModule, RefinerGroup } from '../../refiner';
-import { BehaviorSubject } from 'rxjs';
-import { withReadme } from 'storybook-readme';
-import * as Readme from '../README.md'
+import { storiesOf, moduleMetadata } from "@storybook/angular"
+import { action } from "@storybook/addon-actions"
+import { fruitList } from "./filtered-list.data"
+import { FilteredListModule, ListItem } from "../"
+import { RouterModule } from "@angular/router"
+import { APP_BASE_HREF } from "@angular/common"
+import { fruitGroups } from "../../refiner/stories/refiner.data"
+import { RefinerModule, RefinerGroup } from "../../refiner"
+import { BehaviorSubject } from "rxjs"
+import { withReadme } from "storybook-readme"
+import * as Readme from "../README.md"
 
-const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(FruitList)
+const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(fruitList)
 
 function filterFruits(expression: string) {
   if (!expression) {
-    fruits$.next(FruitList)
+    fruits$.next(fruitList)
     return
   }
-  const filtered = FruitList.filter(fruit => eval(expression))
+  const filtered = fruitList.filter(fruit => eval(expression))
   fruits$.next(filtered)
 }
 
-storiesOf('Filtered List', module)
-  .addParameters({ jest: ['filtered-list'] })
+storiesOf("Filtered List", module)
+  .addParameters({ jest: ["filtered-list"] })
   .addDecorator(
     moduleMetadata({
       imports: [
         FilteredListModule,
         RefinerModule,
-        RouterModule.forRoot([{
-          path: 'iframe.html',
-          redirectTo: ''
-        }])
+        RouterModule.forRoot([
+          {
+            path: "iframe.html",
+            redirectTo: ""
+          }
+        ])
       ],
-      providers: [
-        { provide: APP_BASE_HREF, useValue: '/' }
-      ]
+      providers: [{ provide: APP_BASE_HREF, useValue: "/" }]
     })
   )
   .addDecorator(withReadme(Readme))
-  .add('Simple', 
-    () => ({
-      template: `
+  .add("Simple", () => ({
+    template: `
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell">
@@ -50,13 +49,12 @@ storiesOf('Filtered List', module)
       </div>
     </div>
   `,
-      props: {
-        fruits: FruitList,
-        handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title)
-      }
-    })
-  )
-  .add('Refined', () => ({
+    props: {
+      fruits: fruitList,
+      handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title)
+    }
+  }))
+  .add("Refined", () => ({
     template: `
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
@@ -70,19 +68,28 @@ storiesOf('Filtered List', module)
     </div>
     `,
     props: {
-      fruits$: fruits$,
-      refinerGroups: FruitGroups,
+      fruits$,
+      refinerGroups: fruitGroups,
       handleSelectFruit: (item: ListItem<any>) => action("Fruit")(item.title),
       handleSelectRefiner: (refinerGroups: RefinerGroup[]) => {
         const expression = refinerGroups
           .map(group => {
             switch (group.title) {
               case "Genera":
-                return `(${group.refiners.map(refiner => `fruit.info.split(' ')[0] === '${refiner.title}'`).join(' || ')})`
+                return `(${group.refiners
+                  .map(
+                    refiner => `fruit.info.split(' ')[0] === '${refiner.title}'`
+                  )
+                  .join(" || ")})`
               case "Starts with":
-                return `(${group.refiners.map(refiner => `fruit.title.substr(0, 1) === '${refiner.title}'`).join(' || ')})`
+                return `(${group.refiners
+                  .map(
+                    refiner => `fruit.title.substr(0, 1) === '${refiner.title}'`
+                  )
+                  .join(" || ")})`
             }
-          }).join(' && ')
+          })
+          .join(" && ")
         action("Selected refiners")(expression, refinerGroups)
         filterFruits(expression)
       }

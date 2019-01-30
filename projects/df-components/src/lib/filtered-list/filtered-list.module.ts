@@ -1,24 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
 
-import { FilteredListComponent } from './filtered-list.component';
-import { FormsModule } from '@angular/forms';
+import { MdcListModule, MdcTextFieldModule } from '@angular-mdc/web'
+import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import { MdcListModule, MdcTextFieldModule } from '@angular-mdc/web';
+import { FilteredListComponent } from './filtered-list.component'
 
 const COMPONENTS = [
-    FilteredListComponent
+  FilteredListComponent,
 ]
 
 @NgModule({
   imports: [
-      CommonModule,
-      FormsModule,      
-      RouterModule.forChild([]),
-      MdcListModule,
-      MdcTextFieldModule
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild([]),
+    MdcListModule,
+    MdcTextFieldModule,
   ],
   declarations: COMPONENTS,
-  exports: COMPONENTS
+  exports: COMPONENTS,
 })
 export class FilteredListModule { }

@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path")
 
 module.exports = {
   module: {
@@ -7,15 +7,15 @@ module.exports = {
         test: [/\.stories\.tsx?$/, /index\.ts$/],
         loaders: [
           {
-            loader: require.resolve('@storybook/addon-storysource/loader'),
+            loader: require.resolve("@storybook/addon-storysource/loader"),
             options: {
-              parser: 'typescript',
-            },
-          },
+              parser: "typescript"
+            }
+          }
         ],
-        include: [path.resolve(__dirname, '../projects')],
-        enforce: 'pre',
-      }]
+        include: [path.resolve(__dirname, "../projects")],
+        enforce: "pre"
+      }
+    ]
   }
-};
-
+}
