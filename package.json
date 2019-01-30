@@ -13,9 +13,11 @@
     "output-tests": "npm test -- --json --outputFile=jest-test-results.json || true",
     "prestorybook": "npm run output-tests",
     "storybook": "start-storybook -p 6006",
-    "prebuild-storybook": "npm run output-tests",
-    "build-storybook": "build-storybook",
-    "publish-library": "ng build df-components && npm publish dist/df-components"
+    "prebuild:storybook": "npm run output-tests",
+    "build:storybook": "build-storybook",
+    "package:library": "ng build df-components",
+    "prepublish:library": "package:library",
+    "publish:library": "npm publish dist/df-components"
   },
   "private": true,
   "dependencies": {
