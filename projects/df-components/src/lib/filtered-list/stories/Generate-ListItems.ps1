@@ -2,9 +2,9 @@ $fruit = Import-Csv "$PSScriptRoot/../../../.data/fruits.csv"
 
 $listItems = $fruit | % { 
     [PSCustomObject] @{ 
-        id = (New-Guid)
+        id    = (New-Guid)
         title = $_.Name
-        info = $_.ScientificName
+        info  = $_.ScientificName
     }
 } | Sort-Object -Property title
 

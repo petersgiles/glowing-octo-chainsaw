@@ -29,9 +29,7 @@
               "projects/df-components/tsconfig.lib.json",
               "projects/df-components/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

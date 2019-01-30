@@ -1,2 +1,2 @@
-export * from './filtered-list.module'
-export * from './filtered-list.models'
+export * from "./filtered-list.module"
+export * from "./filtered-list.models"

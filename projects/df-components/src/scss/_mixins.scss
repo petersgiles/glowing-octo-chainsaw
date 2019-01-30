@@ -1,5 +1,5 @@
 @mixin heading-color() {
-    color: $primary-color-text;
-    background-color: $primary-color-dark;
-    @include mdc-list-item-meta-ink-color($primary-color-text);
+  color: $primary-color-text;
+  background-color: $primary-color-dark;
+  @include mdc-list-item-meta-ink-color($primary-color-text);
 }
