@@ -10,7 +10,6 @@
     "lint:fix": "ng lint --fix",
     "prettier": "prettier --check \"**/*.{ts,html,scss,json,md,js}\"",
     "prettier:fix": "prettier --write \"**/*.{ts,html,scss,json,md,js}\"",
-    "e2e": "ng e2e",
     "output-tests": "npm test -- --json --outputFile=jest-test-results.json || true",
     "prestorybook": "npm run output-tests",
     "storybook": "start-storybook -p 6006",

@@ -19,5 +19,6 @@
       "df-components/*": ["dist/df-components/*"]
     },
     "resolveJsonModule": true
-  }
+  },
+  "exclude": ["dist"]
 }
