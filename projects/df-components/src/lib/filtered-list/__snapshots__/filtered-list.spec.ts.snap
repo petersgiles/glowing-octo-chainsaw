@@ -11,12 +11,15 @@ exports[`FilteredListComponent should contain a list of items 1`] = `
     class="sticky"
   >
     <mdc-text-field
+      autocomplete="off"
       class="mdc-text-field ng-untouched ng-pristine ng-valid"
+      ng-reflect-autocomplete="off"
       ng-reflect-label="Filter"
     >
       
       <input
         aria-invalid="false"
+        autocomplete="off"
         class="mdc-text-field__input"
         id="mdc-input-1"
         tabindex="0"
