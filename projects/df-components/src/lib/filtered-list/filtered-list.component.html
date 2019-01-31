@@ -1,5 +1,9 @@
 <div class="sticky">
-  <mdc-text-field [label]="label" [(ngModel)]="filter"></mdc-text-field>
+  <mdc-text-field
+    [label]="label"
+    [(ngModel)]="filter"
+    autocomplete="off"
+  ></mdc-text-field>
 </div>
 
 <mdc-list twoLine>
