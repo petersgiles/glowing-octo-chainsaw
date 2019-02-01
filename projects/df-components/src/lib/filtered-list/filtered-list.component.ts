@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core"
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy
+} from "@angular/core"
 import { ListItem } from "./filtered-list.models"
 
 @Component({
   selector: "df-filtered-list",
   templateUrl: "./filtered-list.component.html",
-  styleUrls: ["./filtered-list.component.scss"]
+  styleUrls: ["./filtered-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilteredListComponent<T> {
   get filteredList() {
