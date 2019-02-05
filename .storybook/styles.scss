@@ -1,3 +1,26 @@
 @import "../projects/df-components/src/theme";
+@import "~@angular-mdc/theme/material";
 
 $primary-color-dark: #123456;
+
+
+
+.ngx-datatable,
+.info {
+  text-align: left;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.info {
+    box-sizing: border-box;
+    padding: 0 1em;
+    border: solid 1px #ccc;
+    background: white;
+    font-size: .8em;
+    margin-bottom: 1em;
+  }
+  
+  .ngx-datatable.scroll-vertical {
+    height: 70vh;
+  }
