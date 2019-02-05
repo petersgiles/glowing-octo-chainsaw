@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core"
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
+import { Page } from '../models/data-table-model'
 
 @Component({
   selector: "df-data-table",
@@ -18,4 +19,13 @@ export class DataTableComponent implements OnInit {
 
   @Input()
   public columns
+
+  @Input()
+  public count
+
+  @Input()
+  public offset
+
+  @Output()
+  public page: EventEmitter<Page> = new EventEmitter()
 }

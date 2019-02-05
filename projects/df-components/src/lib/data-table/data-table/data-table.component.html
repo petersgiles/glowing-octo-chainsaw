@@ -7,5 +7,8 @@
   [scrollbarV]="true"
   [footerHeight]="50"
   [rowHeight]="50"
+  [count]="count"
+  [offset]="offset"
+  (page)='page.emit($event)'
 >
 </ngx-datatable>
