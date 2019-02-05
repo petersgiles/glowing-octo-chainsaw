@@ -1,9 +1,13 @@
-@import "../projects/df-components/src/theme";
-@import "~@angular-mdc/theme/material";
+// @import "../projects/df-components/src/theme";
+// @import "~@angular-mdc/theme/material";
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
 
 $primary-color-dark: #123456;
 
-
+datatable-body-cell{
+    height: 50px;
+}
 
 .ngx-datatable,
 .info {
