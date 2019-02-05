@@ -1,6 +1,11 @@
 <ngx-datatable
-  class="material ngx-datatable fixed-header"
+  class="material ngx-datatable fixed-header fixed-row scroll-vertical"
   [rows]="rows"
   [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [scrollbarV]="true"
+  [footerHeight]="50"
+  [rowHeight]="50"
 >
 </ngx-datatable>
