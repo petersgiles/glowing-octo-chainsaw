@@ -11,7 +11,34 @@ import { BehaviorSubject } from 'rxjs';
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 
-function filterFruits(expression: string) {
+export const multiFilter = (arr: any[], filters: any) => {
+  const filterKeys = Object.keys(filters)
+  return arr.filter(eachObj =>
+    filterKeys.some(eachKey => {
+      if (!filters[eachKey].length) {
+        return true // passing an empty filter means that filter is ignored.
+      }
+      return eachObj[eachKey].toLowerCase().includes(filters[eachKey])
+    }))
+}
+
+export const filterFruits = (expression: string) => {
+  if (!expression) {
+    fruits$.next(fruitList)
+    return
+  }
+  const filter = {
+    "common": expression,
+    "botanical": expression,
+    "genus": expression,
+    "family": expression,
+    "group": expression
+  }
+  const filtered = multiFilter(fruitList, filter)
+  fruits$.next(filtered)
+}
+
+export const filterFruitsOld = (expression: string) => {
   if (!expression) {
     fruits$.next(fruitList)
     return

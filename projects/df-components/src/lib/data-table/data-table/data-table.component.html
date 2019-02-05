@@ -1,8 +1,8 @@
 <input
   type='text'
   style='padding:8px;margin:15px auto;width:30%;'
-  placeholder='Type to filter the name column...'
-  (keyup)='onFilter.emit($event)'
+  placeholder='Type here to filter columns'
+  (keyup)='filter.next($event)'
 />
 
 <ngx-datatable

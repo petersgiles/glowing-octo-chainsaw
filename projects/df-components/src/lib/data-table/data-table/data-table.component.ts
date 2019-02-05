@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
 import { Page } from '../models/data-table-model'
+import { Observable, Subject } from 'rxjs'
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: "df-data-table",
@@ -8,8 +10,17 @@ import { Page } from '../models/data-table-model'
 })
 export class DataTableComponent implements OnInit {
 
+  private filter: Subject<string> = new Subject<string>();
+
   // tslint:disable-next-line:no-empty
-  constructor() {}
+  constructor() {
+    this.filter
+    .pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+      )
+    .subscribe((val: string) => this.onFilter.emit(val));
+  }
 
   // tslint:disable-next-line:no-empty
   public ngOnInit(): void {}
@@ -27,5 +38,6 @@ export class DataTableComponent implements OnInit {
   public onPage: EventEmitter<Page> = new EventEmitter()
 
   @Output()
-  public onFilter: EventEmitter<any> = new EventEmitter()
+  public onFilter: EventEmitter<string> = new EventEmitter()
+
 }
