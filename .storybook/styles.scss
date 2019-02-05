@@ -23,3 +23,12 @@ $primary-color-dark: #123456;
 .ngx-datatable.scroll-vertical {
   height: 70vh;
 }
+
+input[type=text] {
+    font-size: 14px;
+    display: block;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #5264AE;
+}

@@ -23,9 +23,9 @@ export class DataTableComponent implements OnInit {
   @Input()
   public count
 
-  @Input()
-  public offset
+  @Output()
+  public onPage: EventEmitter<Page> = new EventEmitter()
 
   @Output()
-  public page: EventEmitter<Page> = new EventEmitter()
+  public onFilter: EventEmitter<any> = new EventEmitter()
 }

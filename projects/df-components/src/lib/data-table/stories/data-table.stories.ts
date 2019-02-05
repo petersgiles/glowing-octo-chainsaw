@@ -6,6 +6,21 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import { BrowserModule } from "@angular/platform-browser"
 import { fruitList } from './fruit-data';
 import { Page } from '../models/data-table-model';
+import { BehaviorSubject } from 'rxjs';
+
+
+const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
+
+function filterFruits(expression: string) {
+  if (!expression) {
+    fruits$.next(fruitList)
+    return
+  }
+  const filtered = fruitList.filter((fruit: any) => {
+    return fruit.common.toLowerCase().includes(expression)
+  } )
+  fruits$.next(filtered)
+}
 
 storiesOf("Data Table", module)
   .addDecorator(
@@ -17,16 +32,16 @@ storiesOf("Data Table", module)
   .add("Usages", () => ({
     template: `
     <df-data-table
-    [rows]="rows"
+    [rows]="rows$ | async"
     [columns]="columns"
     [count]="count"
-    [offset]="offset"
-    (page)="handlePage($event)"
+    (onPage)="handlePage($event)"
+    (onFilter)="handleFilter($event)"
     >
     </df-data-table>
     `,
     props: {
-      rows: fruitList,
+      rows$: fruits$,
       columns: [
         { prop: 'common', name: 'Common Name' },
         { prop: 'botanical', name: 'Botanical Name' },
@@ -34,6 +49,14 @@ storiesOf("Data Table", module)
         { prop: 'family',  name: 'Family' }
       ],
       count: fruitList.length,
-      handlePage: ($event: Page) => action("Page")($event)
+
+      handlePage: ($event: Page) => action("Page")($event),
+      handleFilter: ($event: any) => {
+        const val = $event.target.value.toLowerCase();
+        console.log(val)
+        filterFruits(val)
+        action("Filter")($event)
+      },
+      
     }
   }))
