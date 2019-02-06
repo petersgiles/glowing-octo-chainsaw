@@ -8,6 +8,9 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 export class AvatarComponent  implements OnInit, OnChanges {
 
 
+  // tslint:disable-next-line:no-empty
+  constructor() {}
+
   // tslint:disable-next-line:variable-name
   private _email: string
   // tslint:disable-next-line:variable-name

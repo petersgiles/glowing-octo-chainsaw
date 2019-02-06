@@ -1,11 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { DataTableComponent } from "./data-table.component"
-import { CommonModule } from "@angular/common"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import { BrowserModule } from "@angular/platform-browser"
-import { MdcIconModule } from '@angular-mdc/web';
+import {
+  MdcIconModule,
+  MdcButtonModule,
+  MdcSelectModule,
+  MdcRadioModule
+} from "@angular-mdc/web"
+import { CommonModule } from '@angular/common';
 
 describe("DataTableComponent", () => {
   let component: DataTableComponent
@@ -16,10 +21,13 @@ describe("DataTableComponent", () => {
       imports: [
         CommonModule,
         FormsModule,
-        MdcIconModule,
         ReactiveFormsModule,
-        NgxDatatableModule,
-        BrowserModule
+        NgxDatatableModule, 
+        BrowserModule,
+        MdcButtonModule,
+        MdcIconModule,
+        MdcSelectModule,
+        MdcRadioModule
       ],
       declarations: [DataTableComponent]
     }).compileComponents()
