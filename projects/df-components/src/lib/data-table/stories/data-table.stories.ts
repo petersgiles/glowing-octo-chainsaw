@@ -8,7 +8,8 @@ import { fruitList } from './fruit-data';
 import { Page } from '../models/data-table-model';
 import { BehaviorSubject } from 'rxjs';
 import { MdcIconModule } from '@angular-mdc/web';
-
+import { withReadme } from "storybook-readme"
+import * as Readme from "../README.md"
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 
@@ -56,6 +57,7 @@ storiesOf("Data Table", module)
       imports: [NgxDatatableModule, BrowserModule, MdcIconModule, DataTableModule]
     })
   )
+  .addDecorator(withReadme(Readme))
   .addDecorator(withLinks)
   .add("Usages", () => ({
     template: `

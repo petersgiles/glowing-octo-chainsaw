@@ -3,6 +3,8 @@ import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
 
 import { AvatarModule } from "../../avatar/avatar.module"
+import { withReadme } from "storybook-readme"
+import * as Readme from "../README.md"
 
 storiesOf("Avatar", module)
   .addDecorator(
@@ -13,6 +15,7 @@ storiesOf("Avatar", module)
       ]
     })
   )
+  .addDecorator(withReadme(Readme))
   .addDecorator(withLinks)
   .add("Usages", () => ({
     template: `
