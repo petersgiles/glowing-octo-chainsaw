@@ -8,7 +8,8 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import {
   MdcButtonModule,
   MdcSelectModule,
-  MdcRadioModule
+  MdcRadioModule,
+  MdcIconModule
 } from "@angular-mdc/web"
 
 import { DataTableComponent } from "./data-table/data-table.component"
@@ -25,6 +26,7 @@ const COMPONENTS = [
     NgxDatatableModule, 
     BrowserModule,
     MdcButtonModule,
+    MdcIconModule,
     MdcSelectModule,
     MdcRadioModule
   ],

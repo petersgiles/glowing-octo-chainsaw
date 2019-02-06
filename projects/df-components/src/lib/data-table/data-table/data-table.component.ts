@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
 import { Page } from '../models/data-table-model'
 import { Observable, Subject } from 'rxjs'
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
 
 @Component({
   selector: "df-data-table",
@@ -36,6 +36,9 @@ export class DataTableComponent implements OnInit {
 
   @Output()
   public onPage: EventEmitter<Page> = new EventEmitter()
+
+  @Output()
+  public onDelete: EventEmitter<any> = new EventEmitter()
 
   @Output()
   public onFilter: EventEmitter<string> = new EventEmitter()

@@ -7,6 +7,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { fruitList } from './fruit-data';
 import { Page } from '../models/data-table-model';
 import { BehaviorSubject } from 'rxjs';
+import { MdcIconModule } from '@angular-mdc/web';
 
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
@@ -52,7 +53,7 @@ export const filterFruitsOld = (expression: string) => {
 storiesOf("Data Table", module)
   .addDecorator(
     moduleMetadata({
-      imports: [NgxDatatableModule, BrowserModule, DataTableModule]
+      imports: [NgxDatatableModule, BrowserModule, MdcIconModule, DataTableModule]
     })
   )
   .addDecorator(withLinks)
@@ -64,6 +65,7 @@ storiesOf("Data Table", module)
     [count]="count"
     (onPage)="handlePage($event)"
     (onFilter)="handleFilter($event)"
+    (onDelete)="handleDelete($event)"
     >
     </df-data-table>
     `,
@@ -78,6 +80,7 @@ storiesOf("Data Table", module)
       count: fruitList.length,
 
       handlePage: ($event: Page) => action("Page")($event),
+      handleDelete: ($event) => action("Delete")($event),
       handleFilter: ($event: any) => {
         const val = $event.target.value.toLowerCase();
         console.log(val)

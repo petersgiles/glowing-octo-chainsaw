@@ -629,7 +629,7 @@ export const fruitList = [
    "family": "Rosaceae",
    "group": "Rose"
  }
-]
+].map((f, i) => ({...f, id: i}))
 
 export const fruitGroups = fruitList.map(f => f.group).filter((v, i, a) => a.indexOf(v) === i)
 export const fruitGenus = fruitList.map(f => f.genus).filter((v, i, a) => a.indexOf(v) === i)
