@@ -41,6 +41,9 @@ export class DataTableComponent implements OnInit {
   public onDelete: EventEmitter<any> = new EventEmitter()
 
   @Output()
+  public onSelect: EventEmitter<any> = new EventEmitter()
+
+  @Output()
   public onFilter: EventEmitter<string> = new EventEmitter()
 
 }

@@ -63,9 +63,10 @@ storiesOf("Data Table", module)
     [rows]="rows$ | async"
     [columns]="columns"
     [count]="count"
-    (onPage)="handlePage($event)"
+    (onPage)="handleEvent($event, 'onPage')"
+    (onSelect)="handleEvent($event, 'onSelect')"
     (onFilter)="handleFilter($event)"
-    (onDelete)="handleDelete($event)"
+    (onDelete)="handleEvent($event, 'onDelete')"
     >
     </df-data-table>
     `,
@@ -78,14 +79,12 @@ storiesOf("Data Table", module)
         { prop: 'family',  name: 'Family' }
       ],
       count: fruitList.length,
-
-      handlePage: ($event: Page) => action("Page")($event),
-      handleDelete: ($event) => action("Delete")($event),
+      handleEvent: ($event, name) => action(name)($event),
       handleFilter: ($event: any) => {
         const val = $event.target.value.toLowerCase();
         console.log(val)
         filterFruits(val)
-        action("Filter")($event)
+        action("onFilter")($event)
       },
       
     }
