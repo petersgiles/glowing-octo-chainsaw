@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core"
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy
+} from "@angular/core"
 import { Refiner, RefinerGroup } from "./refiner.models"
 
 @Component({
   selector: "df-refiner",
   templateUrl: "./refiner.component.html",
-  styleUrls: ["./refiner.component.scss"]
+  styleUrls: ["./refiner.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RefinerComponent {
   @Input()
