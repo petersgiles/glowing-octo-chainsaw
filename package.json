@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 6006",
     "prebuild:storybook": "npm run output-tests",
     "build:storybook": "build-storybook",
-    "package:library": "ng build df-components",
+    "package:library": "ng build df-components   --target=production --environment=prod",
     "prepublish:library": "package:library",
     "publish:library": "npm publish dist/df-components"
   },
