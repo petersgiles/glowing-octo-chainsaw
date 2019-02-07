@@ -3,8 +3,7 @@ import { CommonModule } from "@angular/common"
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser'
-import { NgxDatatableModule } from "@swimlane/ngx-datatable"
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 import {
   MdcButtonModule,
   MdcSelectModule,

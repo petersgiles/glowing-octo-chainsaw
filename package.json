@@ -37,6 +37,9 @@
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
+  "peerDependencies": {
+    "@swimlane/ngx-datatable": "^14.0.0"
+  },
   "devDependencies": {
     "@angular-builders/jest": "^7.2.1",
     "@angular-devkit/build-angular": "~0.12.0",

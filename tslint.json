@@ -19,7 +19,7 @@
       "@angular/core/testing",
       "@angular/router/testing"
     ],
-    "no-implicit-dependencies": [true, "dev", ["@angular/platform-browser"]],
+    "no-implicit-dependencies": [true, "dev", ["@angular/platform-browser", "@swimlane/ngx-datatable"]],
     "member-ordering": false
   }
 }
