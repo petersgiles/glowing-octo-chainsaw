@@ -1,0 +1,41 @@
+mdc-list-item {
+  transition: border-width 0.1s ease-in-out;
+
+  &.active {
+    border-right: 4px solid #d84315;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+df-avatar {
+  padding-right: 20px;
+}
+
+.discussion-list--custom {
+  color: #212121;
+}
+
+.discussion-form {
+  margin: 20px;
+}
+
+.discussion-list_item--custom {
+  height: auto;
+
+  .mdc-list-item__text {
+    width: 100%;
+  }
+
+  .mdc-list-item__primary-text {
+    white-space: normal;
+    width: 100%;
+  }
+
+  .discussion-list-level-2 {
+    margin-left: 20px;
+  }
+
+  .discussion-list-level-3 {
+    margin-left: 40px;
+  }
+}

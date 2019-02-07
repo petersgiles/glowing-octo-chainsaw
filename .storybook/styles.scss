@@ -1,3 +1,34 @@
 @import "../projects/df-components/src/theme";
+@import "~@angular-mdc/theme/material";
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
 
 $primary-color-dark: #123456;
+.ngx-datatable,
+.info {
+  text-align: left;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.info {
+  box-sizing: border-box;
+  padding: 0 1em;
+  border: solid 1px #ccc;
+  background: white;
+  font-size: 0.8em;
+  margin-bottom: 1em;
+}
+
+.ngx-datatable.scroll-vertical {
+  height: 70vh;
+}
+
+input[type=text] {
+    font-size: 14px;
+    display: block;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #5264AE;
+}
