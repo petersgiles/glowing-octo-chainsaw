@@ -13,11 +13,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/df-components/tsconfig.lib.json",
-            "project": "projects/df-components/ng-package.json",
-            "styles": [
-              "./node_modules/@swimlane/ngx-datatable/release/index.css",
-              "./node_modules/@swimlane/ngx-datatable/release/themes/material.css"
-            ]
+            "project": "projects/df-components/ng-package.json"
           }
         },
         "test": {
