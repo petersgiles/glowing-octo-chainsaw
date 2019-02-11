@@ -5,3 +5,6 @@
 
 export * from "./lib/filtered-list/index"
 export * from "./lib/refiner/index"
+export * from "./lib/data-table/index"
+export * from "./lib/discussion/index"
+export * from "./lib/avatar/index"
