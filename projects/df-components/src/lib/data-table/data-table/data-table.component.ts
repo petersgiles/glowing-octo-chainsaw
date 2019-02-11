@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
 })
 export class DataTableComponent implements OnInit {
 
-  private filter: Subject<string> = new Subject<string>();
+  public filter: Subject<string> = new Subject<string>();
 
   // tslint:disable-next-line:no-empty
   constructor() {
