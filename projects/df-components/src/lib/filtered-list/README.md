@@ -1,6 +1,6 @@
 ## df-filtered-list
 
-`import { FilteredListModule } from 'df-components'`
+`import { FilteredListModule } from '@df/components'`
 
 Displays a list of items that can be selected and filtered. Items can route or emit an event. Filter expression can be overridden.
 

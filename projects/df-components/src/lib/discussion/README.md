@@ -1,6 +1,6 @@
 # df-discussion
 
-`import { DiscussionModule } from 'df-components'`
+`import { DiscussionModule } from '@df/components'`
 
 ## Inputs
 

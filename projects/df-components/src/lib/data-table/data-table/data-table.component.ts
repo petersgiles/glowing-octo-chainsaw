@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
 import { Page } from '../models/data-table-model'
-import { Observable, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
 
 @Component({
@@ -24,6 +24,12 @@ export class DataTableComponent implements OnInit {
 
   // tslint:disable-next-line:no-empty
   public ngOnInit(): void {}
+
+  @Input()
+  public hasDelete = false
+
+  @Input()
+  public hasFilter = false
 
   @Input()
   public rows
