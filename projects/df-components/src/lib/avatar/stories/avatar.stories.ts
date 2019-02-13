@@ -7,12 +7,10 @@ import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
 
 storiesOf("Avatar", module)
+  .addParameters({ jest: ["avatar.component"] })
   .addDecorator(
     moduleMetadata({
-      imports: [
-        BrowserModule,
-        AvatarModule,
-      ]
+      imports: [BrowserModule, AvatarModule]
     })
   )
   .addDecorator(withReadme(Readme))

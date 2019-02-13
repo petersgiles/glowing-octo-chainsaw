@@ -1,20 +1,18 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core"
 
 @Component({
-  selector: 'df-avatar',
-  templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss']
+  selector: "df-avatar",
+  templateUrl: "./avatar.component.html",
+  styleUrls: ["./avatar.component.scss"]
 })
-export class AvatarComponent  implements OnInit, OnChanges {
-
-
+export class AvatarComponent implements OnInit {
   // tslint:disable-next-line:no-empty
   constructor() {}
 
   // tslint:disable-next-line:variable-name
   private _email: string
 
-  @Input('email')
+  @Input("email")
   set email(val: string) {
     this._email = val
   }
@@ -26,32 +24,33 @@ export class AvatarComponent  implements OnInit, OnChanges {
   // tslint:disable-next-line:variable-name
   private _name: string
 
-  @Input('name')
+  @Input("name")
   set name(val: string) {
     this._name = val
+    this.getLetter()
   }
 
   get name(): string {
     return this._name
   }
 
-  @Input('size') public size = 100
+  @Input("size") public size = 100
 
-  @Input('background') public background = 'rgb(84, 70, 126)' // this.getRandomColor()
+  @Input("background") public background = "rgb(84, 70, 126)" // this.getRandomColor()
 
-  @Input('displayType') public displayType = 'none'
+  @Input("displayType") public displayType = "none"
 
-  public letter = '?'
+  public letter = "?"
 
-  @Input('defaultProtocol') public defaultProtocol: string = null
+  @Input("defaultProtocol") public defaultProtocol: string = null
 
   public fontSize = 49
-  public fontColor = '#FFFFFF'
+  public fontColor = "#FFFFFF"
   public props: any = null
 
   public getRandomColor(): string {
-    const letters = '0123456789ABCDEF'.split('')
-    let color = '#'
+    const letters = "0123456789ABCDEF".split("")
+    let color = "#"
     for (let n = 0; n < 6; n = n + 1) {
       color += letters[Math.floor(Math.random() * 16)]
     }
@@ -59,8 +58,7 @@ export class AvatarComponent  implements OnInit, OnChanges {
   }
 
   public getLetterColor(letters): string {
-
-    const padded = letters.padEnd(3, '~').substring(0, 3)
+    const padded = letters.padEnd(3, "~").substring(0, 3)
 
     const color = this.ascii_to_hexa(padded)
     return `#${color}`
@@ -72,7 +70,7 @@ export class AvatarComponent  implements OnInit, OnChanges {
       const hex = Number(str.charCodeAt(n)).toString(16)
       arr1.push(hex)
     }
-    return arr1.join('')
+    return arr1.join("")
   }
 
   /**
@@ -82,14 +80,14 @@ export class AvatarComponent  implements OnInit, OnChanges {
     if (this.name && this.name.length) {
       const nameInitials = this.name.match(/\b(\w)/g)
       if (nameInitials) {
-        const nameLetters = nameInitials.slice(0, 3).join('')
+        const nameLetters = nameInitials.slice(0, 3).join("")
         this.letter = nameLetters.toUpperCase()
       } else {
         this.letter = this.name[0]
       }
     } else if (this.email && this.email.length) {
-      const emailInitials = this.email.split('@')[0].match(/\b(\w)/g)
-      const emailLetters = emailInitials.slice(0, 3).join('')
+      const emailInitials = this.email.split("@")[0].match(/\b(\w)/g)
+      const emailLetters = emailInitials.slice(0, 3).join("")
       this.letter = emailLetters.toUpperCase()
     }
   }
@@ -104,14 +102,14 @@ export class AvatarComponent  implements OnInit, OnChanges {
     }
 
     switch (this.displayType) {
-      case 'rounded':
-        this.props.borderradius = '5%'
+      case "rounded":
+        this.props.borderradius = "5%"
         break
-      case 'circle':
-        this.props.borderradius = '50%'
+      case "circle":
+        this.props.borderradius = "50%"
         break
       default:
-        this.props.borderradius = '0'
+        this.props.borderradius = "0"
     }
   }
 
@@ -120,14 +118,5 @@ export class AvatarComponent  implements OnInit, OnChanges {
    */
   public ngOnInit() {
     this.setCssProps()
-    this.getLetter()
   }
-
-  /**
-   * Updates avatar image and letter on email updates
-   */
-  public ngOnChanges() {
-    this.getLetter()
-  }
-
 }
