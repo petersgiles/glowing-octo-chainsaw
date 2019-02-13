@@ -1,5 +1,6 @@
 mdc-list-item {
   transition: border-width 0.1s ease-in-out;
+  align-items: flex-start;
 
   &.active {
     border-right: 4px solid #d84315;
@@ -9,8 +10,15 @@ mdc-list-item {
 
 df-avatar {
   padding-right: 20px;
+  padding-top: 20px;
 }
 
+.discussion-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 20px;
+
+}
 .discussion-list--custom {
   color: #212121;
 }
@@ -19,16 +27,16 @@ df-avatar {
   margin: 20px;
 }
 
+.discussion-text {
+  white-space: normal !important;
+}
+
 .discussion-list_item--custom {
   height: auto;
 
   .mdc-list-item__text {
     width: 100%;
-  }
-
-  .mdc-list-item__primary-text {
-    white-space: normal;
-    width: 100%;
+    white-space: normal !important;
   }
 
   .discussion-list-level-2 {

@@ -17,9 +17,21 @@ storiesOf("Avatar", module)
   )
   .addDecorator(withReadme(Readme))
   .addDecorator(withLinks)
-  .add("Usages", () => ({
+  .add("Circle", () => ({
     template: `
-    <df-avatar name="Guest" displayType="circle" size="35"></df-avatar>
+    <df-avatar name="Guest User" displayType="circle" size="35"></df-avatar>
+    `,
+    props: {}
+  }))
+  .add("Rounded", () => ({
+    template: `
+    <df-avatar name="Muppet Puppet" displayType="rounded" size="35" background='#333333'></df-avatar>
+    `,
+    props: {}
+  }))
+  .add("Square", () => ({
+    template: `
+    <df-avatar name="Tomato Fruit" background='tomato'></df-avatar>
     `,
     props: {}
   }))

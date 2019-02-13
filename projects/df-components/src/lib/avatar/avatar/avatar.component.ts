@@ -13,8 +13,6 @@ export class AvatarComponent  implements OnInit, OnChanges {
 
   // tslint:disable-next-line:variable-name
   private _email: string
-  // tslint:disable-next-line:variable-name
-  private _name: string
 
   @Input('email')
   set email(val: string) {
@@ -24,6 +22,9 @@ export class AvatarComponent  implements OnInit, OnChanges {
   get email(): string {
     return this._email
   }
+
+  // tslint:disable-next-line:variable-name
+  private _name: string
 
   @Input('name')
   set name(val: string) {
@@ -36,7 +37,7 @@ export class AvatarComponent  implements OnInit, OnChanges {
 
   @Input('size') public size = 100
 
-  @Input('background') public background = this.getRandomColor()
+  @Input('background') public background = 'rgb(84, 70, 126)' // this.getRandomColor()
 
   @Input('displayType') public displayType = 'none'
 
@@ -91,8 +92,6 @@ export class AvatarComponent  implements OnInit, OnChanges {
       const emailLetters = emailInitials.slice(0, 3).join('')
       this.letter = emailLetters.toUpperCase()
     }
-
-    this.background = this.getLetterColor(this.letter)
   }
 
   public setCssProps() {
