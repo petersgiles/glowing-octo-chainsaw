@@ -1,0 +1,33 @@
+<section>
+  <div
+    class="panel-title-bar"
+    [style.background-color]="_background"
+    [style.color]="_textColour"
+  >
+    <div
+      class="panel-title-title-bar-text"
+      mdcHeadline5
+      (click)="onToggleExpand.emit(!expanded)"
+    >
+      {{ title | titlecase }}
+    </div>
+    <ng-content *ngIf="expanded" select="[panel-buttons]"></ng-content>
+    
+    <a
+      class="panel-expander-button"
+      mdcIcon
+      attr.aria-label="Toggle Expand Collapse"
+      title="Toggle Expand Collapse"
+      (click)="onToggleExpand.emit(!expanded)"
+      >keyboard_arrow_{{ expanded ? "down" : "right" }}</a
+    >
+  </div>
+  <ng-container *ngIf="expanded">
+    <div *ngIf="readOnly" class="panel-content">
+      <ng-content *ngIf="readOnly"></ng-content>
+    </div>
+    <div *ngIf="!readOnly" class="panel-content">
+      <ng-content select="[panel-content-edit]"></ng-content>
+    </div>
+  </ng-container>
+</section>

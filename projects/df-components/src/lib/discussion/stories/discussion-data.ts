@@ -1,4 +1,4 @@
-import { toTree } from "./array-to-tree"
+import { toTree } from "../../utils/array-to-tree"
 
 export const demoAuthor: any = {
   username: "demoAuthor",

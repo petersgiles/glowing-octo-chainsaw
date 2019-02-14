@@ -1,0 +1,24 @@
+:host {
+    font-family: Roboto;
+}
+
+.panel-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 10px;
+  margin: 4px 0 0 0;
+  overflow: hidden;
+}
+
+.panel-title-title-bar-text {
+  width: 100%;
+}
+
+.panel-content {
+    padding: 0;
+}
+
+.panel-expander-button {
+    padding: 4px;
+}

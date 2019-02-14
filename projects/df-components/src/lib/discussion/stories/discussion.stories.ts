@@ -14,7 +14,7 @@ import { AvatarModule } from "../../avatar/avatar.module"
 import { discussionTree, demoAuthor, discussionItems } from "./discussion-data"
 import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
-import { toTree } from './array-to-tree';
+import { toTree } from '../../utils/array-to-tree';
 import { UUID } from './uuid';
 
 const comments$: BehaviorSubject<Comment[]> = new BehaviorSubject(

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core"
+import { ascii_to_hexa } from '../../utils/colour';
 
 @Component({
   selector: "df-avatar",
@@ -48,29 +49,11 @@ export class AvatarComponent implements OnInit {
   public fontColor = "#FFFFFF"
   public props: any = null
 
-  public getRandomColor(): string {
-    const letters = "0123456789ABCDEF".split("")
-    let color = "#"
-    for (let n = 0; n < 6; n = n + 1) {
-      color += letters[Math.floor(Math.random() * 16)]
-    }
-    return color
-  }
-
   public getLetterColor(letters): string {
     const padded = letters.padEnd(3, "~").substring(0, 3)
 
-    const color = this.ascii_to_hexa(padded)
+    const color = ascii_to_hexa(padded)
     return `#${color}`
-  }
-
-  public ascii_to_hexa(str) {
-    const arr1 = []
-    for (let n = 0, l = str.length; n < l; n = n + 1) {
-      const hex = Number(str.charCodeAt(n)).toString(16)
-      arr1.push(hex)
-    }
-    return arr1.join("")
   }
 
   /**

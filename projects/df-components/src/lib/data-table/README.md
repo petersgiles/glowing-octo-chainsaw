@@ -26,7 +26,23 @@ Exported As: DataTableComponent
 
 ## Examples
 
-`import { DataTableModule } from '@df/components'`
+The datatable uses [ngx-datatable](http://swimlane.github.io/ngx-datatable).
+
+```bash
+npm i --save @df/components @swimlane/ngx-datatable
+```
+
+```typescript
+import { DataTableModule } from '@df/components'
+```
+
+In your client app scss file include.
+
+```scss
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+```
 
 ### Basic
 
