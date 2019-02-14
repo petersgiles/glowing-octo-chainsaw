@@ -11,7 +11,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -26,7 +26,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -41,7 +41,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -56,7 +56,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -71,7 +71,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -86,7 +86,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -101,7 +101,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -116,7 +116,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -131,7 +131,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -146,7 +146,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -161,7 +161,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -176,7 +176,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -191,7 +191,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -206,7 +206,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -221,7 +221,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -236,7 +236,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -251,7 +251,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null
@@ -266,7 +266,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -281,7 +281,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "blue",
+    colour: "CornflowerBlue",
     titleClass: null,
     media: null,
     data: null
@@ -296,7 +296,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "red",
+    colour: "Crimson",
     titleClass: null,
     media: null,
     data: null

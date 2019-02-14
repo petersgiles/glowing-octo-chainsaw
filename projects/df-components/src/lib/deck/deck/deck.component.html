@@ -1,32 +1,29 @@
-
-<mdc-image-list class="standard-image-list image-list--rounded-corners">
-
-
-    <mdc-card class="df-card" *ngFor="let card of cards" class="df-card" [ngClass]="card.size">
-        <mdc-card-primary-action>
-          <mdc-card-media class="df-card__media--16-9" wide></mdc-card-media>
-          <div class="df-card__primary">
-            <h2 class="df-card__title" mdcHeadline6>{{card.title}}</h2>
-            <h3 class="df-card__subtitle" mdcSubtitle2>by Kurt Wagner</h3>
-          </div>
-          <div class="df-card__secondary" mdcBody2>
-            Visit ten places on our planet that are undergoing the biggest changes today.
-          </div>
-        </mdc-card-primary-action>
-        <mdc-card-actions>
-          <mdc-card-action-icons>
-            <button mdcIconButton mdcCardAction="icon">
-              <mdc-icon mdcIconOn>favorite</mdc-icon>
-              <mdc-icon>favorite_border</mdc-icon>
-            </button>
-            <button mdcIconButton mdcCardAction="icon" icon="share"></button>
-            <button mdcIconButton mdcCardAction="icon" icon="more_vert"></button>
-          </mdc-card-action-icons>
-        </mdc-card-actions>
-      </mdc-card>
-
-
-  </mdc-image-list>
-
-
-
+<div class="deck">
+  <div class="df-card df-shadow--4dp"  *ngFor="let card of cards">
+    <div
+      class="df-card__title"
+      [ngClass]="{'df-card--expand': !card.supportingText }"
+      (click)="navigate(card)"
+    >
+      <h2 class="df-card__title-text">{{ card.title }}</h2>
+    </div>
+    <div
+      ng-if="card.SupportingText"
+      class="df-card__supporting-text"
+      [innerHtml]="card.supportingText"
+      (click)="navigate(card)"
+    ></div>
+    <div
+      class="df-card__actions df-card--border"
+      ng-show="card?.actions?.length &gt; 0"
+    >
+      <a
+        *ngFor="let action of card?.actions"
+        href="{{ action.url }}"
+        class=""
+        >{{ action.title }}</a
+      >
+      <div class="df-layout-spacer"></div>
+    </div>
+  </div>
+</div>
