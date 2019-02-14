@@ -1,0 +1,47 @@
+.df-card {
+    width: 350px;
+    height: 350px;
+    margin: 28px;
+  }
+  
+  .df-card__primary {
+    padding: 1rem;
+  }
+  
+  .df-card__title {
+    margin: 0;
+  }
+  
+  .df-card__subtitle {
+  
+    margin: 0;
+  }
+  
+  .df-card__secondary {
+  
+    padding: 0 1rem 8px 1rem;
+  }
+  
+  .df-card__media--16-9 {
+    background-image: url(https://material-components-web.appspot.com/images/16-9.jpg);
+  }
+
+.quarter {
+  width: calc(25% - 58px);
+}
+
+.third {
+  width: calc(33% - 58px);
+}
+
+.half {
+  width: calc(50% - 58px);
+}
+
+.two-thirds {
+  width: calc(66% - 58px);
+}
+
+.whole {
+  width: calc(100% - 58px);
+}
