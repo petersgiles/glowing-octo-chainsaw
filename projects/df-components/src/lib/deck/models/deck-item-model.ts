@@ -1,14 +1,7 @@
-export enum CardType {
-  Standard = "STANDARD",
-  Parent = "PARENT",
-  Wiki = "WIKI",
-  Audio = "AUDIO",
-  Video = "VIDEO",
-  Embed = "EMBED",
-  Frame = "FRAME",
-  Chart = "CHART",
-  Image = "IMAGE",
-  Newtab = "NEWTAB"
+import { CardType } from "./card-type-enum"
+
+export interface DeckItemMedia {
+  url: string
 }
 
 export interface DeckItem {
@@ -22,6 +15,6 @@ export interface DeckItem {
   sortOrder: string
   colour: string
   titleClass: string
-  media: string
+  media: DeckItemMedia
   data: string
 }

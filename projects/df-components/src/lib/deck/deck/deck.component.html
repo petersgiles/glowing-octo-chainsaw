@@ -1,29 +1,32 @@
 <div class="deck">
-  <div class="df-card df-shadow--4dp"  *ngFor="let card of cards">
-    <div
-      class="df-card__title"
-      [ngClass]="{'df-card--expand': !card.supportingText }"
-      (click)="navigate(card)"
-    >
-      <h2 class="df-card__title-text">{{ card.title }}</h2>
-    </div>
-    <div
-      ng-if="card.SupportingText"
-      class="df-card__supporting-text"
-      [innerHtml]="card.supportingText"
-      (click)="navigate(card)"
-    ></div>
-    <div
-      class="df-card__actions df-card--border"
-      ng-show="card?.actions?.length &gt; 0"
-    >
-      <a
-        *ngFor="let action of card?.actions"
-        href="{{ action.url }}"
-        class=""
-        >{{ action.title }}</a
-      >
-      <div class="df-layout-spacer"></div>
-    </div>
-  </div>
+  <ng-container *ngFor="let card of cards">
+    <ng-container [ngSwitch]="card.cardType">
+      <df-card-audio
+        *ngSwitchCase="cardType.Audio"
+        [card]="card"
+      ></df-card-audio>
+      <df-card-chart
+        *ngSwitchCase="cardType.Chart"
+        [card]="card"
+      ></df-card-chart>
+      <df-card-markdown
+        *ngSwitchCase="cardType.Markdown"
+        [card]="card"
+      ></df-card-markdown>
+      <df-card-parent
+        *ngSwitchCase="cardType.Parent"
+        [card]="card"
+      ></df-card-parent>
+      <df-card-image
+        *ngSwitchCase="cardType.Image"
+        [card]="card"
+      ></df-card-image>
+      <df-card-standard
+        *ngSwitchCase="cardType.Standard"
+        [card]="card"
+      ></df-card-standard>
+
+      <ng-container *ngSwitchDefault>...</ng-container>
+    </ng-container>
+  </ng-container>
 </div>

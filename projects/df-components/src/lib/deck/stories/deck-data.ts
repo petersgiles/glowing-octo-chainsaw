@@ -1,4 +1,5 @@
-import { DeckItem, CardType } from "../models/deck-item-model"
+import { DeckItem } from "../models/deck-item-model"
+import { CardType } from "../models/card-type-enum"
 
 export const cards: DeckItem[] = [
   {
@@ -20,8 +21,7 @@ export const cards: DeckItem[] = [
     id: "65cd3959-46a4-5985-abfb-1cfcce9d09a1",
     parent: null,
     title: "Genevieve Marks",
-    supportingText:
-      "Quae deserunt accusamus. Sed blanditiis ullam illo aperiam ipsum eos quas. Rerum adipisci eveniet. Illum modi necessitatibus quae deserunt ex aut natus.",
+    supportingText: null,
     size: "quarter",
     cardType: CardType.Standard,
     actions: [],
@@ -35,15 +35,14 @@ export const cards: DeckItem[] = [
     id: "40bf9475-0d2a-58e2-a259-f17e647aeb76",
     parent: null,
     title: "Augustus Bauch V",
-    supportingText:
-      "Quo earum debitis autem praesentium. Excepturi praesentium sint et est temporibus et doloribus aut. Ea aut voluptas natus beatae omnis qui.",
+    supportingText: null,
     size: "whole",
-    cardType: CardType.Standard,
+    cardType: CardType.Image,
     actions: [],
     sortOrder: "1",
     colour: "CornflowerBlue",
     titleClass: null,
-    media: null,
+    media: { url: 'https://picsum.photos/330/330/?random'},
     data: null
   },
   {
