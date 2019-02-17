@@ -19,8 +19,7 @@
       attr.aria-label="Toggle Expand Collapse"
       title="Toggle Expand Collapse"
       (click)="onToggleExpand.emit(!expanded)"
-      >keyboard_arrow_{{ expanded ? "down" : "right" }}</a
-    >
+      >keyboard_arrow_{{ expanded ? "down" : "right" }}</a>
   </div>
   <ng-container *ngIf="expanded">
     <div *ngIf="readOnly" class="panel-content">

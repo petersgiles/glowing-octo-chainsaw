@@ -1,15 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpanderPanelComponent } from './expander-panel.component';
+import { ButtonComponent } from './button.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { MdcButtonModule, MdcIconModule } from '@angular-mdc/web';
 import { PipesModule } from '../../pipes';
-import { ButtonModule } from '../../button';
 
-describe('ExpanderPanelComponent', () => {
-  let component: ExpanderPanelComponent;
-  let fixture: ComponentFixture<ExpanderPanelComponent>;
+describe('ButtonComponent', () => {
+  let component: ButtonComponent;
+  let fixture: ComponentFixture<ButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,16 +17,15 @@ describe('ExpanderPanelComponent', () => {
         BrowserModule, 
         MdcButtonModule, 
         MdcIconModule, 
-        ButtonModule, 
         PipesModule
       ],
-      declarations: [ ExpanderPanelComponent ]
+      declarations: [ ButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpanderPanelComponent);
+    fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

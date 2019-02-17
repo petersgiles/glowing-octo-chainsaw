@@ -1,0 +1,2 @@
+<button attr.aria-label="{{title}}" title="{{title}}" [style.color]="textColour"
+    (click)="onClick.emit($event)" mdc-button dense><mdc-icon [style.color]="textColour">{{icon}}</mdc-icon><span [innerHtml]="title | safeHtml"></span></button>
