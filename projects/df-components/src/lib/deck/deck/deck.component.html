@@ -1,20 +1,27 @@
-<ng-template #cardActions let-actions>
+<ng-template #cardActions let-card>
     <div
     class="df-card__actions df-card--border"
-    *ngIf="actions?.length > 0"
+    *ngIf="card?.actions?.length > 0"
   >
-    <a *ngFor="let action of actions" href="{{ action.url }}" mdc-button dense>{{action.title}}</a>
+    <a *ngFor="let action of card?.actions" mdc-button dense (click)="onAction.emit(action)">{{action.title}}</a>
+    <a *ngIf="card?.cardType == cardType.Parent" (click)="onAction.emit(card)" mdc-button dense>More Options</a>
     <div class="df-layout-spacer"></div>
   </div>
 </ng-template>
 
+<ng-template #cardMenu let-card>
+    <div *ngIf="!readOnly" class="df-card__menu {{ card?.colour }} transparent">
+        <a (click)="onEdit.emit(card)" mdc-icon-button dense icon="edit"></a>
+      </div>
+</ng-template>
+
 <ng-template #cardTitle let-card>
-    <div
+    <div 
     class="df-card__title {{ card?.colour }}"
     [ngClass]="{ 'df-card--expand': !card?.supportingText }"
-    (click)="onNavigate.emit(card)"
+    (click)="navigate(card)"
   >
-    <h2 class="df-card__title-text">{{ card?.title }}</h2>
+    <h2 class="df-card__title-text" >{{ card?.title }}</h2>
   </div>
 </ng-template>
 
@@ -23,53 +30,53 @@
     *ngIf="card?.supportingText"
     class="df-card__supporting-text"
     [innerHtml]="card?.supportingText"
-    (click)="onNavigate.emit(card)"
+    (click)="navigate(card)"
   ></div>
 </ng-template>
 
 <ng-template #standardCard let-card>
   <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
   <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <ng-template #imageCard let-card>
-  <div class="df-card__media" (click)="onNavigate.emit(card)">
+  <div class="df-card__media" (click)="navigate(card)">
     <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
   </div>
   <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
   <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <ng-template #parentCard let-card>
     <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
     <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-    <div
-    class="df-card__actions df-card--border"
-  >
-    <a *ngFor="let action of card?.actions" href="{{ action?.url }}" mdc-button dense>{{action?.title}}</a>
-    <a href="/deck/{{card.id}}" mdc-button dense>More Options</a>
-    <div class="df-layout-spacer"></div>
-  </div>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <ng-template #audioCard let-card>
     <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
     <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <ng-template #markdownCard let-card>
     <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
     <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <ng-template #chartCard let-card>
     <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
     <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
-    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>
 </ng-template>
 
 <section class="deck df-grid section--center">
@@ -108,5 +115,11 @@
           *ngTemplateOutlet="standardCard; context: { $implicit: card }"
         ></ng-container>
       </ng-container>
+    </div>
+</section>
+
+<section class="deck df-grid section--center">
+    <div  class="df-card df-cell df-cell--1-col df-shadow--4dp" >
+
     </div>
 </section>

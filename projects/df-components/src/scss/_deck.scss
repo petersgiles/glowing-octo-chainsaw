@@ -130,6 +130,12 @@
   flex-grow: 1;
 }
 
+.df-card__menu {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
 .df-card__actions {
   font-size: 16px;
   line-height: normal;
@@ -146,12 +152,6 @@
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-}
-
-.df-card__menu {
-  position: absolute;
-  right: 16px;
-  top: 16px;
 }
 
 $df-cells : ("1", 25%), ("2", 50%), ("3", 75%), ("4", 100%);

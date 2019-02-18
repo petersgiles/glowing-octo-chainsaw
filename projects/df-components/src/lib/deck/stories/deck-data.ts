@@ -8,7 +8,7 @@ export const cards: DeckItem[] = [
     title: "Kadin Willms",
     supportingText:
       "Voluptatum sint velit delectus voluptatem itaque voluptas aut et officia. Temporibus aut exercitationem. Omnis ullam minus et nihil omnis voluptatum quidem. Hic fuga expedita porro saepe.",
-    size: "1",
+    size: "4",
     cardType: CardType.Standard,
     actions: [{url:'http://vm-dev-lbs13/SitePages/index.aspx/brief|Go', title:'Go'}],
     sortOrder: "1",
@@ -26,7 +26,7 @@ export const cards: DeckItem[] = [
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
-    colour: "CornflowerBlue",
+    colour: "Yellow",
     titleClass: null,
     media: null,
     data: null
