@@ -20,15 +20,15 @@ const columns = [
 
 const props = {
   rows$: fruits$,
-      columns: columns,
-      count: fruitList.length,
-      handleEvent: ($event, name) => action(name)($event),
-      handleFilter: ($event: any) => {
-        const val = $event.target.value.toLowerCase();
-        console.log(val);
-        filterFruits(val);
-        action('onFilter')($event);
-      }
+  columns: columns,
+  count: fruitList.length,
+  handleEvent: ($event, name) => action(name)($event),
+  handleFilter: ($event: any) => {
+    const val = $event.target.value.toLowerCase()
+    console.log(val)
+    filterFruits(val)
+    action("onFilter")($event)
+  }
 }
 
 export const multiFilter = (arr: any[], filters: any) => {
@@ -60,6 +60,7 @@ export const filterFruits = (expression: string) => {
 }
 
 storiesOf("Data Table", module)
+  .addParameters({ jest: ["data-table.component"] })
   .addDecorator(
     moduleMetadata({
       imports: [
@@ -78,6 +79,20 @@ storiesOf("Data Table", module)
     [rows]="rows$ | async"
     [columns]="columns"
     [count]="count"
+    (onPage)="handleEvent($event, 'onPage')"
+    (onSelect)="handleEvent($event, 'onSelect')"
+    >
+    </df-data-table>
+    `,
+    props: props
+  }))
+  .add("Defined page size", () => ({
+    template: `
+    <df-data-table
+    [rows]="rows$ | async"
+    [columns]="columns"
+    [count]="count"
+    limit="5"
     (onPage)="handleEvent($event, 'onPage')"
     (onSelect)="handleEvent($event, 'onSelect')"
     >

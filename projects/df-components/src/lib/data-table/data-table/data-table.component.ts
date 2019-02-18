@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
-import { Page } from '../models/data-table-model'
-import { Subject } from 'rxjs'
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
+import { Page } from "../models/data-table-model"
+import { Subject } from "rxjs"
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators"
 
 @Component({
   selector: "df-data-table",
@@ -9,17 +9,16 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
   styleUrls: ["./data-table.component.scss"]
 })
 export class DataTableComponent implements OnInit {
-
-  public filter: Subject<string> = new Subject<string>();
+  public filter: Subject<string> = new Subject<string>()
 
   // tslint:disable-next-line:no-empty
   constructor() {
     this.filter
-    .pipe(
-      debounceTime(400),
-      distinctUntilChanged()
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
       )
-    .subscribe((val: string) => this.onFilter.emit(val));
+      .subscribe((val: string) => this.onFilter.emit(val))
   }
 
   // tslint:disable-next-line:no-empty
@@ -40,6 +39,9 @@ export class DataTableComponent implements OnInit {
   @Input()
   public count
 
+  @Input()
+  public limit
+
   @Output()
   public onPage: EventEmitter<Page> = new EventEmitter()
 
@@ -51,5 +53,4 @@ export class DataTableComponent implements OnInit {
 
   @Output()
   public onFilter: EventEmitter<string> = new EventEmitter()
-
 }

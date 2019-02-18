@@ -1,8 +1,9 @@
-<input *ngIf="hasFilter"
-  type='text'
-  style='padding:8px;margin:15px auto;width:30%;'
-  placeholder='Type here to filter columns'
-  (keyup)='filter.next($event)'
+<input
+  *ngIf="hasFilter"
+  type="text"
+  style="padding:8px;margin:15px auto;width:30%;"
+  placeholder="Type here to filter columns"
+  (keyup)="filter.next($event)"
 />
 
 <ngx-datatable
@@ -10,24 +11,32 @@
   [rows]="rows"
   [columnMode]="'force'"
   [headerHeight]="50"
-  [scrollbarV]="true"
+  [scrollbarV]="!limit || limit <= 0"
   [footerHeight]="50"
   [rowHeight]="50"
   [count]="count"
-  [limit]="5"
+  [limit]="limit"
   [selectionType]="'single'"
-  (select)='onSelect.emit($event.selected[0])'
+  (select)="onSelect.emit($event.selected[0])"
   [offset]="0"
-  (page)='onPage.emit($event)'
+  (page)="onPage.emit($event)"
 >
-<ngx-datatable-column *ngFor="let column of columns" [prop]="column.prop" [name]="column.name" ></ngx-datatable-column>
-<ngx-datatable-column *ngIf="hasDelete" name="Delete" prop="id"
-  [width]="30">
-   <ng-template let-column="column" ngx-datatable-header-template>
-        Actions
+  <ngx-datatable-column
+    *ngFor="let column of columns"
+    [prop]="column.prop"
+    [name]="column.name"
+  ></ngx-datatable-column>
+  <ngx-datatable-column *ngIf="hasDelete" name="Delete" prop="id" [width]="30">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      Actions
     </ng-template>
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <mdc-icon (click)="$event.preventDefault(); $event.stopPropagation(); onDelete.emit(row)">delete</mdc-icon>
+      <mdc-icon
+        (click)="
+          $event.preventDefault(); $event.stopPropagation(); onDelete.emit(row)
+        "
+        >delete</mdc-icon
+      >
     </ng-template>
-</ngx-datatable-column>
+  </ngx-datatable-column>
 </ngx-datatable>
