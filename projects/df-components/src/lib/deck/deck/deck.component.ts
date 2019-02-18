@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core"
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { DeckItem } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
 
@@ -17,5 +17,9 @@ export class DeckComponent implements OnInit {
   @Input()
   public cards: DeckItem[]
 
+  @Output()
+  public onNavigate: EventEmitter<DeckItem> = new EventEmitter()
+
+  // Leave this it's the weird way you have to do enums in the template
   public cardType = CardType
 }

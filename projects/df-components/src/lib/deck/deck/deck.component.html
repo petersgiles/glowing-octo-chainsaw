@@ -1,32 +1,112 @@
-<div class="deck">
-  <ng-container *ngFor="let card of cards">
-    <ng-container [ngSwitch]="card.cardType">
-      <df-card-audio
-        *ngSwitchCase="cardType.Audio"
-        [card]="card"
-      ></df-card-audio>
-      <df-card-chart
-        *ngSwitchCase="cardType.Chart"
-        [card]="card"
-      ></df-card-chart>
-      <df-card-markdown
-        *ngSwitchCase="cardType.Markdown"
-        [card]="card"
-      ></df-card-markdown>
-      <df-card-parent
-        *ngSwitchCase="cardType.Parent"
-        [card]="card"
-      ></df-card-parent>
-      <df-card-image
-        *ngSwitchCase="cardType.Image"
-        [card]="card"
-      ></df-card-image>
-      <df-card-standard
-        *ngSwitchCase="cardType.Standard"
-        [card]="card"
-      ></df-card-standard>
+<ng-template #cardActions let-actions>
+    <div
+    class="df-card__actions df-card--border"
+    *ngIf="actions?.length > 0"
+  >
+    <a *ngFor="let action of actions" href="{{ action.url }}" mdc-button dense>{{action.title}}</a>
+    <div class="df-layout-spacer"></div>
+  </div>
+</ng-template>
 
-      <ng-container *ngSwitchDefault>...</ng-container>
-    </ng-container>
-  </ng-container>
-</div>
+<ng-template #cardTitle let-card>
+    <div
+    class="df-card__title {{ card?.colour }}"
+    [ngClass]="{ 'df-card--expand': !card?.supportingText }"
+    (click)="onNavigate.emit(card)"
+  >
+    <h2 class="df-card__title-text">{{ card?.title }}</h2>
+  </div>
+</ng-template>
+
+<ng-template #cardSupportingText let-card>
+    <div
+    *ngIf="card?.supportingText"
+    class="df-card__supporting-text"
+    [innerHtml]="card?.supportingText"
+    (click)="onNavigate.emit(card)"
+  ></div>
+</ng-template>
+
+<ng-template #standardCard let-card>
+  <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+</ng-template>
+
+<ng-template #imageCard let-card>
+  <div class="df-card__media" (click)="onNavigate.emit(card)">
+    <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
+  </div>
+  <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+  <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+</ng-template>
+
+<ng-template #parentCard let-card>
+    <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+    <div
+    class="df-card__actions df-card--border"
+  >
+    <a *ngFor="let action of card?.actions" href="{{ action?.url }}" mdc-button dense>{{action?.title}}</a>
+    <a href="/deck/{{card.id}}" mdc-button dense>More Options</a>
+    <div class="df-layout-spacer"></div>
+  </div>
+</ng-template>
+
+<ng-template #audioCard let-card>
+    <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+</ng-template>
+
+<ng-template #markdownCard let-card>
+    <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+</ng-template>
+
+<ng-template #chartCard let-card>
+    <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
+    <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card?.actions }" ></ng-container>
+</ng-template>
+
+<section class="deck df-grid section--center">
+    <div
+      *ngFor="let card of cards"
+      [ngSwitch]="card.cardType"
+      class="df-card df-cell df-cell--{{ card?.size }}-col df-shadow--4dp"
+    >
+      <ng-container *ngSwitchCase="cardType.Image">
+        <ng-container
+          *ngTemplateOutlet="imageCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="cardType.Parent">
+        <ng-container
+          *ngTemplateOutlet="parentCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="cardType.Chart">
+        <ng-container
+          *ngTemplateOutlet="chartCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="cardType.Markdown">
+        <ng-container
+          *ngTemplateOutlet="markdownCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="cardType.Audio">
+        <ng-container
+          *ngTemplateOutlet="audioCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <ng-container
+          *ngTemplateOutlet="standardCard; context: { $implicit: card }"
+        ></ng-container>
+      </ng-container>
+    </div>
+</section>

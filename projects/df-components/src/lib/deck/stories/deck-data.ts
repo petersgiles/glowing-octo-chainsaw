@@ -8,9 +8,9 @@ export const cards: DeckItem[] = [
     title: "Kadin Willms",
     supportingText:
       "Voluptatum sint velit delectus voluptatem itaque voluptas aut et officia. Temporibus aut exercitationem. Omnis ullam minus et nihil omnis voluptatum quidem. Hic fuga expedita porro saepe.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
-    actions: [],
+    actions: [{url:'http://vm-dev-lbs13/SitePages/index.aspx/brief|Go', title:'Go'}],
     sortOrder: "1",
     colour: "CornflowerBlue",
     titleClass: null,
@@ -21,8 +21,8 @@ export const cards: DeckItem[] = [
     id: "65cd3959-46a4-5985-abfb-1cfcce9d09a1",
     parent: null,
     title: "Genevieve Marks",
-    supportingText: null,
-    size: "quarter",
+    supportingText: "cheese",
+    size: "2",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -36,13 +36,13 @@ export const cards: DeckItem[] = [
     parent: null,
     title: "Augustus Bauch V",
     supportingText: null,
-    size: "whole",
+    size: "1",
     cardType: CardType.Image,
     actions: [],
     sortOrder: "1",
     colour: "CornflowerBlue",
     titleClass: null,
-    media: { url: 'https://picsum.photos/330/330/?random'},
+    media: { url: 'https://picsum.photos/400/400/?random'},
     data: null
   },
   {
@@ -51,9 +51,9 @@ export const cards: DeckItem[] = [
     title: "Evan Stark V",
     supportingText:
       "Non vel totam. Et corporis molestiae numquam amet molestiae. Omnis recusandae omnis quo recusandae.",
-    size: "half",
-    cardType: CardType.Standard,
-    actions: [],
+    size: "3",
+    cardType: CardType.Parent,
+    actions: [{url:'http://vm-dev-lbs13/SitePages/index.aspx/brief|Go', title:'Go'}],
     sortOrder: "1",
     colour: "Crimson",
     titleClass: null,
@@ -66,7 +66,7 @@ export const cards: DeckItem[] = [
     title: "Gladyce Bradtke III",
     supportingText:
       "Et quam enim omnis molestiae est sequi quod. Nam quidem reprehenderit sunt ex eum ut. Nihil quia fuga alias consequuntur sit occaecati alias autem. Ipsum et minus facilis suscipit enim earum corporis. Ab omnis autem repellendus enim accusamus ut voluptatem adipisci.",
-    size: "whole",
+    size: "4",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -81,7 +81,7 @@ export const cards: DeckItem[] = [
     title: "Mario Robel",
     supportingText:
       "Et qui facilis atque. Iure numquam maiores qui. Vel error omnis rerum et et et necessitatibus. Atque consectetur reiciendis neque voluptate autem rem. Qui quam aperiam et nostrum id occaecati dolore nisi.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -96,7 +96,7 @@ export const cards: DeckItem[] = [
     title: "Elroy Huels",
     supportingText:
       "Maiores non provident voluptatem neque aut sit minima. Ut omnis ut voluptatem molestias sed ut corporis suscipit ut. Repudiandae et omnis.",
-    size: "half",
+    size: "3",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -111,7 +111,7 @@ export const cards: DeckItem[] = [
     title: "Stacey Marquardt",
     supportingText:
       "Aut velit assumenda molestias dignissimos nulla. Alias et aut pariatur consequuntur quasi fugiat. Ut rerum aliquam voluptas illum omnis aliquid sit sit ut.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -126,7 +126,7 @@ export const cards: DeckItem[] = [
     title: "Yasmine Ritchie",
     supportingText:
       "Id est quaerat facilis nemo voluptas. Eaque sapiente quas quam commodi ullam numquam iure illum sit. Labore iusto quidem consequuntur itaque in fugiat rerum provident aut. Ut ut perferendis laudantium est nam commodi.",
-    size: "half",
+    size: "3",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -141,7 +141,7 @@ export const cards: DeckItem[] = [
     title: "Nicholaus Tremblay",
     supportingText:
       "Iusto ipsa enim libero neque aut sint. Quia et enim amet magnam eveniet doloribus. Repellendus voluptatibus voluptatem vel quas fuga rerum sed.",
-    size: "whole",
+    size: "4",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -156,7 +156,7 @@ export const cards: DeckItem[] = [
     title: "Mr. Lydia Cole",
     supportingText:
       "Excepturi dolores maxime veritatis officia quidem unde similique. Porro enim in blanditiis magni repudiandae. Atque non quo. Eum exercitationem autem facere. At consequatur blanditiis sunt.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -171,7 +171,7 @@ export const cards: DeckItem[] = [
     title: "Kathryn Daugherty",
     supportingText:
       "Amet fuga ut facilis distinctio enim ut laborum exercitationem earum. Sit culpa culpa soluta ad odio consequatur incidunt error dignissimos. Voluptas soluta corporis est nobis nulla quisquam molestias. Qui odio modi consequatur adipisci expedita voluptas autem.",
-    size: "whole",
+    size: "4",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -184,10 +184,9 @@ export const cards: DeckItem[] = [
     id: "f0e27c4c-1b0c-5ec2-9b20-57f106902f51",
     parent: null,
     title: "Connor Prohaska",
-    supportingText:
-      "Aut rem enim et itaque rem voluptates. Eum aut dicta fugiat vel voluptas dolores ducimus. Et omnis ab earum at alias distinctio minima incidunt iusto.",
-    size: "half",
-    cardType: CardType.Standard,
+    supportingText:null,
+    size: "3",
+    cardType: CardType.Parent,
     actions: [],
     sortOrder: "1",
     colour: "CornflowerBlue",
@@ -201,7 +200,7 @@ export const cards: DeckItem[] = [
     title: "Declan Emmerich",
     supportingText:
       "Et harum veritatis aut suscipit ut et et. Consequatur dicta nam sequi. Voluptas aspernatur labore qui aliquid quo velit et.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -216,7 +215,7 @@ export const cards: DeckItem[] = [
     title: "Reina Kub",
     supportingText:
       "Ea expedita doloremque pariatur asperiores. Voluptatem quasi quae voluptatem placeat voluptas omnis deserunt. Possimus et eveniet minima enim numquam.",
-    size: "whole",
+    size: "4",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -231,7 +230,7 @@ export const cards: DeckItem[] = [
     title: "Oma Mann",
     supportingText:
       "Consequatur harum eum tempora minus rerum dolorum. Beatae fuga et voluptate ab. At ut consectetur aut et in laborum odio.",
-    size: "half",
+    size: "3",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -246,7 +245,7 @@ export const cards: DeckItem[] = [
     title: "Myah Bradtke",
     supportingText:
       "Accusamus autem quidem ut reprehenderit hic distinctio quis pariatur. Nisi repellendus atque provident. Blanditiis optio maiores facilis reiciendis ipsam voluptatibus et rerum.",
-    size: "half",
+    size: "3",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -261,7 +260,7 @@ export const cards: DeckItem[] = [
     title: "Ramon Nitzsche",
     supportingText:
       "Similique architecto molestias eaque reprehenderit ea dolor. Earum iste occaecati repellat aut. Enim fugiat ratione saepe. Sint eos consequuntur totam aliquid rerum voluptatibus. Amet atque quos et delectus in.",
-    size: "quarter",
+    size: "1",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -276,7 +275,7 @@ export const cards: DeckItem[] = [
     title: "Mrs. Mozell Jones",
     supportingText:
       "Deleniti facilis quaerat quaerat aut laudantium. Dolores odit nisi similique quaerat et. Voluptatem non impedit. Voluptatum fugiat et et ut consequatur temporibus iure illum maiores. Dignissimos illo voluptatibus ut nam ipsam rem repudiandae repellat consequatur. Consequuntur ut qui officia sed voluptatem.",
-    size: "whole",
+    size: "4",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
@@ -291,7 +290,7 @@ export const cards: DeckItem[] = [
     title: "Alexa Beer",
     supportingText:
       "Suscipit iusto ratione architecto qui sit. Ea quibusdam qui voluptate et qui dolorem officiis commodi animi. Impedit rerum id non vitae qui. Asperiores sit aliquam rerum placeat illum. Aperiam numquam enim officiis deleniti dignissimos repudiandae. Dolorem animi nulla veniam tempore soluta quis impedit reprehenderit.",
-    size: "half",
+    size: "3",
     cardType: CardType.Standard,
     actions: [],
     sortOrder: "1",
