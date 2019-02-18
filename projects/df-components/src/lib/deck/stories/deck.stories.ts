@@ -7,7 +7,7 @@ import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
 import { DeckModule } from "../deck.module"
 import { cards } from "./deck-data"
-import { BehaviorSubject } from "rxjs"
+import { BehaviorSubject, Observable } from "rxjs"
 import {
   MdcCardModule,
   MdcButtonModule,
@@ -17,12 +17,15 @@ import {
 } from "@angular-mdc/web"
 import { ButtonModule } from '../../button';
 import { CardType } from '../models/card-type-enum';
+import { DeckItem } from '../models/deck-item-model';
 
 const cards$: BehaviorSubject<any[]> = new BehaviorSubject(
   cards.filter(c => c.parent == null)
 )
 
 const parent$: BehaviorSubject<boolean> = new BehaviorSubject(null)
+
+// const displayCard$: Observable<DeckItem> = []
 
 storiesOf("Deck", module)
   .addParameters({ jest: ["deck.component"] })
