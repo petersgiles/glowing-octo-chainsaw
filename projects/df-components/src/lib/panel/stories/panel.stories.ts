@@ -105,3 +105,20 @@ storiesOf("Panel", module)
       handleEvent: ($event, name) => action(name)($event)
     }
   }))
+  .add("Title Bar", () => ({
+    template: `
+    <df-expander-panel title="Title Bar Only" [background]="background$ | async" [expandable]="false" >
+    <ng-container panel-buttons>
+      <df-button title="Add Item" [background]="background$ | async" (onClick)="handleEvent($event, 'Add Item Clicked')" ></df-button>
+    </ng-container>
+    no content shown this is just a title bar
+    </df-expander-panel>
+    `,
+    props: {
+      background$: background$,
+      handleToggleExpand() {
+        background$.next(getRandomColor())
+      },
+      handleEvent: ($event, name) => action(name)($event)
+    }
+  }))

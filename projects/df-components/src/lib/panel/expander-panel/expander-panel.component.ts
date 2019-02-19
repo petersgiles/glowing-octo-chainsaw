@@ -20,6 +20,9 @@ export class ExpanderPanelComponent implements OnInit {
   public readOnly = true
 
   @Input()
+  public expandable = true
+
+  @Input()
   public expanded = false
 
   // tslint:disable-next-line:variable-name

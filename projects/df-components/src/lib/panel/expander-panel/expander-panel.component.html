@@ -7,13 +7,14 @@
     <div
       class="panel-title-title-bar-text"
       mdcHeadline5
-      (click)="onToggleExpand.emit(!expanded)"
+      (click)="expandable && onToggleExpand.emit(!expanded)"
     >
       {{ title | titlecase }}
     </div>
-    <ng-content *ngIf="expanded" select="[panel-buttons]"></ng-content>
+    <ng-content *ngIf="!expandable || expanded" select="[panel-buttons]"></ng-content>
     
     <a
+      *ngIf="expandable"
       class="panel-expander-button"
       mdcIcon
       attr.aria-label="Toggle Expand Collapse"
@@ -21,7 +22,7 @@
       (click)="onToggleExpand.emit(!expanded)"
       >keyboard_arrow_{{ expanded ? "down" : "right" }}</a>
   </div>
-  <ng-container *ngIf="expanded">
+  <ng-container *ngIf="expanded && expandable">
     <div *ngIf="readOnly" class="panel-content">
       <ng-content *ngIf="readOnly"></ng-content>
     </div>
