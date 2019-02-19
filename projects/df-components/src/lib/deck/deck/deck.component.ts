@@ -27,10 +27,18 @@ export class DeckComponent implements OnInit {
   @Output()
   public onEdit: EventEmitter<DeckItem> = new EventEmitter()
 
-  public navigate(card) {
-    if (card && card.actions[0]) {
-      this.onAction.emit(card.actions[0])
+  public navigate(card: DeckItem) {
+    if (card) {
+      if (card.cardType === CardType.Parent) {
+        this.onAction.emit(card)
+      }
+
+      if (card.actions[0]) {
+        this.onAction.emit(card.actions[0])
+      }
     }
+
+
   }
 
   public getTextColour(hexcolour) {
