@@ -1,7 +1,7 @@
 <ng-template #cardActions let-card>
     <div
     class="df-card__actions df-card--border"
-    *ngIf="card?.actions?.length > 0"
+    *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
   >
     <a *ngFor="let action of card?.actions" mdc-button dense (click)="onAction.emit(action)">{{action.title}}</a>
     <a *ngIf="card?.cardType == cardType.Parent" (click)="onAction.emit(card)" mdc-button dense>More Options</a>
@@ -115,11 +115,5 @@
           *ngTemplateOutlet="standardCard; context: { $implicit: card }"
         ></ng-container>
       </ng-container>
-    </div>
-</section>
-
-<section class="deck df-grid section--center">
-    <div  class="df-card df-cell df-cell--1-col df-shadow--4dp" >
-
     </div>
 </section>

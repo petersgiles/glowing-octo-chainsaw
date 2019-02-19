@@ -18,14 +18,46 @@ import {
 import { ButtonModule } from '../../button';
 import { CardType } from '../models/card-type-enum';
 import { DeckItem } from '../models/deck-item-model';
+import { withLatestFrom, map } from 'rxjs/operators';
 
-const cards$: BehaviorSubject<any[]> = new BehaviorSubject(
-  cards.filter(c => c.parent == null)
+const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(cards)
+
+const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
+
+const displayCards$: Observable<DeckItem[]> = parent$.pipe(
+  withLatestFrom(cards$),
+  map(([parentId, cards]) => cards.filter(c => {
+      return c.parent == parentId
+  }))
 )
 
-const parent$: BehaviorSubject<boolean> = new BehaviorSubject(null)
+const grandParent$: Observable<DeckItem> = parent$.pipe(
+  withLatestFrom(cards$),
+  map(([parentId, cards]) => {
+    return parentId ? cards.find(c => c.id == parentId) : null}
+    )
+)
 
-// const displayCard$: Observable<DeckItem> = []
+
+const props = {
+  parent$: parent$,
+  grandParent$: grandParent$,
+  cards$: displayCards$,
+  handleGoBack:(parent) => {
+    parent$.next(parent.parent)
+    action('Go Back')(true)
+  },
+  handleAction: ($event) => {
+    const cardType = CardType
+    if($event.cardType == cardType.Parent) {
+      parent$.next($event.id)
+      action('Parent Navigation')($event.id)
+    } else {
+      action('Button Action')($event)
+    }
+    
+  }
+}
 
 storiesOf("Deck", module)
   .addParameters({ jest: ["deck.component"] })
@@ -47,27 +79,15 @@ storiesOf("Deck", module)
   .addDecorator(withLinks)
   .add("ReadOnly", () => ({
     template: `
+    <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
     <df-deck [cards]="cards$ | async" (onAction)="handleAction($event)"></df-deck>
     `,
-    props: {
-      cards$: cards$,
-      handleAction: ($event) => {
-        const cardType = CardType
-        if($event.cardType == cardType.Parent) {
-          action('Parent Navigation')($event)
-        } else {
-          action('Button Action')($event)
-        }
-        
-      }
-    }
+    props: props
   }))
   .add("Editable", () => ({
     template: `
-    <df-deck [cards]="cards$ | async" [readOnly]="false" (onAction)="handleEvent($event, 'onAction')" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
+    <df-deck [cards]="cards$ | async" [readOnly]="false" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
-    props: {
-      cards$: cards$,
-      handleEvent: ($event, name) => action(name)($event),
-    }
+    props: props
   }))
