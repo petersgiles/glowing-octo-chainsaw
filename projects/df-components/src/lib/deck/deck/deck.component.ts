@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { DeckItem } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
-import { getContrastYIQ } from '../../utils/colour';
+import { getContrastYIQ } from "../../utils/colour"
 
 @Component({
   selector: "df-deck",
@@ -23,12 +23,12 @@ export class DeckComponent implements OnInit {
 
   @Output()
   public onAction: EventEmitter<any> = new EventEmitter()
-  
+
   @Output()
   public onEdit: EventEmitter<DeckItem> = new EventEmitter()
 
   public navigate(card) {
-    if(card && card.actions[0]){
+    if (card && card.actions[0]) {
       this.onAction.emit(card.actions[0])
     }
   }

@@ -54,12 +54,10 @@
 }
 
 .df-card__media {
-  background-color: rgb(255, 64, 129);
   background-repeat: repeat;
   background-position: 50% 50%;
   background-size: cover;
   background-origin: padding-box;
-  background-attachment: scroll;
   box-sizing: border-box;
 
   .deck-image {
@@ -127,6 +125,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 

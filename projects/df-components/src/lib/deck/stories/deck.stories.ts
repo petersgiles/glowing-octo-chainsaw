@@ -15,10 +15,11 @@ import {
   MdcIconButtonModule,
   MdcImageListModule
 } from "@angular-mdc/web"
-import { ButtonModule } from '../../button';
-import { CardType } from '../models/card-type-enum';
-import { DeckItem } from '../models/deck-item-model';
-import { withLatestFrom, map } from 'rxjs/operators';
+import { ButtonModule } from "../../button"
+import { CardType } from "../models/card-type-enum"
+import { DeckItem } from "../models/deck-item-model"
+import { withLatestFrom, map } from "rxjs/operators"
+import { ChartsModule } from "ng2-charts/ng2-charts"
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(cards)
 
@@ -26,36 +27,39 @@ const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
 
 const displayCards$: Observable<DeckItem[]> = parent$.pipe(
   withLatestFrom(cards$),
-  map(([parentId, cards]) => cards.filter(c => {
+  map(([parentId, cards]) =>
+    cards.filter(c => {
       return c.parent == parentId
-  }))
+    })
+  )
 )
 
 const grandParent$: Observable<DeckItem> = parent$.pipe(
   withLatestFrom(cards$),
   map(([parentId, cards]) => {
-    return parentId ? cards.find(c => c.id == parentId) : null}
-    )
+    return parentId ? cards.find(c => c.id == parentId) : null
+  })
 )
-
 
 const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
-  handleGoBack:(parent) => {
-    parent$.next(parent.parent)
-    action('Go Back')(true)
+  handleEvent: ($event, name) => {
+    action(name)($event)
   },
-  handleAction: ($event) => {
+  handleGoBack: parent => {
+    parent$.next(parent.parent)
+    action("Go Back")(true)
+  },
+  handleAction: $event => {
     const cardType = CardType
-    if($event.cardType == cardType.Parent) {
+    if ($event.cardType == cardType.Parent) {
       parent$.next($event.id)
-      action('Parent Navigation')($event.id)
+      action("Parent Navigation")($event.id)
     } else {
-      action('Button Action')($event)
+      action("Button Action")($event)
     }
-    
   }
 }
 
@@ -65,6 +69,7 @@ storiesOf("Deck", module)
     moduleMetadata({
       imports: [
         BrowserModule,
+        ChartsModule,
         MdcButtonModule,
         MdcIconModule,
         MdcCardModule,

@@ -1,16 +1,76 @@
 import { DeckItem } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
 
+const pieChart = {
+  chartData: [
+    {
+      data: [10, 20, 30]
+    }
+  ],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  chartLabels: ["Red", "Yellow", "Blue"],
+  chartOptions: {
+    responsive: true
+  },
+  chartLegend: true,
+  chartType: "pie"
+}
+
+const lineChart = {
+  chartData: [
+    { data: [65, 90, 80, 81, 56, 55, 40], label: "Series A" },
+    { data: [28, 48, 90, 19, 86, 27, 90], label: "Series B" },
+    { data: [18, 48, 77, 9, 100, 90, 40], label: "Series C" }
+  ],
+  chartLabels: ["January", "February", "March", "April", "May", "June", "July"],
+  chartOptions: {
+    responsive: true
+  },
+  chartLegend: true,
+  chartType: "line",
+  chartColors: [
+    {
+      // grey
+      backgroundColor: "rgba(148,159,177,0.2)",
+      borderColor: "rgba(148,159,177,1)",
+      pointBackgroundColor: "rgba(148,159,177,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(148,159,177,0.8)"
+    },
+    {
+      // dark grey
+      backgroundColor: "rgba(77,83,96,0.2)",
+      borderColor: "rgba(77,83,96,1)",
+      pointBackgroundColor: "rgba(77,83,96,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(77,83,96,1)"
+    },
+    {
+      // grey
+      backgroundColor: "rgba(148,159,177,0.2)",
+      borderColor: "rgba(148,159,177,1)",
+      pointBackgroundColor: "rgba(148,159,177,1)",
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: "rgba(148,159,177,0.8)"
+    }
+  ]
+}
+
 export const cards: DeckItem[] = [
   {
     id: "d7a0ddc4-3d52-5a47-a5b7-af420fe094bb",
     parent: null,
-    title: "Kadin Willms",
-    supportingText:
-      "Voluptatum sint velit delectus voluptatem itaque voluptas aut et officia. Temporibus aut exercitationem. Omnis ullam minus et nihil omnis voluptatum quidem. Hic fuga expedita porro saepe.",
-    size: "2",
+    title: "Standard Card",
+    supportingText: `<p>Bacon ipsum dolor amet spare ribs frankfurter rump, shank picanha pancetta pig doner pork loin ham.  Pork chop swine t-bone, chuck capicola biltong pancetta alcatra corned beef porchetta.  Fatback chicken frankfurter tongue strip steak bacon ball tip kielbasa drumstick.  Brisket cupim alcatra buffalo ham kielbasa tenderloin jerky beef ribs cow drumstick meatloaf.</p><p>Boudin ground round salami meatloaf doner.  Ham hock meatball swine salami venison pastrami shoulder ground round chicken pork belly pork ribeye short ribs jowl.  Swine filet mignon venison jowl t-bone.  Burgdoggen meatloaf landjaeger biltong, chuck salami strip steak ground round shoulder tongue.  Chicken pork loin buffalo drumstick spare ribs salami shank.  Short loin prosciutto tail pig turkey, ground round bacon flank swine burgdoggen.</p>`,
+    size: "4",
     cardType: CardType.Standard,
-    actions: [{url:'http://vm-dev-lbs13/SitePages/index.aspx/brief|Go', title:'Go'}],
+    actions: [
+      { url: "http://vm-dev-lbs13/SitePages/index.aspx/brief|Go", title: "Go" }
+    ],
     sortOrder: "1",
     colour: "CornflowerBlue",
     titleClass: null,
@@ -20,12 +80,14 @@ export const cards: DeckItem[] = [
   {
     id: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
     parent: null,
-    title: "Evan Stark V",
-    supportingText:
-      "Non vel totam. Et corporis molestiae numquam amet molestiae. Omnis recusandae omnis quo recusandae.",
+    title: "Chart Cards",
+    supportingText: `<div><img src="https://www.chartjs.org/img/chartjs-logo.svg"></div>`,
     size: "2",
     cardType: CardType.Parent,
-    actions: [{url:'http://vm-dev-lbs13/SitePages/index.aspx/brief|Go', title:'Go'}],
+    actions: [
+      { url: "https://www.chartjs.org", title: "Chart.js" },
+      { url: "https://github.com/chartjs/Chart.js", title: "Github" }
+    ],
     sortOrder: "1",
     colour: "Crimson",
     titleClass: null,
@@ -33,61 +95,31 @@ export const cards: DeckItem[] = [
     data: null
   },
   {
-    id: "65cd3959-46a4-5985-abfb-1cfcce9d09a1",
-    parent: null,
-    title: "Genevieve Marks",
+    id: "65cd3959-46a4-5985-abfb-1cfcce9d09a2",
+    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
+    title: "Line Chart",
     supportingText: "cheese",
-    size: "3",
-    cardType: CardType.Standard,
+    size: "2",
+    cardType: CardType.Chart,
     actions: [],
     sortOrder: "1",
     colour: "Yellow",
     titleClass: null,
     media: null,
-    data: null
+    data: lineChart
   },
   {
     id: "40bf9475-0d2a-58e2-a259-f17e647aeb76",
     parent: null,
     title: "Augustus Bauch V",
     supportingText: null,
-    size: "1",
+    size: "2",
     cardType: CardType.Image,
     actions: [],
     sortOrder: "1",
-    colour: "CornflowerBlue",
+    colour: "Grey",
     titleClass: null,
-    media: { url: 'https://picsum.photos/400/400/?random'},
-    data: null
-  },
-  {
-    id: "44d51209-6da1-5068-ad2f-9c161a81ac9c",
-    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
-    title: "Gladyce Bradtke III",
-    supportingText:
-      "Et quam enim omnis molestiae est sequi quod. Nam quidem reprehenderit sunt ex eum ut. Nihil quia fuga alias consequuntur sit occaecati alias autem. Ipsum et minus facilis suscipit enim earum corporis. Ab omnis autem repellendus enim accusamus ut voluptatem adipisci.",
-    size: "4",
-    cardType: CardType.Parent,
-    actions: [],
-    sortOrder: "1",
-    colour: "Crimson",
-    titleClass: null,
-    media: null,
-    data: null
-  },
-  {
-    id: "422fbb92-3c19-572a-b588-125dcf49dab8",
-    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
-    title: "Mario Robel",
-    supportingText:
-      "Et qui facilis atque. Iure numquam maiores qui. Vel error omnis rerum et et et necessitatibus. Atque consectetur reiciendis neque voluptate autem rem. Qui quam aperiam et nostrum id occaecati dolore nisi.",
-    size: "1",
-    cardType: CardType.Standard,
-    actions: [],
-    sortOrder: "1",
-    colour: "Crimson",
-    titleClass: null,
-    media: null,
+    media: { url: "https://picsum.photos/800/400/?random" },
     data: null
   },
   {
@@ -121,21 +153,6 @@ export const cards: DeckItem[] = [
     data: null
   },
   {
-    id: "cef161e7-1e99-5fa6-968d-78b3591b6203",
-    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
-    title: "Yasmine Ritchie",
-    supportingText:
-      "Id est quaerat facilis nemo voluptas. Eaque sapiente quas quam commodi ullam numquam iure illum sit. Labore iusto quidem consequuntur itaque in fugiat rerum provident aut. Ut ut perferendis laudantium est nam commodi.",
-    size: "3",
-    cardType: CardType.Standard,
-    actions: [],
-    sortOrder: "1",
-    colour: "Crimson",
-    titleClass: null,
-    media: null,
-    data: null
-  },
-  {
     id: "fc37fba8-9beb-55a2-8359-923dd521a03a",
     parent: "44d51209-6da1-5068-ad2f-9c161a81ac9c",
     title: "Nicholaus Tremblay",
@@ -153,17 +170,16 @@ export const cards: DeckItem[] = [
   {
     id: "f632a57d-cd5e-5985-82be-a3363f800720",
     parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
-    title: "Mr. Lydia Cole",
-    supportingText:
-      "Excepturi dolores maxime veritatis officia quidem unde similique. Porro enim in blanditiis magni repudiandae. Atque non quo. Eum exercitationem autem facere. At consequatur blanditiis sunt.",
-    size: "1",
-    cardType: CardType.Standard,
+    title: "Pie Chart",
+    supportingText: null,
+    size: "2",
+    cardType: CardType.Chart,
     actions: [],
     sortOrder: "1",
     colour: "CornflowerBlue",
     titleClass: null,
     media: null,
-    data: null
+    data: pieChart
   },
   {
     id: "bb42d73e-6a81-54d5-bd86-7e691f19f313",
@@ -184,7 +200,7 @@ export const cards: DeckItem[] = [
     id: "f0e27c4c-1b0c-5ec2-9b20-57f106902f51",
     parent: null,
     title: "Connor Prohaska",
-    supportingText:null,
+    supportingText: null,
     size: "3",
     cardType: CardType.Parent,
     actions: [],

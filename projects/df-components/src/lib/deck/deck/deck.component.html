@@ -18,7 +18,7 @@
 <ng-template #cardTitle let-card>
     <div 
     class="df-card__title {{ card?.colour }}"
-    [ngClass]="{ 'df-card--expand': !card?.supportingText }"
+   
     (click)="navigate(card)"
   >
     <h2 class="df-card__title-text" >{{ card?.title }}</h2>
@@ -74,6 +74,14 @@
 
 <ng-template #chartCard let-card>
     <ng-container *ngTemplateOutlet="cardTitle; context: { $implicit: card }" ></ng-container>
+    <canvas baseChart width="400" height="400"
+                [datasets]="card?.data?.chartData"
+                [labels]="card?.data?.chartLabels"
+                [options]="card?.data?.chartOptions"
+                [colors]="card?.data?.chartColors"
+                [legend]="card?.data?.chartLegend"
+                [chartType]="card?.data?.chartType"
+                ></canvas>
     <ng-container *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }" ></ng-container>
     <ng-container *ngTemplateOutlet="cardActions; context: { $implicit: card}" ></ng-container>
     <ng-container *ngTemplateOutlet="cardMenu; context: { $implicit: card }" ></ng-container>

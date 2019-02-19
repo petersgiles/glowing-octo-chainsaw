@@ -30,7 +30,6 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "@swimlane/ngx-datatable": "^14.0.0",
     "core-js": "^2.5.4",
     "material-icons": "^0.3.0",
     "rxjs": "~6.3.3",
@@ -38,7 +37,9 @@
     "zone.js": "~0.8.26"
   },
   "peerDependencies": {
-    "@swimlane/ngx-datatable": "^14.0.0"
+    "@swimlane/ngx-datatable": "^14.0.0",
+    "ng2-charts": "^1.6.0",
+    "chart.js": "^2.7.3"
   },
   "devDependencies": {
     "@angular-builders/jest": "^7.2.1",
@@ -57,16 +58,19 @@
     "@storybook/addon-viewport": "^4.1.9",
     "@storybook/addons": "^4.1.9",
     "@storybook/angular": "^4.1.9",
+    "@swimlane/ngx-datatable": "^14.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "@types/storybook__addon-options": "^4.0.0",
     "babel-loader": "^8.0.5",
+    "chart.js": "^2.7.3",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^23.6.0",
     "ng-packagr": "^4.2.0",
+    "ng2-charts": "^1.6.0",
     "prettier": "1.16.1",
     "protractor": "~5.4.0",
     "storybook-readme": "^4.0.5",

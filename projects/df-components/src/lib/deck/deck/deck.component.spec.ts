@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { DeckComponent } from "./deck.component"
-
+import { BaseChartDirective } from "ng2-charts/ng2-charts"
 
 describe("DeckComponent", () => {
   let component: DeckComponent
@@ -9,9 +9,7 @@ describe("DeckComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DeckComponent
-      ]
+      declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()
   }))
 
