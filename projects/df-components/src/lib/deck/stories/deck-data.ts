@@ -82,11 +82,10 @@ export const cards: DeckItem[] = [
     parent: null,
     title: "Chart Cards",
     supportingText: `<div><img src="https://www.chartjs.org/img/chartjs-logo.svg"></div>`,
-    size: "2",
+    size: "1",
     cardType: CardType.Parent,
     actions: [
-      { url: "https://www.chartjs.org", title: "Chart.js" },
-      { url: "https://github.com/chartjs/Chart.js", title: "Github" }
+      { url: "https://www.chartjs.org", title: "Go" }
     ],
     sortOrder: "1",
     colour: "Crimson",
@@ -109,20 +108,6 @@ export const cards: DeckItem[] = [
     data: lineChart
   },
   {
-    id: "40bf9475-0d2a-58e2-a259-f17e647aeb76",
-    parent: null,
-    title: "Image Card",
-    supportingText: null,
-    size: "1",
-    cardType: CardType.Image,
-    actions: [],
-    sortOrder: "1",
-    colour: "DarkSlateGrey",
-    titleClass: null,
-    media: { url: "https://picsum.photos/400/400/?random" },
-    data: null
-  },
-  {
     id: "f632a57d-cd5e-5985-82be-a3363f800720",
     parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
     title: "Pie Chart",
@@ -139,13 +124,13 @@ export const cards: DeckItem[] = [
   {
     id: "95828ec3-e4dd-5ff6-9795-364a3b6a215a",
     parent: null,
-    title: "Something",
-    supportingText: `some text`,
+    title: "Media",
+    supportingText: `Media controls`,
     size: "1",
     cardType: CardType.Parent,
     actions: null,
     sortOrder: "1",
-    colour: "DarkBlue",
+    colour: "DarkSlateGrey",
     titleClass: null,
     media: null,
     data: null
@@ -153,15 +138,43 @@ export const cards: DeckItem[] = [
   {
     id: "95828ec3-e4dd-5ff6-9795-364a3b6a215b",
     parent: "95828ec3-e4dd-5ff6-9795-364a3b6a215a",
-    title: "s",
-    supportingText: `some text`,
-    size: "1",
-    cardType: CardType.Standard,
+    title: "Audio",
+    supportingText: `You should hear a horse`,
+    size: "2",
+    cardType: CardType.Audio,
     actions: null,
     sortOrder: "1",
     colour: "GoldenRod",
     titleClass: null,
-    media: null,
+    media: { url: "https://www.w3schools.com/tags/horse.mp3", type: "audio/mpeg"},
+    data: null
+  },
+  {
+    id: "40bf9475-0d2a-58e2-a259-f17e647aeb76",
+    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a215a",
+    title: "Image Card",
+    supportingText: null,
+    size: "4",
+    cardType: CardType.Image,
+    actions: [],
+    sortOrder: "99",
+    colour: "GoldenRod",
+    titleClass: null,
+    media: { url: "https://picsum.photos/1200/400/?random" },
+    data: null
+  },
+  {
+    id: "95828ec3-e4dd-5ff6-9795-364a3b6a215v",
+    parent: "95828ec3-e4dd-5ff6-9795-364a3b6a215a",
+    title: "Video",
+    supportingText: null,
+    size: "2",
+    cardType: CardType.Video,
+    actions: null,
+    sortOrder: "3",
+    colour: "GoldenRod",
+    titleClass: null,
+    media: { url: "https://www.w3schools.com/html/movie.mp4", type: "video/mp4"},
     data: null
   }
 ]

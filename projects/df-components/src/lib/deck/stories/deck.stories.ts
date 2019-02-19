@@ -30,7 +30,9 @@ const displayCards$: Observable<DeckItem[]> = parent$.pipe(
   map(([parentId, cards]) =>
     cards.filter(c => {
       return c.parent == parentId
-    })
+    }).sort((a, b) => {
+      return Number(a.sortOrder) < Number(b.sortOrder) ? -1 : 1;
+   })
   )
 )
 

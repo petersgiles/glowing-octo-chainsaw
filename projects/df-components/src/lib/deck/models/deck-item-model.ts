@@ -2,6 +2,7 @@ import { CardType } from "./card-type-enum"
 
 export interface DeckItemMedia {
   url: string
+  type?: string
 }
 
 export interface DeckItemChartColor {
@@ -26,7 +27,7 @@ export interface DeckItemChart {
   chartLabels: any[]
   chartOptions: DeckItemChartOptions
   chartType: "line" | "pie"
-  chartColors: DeckItemChartColor[]
+  chartColors?: DeckItemChartColor[]
 }
 
 export interface DeckItem {
