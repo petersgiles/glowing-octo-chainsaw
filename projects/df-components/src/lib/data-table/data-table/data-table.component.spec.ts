@@ -2,19 +2,24 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { DataTableComponent } from "./data-table.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
-import { NgxDatatableModule } from "@swimlane/ngx-datatable"
-import { BrowserModule } from "@angular/platform-browser"
+import {
+  NgxDatatableModule,
+  DatatableComponent as NgxDatatableComponent
+} from "@swimlane/ngx-datatable"
+import { BrowserModule, By } from "@angular/platform-browser"
 import {
   MdcIconModule,
   MdcButtonModule,
   MdcSelectModule,
   MdcRadioModule
 } from "@angular-mdc/web"
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common"
+import { DebugElement } from "@angular/core"
 
 describe("DataTableComponent", () => {
   let component: DataTableComponent
   let fixture: ComponentFixture<DataTableComponent>
+  let dataTableComponent: DebugElement
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,7 +27,7 @@ describe("DataTableComponent", () => {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        NgxDatatableModule, 
+        NgxDatatableModule,
         BrowserModule,
         MdcButtonModule,
         MdcIconModule,
@@ -37,9 +42,28 @@ describe("DataTableComponent", () => {
     fixture = TestBed.createComponent(DataTableComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+
+    this.dataTableComponent = fixture.debugElement.query(
+      By.directive(NgxDatatableComponent)
+    )
   })
 
   it("should create", () => {
     expect(component).toBeTruthy()
+  })
+  it("should not vertical scroll when limit is applied", () => {
+    component.limit = 5
+    fixture.detectChanges()
+    expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(false)
+  })
+  it("should vertical scroll when limit is not set", () => {
+    component.limit = undefined
+    fixture.detectChanges()
+    expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
+  })
+  it("should vertical scroll when limit is set to 0 or less", () => {
+    component.limit = 0
+    fixture.detectChanges()
+    expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
   })
 })
