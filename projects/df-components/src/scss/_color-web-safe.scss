@@ -168,6 +168,10 @@ $web-colors : ("AliceBlue", AliceBlue, $primary-color-text),
       }
     }
 
+
+    .pack-highlight-#{nth($color,1)} {
+      border-left: 6px solid #{nth($color,1)} !important;
+    }
   }
 
   .transparent {

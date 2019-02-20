@@ -7,8 +7,7 @@ import {
   MdcCardModule,
   MdcButtonModule,
   MdcIconModule,
-  MdcIconButtonModule,
-  MdcImageListModule
+  MdcIconButtonModule
 } from "@angular-mdc/web"
 
 const COMPONENTS = [DeckComponent]
@@ -20,7 +19,6 @@ const COMPONENTS = [DeckComponent]
     MdcButtonModule,
     MdcIconModule,
     MdcIconButtonModule,
-    MdcImageListModule,
     MdcCardModule
   ],
   declarations: COMPONENTS,

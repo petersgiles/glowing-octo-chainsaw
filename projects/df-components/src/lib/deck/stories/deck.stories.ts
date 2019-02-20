@@ -76,7 +76,6 @@ storiesOf("Deck", module)
         MdcIconModule,
         MdcCardModule,
         MdcIconButtonModule,
-        MdcImageListModule,
         DeckModule,
         ButtonModule
       ]

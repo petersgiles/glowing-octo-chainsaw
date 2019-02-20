@@ -74,12 +74,13 @@
 </ng-template>
 
 <ng-template #imageCard let-card>
-  <div class="df-card__media" (click)="navigate(card)">
-    <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
-  </div>
+
   <ng-container
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
   ></ng-container>
+  <div class="df-card__media" (click)="navigate(card)">
+      <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
+    </div>
   <ng-container
     *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }"
   ></ng-container>

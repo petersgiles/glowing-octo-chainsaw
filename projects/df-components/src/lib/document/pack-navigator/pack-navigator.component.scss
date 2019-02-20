@@ -1,0 +1,20 @@
+.pack-navigator-list{
+    padding: 0;
+}
+
+.pack-navigator{
+    padding: 0;
+}
+.pack-navigator .mdc-list-item {
+height: 40px;
+}
+
+$df-levels : ("1", 8), ("2", 16), ("3", 32), ("4", 48), ("5", 56), ("5", 64);
+
+@each $level in $df-levels {
+  .level-#{nth($level,1)}{
+    margin: 0 0 0 #{nth($level,2)}px;
+  }
+}
+
+
