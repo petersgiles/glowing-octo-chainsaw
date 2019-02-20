@@ -24,6 +24,8 @@
   <ngx-datatable-column
     *ngFor="let column of columns"
     [prop]="column.prop"
+    [headerCheckboxable]="column.headerCheckboxable"
+    [cellTemplate]="column.cellTemplate"
     [name]="column.name"
   ></ngx-datatable-column>
   <ngx-datatable-column *ngIf="hasDelete" name="Delete" prop="id" [width]="30">

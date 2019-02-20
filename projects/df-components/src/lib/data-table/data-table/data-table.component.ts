@@ -42,6 +42,12 @@ export class DataTableComponent implements OnInit {
   @Input()
   public limit
 
+  @Input()
+  public emptyMessage: 'No data to display'
+
+  @Input()
+  public totalMessage: 'total'
+
   @Output()
   public onPage: EventEmitter<Page> = new EventEmitter()
 

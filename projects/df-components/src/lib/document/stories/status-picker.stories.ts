@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "../status-picker/README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
 import {
@@ -98,17 +98,9 @@ storiesOf("Status Picker", module)
   .add("ReadOnly", () => ({
     template: `
     <df-status-picker 
-      [documentStatus]="documentStatus$ | async" 
-      [documentStatusList]="documentStatusList$ | async" 
-      (onAction)="handleAction($event)">
+      [list]="documentStatusList$ | async" 
+      (onSelect)="handleAction($event)">
     </df-status-picker>
     `,
     props: props
   }))
-// .add("Editable", () => ({
-//   template: `
-//   <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-//   <df-deck [cards]="cards$ | async" [readOnly]="false" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
-//   `,
-//   props: props
-// }))

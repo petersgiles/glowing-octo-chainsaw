@@ -5,10 +5,11 @@ import { DataTableModule } from "../data-table.module"
 import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import { BrowserModule } from "@angular/platform-browser"
 import { fruitList } from "./fruit-data"
-import { BehaviorSubject } from "rxjs"
+import { BehaviorSubject, of } from "rxjs"
 import { MdcIconModule } from "@angular-mdc/web"
 import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
+import { TemplateRef } from '@angular/core';
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 const columns = [
@@ -16,6 +17,11 @@ const columns = [
   { prop: "botanical", name: "Botanical Name" },
   { prop: "genus", name: "Genus" },
   { prop: "family", name: "Family" }
+]
+
+const templateColumns = [
+  { prop: "common", name: "Common Name", cellTemplate: null },
+  { prop: "botanical", name: "Botanical Name" }
 ]
 
 const props = {
@@ -127,4 +133,30 @@ storiesOf("Data Table", module)
     </df-data-table>
     `,
     props: props
+  })).add("Template Ref", () => ({
+    template: `
+    <df-data-table
+    [rows]="rows$ | async"
+    [columns]="columns"
+    >
+    </df-data-table>
+    <ng-template #editTmpl let-row="row" let-value="value">
+    custom template {{ value }}
+  </ng-template>
+
+    `,
+    props: {
+      rows$: fruits$,
+      columns: templateColumns
+    }
+  })).add("Empty ", () => ({
+    template: `
+    <df-data-table
+    [rows]="rows$ | async"
+    >
+    </df-data-table>
+    `,
+    props: {
+      rows$: of([])
+    }
   }))
