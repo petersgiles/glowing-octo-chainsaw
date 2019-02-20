@@ -1,7 +1,7 @@
 <section class="pack-navigator">
-  <ng-template #recursiveList let-list>
-    <mdc-list *ngFor="let item of list"  dense class="pack-navigator-list">
-      <mdc-list-item [ngClass]="buildClass(item)" (click)="onAction.emit(item)">
+  <ng-template #recursiveList let-tree>
+    <mdc-list *ngFor="let item of tree" dense class="pack-navigator-list">
+      <mdc-list-item [ngClass]="buildClass(item)" (click)="handleClick(item)">
           {{ item.caption | titlecase}}
           <mdc-icon mdcListItemMeta *ngIf="item.children?.length > 0">keyboard_arrow_{{ item.expanded ? "down" : "right" }}</mdc-icon>
           <mdc-icon mdcListItemMeta *ngIf="!(item.children?.length > 0)">link</mdc-icon>
@@ -17,6 +17,6 @@
     </mdc-list>
   </ng-template>
   <ng-container
-    *ngTemplateOutlet="recursiveList; context: { $implicit: list | async}"
+    *ngTemplateOutlet="recursiveList; context: { $implicit: tree }"
   ></ng-container>
 </section>

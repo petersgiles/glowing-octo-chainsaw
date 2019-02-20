@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "../pack-navigator/README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
 import { MdcChipsModule, MdcIconModule, MdcListModule } from "@angular-mdc/web"
@@ -73,16 +73,16 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 43,
     active: false,
-    expanded: false
+    expanded: true
   },
   {
     id: "6b7563f1-8e30-5d96-8495-9d99c3cf3fab",
-    parent: "329ce8ed-5e8c-52aa-984a-e3615463d392",
+    parent: "fec1cadd-0fff-599c-b1a4-49b7349a4d57",
     caption: "eos omnis nesciunt",
     meta: "last updated 1/1/2019",
     colour: "Crimson",
-    order: 23,
-    active: false,
+    order: 99,
+    active: true,
     expanded: false
   },
   {
@@ -91,7 +91,7 @@ const navigatorData: NavigatorTreeNode[] = [
     caption: "quibusdam excepturi pariatur",
     meta: "last updated 1/1/2019",
     colour: "Crimson",
-    order: 20,
+    order: 1,
     active: false,
     expanded: false
   },
@@ -117,7 +117,7 @@ const navigatorData: NavigatorTreeNode[] = [
   },
   {
     id: "e9861dad-d68e-5aa6-9ee9-96eb46534a4a",
-    parent: "e6976877-f03d-5a39-a8d0-3baee5365476",
+    parent: "fec1cadd-0fff-599c-b1a4-49b7349a4d57",
     caption: "ipsam facilis totam",
     meta: "last updated 1/1/2019",
     colour: "Crimson",
@@ -143,27 +143,12 @@ const navigatorTree$: Observable<NavigatorTreeNode[]> = navData$.pipe(
 )
 
 const props = {
-  navigatorTree$: navigatorTree$,
+  list$: navData$,
   handleEvent: ($event, name) => {
     action(name)($event)
   },
   handleAction: node => {
-    if (node) {
-      if (node.children) {
-        const navData = navData$.getValue()
-        const found = { ...navData.find(n => n.id === node.id) }
-        found.expanded = !found.expanded
-        navData$.next([...navData.filter(n => n.id !== node.id), found])
-
-        action("Toggle Action")(node)
-      } else {
-        const navData = navData$.getValue()
-        const found = { ...navData.find(n => n.id === node.id) }
-        found.active = !found.active
-        navData$.next([...navData.map(n => ({...n, active: false})).filter(n => n.id !== node.id), found])
-        action("Select Action")(node)
-      }
-    }
+    action("Action")(node)
   }
 }
 
@@ -185,7 +170,7 @@ storiesOf("Pack Navigator", module)
   .addDecorator(withLinks)
   .add("Navigation", () => ({
     template: `
-    <df-pack-navigator [list]="navigatorTree$" (onAction)="handleAction($event)"></df-pack-navigator>
+    <df-pack-navigator [list]="list$ | async" (onSelect)="handleAction($event)"></df-pack-navigator>
     `,
     props: props
   }))

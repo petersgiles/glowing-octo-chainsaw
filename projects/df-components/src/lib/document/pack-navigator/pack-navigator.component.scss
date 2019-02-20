@@ -13,18 +13,18 @@ $df-levels: (1, 8, "#455a64"), (2, 16, "#78909c"), (3, 24, "#2D888D"),
   (4, 32, "#2D888D"), (5, 40, "#2D888D"), (5, 48, "#2D888D");
 
 .active {
-  background-color: #2d888d !important;
+  background-color: #94999b !important;
   color: #fff !important;
+}
+
+.child-active {
+  background-color: #8c989e !important;
+  color: #fff !important;
+  border-bottom: #505d63 solid 1px !important;
 }
 
 @each $level in $df-levels {
   .level-#{nth($level,1)} {
     margin: 0 0 0 #{nth($level, 2)}px;
-
-    & .active {
-      margin: 0 0 0 #{nth($level, 2)}px;
-      background-color: #{nth($level, 3)} !important;
-      color: #fff !important;
-    }
   }
 }
