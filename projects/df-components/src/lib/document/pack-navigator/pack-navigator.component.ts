@@ -21,6 +21,7 @@ export class PackNavigatorComponent implements OnInit {
 
 
   public buildClass(node){
-    return `level-${node.level} pack-highlight-${node.colour}`
+    const active = node.active ? 'active' : null
+    return `${active} level-${node.level} pack-highlight-${node.colour}`
   }
 }

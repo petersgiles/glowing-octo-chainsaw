@@ -6,7 +6,7 @@
           <mdc-icon mdcListItemMeta *ngIf="item.children?.length > 0">keyboard_arrow_{{ item.expanded ? "down" : "right" }}</mdc-icon>
           <mdc-icon mdcListItemMeta *ngIf="!(item.children?.length > 0)">link</mdc-icon>
       </mdc-list-item>
-      <mdc-list *ngIf="item.children && item.children.length > 0"  dense class="pack-navigator-list">
+      <mdc-list *ngIf="item.expanded && item.children && item.children.length > 0"  dense class="pack-navigator-list">
         <ng-container 
             *ngTemplateOutlet="
             recursiveList;

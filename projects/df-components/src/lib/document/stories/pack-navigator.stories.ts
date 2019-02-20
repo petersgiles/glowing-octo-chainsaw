@@ -23,7 +23,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "GoldenRod",
     order: 17,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "d28dd1d7-7a03-53e2-8620-7cc9801fb091",
@@ -33,7 +33,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "GoldenRod",
     order: 65,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "6e163c94-eca8-54bf-9857-95988c2742c6",
@@ -43,7 +43,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "GoldenRod",
     order: 54,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "b47463dc-63b7-5feb-b006-8558b6e67a72",
@@ -53,7 +53,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "GoldenRod",
     order: 41,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "b99c94cc-4c87-51c2-ad8b-71966991116b",
@@ -63,7 +63,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "GoldenRod",
     order: 4,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "329ce8ed-5e8c-52aa-984a-e3615463d392",
@@ -73,7 +73,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 43,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "6b7563f1-8e30-5d96-8495-9d99c3cf3fab",
@@ -83,7 +83,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 23,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "e6976877-f03d-5a39-a8d0-3baee5365476",
@@ -93,7 +93,7 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 20,
     active: false,
-    expanded: true
+    expanded: false
   },
   {
     id: "fec1cadd-0fff-599c-b1a4-49b7349a4d57",
@@ -103,7 +103,17 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 39,
     active: false,
-    expanded: true
+    expanded: false
+  },
+  {
+    id: "fec1cadd-0fff-599c-b1a4-49b7349a4d51",
+    parent: "fec1cadd-0fff-599c-b1a4-49b7349a4d57",
+    caption: "4 deep",
+    meta: "last updated 1/1/2019",
+    colour: "Crimson",
+    order: 39,
+    active: false,
+    expanded: false
   },
   {
     id: "e9861dad-d68e-5aa6-9ee9-96eb46534a4a",
@@ -113,19 +123,23 @@ const navigatorData: NavigatorTreeNode[] = [
     colour: "Crimson",
     order: 10,
     active: false,
-    expanded: true
+    expanded: false
   }
 ]
 
-const navigatorTree$: BehaviorSubject<
-  NavigatorTreeNode[]
-> = new BehaviorSubject(
-  toTree(navigatorData.sort(sortBy('order')), {
-    id: "id",
-    parentId: "parent",
-    children: "children",
-    level: "level"
-  })
+const navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject(
+  navigatorData
+)
+
+const navigatorTree$: Observable<NavigatorTreeNode[]> = navData$.pipe(
+  map(navigatorData =>
+    toTree(navigatorData.sort(sortBy("order")), {
+      id: "id",
+      parentId: "parent",
+      children: "children",
+      level: "level"
+    })
+  )
 )
 
 const props = {
@@ -134,14 +148,22 @@ const props = {
     action(name)($event)
   },
   handleAction: node => {
-      if(node){
-          if(node.children){
-            action("Toggle Action")(node)
-          } else {
-            action("Navigate Action")(node)
-          }
+    if (node) {
+      if (node.children) {
+        const navData = navData$.getValue()
+        const found = { ...navData.find(n => n.id === node.id) }
+        found.expanded = !found.expanded
+        navData$.next([...navData.filter(n => n.id !== node.id), found])
+
+        action("Toggle Action")(node)
+      } else {
+        const navData = navData$.getValue()
+        const found = { ...navData.find(n => n.id === node.id) }
+        found.active = !found.active
+        navData$.next([...navData.map(n => ({...n, active: false})).filter(n => n.id !== node.id), found])
+        action("Select Action")(node)
       }
-    
+    }
   }
 }
 
@@ -161,7 +183,7 @@ storiesOf("Pack Navigator", module)
   )
   .addDecorator(withReadme(Readme))
   .addDecorator(withLinks)
-  .add("Navigate", () => ({
+  .add("Navigation", () => ({
     template: `
     <df-pack-navigator [list]="navigatorTree$" (onAction)="handleAction($event)"></df-pack-navigator>
     `,

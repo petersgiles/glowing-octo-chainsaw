@@ -9,7 +9,12 @@
 height: 40px;
 }
 
-$df-levels : ("1", 8), ("2", 16), ("3", 32), ("4", 48), ("5", 56), ("5", 64);
+.active {
+    background-color: #2D888D !important;
+    color: #fff !important;
+}
+
+$df-levels : ("1", 8), ("2", 16), ("3", 24), ("4", 32), ("5", 40), ("5", 48);
 
 @each $level in $df-levels {
   .level-#{nth($level,1)}{
