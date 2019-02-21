@@ -15,7 +15,7 @@
   flex-shrink: 1; 
 }
 
-.df-grid {
+.#{$prefix}-grid {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -28,11 +28,11 @@
   align-items: stretch;
 }
 
-.df-cell {
+.#{$prefix}-cell {
   box-sizing: border-box; 
 }
 
-.df-card {
+.#{$prefix}-card {
   display: -webkit-flex;
   display: -ms-flexbox;
   margin: 8px;
@@ -53,7 +53,7 @@
   box-sizing: border-box;
 }
 
-.df-card__media {
+.#{$prefix}-card__media {
   background-repeat: repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -68,7 +68,7 @@
   }
 }
 
-.df-card__title {
+.#{$prefix}-card__title {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
@@ -87,11 +87,11 @@
   transform-origin: 165px 56px;
   box-sizing: border-box;
 }
-.df-card__title.df-card--border {
+.#{$prefix}-card__title.#{$prefix}-card--border {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.df-card__title-text {
+.#{$prefix}-card__title-text {
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
@@ -109,13 +109,13 @@
   margin: 0;
 }
 
-.df-card__subtitle-text {
+.#{$prefix}-card__subtitle-text {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.54);
   margin: 0;
 }
 
-.df-card__supporting-text {
+.#{$prefix}-card__supporting-text {
   color: rgba(0, 0, 0, 0.54);
   font-size: 1rem;
   line-height: 18px;
@@ -128,13 +128,13 @@
   flex-grow: 1;
 }
 
-.df-card__menu {
+.#{$prefix}-card__menu {
   position: absolute;
   right: 4px;
   top: 4px;
 }
 
-.df-card__actions {
+.#{$prefix}-card__actions {
   font-size: 16px;
   line-height: normal;
   width: 100%;
@@ -142,11 +142,11 @@
   padding: 8px;
   box-sizing: border-box;
 }
-.df-card__actions.df-card--border {
+.#{$prefix}-card__actions.#{$prefix}-card--border {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.df-card--expand {
+.#{$prefix}-card--expand {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
@@ -155,47 +155,47 @@
 $df-cells : ("1", 25%), ("2", 50%), ("3", 75%), ("4", 100%);
 
 @each $cell in $df-cells {
-  .df-cell--#{nth($cell,1)}-col{
+  .#{$prefix}-cell--#{nth($cell,1)}-col{
     width: calc(#{nth($cell,2)} - 16px);
   }
 }
 
-.df-shadow--2dp {
+.#{$prefix}-shadow--2dp {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.df-shadow--3dp {
+.#{$prefix}-shadow--3dp {
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2),
     0 1px 8px 0 rgba(0, 0, 0, 0.12);
 }
 
-.df-shadow--4dp {
+.#{$prefix}-shadow--4dp {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
     0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
-.df-shadow--6dp {
+.#{$prefix}-shadow--6dp {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 
-.df-shadow--8dp {
+.#{$prefix}-shadow--8dp {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 
-.df-shadow--16dp {
+.#{$prefix}-shadow--16dp {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
-.df-shadow--24dp {
+.#{$prefix}-shadow--24dp {
   box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14),
     0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
 }
 
-.df-layout-spacer {
+.#{$prefix}-layout-spacer {
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;

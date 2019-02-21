@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import {
 	withKnobs,
@@ -14,20 +14,21 @@ import { action } from "@storybook/addon-actions"
 import { withReadme } from "storybook-readme"
 import * as Readme from "./README.md"
 import { FileModule } from '../file.module';
+import { MdcButtonModule } from '@angular-mdc/web';
 
 @Component({
 	selector: "app-file-uploader",
 	template: `
-		<df-uploader
+		<df-file-uploader
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
 			[accept]="accept"
 			[multiple]="multiple"
-			[(files)]="files">
-		</df-uploader>
-		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-		<button *ngIf="files && files.size > 0" (click)="onUpload()">
+			[(files)]="files"
+			(filesChange)="handleChange($event)">
+		</df-file-uploader>
+		<button mdc-button *ngIf="files && files.size > 0" (click)="onUpload()">
 			Upload
 		</button>
 	`
@@ -43,6 +44,8 @@ class FileUploaderStory {
 	@Input() accept;
 	@Input() multiple;
 
+	@Output() onFilesChange = new EventEmitter()
+
 	protected maxSize = 500000;
 
 	constructor(
@@ -51,15 +54,14 @@ class FileUploaderStory {
 		FileUploaderStory.notificationCount++;
 	}
 
+	handleChange($event) {
+		this.onFilesChange.emit({$event, files: this.files})
+	}
+
 	onUpload() {
 		this.files.forEach(fileItem => {
 			if (fileItem.file.size > this.maxSize) {
-				// this.notificationService.showNotification({
-				// 	type: "error",
-				// 	title: `'${fileItem.file.name}' exceeds size limit`,
-				// 	message: `500kb max size. Please select a new file and try again`,
-				// 	target: `#${this.notificationId}`
-				// });
+
 			}
 		});
 
@@ -83,7 +85,10 @@ class FileUploaderStory {
 storiesOf("File Uploader", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [FileModule],
+			imports: [
+				FileModule,
+				MdcButtonModule
+			],
 			declarations: [FileUploaderStory]
 		})
 	)
@@ -95,7 +100,8 @@ storiesOf("File Uploader", module)
 				[description]="description"
 				[buttonText]="buttonText"
 				[accept]="accept"
-				[multiple]="multiple">
+				[multiple]="multiple"
+				(onFilesChange)="handleEvent($event, 'onFilesChange')">
 			</app-file-uploader>
 		`,
 		props: {
@@ -103,6 +109,7 @@ storiesOf("File Uploader", module)
 			description: text("The description", "only .jpg and .png files. 500kb max file size."),
 			buttonText: text("Button text", "Add files"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
-			multiple: boolean("Supports multiple files", true)
+			multiple: boolean("Supports multiple files", true),
+			handleEvent: ($event, name) => action(name)($event)
 		}
 	}))

@@ -1,3 +1,5 @@
+$prefix: 'df';
+
 $primary-color-dark: #455a64 !default;
 $primary-color: #607d8b !default;
 $primary-color-text: #ffffff !default;
@@ -13,3 +15,8 @@ $background: #fff !default;
 $mdc-theme-primary: $primary-color-dark;
 $mdc-theme-secondary: $primary-color;
 $mdc-theme-background: $background;
+
+
+$spacing-xs: 4px;
+$spacing-md: 8px;
+$spacing-lg: 16px;

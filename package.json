@@ -40,7 +40,8 @@
   "peerDependencies": {
     "@swimlane/ngx-datatable": "^14.0.0",
     "ng2-charts": "^1.6.0",
-    "chart.js": "^2.7.3"
+    "chart.js": "^2.7.3",
+    "ngx-file-drop": "^5.0.5"
   },
   "devDependencies": {
     "@angular-builders/jest": "^7.2.1",
@@ -72,6 +73,7 @@
     "jest": "^23.6.0",
     "ng-packagr": "^4.2.0",
     "ng2-charts": "^1.6.0",
+    "ngx-file-drop": "^5.0.5",
     "prettier": "1.16.1",
     "protractor": "~5.4.0",
     "storybook-readme": "^4.0.5",

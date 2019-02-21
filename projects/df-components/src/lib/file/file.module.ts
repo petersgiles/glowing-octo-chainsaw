@@ -1,14 +1,25 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { UploaderComponent } from './uploader/uploader.component';
-import { FileComponent } from './file/file.component';
-import { LoadingComponent } from './loading/loading.component';
+import { MdcButtonModule, MdcIconModule, MdcListModule } from '@angular-mdc/web';
+import { HttpClientModule } from '@angular/common/http';
+import { FileDropModule } from 'ngx-file-drop';
+import { DropperComponent } from './dropper/dropper.component';
 
-const COMPONENTS = [FileComponent, LoadingComponent, UploaderComponent]
+const COMPONENTS = [UploaderComponent, DropperComponent]
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    FileDropModule,
+    MdcButtonModule,
+    MdcIconModule,
+    MdcListModule,
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

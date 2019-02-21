@@ -13,7 +13,7 @@ import { FileItem } from "../models/file-item"
 const noop = () => {}
 
 @Component({
-  selector: "df-uploader",
+  selector: "df-file-uploader",
   templateUrl: "./uploader.component.html",
   styleUrls: ["./uploader.component.scss"],
   providers: [
@@ -31,8 +31,10 @@ export class UploaderComponent implements OnInit {
   public static fileUploaderCount = 0
   /**
    * Accessible text for the button that opens the upload window.
+   *
+   * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
    */
-  @Input() public buttonText = "Open"
+  @Input() public buttonText = "Add Files"
   /**
    * Text set to the title
    */
@@ -51,6 +53,10 @@ export class UploaderComponent implements OnInit {
    * Defaults to `true`. Accepts multiple files.
    */
   @Input() public multiple = true
+  /**
+   * Set to `true` for a loading file uploader.
+   */
+  @Input() public skeleton = false
   /**
    * Provides a unique id for the underlying <input> node
    */

@@ -1,22 +1,28 @@
 <ng-container>
-    <strong class="bx--label">{{title}}</strong>
-    <p class="bx--label-description">{{description}}</p>
-    <div class="bx--file">
-      <button
-        (click)="fileInput.click()"
-        [attr.for]="fileUploaderId">
-        {{buttonText}}
-      </button>
-      <input
-        #fileInput
-        type="file"
-        class="bx--file-input"
-        [accept]="accept"
-        [id]="fileUploaderId"
-        [multiple]="multiple"
-        (change)="onFilesAdded()"/>
-      <div class="bx--file-container">
-        <df-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></df-file>
-      </div>
+  <strong>{{ title }}</strong>
+  <p>{{ description }}</p>
+  <div class="df--file">
+    <button mdc-button (click)="fileInput.click()" [attr.for]="fileUploaderId">
+      {{ buttonText }}
+    </button>
+    <input
+      #fileInput
+      type="file"
+      class="df--file-input"
+      [accept]="accept"
+      [id]="fileUploaderId"
+      [multiple]="multiple"
+      (change)="onFilesAdded()"
+    />
+    <div class="df--file-container">
+      <mdc-list>
+        <mdc-list-item *ngFor="let fileItem of files"
+          >{{ fileItem?.file?.name }}
+          <mdc-icon mdcListItemMeta *ngIf="fileItem?.state === 'edit'" (click)="removeFile(fileItem)">clear</mdc-icon>
+          <mdc-icon mdcListItemMeta *ngIf="fileItem?.state === 'upload'">cloud_upload</mdc-icon>
+          <mdc-icon mdcListItemMeta *ngIf="fileItem?.state === 'complete'">done</mdc-icon>
+        </mdc-list-item>
+      </mdc-list>
     </div>
-  </ng-container>
+  </div>
+</ng-container>
