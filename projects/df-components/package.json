@@ -9,6 +9,9 @@
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/forms": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/router": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular-mdc/web": "^0.42.6"
+    "@angular-mdc/web": "^0.42.6",
+    "@swimlane/ngx-datatable": "^14.0.0",
+    "ng2-charts": "^1.6.0",
+    "chart.js": "^2.7.3"
   }
 }

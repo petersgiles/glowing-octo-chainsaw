@@ -9,7 +9,7 @@ import { BehaviorSubject, of } from "rxjs"
 import { MdcIconModule } from "@angular-mdc/web"
 import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
-import { TemplateRef } from '@angular/core';
+import { TemplateRef, Input, Component, ViewChild, OnInit } from "@angular/core"
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 const columns = [
@@ -19,11 +19,6 @@ const columns = [
   { prop: "family", name: "Family" }
 ]
 
-const templateColumns = [
-  { prop: "common", name: "Common Name", cellTemplate: null },
-  { prop: "botanical", name: "Botanical Name" }
-]
-
 const props = {
   rows$: fruits$,
   columns: columns,
@@ -31,7 +26,6 @@ const props = {
   handleEvent: ($event, name) => action(name)($event),
   handleFilter: ($event: any) => {
     const val = $event.target.value.toLowerCase()
-    console.log(val)
     filterFruits(val)
     action("onFilter")($event)
   }
@@ -65,6 +59,36 @@ export const filterFruits = (expression: string) => {
   fruits$.next(filtered)
 }
 
+@Component({
+  selector: "data-table-template-story",
+  template: `
+    <df-data-table [rows]="rows" [columns]="columns"> </df-data-table>
+    <ng-template #editTmpl let-row="row" let-value="value">
+      custom template {{ value }}
+    </ng-template>
+  `
+})
+class DataTableTemplateStory implements OnInit{
+
+  @Input()
+  public rows
+
+  @ViewChild('editTmpl') 
+  public editTmpl: TemplateRef<any>
+
+  public columns
+
+  ngOnInit(): void {
+    this.columns = [
+      { prop: "common", name: "Common Name", cellTemplate: this.editTmpl },
+      { prop: "botanical", name: "Botanical Name" }
+    ]
+  }
+
+
+  constructor() {}
+}
+
 storiesOf("Data Table", module)
   .addParameters({ jest: ["data-table.component"] })
   .addDecorator(
@@ -74,7 +98,8 @@ storiesOf("Data Table", module)
         BrowserModule,
         MdcIconModule,
         DataTableModule
-      ]
+      ],
+      declarations: [DataTableTemplateStory]
     })
   )
   .addDecorator(withReadme(Readme))
@@ -133,23 +158,19 @@ storiesOf("Data Table", module)
     </df-data-table>
     `,
     props: props
-  })).add("Template Ref", () => ({
+  }))
+  .add("Template Ref", () => ({
     template: `
-    <df-data-table
+    <data-table-template-story
     [rows]="rows$ | async"
-    [columns]="columns"
     >
-    </df-data-table>
-    <ng-template #editTmpl let-row="row" let-value="value">
-    custom template {{ value }}
-  </ng-template>
-
+    </data-table-template-story>
     `,
     props: {
       rows$: fruits$,
-      columns: templateColumns
     }
-  })).add("Empty ", () => ({
+  }))
+  .add("Empty ", () => ({
     template: `
     <df-data-table
     [rows]="rows$ | async"
