@@ -4,28 +4,12 @@ import {
   Input,
   Output,
   EventEmitter,
-  SimpleChanges,
   ViewChild
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
-import { toTree, sortBy } from "../../utils/array-to-tree"
 import { debounceTime, distinctUntilChanged, map, filter, tap } from "rxjs/operators"
-import { multiFilter } from "../../utils/filters"
 import { Subject } from "rxjs"
-import { IActionMapping, TREE_ACTIONS, KEYS } from 'angular-tree-component';
-
-const actionMapping:IActionMapping = {
-  mouse: {
-    contextMenu: (tree, node, $event) => {
-      $event.preventDefault();
-      node.data.edit = !node.data.edit
-    },
-    dblClick: (tree, node, $event) => {
-      alert(`dblClick menu for ${node.data.caption}`);
-    }
-  }
-};
-
+import { TreeModel, TreeNode } from 'angular-tree-component';
 
 @Component({
   selector: "df-pack-navigator",
@@ -36,17 +20,27 @@ export class PackNavigatorComponent implements OnInit {
   public options: any
   public filter: Subject<string> = new Subject<string>()
   public nodeEdit: Subject<any> = new Subject<any>()
+  public treeDataVisible: boolean
   // tslint:disable-next-line:no-empty
   constructor() {}
 
+  @ViewChild("filterInput")
+  public filterInput
+
   @ViewChild("tree")
   public tree
+
+  @Input()
+  public readOnly: boolean
 
   @Input()
   public nodes: NavigatorTreeNode[]
 
   @Output()
   public onSelect: EventEmitter<any> = new EventEmitter()
+
+  @Output()
+  public onNodeEdited: EventEmitter<any> = new EventEmitter()
 
   @Output()
   public onMoveNode: EventEmitter<any> = new EventEmitter()
@@ -67,11 +61,39 @@ export class PackNavigatorComponent implements OnInit {
 
   public ngOnInit() {
     this.options = {
-      actionMapping,
-      allowDrag: node => node.isLeaf,
+      actionMapping:  {
+        mouse: {
+          contextMenu: (tree, node, $event) => {
+            if(!this.readOnly)
+            {
+              $event.preventDefault();
+              node.data.edit = !node.data.edit
+            }
+          },
+          drop: (tree: TreeModel, node: TreeNode, $event: any, {from , to}: {from: any, to: any}) => {
+            // default action assumes from = node, to = {parent, index}
+            if ($event.ctrlKey) {
+              tree.copyNode(from, to);
+            } else {
+              tree.moveNode(from, to);
+            }
+          }
+        }
+      },
+      allowDrag: node => {
+        if(this.readOnly)
+        {
+          return false
+        }
+
+        return node.isLeaf
+      },
       allowDrop: (element, { parent, index }) => {
-        // return true / false based on element, to.parent, to.index. e.g.
-        return parent.hasChildren
+        if(this.readOnly)
+        {
+          return false
+        }
+        return true // parent.hasChildren
       }
     }
 
@@ -100,10 +122,12 @@ export class PackNavigatorComponent implements OnInit {
         distinctUntilChanged(),
       )
       .subscribe((payload: {$event: any, val: string, node: any }) => {
+        // tslint:disable-next-line:no-console
         console.log(payload.$event, payload.$event.key)
         if(payload.$event.key === "Enter"){
           payload.node.data.caption = payload.val
           payload.node.data.edit = false
+          this.onNodeEdited.emit({id: payload.node.id, caption: payload.val})
         }
         if(payload.$event.key === undefined || payload.$event.key === "Escape"){
           payload.node.data.edit = false
@@ -112,12 +136,19 @@ export class PackNavigatorComponent implements OnInit {
 
   }
 
+  public clearFilter(){
+    
+    this.filterInput.value=null
+    this.filter.next(null);
+  }
+
   public getNodeColour(node) {
     const active = node.data.active ? "active" : ""
     return `border-left-${node.data.colour} ${active}`
   }
 
   public handleDblClick($event) {
-console.log($event)
+    // tslint:disable-next-line:no-console
+    console.log($event)
   }
 }

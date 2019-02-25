@@ -1,23 +1,22 @@
-import { Component, OnInit, ViewChild } from "@angular/core"
-import { Observable, BehaviorSubject, Subject } from "rxjs"
+import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core"
+import { Observable, BehaviorSubject, Subscription } from "rxjs"
+import { map } from "rxjs/operators"
 import { NavigatorTreeNode } from "../.."
 import { navigatorData } from "../../../../.data/deck-data"
-import {
-  map
-} from "rxjs/operators"
 import { toTree, sortBy } from "../../../utils/array-to-tree"
-import { multiFilter } from "../../../utils/filters"
 
 @Component({
   selector: "df-story-pack-navigator",
   templateUrl: "./story-pack-navigator.component.html",
   styleUrls: ["./story-pack-navigator.component.scss"]
 })
-export class StoryPackNavigatorComponent implements OnInit {
+export class StoryPackNavigatorComponent implements OnInit, OnDestroy {
   public nodes$: Observable<any>
   public storyData: NavigatorTreeNode[]
 
   public navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject([])
+  public nodesSubscription$: Subscription
+  public tree: any;
 
   constructor() {
     this.storyData = navigatorData
@@ -36,9 +35,13 @@ export class StoryPackNavigatorComponent implements OnInit {
         })
       })
     )
+
+    this.nodesSubscription$ = this.nodes$.subscribe(p => this.tree = p)
   }
 
-
+  public ngOnDestroy() {
+    this.nodesSubscription$.unsubscribe()
+  }
 
   // tslint:disable-next-line:no-empty
   public handleEvent($event, name) {}

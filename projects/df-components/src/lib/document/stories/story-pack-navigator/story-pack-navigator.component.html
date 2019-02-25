@@ -1,1 +1,22 @@
-<df-pack-navigator [nodes]="nodes$ | async" (onSelect)="handleSelect($event)" (onMoveNode)="handleEvent($event, 'Move')"></df-pack-navigator>
+<div class="demo-content">
+  <div class="demo-layout__row">
+      <button mdc-button (click)="navigator.readOnly = !navigator.readOnly">
+        Read Only: {{ navigator.readOnly ? "On" : "Off" }}
+      </button>
+
+      <button mdc-button (click)="treeDataVisible = !treeDataVisible">
+            Tree Data: {{ treeDataVisible ? "Hide" : "Show" }}
+          </button>
+  </div>
+
+  <df-pack-navigator
+    #navigator
+    [nodes]="nodes$ | async"
+    (onSelect)="handleSelect($event)"
+    (onMoveNode)="handleEvent($event, 'Move')"
+    onNodeEdited="handleEvent($event, 'NodeEdited')"
+  ></df-pack-navigator>
+</div>
+<pre *ngIf="treeDataVisible">
+    {{ tree | json }}
+</pre>

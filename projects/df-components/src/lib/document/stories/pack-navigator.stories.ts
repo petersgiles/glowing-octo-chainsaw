@@ -7,7 +7,13 @@ import { withReadme } from "storybook-readme"
 import * as Readme from "../pack-navigator/README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
-import { MdcChipsModule, MdcIconModule, MdcListModule, MdcTextFieldModule } from "@angular-mdc/web"
+import {
+  MdcChipsModule,
+  MdcIconModule,
+  MdcListModule,
+  MdcTextFieldModule,
+  MdcButtonModule
+} from "@angular-mdc/web"
 import { ButtonModule } from "../../button"
 import { DocumentModule } from "../document.module"
 import { withLatestFrom, map } from "rxjs/operators"
@@ -15,9 +21,9 @@ import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import { toTree, sortBy } from "../../utils/array-to-tree"
 
 import { navigatorData } from "../../../.data/deck-data"
-import { StoryPackNavigatorComponent } from './story-pack-navigator/story-pack-navigator.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { StoryPackNavigatorComponent } from "./story-pack-navigator/story-pack-navigator.component"
+import { CommonModule } from "@angular/common"
+import { FormsModule } from "@angular/forms"
 
 const navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject(
   navigatorData
@@ -49,11 +55,8 @@ const props = {
     const navData = navigatorData.map(n => ({ ...n, active: false }))
     const found = { ...navData.find(n => n.id === node.id) }
     found.active = true
-    const list = [
-      ...navData.filter(n => n.id !== node.id),
-      found
-    ]
-   
+    const list = [...navData.filter(n => n.id !== node.id), found]
+
     navData$.next(list)
   }
 }
@@ -79,13 +82,14 @@ storiesOf("Pack Navigator", module)
   .addParameters({ jest: ["pack-navigator.component"] })
   .addDecorator(
     moduleMetadata({
-      declarations:[StoryPackNavigatorComponent],
+      declarations: [StoryPackNavigatorComponent],
       imports: [
         BrowserModule,
         DocumentModule,
         MdcIconModule,
         MdcListModule,
         MdcChipsModule,
+        MdcButtonModule,
         ButtonModule,
         CommonModule,
         FormsModule,

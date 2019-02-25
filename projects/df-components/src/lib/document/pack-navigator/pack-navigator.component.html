@@ -4,11 +4,11 @@
   #filterInput
   class="filter"
   placeholder="Filter"
-
   (keyup)="filter.next(filterInput.value)"
-
   autocomplete="off"
-  ></mdc-text-field>
+  dense
+  fullwidth
+  ><mdc-icon mdcTextFieldIcon trailing clickable (click)="clearFilter()">clear</mdc-icon></mdc-text-field>
 </div>
 
 <tree-root #tree [nodes]="nodes" 
