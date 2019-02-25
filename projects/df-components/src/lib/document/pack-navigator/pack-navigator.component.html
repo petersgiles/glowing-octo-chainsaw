@@ -1,4 +1,15 @@
-<tree-root [nodes]="nodes" 
+
+<div class="sticky">
+  <mdc-text-field
+  #filterInput
+  class="filter"
+  placeholder="Filter"
+  (keyup)="filter.next(filterInput.value)"
+  autocomplete="off"
+  ></mdc-text-field>
+</div>
+
+<tree-root #tree [nodes]="nodes" 
       [options]="options" 
       (moveNode)="onMoveNode.emit($event)" 
       (activate)="handleActivate($event)">
@@ -34,7 +45,7 @@
       </div>
     </ng-template>
   
-    <ng-template #loadingTemplate>Loading, please wait...</ng-template>
+    <!-- <ng-template #loadingTemplate>Loading, please wait...</ng-template> -->
   
     <ng-template #treeNodeTemplate let-node let-index="index">
       <div>

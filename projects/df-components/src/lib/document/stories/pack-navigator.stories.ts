@@ -7,7 +7,7 @@ import { withReadme } from "storybook-readme"
 import * as Readme from "../pack-navigator/README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
-import { MdcChipsModule, MdcIconModule, MdcListModule } from "@angular-mdc/web"
+import { MdcChipsModule, MdcIconModule, MdcListModule, MdcTextFieldModule } from "@angular-mdc/web"
 import { ButtonModule } from "../../button"
 import { DocumentModule } from "../document.module"
 import { withLatestFrom, map } from "rxjs/operators"
@@ -15,6 +15,9 @@ import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import { toTree, sortBy } from "../../utils/array-to-tree"
 
 import { navigatorData } from "../../../.data/deck-data"
+import { StoryPackNavigatorComponent } from './story-pack-navigator/story-pack-navigator.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 const navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject(
   navigatorData
@@ -76,21 +79,32 @@ storiesOf("Pack Navigator", module)
   .addParameters({ jest: ["pack-navigator.component"] })
   .addDecorator(
     moduleMetadata({
+      declarations:[StoryPackNavigatorComponent],
       imports: [
         BrowserModule,
         DocumentModule,
         MdcIconModule,
         MdcListModule,
         MdcChipsModule,
-        ButtonModule
+        ButtonModule,
+        CommonModule,
+        FormsModule,
+        MdcListModule,
+        MdcTextFieldModule
       ]
     })
   )
   .addDecorator(withReadme(Readme))
   .addDecorator(withLinks)
-  .add("Navigation", () => ({
+  .add("Basic", () => ({
     template: `
     <df-pack-navigator [nodes]="nodes$ | async" (onSelect)="handleSelect($event)" (onMoveNode)="handleEvent($event, 'Move')"></df-pack-navigator>
+    `,
+    props: props
+  }))
+  .add("Pack Navigator", () => ({
+    template: `
+    <df-story-pack-navigator></df-story-pack-navigator>
     `,
     props: props
   }))

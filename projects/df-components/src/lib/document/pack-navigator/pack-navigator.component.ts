@@ -4,10 +4,15 @@ import {
   Input,
   Output,
   EventEmitter,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import { toTree, sortBy } from "../../utils/array-to-tree"
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
+import { multiFilter } from '../../utils/filters';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: "df-pack-navigator",
@@ -16,9 +21,13 @@ import { toTree, sortBy } from "../../utils/array-to-tree"
 })
 export class PackNavigatorComponent implements OnInit {
   public options: any
+  public filter: Subject<string> = new Subject<string>()
 
   // tslint:disable-next-line:no-empty
   constructor() {}
+
+  @ViewChild("tree")
+  public tree
 
   @Input()
   public nodes: NavigatorTreeNode[]
@@ -34,14 +43,13 @@ export class PackNavigatorComponent implements OnInit {
     console.log("handleActivate =>", $event)
     const node = $event.node
     if (!node.children) {
-       this.onSelect.emit(node)
+      this.onSelect.emit(node)
     }
   }
-
+  
   public handleClick($event) {
     // tslint:disable-next-line:no-console
     console.log("handleClick =>", $event)
-    
   }
 
   public ngOnInit() {
@@ -52,7 +60,40 @@ export class PackNavigatorComponent implements OnInit {
         return parent.hasChildren
       }
     }
+
+    this.filter
+    .pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      map(f => f.toLowerCase())
+    )
+    // tslint:disable-next-line:no-console
+    .subscribe((val: string) => {
+if(val) {
+  this.tree.treeModel.filterNodes((node) => {
+    const caption = node.data.caption.toLowerCase()
+    return caption.includes(val);
+  }, true);
+} else {
+  this.tree.treeModel.clearFilter()
+}
+
+      
+    })
+
   }
+
+  // private findAncestors(nodeId) {
+
+  //   const found = this.storyData.find(sd => sd.id === nodeId)
+  //   if(found) {
+  //     if(found.parent) {
+  //       return [nodeId, ...this.findAncestors(found.parent)]
+  //     }
+  //     return [nodeId]
+  //   }
+  //   return []
+  // }
 
   public getNodeColour(node) {
     const active = node.data.active ? "active" : ""

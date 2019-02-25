@@ -10,7 +10,7 @@ import { MdcIconModule } from "@angular-mdc/web"
 import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
 import { TemplateRef, Input, Component, ViewChild, OnInit } from "@angular/core"
-
+import { multiFilter } from "./../../utils/filters"
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 const columns = [
   { prop: "common", name: "Common Name" },
@@ -29,18 +29,6 @@ const props = {
     filterFruits(val)
     action("onFilter")($event)
   }
-}
-
-export const multiFilter = (arr: any[], filters: any) => {
-  const filterKeys = Object.keys(filters)
-  return arr.filter(eachObj =>
-    filterKeys.some(eachKey => {
-      if (!filters[eachKey].length) {
-        return true // passing an empty filter means that filter is ignored.
-      }
-      return eachObj[eachKey].toLowerCase().includes(filters[eachKey])
-    })
-  )
 }
 
 export const filterFruits = (expression: string) => {
@@ -68,12 +56,11 @@ export const filterFruits = (expression: string) => {
     </ng-template>
   `
 })
-class DataTableTemplateStory implements OnInit{
-
+class DataTableTemplateStory implements OnInit {
   @Input()
   public rows
 
-  @ViewChild('editTmpl') 
+  @ViewChild("editTmpl")
   public editTmpl: TemplateRef<any>
 
   public columns
@@ -84,7 +71,6 @@ class DataTableTemplateStory implements OnInit{
       { prop: "botanical", name: "Botanical Name" }
     ]
   }
-
 
   constructor() {}
 }
@@ -167,7 +153,7 @@ storiesOf("Data Table", module)
     </data-table-template-story>
     `,
     props: {
-      rows$: fruits$,
+      rows$: fruits$
     }
   }))
   .add("Empty ", () => ({
