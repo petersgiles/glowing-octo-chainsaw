@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common"
 import { StatusPickerComponent } from "./status-picker/status-picker.component"
 import { MdcChipsModule, MdcListModule, MdcIconModule } from '@angular-mdc/web';
 import { PackNavigatorComponent } from './pack-navigator/pack-navigator.component';
+import { TreeModule } from 'angular-tree-component';
 
 const COMPONENTS = [StatusPickerComponent, PackNavigatorComponent]
 @NgModule({
@@ -10,7 +11,8 @@ const COMPONENTS = [StatusPickerComponent, PackNavigatorComponent]
     CommonModule,
     MdcIconModule,
     MdcListModule,
-    MdcChipsModule 
+    MdcChipsModule,
+    TreeModule.forRoot()
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

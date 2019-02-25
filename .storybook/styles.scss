@@ -1,7 +1,9 @@
-@import "../projects/df-components/src/theme";
 @import "~@angular-mdc/theme/material";
 @import "~@swimlane/ngx-datatable/release/index.css";
 @import "~@swimlane/ngx-datatable/release/themes/material.css";
+@import '~angular-tree-component/dist/angular-tree-component.css';
+
+@import "../projects/df-components/src/theme";
 
 $primary-color-dark: #123456;
 .ngx-datatable,

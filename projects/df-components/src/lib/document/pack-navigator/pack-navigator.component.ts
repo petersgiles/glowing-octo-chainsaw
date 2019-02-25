@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from "@angular/core"
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges
+} from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import { toTree, sortBy } from "../../utils/array-to-tree"
 
@@ -8,74 +15,47 @@ import { toTree, sortBy } from "../../utils/array-to-tree"
   styleUrls: ["./pack-navigator.component.scss"]
 })
 export class PackNavigatorComponent implements OnInit {
-  public internalList: NavigatorTreeNode[]
-  public tree: NavigatorTreeNode[]
+  public options: any
+
   // tslint:disable-next-line:no-empty
   constructor() {}
 
-  // tslint:disable-next-line:no-empty
-  public ngOnInit() {}
-
   @Input()
-  public set list (val: NavigatorTreeNode[]){
-    if (val) {
-      this.internalList = val.sort(sortBy("order"))
-
-      this.makeTree();
-    }
-  }
+  public nodes: NavigatorTreeNode[]
 
   @Output()
   public onSelect: EventEmitter<any> = new EventEmitter()
 
-  private makeTree() {
-    this.tree = toTree(this.internalList, {
-      id: "id",
-      parentId: "parent",
-      children: "children",
-      level: "level"
-    });
-  }
+  @Output()
+  public onMoveNode: EventEmitter<any> = new EventEmitter()
 
-  public handleClick(node:NavigatorTreeNode){
-
-    if (node) {
-      if (node.children) {
-
-        // expand action
-        const found = { ...this.internalList.find(n => n.id === node.id) }
-        found.expanded = !found.expanded
-        this.internalList = [...this.internalList.filter(n => n.id !== node.id), found]
-      } else {
-        // select action
-        const found = { ...this.internalList.find(n => n.id === node.id) }
-        found.active = !found.active
-        this.internalList = [...this.internalList.map(n => ({...n, active: false})).filter(n => n.id !== node.id), found]
-        this.onSelect.emit(node)
-      }
-      this.makeTree();
+  public handleActivate($event) {
+    // tslint:disable-next-line:no-console
+    console.log("handleActivate =>", $event)
+    const node = $event.node
+    if (!node.children) {
+       this.onSelect.emit(node)
     }
-
   }
 
-  public buildClass(node) {
-    const active = node.active ? "active" : ""
-    const anyChildActive = this.anyChildActive(node) ? "child-active" : ""
-    return `level-${node.level} ${active} ${anyChildActive} pack-highlight-${
-      node.colour
-    }`
+  public handleClick($event) {
+    // tslint:disable-next-line:no-console
+    console.log("handleClick =>", $event)
+    
   }
 
-  public anyChildActive(node: NavigatorTreeNode): boolean {
-    if (!(node && node.children && node.children.length > 0)) return false
-    if (node.children.some(c => c.active)) return true
-    const nodesWithChildren = node.children
-      .filter(c => node.children && node.children.length > 0)
-      .reduce((acc: boolean[], n: NavigatorTreeNode) => {
-        acc.push(this.anyChildActive(n))
-        return acc
-      }, [])
+  public ngOnInit() {
+    this.options = {
+      allowDrag: node => node.isLeaf,
+      allowDrop: (element, { parent, index }) => {
+        // return true / false based on element, to.parent, to.index. e.g.
+        return parent.hasChildren
+      }
+    }
+  }
 
-    return nodesWithChildren.some(n => n)
+  public getNodeColour(node) {
+    const active = node.data.active ? "active" : ""
+    return `border-left-${node.data.colour} ${active}`
   }
 }
