@@ -9,9 +9,22 @@ import {
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import { toTree, sortBy } from "../../utils/array-to-tree"
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
-import { multiFilter } from '../../utils/filters';
-import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, filter, tap } from "rxjs/operators"
+import { multiFilter } from "../../utils/filters"
+import { Subject } from "rxjs"
+import { IActionMapping, TREE_ACTIONS, KEYS } from 'angular-tree-component';
+
+const actionMapping:IActionMapping = {
+  mouse: {
+    contextMenu: (tree, node, $event) => {
+      $event.preventDefault();
+      node.data.edit = !node.data.edit
+    },
+    dblClick: (tree, node, $event) => {
+      alert(`dblClick menu for ${node.data.caption}`);
+    }
+  }
+};
 
 
 @Component({
@@ -22,7 +35,7 @@ import { Subject } from 'rxjs';
 export class PackNavigatorComponent implements OnInit {
   public options: any
   public filter: Subject<string> = new Subject<string>()
-
+  public nodeEdit: Subject<any> = new Subject<any>()
   // tslint:disable-next-line:no-empty
   constructor() {}
 
@@ -46,7 +59,7 @@ export class PackNavigatorComponent implements OnInit {
       this.onSelect.emit(node)
     }
   }
-  
+
   public handleClick($event) {
     // tslint:disable-next-line:no-console
     console.log("handleClick =>", $event)
@@ -54,6 +67,7 @@ export class PackNavigatorComponent implements OnInit {
 
   public ngOnInit() {
     this.options = {
+      actionMapping,
       allowDrag: node => node.isLeaf,
       allowDrop: (element, { parent, index }) => {
         // return true / false based on element, to.parent, to.index. e.g.
@@ -62,41 +76,48 @@ export class PackNavigatorComponent implements OnInit {
     }
 
     this.filter
-    .pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      map(f => f.toLowerCase())
-    )
-    // tslint:disable-next-line:no-console
-    .subscribe((val: string) => {
-if(val) {
-  this.tree.treeModel.filterNodes((node) => {
-    const caption = node.data.caption.toLowerCase()
-    return caption.includes(val);
-  }, true);
-} else {
-  this.tree.treeModel.clearFilter()
-}
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        map(f => f.toLowerCase())
+      )
+      // tslint:disable-next-line:no-console
+      .subscribe((val: string) => {
+        if (val) {
+          this.tree.treeModel.filterNodes(node => {
+            const caption = node.data.caption.toLowerCase()
+            return caption.includes(val)
+          }, true)
+        } else {
+          this.tree.treeModel.clearFilter()
+        }
+      })
 
-      
-    })
+
+      this.nodeEdit
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+      )
+      .subscribe((payload: {$event: any, val: string, node: any }) => {
+        console.log(payload.$event, payload.$event.key)
+        if(payload.$event.key === "Enter"){
+          payload.node.data.caption = payload.val
+          payload.node.data.edit = false
+        }
+        if(payload.$event.key === undefined || payload.$event.key === "Escape"){
+          payload.node.data.edit = false
+        }
+      })
 
   }
-
-  // private findAncestors(nodeId) {
-
-  //   const found = this.storyData.find(sd => sd.id === nodeId)
-  //   if(found) {
-  //     if(found.parent) {
-  //       return [nodeId, ...this.findAncestors(found.parent)]
-  //     }
-  //     return [nodeId]
-  //   }
-  //   return []
-  // }
 
   public getNodeColour(node) {
     const active = node.data.active ? "active" : ""
     return `border-left-${node.data.colour} ${active}`
+  }
+
+  public handleDblClick($event) {
+console.log($event)
   }
 }

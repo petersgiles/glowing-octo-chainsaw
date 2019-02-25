@@ -4,7 +4,9 @@
   #filterInput
   class="filter"
   placeholder="Filter"
+
   (keyup)="filter.next(filterInput.value)"
+
   autocomplete="off"
   ></mdc-text-field>
 </div>
@@ -12,7 +14,8 @@
 <tree-root #tree [nodes]="nodes" 
       [options]="options" 
       (moveNode)="onMoveNode.emit($event)" 
-      (activate)="handleActivate($event)">
+      (activate)="handleActivate($event)"
+      (dblclick)="handleDblClick($event)">
     <ng-template
       #treeNodeFullTemplate
       let-node
@@ -48,8 +51,20 @@
     <!-- <ng-template #loadingTemplate>Loading, please wait...</ng-template> -->
   
     <ng-template #treeNodeTemplate let-node let-index="index">
-      <div>
+      <div *ngIf="!node.data.edit">
         {{ node.data.caption | titlecase }}
+      </div>
+      <div *ngIf="node.data.edit" class="node-editor">
+          <mdc-text-field
+          class="node-editor"
+          #nodeInput
+          placeholder="Enter a new Caption"
+          (keyup)="nodeEdit.next({$event: $event, val: nodeInput.value, node: node})"
+          (blur)="nodeEdit.next({$event: $event, val:  nodeInput.value, node: node})"
+          autocomplete="off"
+          [value]="node.data.caption"
+          ></mdc-text-field>
+          {{ nodeInput.focus() }}
       </div>
     </ng-template>
   

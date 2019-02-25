@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { PackNavigatorComponent } from "./pack-navigator.component"
 import { CommonModule } from "@angular/common"
-import { MdcListModule, MdcIconModule } from "@angular-mdc/web"
+import { MdcListModule, MdcIconModule, MdcChipsModule, MdcTextFieldModule } from "@angular-mdc/web"
 import { TreeModule } from 'angular-tree-component';
+import { FormsModule } from '@angular/forms';
 
 describe("PackNavigatorComponent", () => {
   let component: PackNavigatorComponent
@@ -11,7 +12,12 @@ describe("PackNavigatorComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, MdcIconModule, MdcListModule,
+      imports: [    CommonModule,
+        FormsModule,
+        MdcIconModule,
+        MdcListModule,
+        MdcChipsModule,
+        MdcTextFieldModule,
         TreeModule.forRoot()],
       declarations: [PackNavigatorComponent]
     }).compileComponents()
