@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core"
 import { MdcDialog } from "@angular-mdc/web"
-import { DialogAreYouSureComponent } from "./../../dialog-are-you-sure/dialog-are-you-sure.component"
+import { DialogAreYouSureComponent } from "../../dialog-are-you-sure/dialog-are-you-sure.component"
 import { first } from "rxjs/operators"
 
 @Component({
-  selector: "df-dialog-are-you-sure-story",
-  templateUrl: "./dialog-are-you-sure-story.component.html",
+  selector: "df-dialog-story",
+  templateUrl: "./dialog-story.component.html",
   styles: [
     `
       .demo-content {
@@ -23,10 +23,9 @@ import { first } from "rxjs/operators"
     `
   ]
 })
-export class DialogAreYouSureStoryComponent {
+export class DialogStoryComponent {
   constructor(
     public dialog: MdcDialog
-    // tslint:disable-next-line:no-empty
     ) {}
 
   @Output()

@@ -6,8 +6,28 @@ export const ARE_YOU_SURE_CLOSE = "close"
 
 @Component({
   selector: "df-dialog-are-you-sure",
-  templateUrl: "./dialog-are-you-sure.component.html",
-  styleUrls: ["./dialog-are-you-sure.component.scss"]
+  template: `
+    <mdc-dialog>
+      <mdc-dialog-surface>
+        <mdc-dialog-title
+          >Are you sure you want to take this action?</mdc-dialog-title
+        >
+        <mdc-dialog-actions>
+          <button mdcDialogButton mdcDialogAction="${ARE_YOU_SURE_CLOSE}">
+            No
+          </button>
+          <button
+            mdcDialogButton
+            mdcDialogAction="${ARE_YOU_SURE_ACCEPT}"
+            default
+          >
+            Yes
+          </button>
+        </mdc-dialog-actions>
+      </mdc-dialog-surface>
+    </mdc-dialog>
+  `,
+  styles: [``]
 })
 export class DialogAreYouSureComponent implements OnInit {
   constructor(public dialogRef: MdcDialogRef<DialogAreYouSureComponent>) {}

@@ -10,7 +10,7 @@ import { withReadme } from "storybook-readme"
 import * as Readme from "../README.md"
 import { MdcButtonModule, MdcDialog, MdcDialogModule } from "@angular-mdc/web"
 import { DialogsModule } from "../dialogs.module"
-import { DialogAreYouSureStoryComponent } from './dialog-are-you-sure-story/dialog-are-you-sure-story.component';
+import { DialogStoryComponent } from './dialog-story/dialog-story.component';
 import { DialogAreYouSureComponent } from '../dialog-are-you-sure/dialog-are-you-sure.component';
 
 const ENTRYCOMPONENTS = [
@@ -22,13 +22,13 @@ storiesOf("Dialog", module)
   .addDecorator(
     moduleMetadata({
       imports: [DialogsModule, MdcButtonModule, MdcDialogModule],
-      declarations: [DialogAreYouSureStoryComponent],
+      declarations: [DialogStoryComponent],
       entryComponents: ENTRYCOMPONENTS
     })
   )
   .addDecorator(withKnobs)
-  .add("Basic", () => ({
-    template: `<df-dialog-are-you-sure-story (onStoryEvent)="handleEvent($event,'onStoryEvent')"></df-dialog-are-you-sure-story>`,
+  .add("All", () => ({
+    template: `<df-dialog-story (onStoryEvent)="handleEvent($event,'onStoryEvent')"></df-dialog-story>`,
     props: {
       handleEvent: ($event, name) => action(name)($event)
     }
