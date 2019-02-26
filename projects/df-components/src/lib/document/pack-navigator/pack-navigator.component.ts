@@ -139,7 +139,7 @@ export class PackNavigatorComponent implements OnInit {
   public clearFilter(){
     
     this.filterInput.value=null
-    this.filter.next(null);
+    this.filter.next('');
   }
 
   public getNodeColour(node) {
