@@ -160,10 +160,12 @@ storiesOf("Data Table", module)
     template: `
     <df-data-table
     [rows]="rows$ | async"
+    [messages]="messages"
     >
     </df-data-table>
     `,
     props: {
-      rows$: of([])
+      rows$: of([]),
+      messages: {emptyMessage:"No data to see here"}
     }
   }))

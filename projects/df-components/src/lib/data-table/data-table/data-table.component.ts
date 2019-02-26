@@ -43,10 +43,17 @@ export class DataTableComponent implements OnInit {
   public limit
 
   @Input()
-  public emptyMessage: 'No data to display'
+  public messages: any = {
+    // Message to show when array is presented
+    // but contains no values
+    emptyMessage: "No data to display",
+
+    // Footer total message
+    totalMessage: "total"
+  }
 
   @Input()
-  public totalMessage: 'total'
+  public totalMessage: "total"
 
   @Output()
   public onPage: EventEmitter<Page> = new EventEmitter()
