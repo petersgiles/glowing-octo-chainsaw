@@ -1,4 +1,4 @@
-import { MegaTag } from '../models/mega-tag';
+import { MegaTag } from '../../models/mega-tag';
 
 export const themes: MegaTag[] = [
     {

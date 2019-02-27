@@ -1,4 +1,40 @@
-<df-mega-tags></df-mega-tags>
+<div class="demo-content">
+  <div class="demo-layout__row">
 
+    <mdc-radio-group [(ngModel)]="artifact">
+      <mdc-form-field
+        *ngFor="
+          let choice of [
+            { value: 'a', caption: 'Artifact 1' },
+            { value: 'b', caption: 'Artifact 2' }
+          ]
+        "
+      >
+        <mdc-radio [value]="choice.value"></mdc-radio>
+        <label>{{ choice.caption }}</label>
+      </mdc-form-field>
+    </mdc-radio-group>
+  </div>
 
-<df-mega-tag-chooser></df-mega-tag-chooser>
+  <df-mega-tags [artifact]="artifact"></df-mega-tags>
+      
+</div>
+
+<div class="demo-content">
+  <div class="demo-layout__row">
+    <mdc-radio-group [(ngModel)]="artifact">
+      <mdc-form-field
+        *ngFor="
+          let choice of [
+            { value: 'a', caption: 'Artifact 1' },
+            { value: 'b', caption: 'Artifact 2' }
+          ]
+        "
+      >
+        <mdc-radio [value]="choice.value"></mdc-radio>
+        <label>{{ choice.caption }}</label>
+      </mdc-form-field>
+    </mdc-radio-group>
+  </div>
+  <df-mega-tag-chooser [artifact]="artifact"></df-mega-tag-chooser>
+</div>

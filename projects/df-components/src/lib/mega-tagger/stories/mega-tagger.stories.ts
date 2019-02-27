@@ -10,9 +10,14 @@ import {
   MdcButtonModule,
   MdcIconModule,
   MdcIconButtonModule,
+  MdcFormFieldModule ,
+  MdcRadioModule,
+  MdcChipsModule
 } from "@angular-mdc/web"
 import { MegaTaggerModule } from '../mega-tagger.module';
 import { MegaTaggerStoryComponent } from './mega-tagger-story/mega-tagger-story.component';
+import { MegaTagsService } from '../mega-tags.service';
+import { MockMegaTagsService } from './mock-mega-tags.service';
 
 storiesOf("Mega Tagger", module)
 .addParameters({ jest: ["mega-tags.component", "mega-tag-chooser.component"] })
@@ -23,9 +28,13 @@ storiesOf("Mega Tagger", module)
       MdcButtonModule,
       MdcIconModule,
       MdcIconButtonModule,
-      MegaTaggerModule
+      MegaTaggerModule,
+      MdcFormFieldModule ,
+      MdcChipsModule ,
+      MdcRadioModule
     ],
     declarations: [MegaTaggerStoryComponent],
+    providers: [{ provide: MegaTagsService, useClass: MockMegaTagsService }]
   })
 )
 .addDecorator(withReadme(Readme))

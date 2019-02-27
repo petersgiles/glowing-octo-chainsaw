@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MegaTagsComponent } from './mega-tags.component';
+import { MegaTagsService } from '..';
+import { MockMegaTagsService } from '../stories/mock-mega-tags.service';
+import { CommonModule } from '@angular/common';
+import { MdcChipsModule } from '@angular-mdc/web';
 
 describe('MegaTagsComponent', () => {
   let component: MegaTagsComponent;
@@ -8,7 +12,12 @@ describe('MegaTagsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MegaTagsComponent ]
+      imports: [
+        CommonModule,
+        MdcChipsModule,
+      ],
+      declarations: [ MegaTagsComponent ],
+      providers: [{ provide: MegaTagsService, useClass: MockMegaTagsService }]
     })
     .compileComponents();
   }));

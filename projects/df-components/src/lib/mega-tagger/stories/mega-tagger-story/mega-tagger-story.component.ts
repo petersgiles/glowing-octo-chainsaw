@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MegaTaggerStoryComponent implements OnInit {
 
+  public artifact = 'a'
+
   // tslint:disable-next-line:no-empty
   constructor() { }
 

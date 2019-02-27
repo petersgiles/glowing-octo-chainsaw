@@ -1,0 +1,12 @@
+.demo-content {
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.15);
+    margin: 1.5rem 1rem;
+    padding: 1rem;
+}
+
+.demo-layout__row {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: .8rem;
+}

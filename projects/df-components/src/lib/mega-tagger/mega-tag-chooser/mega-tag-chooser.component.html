@@ -1,3 +1,9 @@
-<p>
-  mega-tag-chooser works!
-</p>
+
+<ng-container  *ngFor="let group of groups">
+    <h5>{{group | titlecase}}</h5>
+      <mdc-chip-set filter>
+          <mdc-chip *ngFor="let tag of tags[group]" [selected]="tag.selected">
+            <mdc-chip-text>{{tag.caption}}</mdc-chip-text>
+          </mdc-chip>
+      </mdc-chip-set>
+  </ng-container>
