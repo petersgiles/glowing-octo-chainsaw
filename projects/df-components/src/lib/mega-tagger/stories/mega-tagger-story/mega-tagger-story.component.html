@@ -36,5 +36,5 @@
       </mdc-form-field>
     </mdc-radio-group>
   </div>
-  <df-mega-tag-chooser [artifact]="artifact"></df-mega-tag-chooser>
+  <df-mega-tag-chooser [artifact]="artifact" (onSelectionChange)="onSelectionChange.emit($event)"></df-mega-tag-chooser>
 </div>

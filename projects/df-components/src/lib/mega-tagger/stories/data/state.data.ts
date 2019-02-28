@@ -1,4 +1,5 @@
 import { MegaTag } from "../../models/mega-tag";
+import { sortBy } from '../../../utils/array-to-tree';
 
 export const states: MegaTag[] = [
     {
@@ -71,5 +72,5 @@ export const states: MegaTag[] = [
         "active": true,
         "icon": "place"
     },
-]
+].sort(sortBy('caption'))
 

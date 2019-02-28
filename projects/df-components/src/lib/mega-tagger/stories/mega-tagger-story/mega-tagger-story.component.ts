@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'df-mega-tagger-story',
@@ -7,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MegaTaggerStoryComponent implements OnInit {
 
-  public artifact = 'a'
+  public artifact = null
 
   // tslint:disable-next-line:no-empty
   constructor() { }
 
   // tslint:disable-next-line:no-empty
   public ngOnInit() {}
+
+  @Output()
+  public onSelectionChange: EventEmitter<any> = new EventEmitter()
 
 }

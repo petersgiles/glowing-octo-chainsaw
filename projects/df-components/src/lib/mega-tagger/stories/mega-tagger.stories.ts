@@ -40,7 +40,7 @@ storiesOf("Mega Tagger", module)
 .addDecorator(withReadme(Readme))
 .addDecorator(withLinks)
 .add("Basic", () => ({
-  template: `<df-mega-tagger-story></df-mega-tagger-story>`,
+  template: `<df-mega-tagger-story (onSelectionChange)="handleEvent($event, 'onSelectionChange')"></df-mega-tagger-story>`,
   props: {
     handleEvent: ($event, name) => {
     action(name)($event)

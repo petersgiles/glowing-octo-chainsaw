@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core"
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  Output,
+  EventEmitter
+} from "@angular/core"
 import { MegaTagsService } from "../mega-tags.service"
 
 @Component({
@@ -10,6 +17,9 @@ export class MegaTagChooserComponent implements OnInit {
   constructor(private service: MegaTagsService) {}
   public tags: any
   public groups: any
+
+  @Output()
+  public onSelectionChange: EventEmitter<any> = new EventEmitter()
 
   @Input()
   public set artifact(val: string | number) {
@@ -23,9 +33,15 @@ export class MegaTagChooserComponent implements OnInit {
       })
   }
 
-  public isChecked(group: any, tag: any) {
-    return true
+
+  public selectionChange($event, tag){
+    this.onSelectionChange.emit({
+      ...tag,
+      selected: $event.detail.selected
+    })
   }
+
+
   // tslint:disable-next-line:no-empty
   public ngOnInit() {}
 }
