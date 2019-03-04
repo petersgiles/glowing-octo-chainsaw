@@ -7,6 +7,7 @@ import {
   EventEmitter
 } from "@angular/core"
 import { MegaTagsService } from "../mega-tags.service"
+import { MegaTag } from '../models/mega-tag';
 
 @Component({
   selector: "df-mega-tag-chooser",
@@ -41,6 +42,9 @@ export class MegaTagChooserComponent implements OnInit {
     })
   }
 
+  public trackByFn(i: number, item: MegaTag) {
+    return item.id;
+  }
 
   // tslint:disable-next-line:no-empty
   public ngOnInit() {}
