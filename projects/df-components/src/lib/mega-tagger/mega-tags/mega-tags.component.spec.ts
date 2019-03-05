@@ -5,6 +5,7 @@ import { MegaTagsService } from '..';
 import { MockMegaTagsService } from '../stories/mock-mega-tags.service';
 import { CommonModule } from '@angular/common';
 import { MdcChipsModule } from '@angular-mdc/web';
+import { PanelModule } from '../../panel';
 
 describe('MegaTagsComponent', () => {
   let component: MegaTagsComponent;
@@ -14,6 +15,7 @@ describe('MegaTagsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
+        PanelModule,
         MdcChipsModule,
       ],
       declarations: [ MegaTagsComponent ],

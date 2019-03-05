@@ -6,7 +6,6 @@ import {
   Output,
   EventEmitter
 } from "@angular/core"
-import { MegaTagsService } from "../mega-tags.service"
 import { MegaTag } from '../models/mega-tag';
 
 @Component({
@@ -15,25 +14,18 @@ import { MegaTag } from '../models/mega-tag';
   styleUrls: ["./mega-tag-chooser.component.scss"]
 })
 export class MegaTagChooserComponent implements OnInit {
-  constructor(private service: MegaTagsService) {}
-  public tags: any
-  public groups: any
+
+  @Input()
+  public tags: MegaTag[]
 
   @Output()
   public onSelectionChange: EventEmitter<any> = new EventEmitter()
 
-  @Input()
-  public set artifact(val: string | number) {
-    this.service
-      .getAllTagsByArtifact(val)
-      .subscribe((result: { tags: any; groups: any }) => {
-        // tslint:disable-next-line:no-console
-        console.log(result)
-        this.tags = result.tags
-        this.groups = result.groups
-      })
-  }
+  @Output()
+  public onToggleExpand: EventEmitter<any> = new EventEmitter()
 
+  @Input()
+  public artifact: string | number
 
   public selectionChange($event, tag){
     this.onSelectionChange.emit({

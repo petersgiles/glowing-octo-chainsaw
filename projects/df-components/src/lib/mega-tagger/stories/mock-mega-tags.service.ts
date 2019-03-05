@@ -9,16 +9,37 @@ import { concatMap, map } from "rxjs/operators"
   providedIn: "root"
 })
 export class MockMegaTagsService implements MegaTagsService {
+
+  public expandedGroups: string[]
+
   constructor() {
     // tslint:disable-next-line:no-console
     console.log("MockMegaTagsService")
+  }
+
+  public toggleExpand(group: string) {
+
+    const found = this.expandedGroups.find( g=> g === group)
+    this.expandedGroups = [ ...this.expandedGroups.filter( g=> g === group) ]
+
+    if(!found) {
+      this.expandedGroups.push(group)
+    }
   }
 
   public getAllTags(): Observable<any> {
     return of(megatagsgrouped)
   }
 
-  public getTagsByArtifact(artifactId?: any): Observable<any> {
+  public getTagsByArtifact(artifactId?: any, options?: { group?: string, filter?: any, skip?: number, take?: number } ): Observable<any> {
+
+    const defaults =  { ...{
+      take: 10
+    }, ...options}
+
+    // tslint:disable-next-line:no-console
+    console.log("defaults", defaults)
+
     const tagGroups = Object.keys(artifacts[artifactId] || {}).reduce(
       (acc, item) => {
         const groupKeys = artifacts[artifactId][item]
@@ -33,8 +54,8 @@ export class MockMegaTagsService implements MegaTagsService {
     return of(tagGroups)
   }
 
-  public getAllTagsByArtifact(artifactId?: any): Observable<any> {
-    return forkJoin(this.getAllTags(), this.getTagsByArtifact(artifactId)).pipe(
+  public getAllTagsByArtifact(artifactId?: any, options?: { filter?: any, skip?: number, take?: number } ): Observable<any> {
+    return forkJoin(this.getAllTags(), this.getTagsByArtifact(artifactId, options)).pipe(
       map(([allGroups, artifactGroups]) => {
 
         const groups = Object.keys(artifactGroups)
@@ -49,6 +70,7 @@ export class MockMegaTagsService implements MegaTagsService {
           return acc
         }, {...allGroups})
 
+        // tslint:disable-next-line:no-console
         console.log(tags)
 
         return {

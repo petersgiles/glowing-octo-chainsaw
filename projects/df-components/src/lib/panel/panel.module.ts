@@ -5,8 +5,9 @@ import { BrowserModule } from "@angular/platform-browser"
 import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import { ButtonModule } from '../button/button.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { SlimPanelComponent } from './slim-panel/slim-panel.component';
 
-const COMPONENTS = [ExpanderPanelComponent]
+const COMPONENTS = [ExpanderPanelComponent, SlimPanelComponent]
 
 @NgModule({
   imports: [

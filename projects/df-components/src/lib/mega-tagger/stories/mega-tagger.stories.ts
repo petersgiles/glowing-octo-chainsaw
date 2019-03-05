@@ -18,6 +18,7 @@ import { MegaTaggerModule } from '../mega-tagger.module';
 import { MegaTaggerStoryComponent } from './mega-tagger-story/mega-tagger-story.component';
 import { MegaTagsService } from '../mega-tags.service';
 import { MockMegaTagsService } from './mock-mega-tags.service';
+import { PanelModule } from '../../panel/panel.module';
 
 storiesOf("Mega Tagger", module)
 .addParameters({ jest: ["mega-tags.component", "mega-tag-chooser.component"] })
@@ -29,6 +30,7 @@ storiesOf("Mega Tagger", module)
       MdcIconModule,
       MdcIconButtonModule,
       MegaTaggerModule,
+      PanelModule,
       MdcFormFieldModule ,
       MdcChipsModule ,
       MdcRadioModule

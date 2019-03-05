@@ -6,6 +6,7 @@ import { MockMegaTagsService } from '../stories/mock-mega-tags.service';
 import { MdcChipsModule } from '@angular-mdc/web';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PanelModule } from '../../panel';
 
 describe('MegaTagChooserComponent', () => {
   let component: MegaTagChooserComponent;
@@ -16,6 +17,7 @@ describe('MegaTagChooserComponent', () => {
       imports: [
         CommonModule,
         FormsModule,
+        PanelModule,
         MdcChipsModule,
       ],
       declarations: [ MegaTagChooserComponent ],
