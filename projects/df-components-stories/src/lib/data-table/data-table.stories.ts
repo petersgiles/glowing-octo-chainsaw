@@ -1,16 +1,20 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular"
 import { action } from "@storybook/addon-actions"
 import { withLinks } from "@storybook/addon-links"
-import { DataTableModule } from "../data-table.module"
+
 import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import { BrowserModule } from "@angular/platform-browser"
-import { fruitList } from "./fruit-data"
 import { BehaviorSubject, of } from "rxjs"
 import { MdcIconModule } from "@angular-mdc/web"
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "./README.md"
 import { TemplateRef, Input, Component, ViewChild, OnInit } from "@angular/core"
-import { multiFilter } from "./../../utils/filters"
+
+import { fruitList } from "./fruit-data"
+import { multiFilter } from '../../../../../projects/df-components/src/lib/utils/filters';
+
+import { DataTableModule } from '../../../../../projects/df-components/src/public_api';
+
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 const columns = [
   { prop: "common", name: "Common Name" },

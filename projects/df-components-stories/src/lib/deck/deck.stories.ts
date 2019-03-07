@@ -4,8 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
-import { DeckModule } from "../deck.module"
+import * as Readme from "./README.md"
 import { cards } from "./deck-data"
 import { BehaviorSubject, Observable } from "rxjs"
 import {
@@ -15,9 +14,9 @@ import {
   MdcIconButtonModule,
   MdcImageListModule
 } from "@angular-mdc/web"
-import { ButtonModule } from "../../button"
-import { CardType } from "../models/card-type-enum"
-import { DeckItem } from "../models/deck-item-model"
+
+import { DeckModule, ButtonModule, CardType, DeckItem } from  '../../../../../projects/df-components/src/public_api';
+
 import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
 

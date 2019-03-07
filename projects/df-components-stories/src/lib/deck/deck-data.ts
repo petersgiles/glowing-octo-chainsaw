@@ -1,5 +1,4 @@
-import { DeckItem } from "../models/deck-item-model"
-import { CardType } from "../models/card-type-enum"
+import { CardType, DeckItem } from  '../../../../../projects/df-components/src/public_api';
 
 const pieChart = {
   chartData: [

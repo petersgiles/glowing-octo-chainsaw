@@ -12,8 +12,8 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
-import { FileModule } from '../file.module';
+import * as Readme from "./README.md"
+import { FileModule } from '../../../../../projects/df-components/src/public_api';
 import { MdcButtonModule } from '@angular-mdc/web';
 
 @Component({
@@ -25,6 +25,7 @@ class FileDropperStory {
 }
 
 storiesOf("File Dropper", module)
+.addDecorator(withReadme(Readme))
 	.addDecorator(
 		moduleMetadata({
 			imports: [

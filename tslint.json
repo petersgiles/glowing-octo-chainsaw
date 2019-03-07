@@ -17,6 +17,7 @@
       true,
       "rxjs/operators",
       "@angular-mdc/web",
+      "@angular/common/http",
       "@angular/platform-browser",
       "@angular/core/testing",
       "@angular/router/testing"
