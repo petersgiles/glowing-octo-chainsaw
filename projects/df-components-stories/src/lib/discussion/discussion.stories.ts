@@ -2,20 +2,21 @@ import { storiesOf, moduleMetadata } from "@storybook/angular"
 import { action } from "@storybook/addon-actions"
 import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
-import { BehaviorSubject, of } from "rxjs"
+import { BehaviorSubject } from "rxjs"
 import {
   MdcIconModule,
   MdcListModule,
   MdcTextFieldModule,
   MdcButtonModule
 } from "@angular-mdc/web"
-import { DiscussionModule } from "../discussion.module"
-import { AvatarModule } from "../../avatar/avatar.module"
-import { discussionTree, demoAuthor, discussionItems } from "./discussion-data"
+
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
-import { toTree } from '../../utils/array-to-tree';
+import * as Readme from "./README.md"
 import { UUID } from './uuid';
+
+import { toTree } from '../../../../../projects/df-components/src/lib/utils/array-to-tree';
+import { discussionTree, demoAuthor, discussionItems } from "./discussion-data"
+import { AvatarModule, DiscussionModule } from '../../../../../projects/df-components/src/public_api';
 
 const comments$: BehaviorSubject<Comment[]> = new BehaviorSubject(
   discussionTree

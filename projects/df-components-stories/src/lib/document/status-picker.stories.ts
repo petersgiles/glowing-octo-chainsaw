@@ -4,17 +4,16 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../status-picker/README.md"
+import * as Readme from "./README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
 import {
   MdcChipsModule, MdcListModule
 } from "@angular-mdc/web"
-import { ButtonModule } from "../../button"
 
-import { DocumentStatus } from "../models/document-status"
-import { DocumentModule } from "../document.module"
 import { withLatestFrom, map } from 'rxjs/operators';
+
+import { DocumentModule, ButtonModule, DocumentStatus } from '../../../../../projects/df-components/src/public_api';
 
 const statuslist: DocumentStatus[] = [
   {

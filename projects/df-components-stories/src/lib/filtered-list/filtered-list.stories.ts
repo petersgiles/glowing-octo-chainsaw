@@ -1,14 +1,14 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular"
 import { action } from "@storybook/addon-actions"
 import { fruitList } from "./filtered-list.data"
-import { FilteredListModule, ListItem } from "../"
 import { RouterModule } from "@angular/router"
 import { APP_BASE_HREF } from "@angular/common"
-import { fruitGroups } from "../../refiner/stories/refiner.data"
-import { RefinerModule, RefinerGroup } from "../../refiner"
+
 import { BehaviorSubject } from "rxjs"
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "./README.md"
+import { ListItem, FilteredListModule, RefinerModule, RefinerGroup } from '../../../../../projects/df-components/src/public_api';
+import { fruitGroups } from '../refiner/refiner.data';
 
 const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(fruitList)
 

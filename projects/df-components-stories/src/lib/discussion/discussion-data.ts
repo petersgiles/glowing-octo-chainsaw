@@ -1,4 +1,4 @@
-import { toTree } from "../../utils/array-to-tree"
+import { toTree } from '../../../../../projects/df-components/src/lib/utils/array-to-tree';
 
 export const demoAuthor: any = {
   username: "demoAuthor",

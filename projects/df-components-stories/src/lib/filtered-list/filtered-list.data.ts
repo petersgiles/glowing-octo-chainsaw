@@ -1,4 +1,4 @@
-import { ListItem } from "../index"
+import { ListItem } from '../../../../../projects/df-components/src/public_api';
 
 export const fruitList: ListItem<any>[] = [
   {

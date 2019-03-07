@@ -1,4 +1,4 @@
-import { NavigatorTreeNode } from "../public_api";
+import { NavigatorTreeNode } from '../../../../../projects/df-components/src/public_api';
 
 export const navigatorData: NavigatorTreeNode[] = [
     {

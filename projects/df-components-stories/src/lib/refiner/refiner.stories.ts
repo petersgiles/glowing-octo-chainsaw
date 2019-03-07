@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular"
 import { withLinks } from "@storybook/addon-links"
-import { RefinerModule } from "../"
 import { MdcListModule } from "@angular-mdc/web"
+import { RefinerModule } from '../../../../../projects/df-components/src/public_api';
 
 storiesOf("Refiner", module)
   .addDecorator(

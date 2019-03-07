@@ -1,4 +1,5 @@
-import { RefinerGroup } from "../index"
+import { RefinerGroup } from '../../../../../projects/df-components/src/public_api';
+
 
 export const fruitGroups: RefinerGroup[] = [
   {

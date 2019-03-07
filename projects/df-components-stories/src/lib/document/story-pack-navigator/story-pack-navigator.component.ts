@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core"
 import { Observable, BehaviorSubject, Subscription } from "rxjs"
 import { map } from "rxjs/operators"
-import { NavigatorTreeNode } from "../.."
-import { navigatorData } from "../../../../.data/deck-data"
-import { toTree, sortBy } from "../../../utils/array-to-tree"
+import { navigatorData } from "../../.data/deck-data"
+import { toTree, sortBy } from '../../../../../../projects/df-components/src/lib/utils/array-to-tree';
+import { NavigatorTreeNode } from '../../../../../../projects/df-components/src/public_api';
 
 @Component({
   selector: "df-story-pack-navigator",

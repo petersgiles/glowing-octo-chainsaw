@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../pack-navigator/README.md"
+import * as Readme from "./README.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
 import {
@@ -14,16 +14,15 @@ import {
   MdcTextFieldModule,
   MdcButtonModule
 } from "@angular-mdc/web"
-import { ButtonModule } from "../../button"
-import { DocumentModule } from "../document.module"
-import { withLatestFrom, map } from "rxjs/operators"
-import { NavigatorTreeNode } from "../models/navigator-tree-node"
-import { toTree, sortBy } from "../../utils/array-to-tree"
 
-import { navigatorData } from "../../../.data/deck-data"
+import { map } from "rxjs/operators"
+import { toTree, sortBy } from '../../../../../projects/df-components/src/lib/utils/array-to-tree';
 import { StoryPackNavigatorComponent } from "./story-pack-navigator/story-pack-navigator.component"
 import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
+
+import { NavigatorTreeNode, DocumentModule, ButtonModule } from '../../../../../projects/df-components/src/public_api';
+import { navigatorData } from '../.data/deck-data';
 
 const navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject(
   navigatorData
