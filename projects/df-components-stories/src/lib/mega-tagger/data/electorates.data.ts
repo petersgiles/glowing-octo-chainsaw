@@ -1,5 +1,5 @@
-import { MegaTag } from "../../models/mega-tag";
-import { sortBy } from '../../../utils/array-to-tree';
+import { MegaTag } from "../../../../../df-components/src/public_api"
+import { sortBy } from '../../../../../df-components/src/lib/utils/array-to-tree';
 
 export const electorates: MegaTag[] = [
     {

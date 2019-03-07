@@ -11,14 +11,35 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es5",
-    "typeRoots": ["node_modules/@types", "projects/df-components/typings.d.ts"],
-    "types": ["node", "jest"],
-    "lib": ["es2018", "dom"],
+    "typeRoots": [
+      "node_modules/@types",
+      "projects/df-components/typings.d.ts"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "df-components": ["dist/df-components"],
-      "df-components/*": ["dist/df-components/*"]
+      "df-components": [
+        "dist/df-components"
+      ],
+      "df-components/*": [
+        "dist/df-components/*"
+      ],
+      "df-components-stories": [
+        "dist/df-components-stories"
+      ],
+      "df-components-stories/*": [
+        "dist/df-components-stories/*"
+      ]
     },
     "resolveJsonModule": true
   },
-  "exclude": ["dist"]
+  "exclude": [
+    "dist"
+  ]
 }

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MegaTagChooserComponent } from './mega-tag-chooser.component';
 import { MegaTagsService } from '..';
-import { MockMegaTagsService } from '../stories/mock-mega-tags.service';
+import { TestMegaTagsService } from '../test-mega-tags.service';
 import { MdcChipsModule } from '@angular-mdc/web';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ describe('MegaTagChooserComponent', () => {
         MdcChipsModule,
       ],
       declarations: [ MegaTagChooserComponent ],
-      providers: [{ provide: MegaTagsService, useClass: MockMegaTagsService }]
+      providers: [{ provide: MegaTagsService, useClass: TestMegaTagsService }]
     })
     .compileComponents();
   }));

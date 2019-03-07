@@ -1,4 +1,4 @@
-import { MegaTag } from '../../models/mega-tag';
+import { MegaTag } from "../../../../../df-components/src/public_api"
 
 export const themes: MegaTag[] = [
     {

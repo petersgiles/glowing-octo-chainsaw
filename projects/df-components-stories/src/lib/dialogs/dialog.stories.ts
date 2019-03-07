@@ -7,11 +7,11 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "./README.md"
 import { MdcButtonModule, MdcDialog, MdcDialogModule } from "@angular-mdc/web"
-import { DialogsModule } from "../dialogs.module"
+
 import { DialogStoryComponent } from './dialog-story/dialog-story.component';
-import { DialogAreYouSureComponent } from '../dialog-are-you-sure/dialog-are-you-sure.component';
+import { DialogAreYouSureComponent, DialogsModule } from '../../../../../projects/df-components/src/public_api';
 
 const ENTRYCOMPONENTS = [
   DialogAreYouSureComponent,

@@ -19,7 +19,9 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "testPathPattern": ["./projects"]
+            "testPathPattern": [
+              "./projects"
+            ]
           }
         },
         "lint": {
@@ -29,7 +31,9 @@
               "projects/df-components/tsconfig.lib.json",
               "projects/df-components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

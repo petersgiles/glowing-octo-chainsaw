@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core"
-import { MegaTagsService } from "../../mega-tags.service"
-import { BehaviorSubject, Observable, of, Subscription } from "rxjs"
-import { withLatestFrom, map, switchMap, tap } from "rxjs/operators"
+import { MegaTagsService } from "../../../../../df-components/src/public_api"
+import { BehaviorSubject, Subscription } from "rxjs"
+import { withLatestFrom, map, switchMap } from "rxjs/operators"
 
 @Component({
   selector: "df-mega-tagger-story",

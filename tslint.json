@@ -15,6 +15,8 @@
     "array-type": [true, "array"],
     "no-submodule-imports": [
       true,
+      "rxjs/operators",
+      "@angular-mdc/web",
       "@angular/platform-browser",
       "@angular/core/testing",
       "@angular/router/testing"

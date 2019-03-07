@@ -1,4 +1,3 @@
-import { MegaTag } from '../../models/mega-tag';
 import { electorates } from './electorates.data';
 import { states } from './state.data';
 

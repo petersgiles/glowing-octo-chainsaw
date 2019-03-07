@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core"
+import { Component, Output, EventEmitter } from "@angular/core"
 import { MdcDialog } from "@angular-mdc/web"
-import { DialogAreYouSureComponent } from "../../dialog-are-you-sure/dialog-are-you-sure.component"
 import { first } from "rxjs/operators"
+import { DialogAreYouSureComponent } from '../../../../../../projects/df-components/src/public_api';
+
 
 @Component({
   selector: "df-dialog-story",

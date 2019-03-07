@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MegaTagsComponent } from './mega-tags.component';
 import { MegaTagsService } from '..';
-import { MockMegaTagsService } from '../stories/mock-mega-tags.service';
+import { TestMegaTagsService } from '../test-mega-tags.service';
 import { CommonModule } from '@angular/common';
 import { MdcChipsModule } from '@angular-mdc/web';
 import { PanelModule } from '../../panel';
@@ -19,7 +19,7 @@ describe('MegaTagsComponent', () => {
         MdcChipsModule,
       ],
       declarations: [ MegaTagsComponent ],
-      providers: [{ provide: MegaTagsService, useClass: MockMegaTagsService }]
+      providers: [{ provide: MegaTagsService, useClass: TestMegaTagsService }]
     })
     .compileComponents();
   }));

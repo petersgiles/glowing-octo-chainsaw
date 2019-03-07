@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
+import * as Readme from "./README.md"
 
 import {
   MdcButtonModule,
@@ -14,11 +14,10 @@ import {
   MdcRadioModule,
   MdcChipsModule
 } from "@angular-mdc/web"
-import { MegaTaggerModule } from '../mega-tagger.module';
+
 import { MegaTaggerStoryComponent } from './mega-tagger-story/mega-tagger-story.component';
-import { MegaTagsService } from '../mega-tags.service';
 import { MockMegaTagsService } from './mock-mega-tags.service';
-import { PanelModule } from '../../panel/panel.module';
+import { MegaTaggerModule, MegaTagsService, PanelModule } from '../../../../../projects/df-components/src/public_api';
 
 storiesOf("Mega Tagger", module)
 .addParameters({ jest: ["mega-tags.component", "mega-tag-chooser.component"] })

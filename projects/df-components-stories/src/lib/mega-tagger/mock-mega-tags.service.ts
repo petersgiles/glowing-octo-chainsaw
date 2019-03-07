@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core"
-import { MegaTagsService } from "../mega-tags.service"
+import { MegaTagsService } from "../../../../df-components/src/public_api"
 import { Observable, of, forkJoin } from "rxjs"
 import { artifacts } from "./data/artifact.data"
 import { megatagsgrouped } from "./data/mega-tagger.story.data"
-import { concatMap, map } from "rxjs/operators"
+import { map } from "rxjs/operators"
 
 @Injectable({
   providedIn: "root"
