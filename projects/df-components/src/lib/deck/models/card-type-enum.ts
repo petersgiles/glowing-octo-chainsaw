@@ -9,5 +9,6 @@ export enum CardType {
     Frame = "FRAME",
     Chart = "CHART",
     Image = "IMAGE",
-    Newtab = "NEWTAB"
+    Newtab = "NEWTAB",
+    Refiner = "REFINER"
   }

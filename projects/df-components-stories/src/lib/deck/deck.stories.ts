@@ -19,6 +19,7 @@ import { DeckModule, ButtonModule, CardType, DeckItem } from  '../../../../../pr
 
 import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
+import { DeckRefinerStoryComponent } from './deck-refiner-story/deck-refiner-story.component';
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(cards)
 
@@ -77,7 +78,8 @@ storiesOf("Deck", module)
         MdcIconButtonModule,
         DeckModule,
         ButtonModule
-      ]
+      ],
+      declarations: [DeckRefinerStoryComponent],
     })
   )
   .addDecorator(withReadme(Readme))
@@ -96,3 +98,12 @@ storiesOf("Deck", module)
     `,
     props: props
   }))
+  .add("Big Story", () => ({
+    template: `
+       <df-deck-refiner-story [cards]="cards$ | async"></df-deck-refiner-story>
+    `,
+    props: props
+  }))
+
+
+  

@@ -150,6 +150,21 @@
   ></ng-container>
 </ng-template>
 
+<ng-template #refinerCard let-card>
+  <ng-container
+    *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }"
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="cardActions; context: { $implicit: card }"
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="cardMenu; context: { $implicit: card }"
+  ></ng-container>
+</ng-template>
+
 <ng-template #chartCard let-card>
   <ng-container
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
@@ -217,6 +232,11 @@
         *ngTemplateOutlet="videoCard; context: { $implicit: card }"
       ></ng-container>
     </ng-container>
+    <ng-container *ngSwitchCase="cardType.Refiner">
+      <ng-container
+        *ngTemplateOutlet="refinerCard; context: { $implicit: card }"
+      ></ng-container>
+    </ng-container>  
     <ng-container *ngSwitchDefault>
       <ng-container
         *ngTemplateOutlet="standardCard; context: { $implicit: card }"
