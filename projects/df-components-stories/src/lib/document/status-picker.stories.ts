@@ -97,8 +97,8 @@ storiesOf("Status Picker", module)
   .add("ReadOnly", () => ({
     template: `
     <df-status-picker 
-      [list]="documentStatusList$ | async" 
-      (onSelect)="handleAction($event)">
+      [statuses]="documentStatusList$ | async" 
+      >
     </df-status-picker>
     `,
     props: props

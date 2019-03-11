@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
-import { StatusPickerComponent } from "./status-picker.component"
 import { CommonModule } from "@angular/common"
 import { MdcChipsModule } from "@angular-mdc/web"
+
+import { StatusPickerComponent } from "./status-picker.component"
 
 describe("StatusPickerComponent", () => {
   let component: StatusPickerComponent
