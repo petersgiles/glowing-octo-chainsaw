@@ -5,7 +5,7 @@
       (ngSubmit)="handleSubmit($event)"
       autocomplete="off"
     >
-    <df-rating-input  formControlName="stars"></df-rating-input>
+      <df-rating-input formControlName="stars"></df-rating-input>
       <df-status-picker
         (onChange)="handleChange($event)"
         [statuses]="documentStatusList$ | async"
@@ -26,20 +26,10 @@
   <div class="demo-layout__row">
     <df-status-picker
       [statuses]="documentStatusList$ | async"
-      [status]="otherStatus"
+      [(ngModel)]="otherStatus"
     ></df-status-picker>
   </div>
   <div class="demo-layout__row">
     {{ otherStatus }}
-  </div>
-</div>
-
-
-<div class="demo-content">
-  <div class="demo-layout__row">
-    <df-rating-input [(ngModel)]="stars"></df-rating-input>
-  </div>
-  <div class="demo-layout__row">
-    {{ stars }}
   </div>
 </div>

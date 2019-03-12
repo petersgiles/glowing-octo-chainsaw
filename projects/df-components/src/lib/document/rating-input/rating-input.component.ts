@@ -1,26 +1,30 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
+import { Component, forwardRef, HostBinding, Input } from "@angular/core"
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms"
 
 @Component({
-  selector: 'df-rating-input',
+  selector: "df-rating-input",
   template: `
     <span
       *ngFor="let starred of stars; let i = index"
-      (click)="onTouched(); rate(i + (starred ? (value > i + 1 ? 1 : 0) : 1))">
-      <ng-container *ngIf="starred; else noStar">⭐</ng-container>
-      <ng-template #noStar>·</ng-template>
+      (click)="onTouched(); rate(i + (starred ? (value > i + 1 ? 1 : 0) : 1))"
+    >
+      <ng-container *ngIf="starred; else noStar"
+        ><mdc-icon>star</mdc-icon></ng-container
+      >
+      <ng-template #noStar><mdc-icon>star_border</mdc-icon></ng-template>
     </span>
   `,
-  styles: [`
-    span {
-      display: inline-block;
-      width: 25px;
-      line-height: 25px;
-      text-align: center;
-      cursor: pointer;
-    }
-  `],
+  styles: [
+    `
+      span {
+        display: inline-block;
+        width: 25px;
+        line-height: 25px;
+        text-align: center;
+        cursor: pointer;
+      }
+    `
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,59 +34,56 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class RatingInputComponent implements ControlValueAccessor {
-
-  public stars: boolean[] = Array(5).fill(false);
+  public stars: boolean[] = Array(5).fill(false)
 
   // Allow the input to be disabled, and when it is make it somewhat transparent.
-  @Input() public disabled = false;
-  @HostBinding('style.opacity')
+  @Input() public disabled = false
+  @HostBinding("style.opacity")
   get opacity() {
-    return this.disabled ? 0.25 : 1;
+    return this.disabled ? 0.25 : 1
   }
 
   // Function to call when the rating changes.
   // tslint:disable-next-line:no-empty
-  public onChange = (rating: number) => {};
+  public onChange = (rating: number) => {}
 
   // Function to call when the input is touched (when a star is clicked).
   // tslint:disable-next-line:no-empty
-  public onTouched = () => {};
+  public onTouched = () => {}
 
   get value(): number {
     return this.stars.reduce((total, starred) => {
-      return total + (starred ? 1 : 0);
-    }, 0);
+      return total + (starred ? 1 : 0)
+    }, 0)
   }
 
   public rate(rating: number) {
     if (!this.disabled) {
-      this.writeValue(rating);
+      this.writeValue(rating)
     }
   }
 
   // Allows Angular to update the model (rating).
   // Update the model and changes needed for the view here.
   public writeValue(rating: number): void {
-      console.log('writeValue stars', rating)
-    this.stars = this.stars.map((_, i) => rating > i);
+    this.stars = this.stars.map((_, i) => rating > i)
     this.onChange(this.value)
   }
 
   // Allows Angular to register a function to call when the model (rating) changes.
   // Save the function as a property to call later here.
   public registerOnChange(fn: (rating: number) => void): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   // Allows Angular to register a function to call when the input has been touched.
   // Save the function as a property to call later here.
   public registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   // Allows Angular to disable the input.
   public setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled = isDisabled
   }
-
 }

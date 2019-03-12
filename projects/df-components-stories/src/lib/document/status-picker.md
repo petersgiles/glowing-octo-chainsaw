@@ -7,8 +7,8 @@ Exported As: StatusPickerComponent
 
 ### Properties
 
-| Name                      | Description                                                                                                               |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Name                       | Description          |
+| -------------------------- | -------------------- |
 | statuses: DocumentStatus[] | a list of statuses ) |
 
 ## Examples
@@ -20,9 +20,9 @@ Exported As: StatusPickerComponent
 ### Navigation
 
 ```html
-<df-status-picker 
-      [statuses]="documentStatusList$ | async"
-    formControlName="status"
-      >
-    </df-status-picker>
+<df-status-picker
+  [statuses]="documentStatusList$ | async"
+  formControlName="status"
+>
+</df-status-picker>
 ```
