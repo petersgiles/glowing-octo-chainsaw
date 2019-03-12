@@ -1,4 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular"
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
@@ -14,39 +15,11 @@ import {
 import { withLatestFrom, map } from 'rxjs/operators';
 
 import { DocumentModule, ButtonModule, DocumentStatus } from '../../../../../projects/df-components/src/public_api';
+import { statuslist } from './data';
+import { StatusPickerStoryComponent } from './status-picker-story/status-picker-story';
 
-const statuslist: DocumentStatus[] = [
-  {
-    id: "1",
-    icon: "content_copy",
-    caption: "In Draft",
-    colour: "Pink",
-    order: 1
-  },
-  {
-    id: "2",
-    icon: "how_to_reg",
-    caption: "Ready",
-    colour: "GhostWhite",
-    order: 2
-  },
-  {
-    id: "3",
-    icon: "face",
-    caption: "Cancelled",
-    colour: "Crimson",
-    order: 3
-  }
-]
-
-const documentStatus$: BehaviorSubject<DocumentStatus> = new BehaviorSubject(
-  null
-)
-
-const documentStatusList$: BehaviorSubject<
-  DocumentStatus[]
-> = new BehaviorSubject(statuslist)
-
+const documentStatus$: BehaviorSubject<DocumentStatus> = new BehaviorSubject(null)
+const documentStatusList$: BehaviorSubject<DocumentStatus[]> = new BehaviorSubject(statuslist)
 
 const statuses$: Observable<DocumentStatus[]> = documentStatus$.pipe(
   withLatestFrom(documentStatusList$),
@@ -83,8 +56,11 @@ storiesOf("Status Picker", module)
   .addParameters({ jest: ["status-picker.component"] })
   .addDecorator(
     moduleMetadata({
+      declarations: [StatusPickerStoryComponent],
       imports: [
         BrowserModule,
+        FormsModule, 
+        ReactiveFormsModule,
         DocumentModule,
         MdcListModule,
         MdcChipsModule,
@@ -100,6 +76,12 @@ storiesOf("Status Picker", module)
       [statuses]="documentStatusList$ | async" 
       >
     </df-status-picker>
+    `,
+    props: props
+  }))
+  .add("Form", () => ({
+    template: `
+    <df-status-picker-story></df-status-picker-story>
     `,
     props: props
   }))

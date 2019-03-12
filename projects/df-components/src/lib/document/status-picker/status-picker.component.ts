@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core'
+import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 import { DocumentStatus } from "../models/document-status"
 
@@ -6,6 +6,7 @@ import { DocumentStatus } from "../models/document-status"
   selector: "df-status-picker",
   templateUrl: "./status-picker.component.html",
   styleUrls: ["./status-picker.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -14,18 +15,29 @@ import { DocumentStatus } from "../models/document-status"
     }
   ]
 })
-export class StatusPickerComponent implements OnInit, ControlValueAccessor {
+export class StatusPickerComponent implements ControlValueAccessor {
+
+
+constructor(private changeDetectorRef: ChangeDetectorRef){
+
+}
+
   // tslint:disable-next-line:variable-name
   public _status: string;
 
   
   @Input()
   public set status(val: string) {
+    // tslint:disable-next-line:no-console
+    console.log('status set',val)
     this._status = val
+    this.changeDetectorRef.detectChanges()
     this.propagateChange(this._status)
   }
 
   public get status(): string {
+    // tslint:disable-next-line:no-console
+    console.log('status get', this._status)
     return this._status
   }
 
@@ -35,18 +47,16 @@ export class StatusPickerComponent implements OnInit, ControlValueAccessor {
   // tslint:disable-next-line:no-empty
   public propagateChange = (_: any) => {}
 
-  // tslint:disable-next-line:no-empty
-  public ngOnInit() {}
-
-  public writeValue(obj: string): void {
+  public writeValue(obj: any): void {
     // tslint:disable-next-line:no-console
-    console.log(obj)
+    console.log("writeValue", obj)
     if (obj) {
       this.status = obj
-      this.propagateChange(this.status)
     }
   }
   public registerOnChange(fn: any): void {
+    // tslint:disable-next-line:no-console
+    console.log("registerOnChange")
     this.propagateChange = fn
   }
   

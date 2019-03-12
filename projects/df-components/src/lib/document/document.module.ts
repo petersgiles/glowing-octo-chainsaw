@@ -5,8 +5,9 @@ import { MdcChipsModule, MdcListModule, MdcIconModule, MdcTextFieldModule } from
 import { PackNavigatorComponent } from './pack-navigator/pack-navigator.component';
 import { TreeModule } from 'angular-tree-component';
 import { FormsModule } from '@angular/forms';
+import { RatingInputComponent } from './rating-input/rating-input.component';
 
-const COMPONENTS = [StatusPickerComponent, PackNavigatorComponent]
+const COMPONENTS = [StatusPickerComponent, PackNavigatorComponent, RatingInputComponent]
 @NgModule({
   imports: [
     CommonModule,

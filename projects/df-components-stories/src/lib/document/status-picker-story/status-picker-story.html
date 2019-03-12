@@ -1,0 +1,45 @@
+<div class="demo-content">
+  <div class="demo-layout__row">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="handleSubmit($event)"
+      autocomplete="off"
+    >
+    <df-rating-input  formControlName="stars"></df-rating-input>
+      <df-status-picker
+        (onChange)="handleChange($event)"
+        [statuses]="documentStatusList$ | async"
+        formControlName="status"
+      ></df-status-picker>
+
+      <button mdc-button type="submit" [disabled]="!form.valid">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="demo-layout__row">
+    {{ form.value | json }}
+  </div>
+</div>
+
+<div class="demo-content">
+  <div class="demo-layout__row">
+    <df-status-picker
+      [statuses]="documentStatusList$ | async"
+      [status]="otherStatus"
+    ></df-status-picker>
+  </div>
+  <div class="demo-layout__row">
+    {{ otherStatus }}
+  </div>
+</div>
+
+
+<div class="demo-content">
+  <div class="demo-layout__row">
+    <df-rating-input [(ngModel)]="stars"></df-rating-input>
+  </div>
+  <div class="demo-layout__row">
+    {{ stars }}
+  </div>
+</div>
