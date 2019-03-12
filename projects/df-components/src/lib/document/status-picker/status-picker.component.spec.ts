@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { CommonModule } from "@angular/common"
-import { MdcChipsModule } from "@angular-mdc/web"
+import { MdcIconModule } from "@angular-mdc/web"
 
 import { StatusPickerComponent } from "./status-picker.component"
 
@@ -11,7 +11,7 @@ describe("StatusPickerComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, MdcChipsModule],
+      imports: [CommonModule, MdcIconModule],
       declarations: [StatusPickerComponent]
     }).compileComponents()
   }))
