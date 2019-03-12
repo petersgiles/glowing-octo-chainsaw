@@ -17,7 +17,7 @@ import {
 
 import { MegaTaggerStoryComponent } from './mega-tagger-story/mega-tagger-story.component';
 import { MockMegaTagsService } from './mock-mega-tags.service';
-import { MegaTaggerModule, MegaTagsService, PanelModule } from '../../../../../projects/df-components/src/public_api';
+import { MegaTaggerModule, MegaTagsService, PanelModule } from '../../../../df-components/src/public_api';
 
 storiesOf("Mega Tagger", module)
 .addParameters({ jest: ["mega-tags.component", "mega-tag-chooser.component"] })

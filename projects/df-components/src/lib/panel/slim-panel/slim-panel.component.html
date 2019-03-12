@@ -11,7 +11,7 @@
     >
       {{ title | titlecase }}
     </div>
-    <ng-content *ngIf="!expandable || expanded" select="[panel-buttons]"></ng-content>
+    <ng-content *ngIf="expanded" select="[panel-buttons]"></ng-content>
     
     <a
       *ngIf="expandable"
@@ -22,7 +22,7 @@
       (click)="onToggleExpand.emit(!expanded)"
       >keyboard_arrow_{{ expanded ? "down" : "right" }}</a>
   </div>
-  <ng-container *ngIf="expanded && expandable">
+  <ng-container *ngIf="expanded">
     <div *ngIf="readOnly" class="slim-panel-content">
       <ng-content *ngIf="readOnly"></ng-content>
     </div>

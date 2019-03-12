@@ -4,14 +4,17 @@ import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "../README.md"
-import { PanelModule } from "../panel.module"
+import * as Readme from "./README.md"
 import { BehaviorSubject } from "rxjs"
 import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
-import { getRandomColor } from "../../utils/colour"
-import { ButtonModule } from "../../button/button.module"
-import { PipesModule } from "../../pipes/pipes.module"
+import {
+  PanelModule,
+  ButtonModule,
+  PipesModule
+} from "../../../../df-components/src/public_api"
+import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
+const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
@@ -118,6 +121,43 @@ storiesOf("Panel", module)
       background$: background$,
       handleToggleExpand() {
         background$.next(getRandomColor())
+      },
+      handleEvent: ($event, name) => action(name)($event)
+    }
+  }))
+  .add("Slim Panel", () => ({
+    template: `
+    <df-slim-panel
+    [title]="'slim panel' | titlecase"
+    [expandable]="false"
+    [expanded]="true"
+  >
+    <ng-container panel-buttons>
+    <a
+      class="slim-panel-expander-button"
+      mdcIcon
+      attr.aria-label="Do Action"
+      title="TDo Action"
+      (click)="handleEvent($event, 'action')"
+      >help</a>
+    </ng-container>
+
+    <p>Some Content</p>
+  </df-slim-panel> 
+    `,
+    styles: [
+      `
+      .story-button {
+        min-width: 120px;
+        padding-left: 4px;
+      }
+    `
+    ],
+    props: {
+      expanded$: slimExpanded$,
+      handleToggleExpand($event) {
+        slimExpanded$.next($event)
+        action("On Toggle Expand")($event)
       },
       handleEvent: ($event, name) => action(name)($event)
     }
