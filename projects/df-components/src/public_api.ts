@@ -15,3 +15,4 @@ export * from "./lib/document/index"
 export * from "./lib/dialogs/index"
 export * from "./lib/mega-tagger/index"
 export * from "./lib/file/index"
+export * from './lib/layouts/index'

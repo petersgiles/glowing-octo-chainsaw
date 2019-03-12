@@ -15,10 +15,19 @@ import { DocumentStatus } from "../models/document-status"
   ]
 })
 export class StatusPickerComponent implements OnInit, ControlValueAccessor {
+  // tslint:disable-next-line:variable-name
+  public _status: string;
 
   
   @Input()
-  public status: string
+  public set status(val: string) {
+    this._status = val
+    this.propagateChange(this._status)
+  }
+
+  public get status(): string {
+    return this._status
+  }
 
   @Input()
   public statuses: DocumentStatus[]
@@ -34,6 +43,7 @@ export class StatusPickerComponent implements OnInit, ControlValueAccessor {
     console.log(obj)
     if (obj) {
       this.status = obj
+      this.propagateChange(this.status)
     }
   }
   public registerOnChange(fn: any): void {
@@ -50,6 +60,5 @@ export class StatusPickerComponent implements OnInit, ControlValueAccessor {
     // tslint:disable-next-line:no-console
     console.log('onSelectionChange', sli)
     this.status = sli.id
-    this.propagateChange(this.status)
   }
 }
