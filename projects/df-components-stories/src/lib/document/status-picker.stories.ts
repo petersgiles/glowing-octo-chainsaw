@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme"
-import * as Readme from "./README.md"
+import * as Readme from "./status-picker.md"
 
 import { BehaviorSubject, Observable } from "rxjs"
 import {

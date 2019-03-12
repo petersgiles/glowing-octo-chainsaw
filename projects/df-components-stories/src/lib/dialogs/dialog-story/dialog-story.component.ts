@@ -35,7 +35,7 @@ export class DialogStoryComponent {
   public openDialog() {
     // tslint:disable-next-line:no-console
     console.log("handleDangerousAction")
-    const dialogRef = this.dialog.open(DialogAreYouSureComponent)
+    const dialogRef = this.dialog.open(DialogAreYouSureComponent, { })
 
     dialogRef
       .afterClosed()
