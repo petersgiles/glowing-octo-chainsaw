@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core"
+// tslint:disable-next-line:no-implicit-dependencies
 import { Observable } from "rxjs"
 
 @Injectable({

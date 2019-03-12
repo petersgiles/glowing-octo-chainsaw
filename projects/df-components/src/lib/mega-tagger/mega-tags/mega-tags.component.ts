@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core"
-import { MegaTag } from "../models/mega-tag"
-import { MegaTagsService } from "../mega-tags.service"
+// tslint:disable-next-line:no-implicit-dependencies
 import { first } from "rxjs/operators"
+import { MegaTagsService } from "../mega-tags.service"
 
 @Component({
   selector: "df-mega-tags",

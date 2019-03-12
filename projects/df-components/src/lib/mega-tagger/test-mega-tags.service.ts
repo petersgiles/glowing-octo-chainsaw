@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core"
 import { MegaTagsService } from "../../public_api"
+// tslint:disable-next-line:no-implicit-dependencies
 import { Observable, of } from "rxjs"
 
 
