@@ -3,5 +3,6 @@
   "dest": "../../dist/df-components",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": ["ng2-charts", "chart.js"]
 }

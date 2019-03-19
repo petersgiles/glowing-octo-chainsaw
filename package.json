@@ -39,8 +39,6 @@
   },
   "peerDependencies": {
     "@swimlane/ngx-datatable": "^14.0.0",
-    "ng2-charts": "^1.6.0",
-    "chart.js": "^2.7.3",
     "ngx-file-drop": "^5.0.5",
     "@angular-mdc/web": "^0.44.0"
   },
