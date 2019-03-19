@@ -3,7 +3,7 @@ import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
 import { action } from "@storybook/addon-actions"
 
-import { withReadme } from "storybook-readme"
+import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
 import { cards } from "./deck-data"
 import { BehaviorSubject, Observable } from "rxjs"
@@ -15,11 +15,16 @@ import {
   MdcImageListModule
 } from "@angular-mdc/web"
 
-import { DeckModule, ButtonModule, CardType, DeckItem } from  '../../../../../projects/df-components/src/public_api';
+import {
+  DeckModule,
+  ButtonModule,
+  CardType,
+  DeckItem
+} from "../../../../../projects/df-components/src/public_api"
 
 import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
-import { DeckRefinerStoryComponent } from './deck-refiner-story/deck-refiner-story.component';
+import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-story.component"
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(cards)
 
@@ -28,11 +33,13 @@ const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
 const displayCards$: Observable<DeckItem[]> = parent$.pipe(
   withLatestFrom(cards$),
   map(([parentId, cards]) =>
-    cards.filter(c => {
-      return c.parent == parentId
-    }).sort((a, b) => {
-      return Number(a.sortOrder) < Number(b.sortOrder) ? -1 : 1;
-   })
+    cards
+      .filter(c => {
+        return c.parent == parentId
+      })
+      .sort((a, b) => {
+        return Number(a.sortOrder) < Number(b.sortOrder) ? -1 : 1
+      })
   )
 )
 
@@ -79,7 +86,7 @@ storiesOf("Deck", module)
         DeckModule,
         ButtonModule
       ],
-      declarations: [DeckRefinerStoryComponent],
+      declarations: [DeckRefinerStoryComponent]
     })
   )
   .addDecorator(withReadme(Readme))
@@ -104,6 +111,3 @@ storiesOf("Deck", module)
     `,
     props: props
   }))
-
-
-  

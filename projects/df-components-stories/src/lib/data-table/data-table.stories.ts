@@ -6,14 +6,14 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable"
 import { BrowserModule } from "@angular/platform-browser"
 import { BehaviorSubject, of } from "rxjs"
 import { MdcIconModule } from "@angular-mdc/web"
-import { withReadme } from "storybook-readme"
+import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
 import { TemplateRef, Input, Component, ViewChild, OnInit } from "@angular/core"
 
 import { fruitList } from "./fruit-data"
-import { multiFilter } from '../../../../../projects/df-components/src/lib/utils/filters';
+import { multiFilter } from "../../../../../projects/df-components/src/lib/utils/filters"
 
-import { DataTableModule } from '../../../../../projects/df-components/src/public_api';
+import { DataTableModule } from "../../../../../projects/df-components/src/public_api"
 
 const fruits$: BehaviorSubject<any[]> = new BehaviorSubject(fruitList)
 const columns = [
@@ -170,6 +170,6 @@ storiesOf("Data Table", module)
     `,
     props: {
       rows$: of([]),
-      messages: {emptyMessage:"No data to see here"}
+      messages: { emptyMessage: "No data to see here" }
     }
   }))

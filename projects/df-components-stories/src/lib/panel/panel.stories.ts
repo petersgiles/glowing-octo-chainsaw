@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions"
 import { withLinks } from "@storybook/addon-links"
 import { BrowserModule } from "@angular/platform-browser"
 
-import { withReadme } from "storybook-readme"
+import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
 import { BehaviorSubject } from "rxjs"
 import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"

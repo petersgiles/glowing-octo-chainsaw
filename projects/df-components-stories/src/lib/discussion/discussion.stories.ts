@@ -10,13 +10,16 @@ import {
   MdcButtonModule
 } from "@angular-mdc/web"
 
-import { withReadme } from "storybook-readme"
+import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { UUID } from './uuid';
+import { UUID } from "./uuid"
 
-import { toTree } from '../../../../../projects/df-components/src/lib/utils/array-to-tree';
+import { toTree } from "../../../../../projects/df-components/src/lib/utils/array-to-tree"
 import { discussionTree, demoAuthor, discussionItems } from "./discussion-data"
-import { AvatarModule, DiscussionModule } from '../../../../../projects/df-components/src/public_api';
+import {
+  AvatarModule,
+  DiscussionModule
+} from "../../../../../projects/df-components/src/public_api"
 
 const comments$: BehaviorSubject<Comment[]> = new BehaviorSubject(
   discussionTree
@@ -32,7 +35,6 @@ const props = {
     activeComment$.next($event.id)
   },
   addComment: ($event: any) => {
-
     const parent = $event.parent
     const newcomment = {
       id: UUID(),
@@ -54,11 +56,12 @@ const props = {
     comments$.next(tree)
     activeComment$.next(null)
 
-    action("add comment")({$event, newcomment})
+    action("add comment")({ $event, newcomment })
   },
   deleteComment: ($event: any) => {
-
-    discussionItems.comments = discussionItems.comments.filter(c => c.id !== $event.id)
+    discussionItems.comments = discussionItems.comments.filter(
+      c => c.id !== $event.id
+    )
     const tree = toTree(discussionItems.comments, {
       id: "id",
       parentId: "parent",
@@ -69,7 +72,7 @@ const props = {
     comments$.next(tree)
     activeComment$.next(null)
 
-    action("delete comment")({$event, tree})
+    action("delete comment")({ $event, tree })
   }
 }
 

@@ -5,10 +5,15 @@ import { RouterModule } from "@angular/router"
 import { APP_BASE_HREF } from "@angular/common"
 
 import { BehaviorSubject } from "rxjs"
-import { withReadme } from "storybook-readme"
+import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { ListItem, FilteredListModule, RefinerModule, RefinerGroup } from '../../../../../projects/df-components/src/public_api';
-import { fruitGroups } from '../refiner/refiner.data';
+import {
+  ListItem,
+  FilteredListModule,
+  RefinerModule,
+  RefinerGroup
+} from "../../../../../projects/df-components/src/public_api"
+import { fruitGroups } from "../refiner/refiner.data"
 
 const fruits$: BehaviorSubject<ListItem<any>[]> = new BehaviorSubject(fruitList)
 
