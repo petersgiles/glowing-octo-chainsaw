@@ -1,14 +1,7 @@
 <div class="demo-content">
   <div class="demo-layout__row">
     <mdc-radio-group [(ngModel)]="artifact">
-      <mdc-form-field
-        *ngFor="
-          let choice of [
-            { value: 'a', caption: 'Artifact 1' },
-            { value: 'b', caption: 'Artifact 2' }
-          ]
-        "
-      >
+      <mdc-form-field *ngFor="let choice of artifacts$ | async">
         <mdc-radio [value]="choice.value"></mdc-radio>
         <label>{{ choice.caption }}</label>
       </mdc-form-field>
@@ -28,7 +21,7 @@
      <df-mega-tag-chooser
         [artifact]="artifact$ | async"
         [tags]="tags[group.id]"
-        (onSelectionChange)="onSelectionChange.emit($event)"
+        (onSelectionChange)="handleSelection($event)"
       ></df-mega-tag-chooser>
     </df-slim-panel> 
   </ng-container> 

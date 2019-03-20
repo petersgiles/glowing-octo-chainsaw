@@ -144,6 +144,25 @@ storiesOf("Panel", module)
 
     <p>Some Content</p>
   </df-slim-panel> 
+
+
+  <df-slim-panel
+  [title]="'slim panel' | titlecase"
+  [expandable]="true"
+  [expanded]="expanded$ | async"
+>
+  <ng-container panel-buttons>
+  <a
+    class="slim-panel-expander-button"
+    mdcIcon
+    attr.aria-label="Do Action"
+    title="Do Action"
+    (click)="handleEvent($event, 'action')"
+    >edit</a>
+  </ng-container>
+
+  <p>Some Content</p>
+</df-slim-panel> 
     `,
     styles: [
       `

@@ -53,8 +53,6 @@ public stars: null
     console.log(this.form.value)
   }
 
-  public handleChange($event) {
-    // tslint:disable-next-line:no-console
-    console.log($event)
-  }
+  // tslint:disable-next-line:no-empty
+  public handleChange($event) {}
 }

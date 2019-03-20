@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdcChipsModule } from '@angular-mdc/web';
+import { MdcChipsModule, MdcIconModule } from '@angular-mdc/web';
 import { MegaTagsComponent } from './mega-tags/mega-tags.component';
 import { MegaTagChooserComponent } from './mega-tag-chooser/mega-tag-chooser.component';
 
@@ -14,6 +14,7 @@ const COMPONENTS = [MegaTagsComponent, MegaTagChooserComponent]
   imports: [
     CommonModule,
     FormsModule,
+    MdcIconModule,
     MdcChipsModule,
   ]
 })

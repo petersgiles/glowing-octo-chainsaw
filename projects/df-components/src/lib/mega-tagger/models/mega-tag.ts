@@ -1,12 +1,12 @@
 
 export interface MegaTag {
-    id: string
+    id: string | number
     group?: string
-    icon: string
+    icon?: string
     caption: string
     order: number,
     colour?: string,
-    active?: boolean,
+    selected?: boolean,
     data?: any
   }
   

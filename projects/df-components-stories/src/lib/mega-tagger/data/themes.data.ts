@@ -8,7 +8,7 @@ export const themes: MegaTag[] = [
       data: {},
       colour: "GoldenRod",
       order: 17,
-      active: true,
+      selected: false,
       icon: 'help'
     },
     {
@@ -18,7 +18,7 @@ export const themes: MegaTag[] = [
       data:  {},
       colour: "GoldenRod",
       order: 65,
-      active: true,
+      selected: false,
       icon: 'help'
     },
     {
@@ -28,7 +28,7 @@ export const themes: MegaTag[] = [
       data:  {},
       colour: "GoldenRod",
       order: 54,
-      active: true,
+      selected: false,
       icon: 'help'
     },
     {
@@ -38,7 +38,7 @@ export const themes: MegaTag[] = [
       data:  {},
       colour: "GoldenRod",
       order: 41,
-      active: true,
+      selected: false,
       icon: 'help'
     },
     {
@@ -48,7 +48,7 @@ export const themes: MegaTag[] = [
       data:  {},
       colour: "GoldenRod",
       order: 4,
-      active: true,
+      selected: false,
       icon: 'help'
     },
     {
@@ -58,7 +58,7 @@ export const themes: MegaTag[] = [
       data:  {},
       colour: "Crimson",
       order: 43,
-      active: true,
+      selected: false,
       icon: 'help'
     }
 ]

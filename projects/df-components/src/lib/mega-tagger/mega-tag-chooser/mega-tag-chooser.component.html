@@ -1,11 +1,21 @@
-  <mdc-chip-set filter>
-    <mdc-chip
+  <div class="mdc-chip-set">
+    <div
       *ngFor="let tag of tags; trackBy: trackByFn"
-      [selected]="tag.selected"
-      (selectionChange)="selectionChange($event, tag)"
+      (click)="selectionChange(tag)"
+      class="mdc-chip"
+      [ngClass]="{ 'active-status-chip': tag.selected }"
     >
-      <mdc-chip-text>{{ tag.caption }}</mdc-chip-text>
-    </mdc-chip>
-  </mdc-chip-set>
-
+      <mdc-icon
+        class="mdc-chip__icon ngx-mdc-icon material-icons mdc-chip__icon--leading"
+        *ngIf="!tag.selected"
+        >{{ tag.icon }}</mdc-icon
+      >
+      <mdc-icon
+        class="mdc-chip__icon ngx-mdc-icon material-icons mdc-chip__icon--leading"
+        *ngIf="tag.selected"
+        >check</mdc-icon
+      >
+      <span class="mdc-chip__text">{{ tag.caption }}</span>
+    </div>
+  </div>
 

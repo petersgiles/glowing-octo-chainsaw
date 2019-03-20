@@ -9,6 +9,7 @@
     "test:watch": "ng test --watch",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "update-npm": "npx npm-check -u",
     "prettier": "prettier --check \"**/*.{ts,html,scss,json,md,js}\"",
     "prettier:fix": "prettier --write \"**/*.{ts,html,scss,json,md,js}\"",
     "output-tests": "npm test -- --json --outputFile=jest-test-results.json || true",

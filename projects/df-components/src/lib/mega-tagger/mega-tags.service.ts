@@ -10,4 +10,5 @@ export abstract class MegaTagsService {
   public abstract getAllTagsByArtifact(artifactId?: any, options?: { filter?: any, skip?: number, take?: number } ): Observable<any> 
   public abstract getAllTags(): Observable<any>
   public abstract toggleExpand(group: string): void
+  public abstract toggleSelected(artifact: string, group: string, tag: string): void
 }

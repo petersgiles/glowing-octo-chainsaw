@@ -26,10 +26,10 @@ export class MegaTagChooserComponent implements OnInit {
   @Input()
   public artifact: string | number
 
-  public selectionChange($event, tag){
+  public selectionChange(tag){
     this.onSelectionChange.emit({
       ...tag,
-      selected: $event.detail.selected
+      selected: !tag.selected
     })
   }
 

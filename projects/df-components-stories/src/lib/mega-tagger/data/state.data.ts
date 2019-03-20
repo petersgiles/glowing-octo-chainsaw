@@ -9,7 +9,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -19,7 +19,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -29,7 +29,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -39,7 +39,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -49,7 +49,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -59,7 +59,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
     {
@@ -69,7 +69,7 @@ export const states: MegaTag[] = [
         "data": {},
         "colour": "Crimson",
         "order": 99,
-        "active": true,
+        "selected": false,
         "icon": "place"
     },
 ].sort(sortBy('caption'))

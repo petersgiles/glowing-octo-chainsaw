@@ -8,6 +8,9 @@ import { Observable, of } from "rxjs"
   providedIn: "root"
 })
 export class TestMegaTagsService implements MegaTagsService {
+  public toggleSelected(artifact: string, group: string, tag: string): void {
+    throw new Error("Method not implemented.");
+  }
   public toggleExpand(group: string): void {
     throw new Error("Method not implemented.");
   }
