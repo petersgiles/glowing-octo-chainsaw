@@ -1,4 +1,7 @@
-import { CardType, DeckItem } from  '../../../../../projects/df-components/src/public_api';
+import {
+  CardType,
+  DeckItem
+} from "../../../../../projects/df-components/src/public_api"
 
 const pieChart = {
   chartData: [
@@ -75,7 +78,8 @@ export const cards: DeckItem[] = [
     titleClass: null,
     media: null,
     data: null
-  },  {
+  },
+  {
     id: "9898ad09-4434-4484-b04b-a47b065186fd",
     parent: null,
     title: "Red Book",
@@ -96,9 +100,7 @@ export const cards: DeckItem[] = [
     supportingText: `<div><img src="https://www.chartjs.org/img/chartjs-logo.svg"></div>`,
     size: "4",
     cardType: CardType.Parent,
-    actions: [
-      { url: "https://www.chartjs.org", title: "Go" }
-    ],
+    actions: [{ url: "https://www.chartjs.org", title: "Go" }],
     sortOrder: "1",
     colour: "Crimson",
     titleClass: null,
@@ -158,7 +160,10 @@ export const cards: DeckItem[] = [
     sortOrder: "1",
     colour: "GoldenRod",
     titleClass: null,
-    media: { url: "https://www.w3schools.com/tags/horse.mp3", type: "audio/mpeg"},
+    media: {
+      url: "https://www.w3schools.com/tags/horse.mp3",
+      type: "audio/mpeg"
+    },
     data: null
   },
   {
@@ -186,34 +191,172 @@ export const cards: DeckItem[] = [
     sortOrder: "3",
     colour: "GoldenRod",
     titleClass: null,
-    media: { url: "https://www.w3schools.com/html/movie.mp4", type: "video/mp4"},
+    media: {
+      url: "https://www.w3schools.com/html/movie.mp4",
+      type: "video/mp4"
+    },
     data: null
   }
-]
-
-// import * as data from "./sp-deck-data"
-
-// const importedData: DeckItem[] = data.spData || []
-
+, {
+        id: "1",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "Secretary's Statement",
+        cardType: CardType.Standard,
+        supportingText:
+          '<div class="ExternalClassA03244D9510C4E8D9CF13379104760ED"><br><table cellspacing="0" width="100%" class="ms-rteTable-default"><tbody><tr class="ms-rteTableEvenRow-default"><td class="ms-rteTableEvenCol-default" style="width&#58;6%;">​​<img src="https://placekitten.com/200/300" alt="Edu secretary.jpg" style="margin&#58;5px;width&#58;167px;" />​​<br></td><td class="ms-rteTableOddCol-default" style="width&#58;50%;"><span style="color&#58;#444444;">​<span style="font-family&#58;&quot;open sans&quot;, arial, sans-serif;font-size&#58;14px;text-align&#58;justify;background-color&#58;#ffffff;">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.&#160;<br></span><br style=""><span style="">​</span><span style="font-family&#58;&quot;open sans&quot;, arial, sans-serif;font-size&#58;14px;text-align&#58;justify;">​Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repella</span><span style="">​</span><br style=""><span style="">​</span><br style=""><span style="font-family&#58;&quot;open sans&quot;, arial, sans-serif;font-size&#58;14px;text-align&#58;justify;">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.&#160;<br></span><br style=""><span style="">​</span><span style="font-family&#58;&quot;open sans&quot;, arial, sans-serif;font-size&#58;14px;text-align&#58;justify;">​Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repella</span><span style="">​</span><br style=""><div style="text-align&#58;start;"><br></div><span style="">​</span><span style="font-family&#58;&quot;open sans&quot;, arial, sans-serif;font-size&#58;14px;text-align&#58;justify;">​Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repella</span><span style="">​​</span><br></span></td></tr></tbody></table><p><br></p></div>',
+        size: "12",
+        sortOrder: "1",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: []
+      },
+      {
+        id: "2",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "All Commitments",
+        cardType: CardType.Newtab,
+        supportingText:
+          '<div class="ExternalClass43F211329B794B0486461A5F9E2DEDBB"><p style="text-align&#58;center;"><span style="color&#58;#444444;"><span><strong>Coming Soon.</strong></span></span></p><p><span style="color&#58;#444444;"><span>​Introduces the Commitments and Delivery Module, where commitmnets can be filtered/searched and depicted on a map where relevant.&#160;</span><br></span></p></div>',
+        size: "6",
+        sortOrder: "2",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "https://collab-unclassified-live.pmc.gov.au/digitalfirstinfo/SitePages/index.aspx/brief/6",
+            title: "Coming Soon"
+          }
+        ]
+      },
+      {
+        id: "3",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "About your portfolio",
+        cardType: CardType.Standard,
+        supportingText: null,
+        size: "6",
+        sortOrder: "3",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "http://vm-dev-lbs13/sites/redigb/sites/redigb/pack4/SitePages/index.aspx/brief",
+            title: "View Portfolio"
+          }
+        ]
+      },
+      {
+        id: "4",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "Pack 1",
+        cardType: CardType.Standard,
+        supportingText:
+          '<div class="ExternalClass403708C57CBD40C6A45AF3002A2C2B48"><p style="text-align&#58;center;"><span style="color&#58;#444444;"><span>​</span><strong>​Policy Briefs</strong><br><br></span></p></div>',
+        size: "4",
+        sortOrder: "4",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "http://vm-dev-lbs13/sites/redigb/pack1/SitePages/index.aspx/brief",
+            title: "View"
+          }
+        ]
+      },
+      {
+        id: "5",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "Pack 2",
+        cardType: CardType.Standard,
+        supportingText:
+          '<div class="ExternalClass314E8698E2C1474DB21482C9A8D72BCD"><div style="text-align&#58;center;"><strong style="color&#58;#444444;">​Policy ​Briefs</strong></div></div>',
+        size: "4",
+        sortOrder: "5",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "http://vm-dev-lbs13/sites/redigb/pack2/SitePages/index.aspx/brief",
+            title: "View"
+          }
+        ]
+      },
+      {
+        id: "6",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "Pack 3",
+        cardType: CardType.Standard,
+        supportingText:
+          '<div class="ExternalClass5F9AC8CFC7984FB4867FBC53E24BC01B"><p style="text-align&#58;center;"><span style="color&#58;#444444;"><strong>Policy Briefs</strong><br></span></p></div>',
+        size: "4",
+        sortOrder: "6",
+        colour: "Crimson",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "http://vm-dev-lbs13/sites/redigb/pack3/SitePages/index.aspx/brief",
+            title: "View"
+          }
+        ]
+      },
+      {
+        id: "7",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "CHART TEST",
+        cardType: CardType.Chart,
+        supportingText: null,
+        size: "4",
+        sortOrder: "99",
+        colour: "Thistle",
+        titleClass: "",
+        media: null,
+        data: "1",
+        actions: [
+          {
+            url:
+              "http://vm-dev-lbs13/sites/redigb/SitePages/index.aspx/chart/1",
+            title: "View Test Chart"
+          }
+        ]
+      },
+      {
+        id: "8",
+        parent: "9898ad09-4434-4484-b04b-a47b065186fd",
+        title: "Help Guides",
+        cardType: CardType.Standard,
+        supportingText: null,
+        size: "4",
+        sortOrder: "99",
+        colour: "RosyBrown",
+        titleClass: "",
+        media: null,
+        data: null,
+        actions: [
+          {
+            url:
+              "https://collab-unclassified-live.pmc.gov.au/digitalfirstinfo/SitePages/index.aspx/brief",
+            title: "View Digital First Help Guides"
+          }
+        ]
+      }
+    ]
 
 
 export const deckItems = cards
-
-
-// importedData.reduce((acc: any, item: any) => {
-//   acc.push({
-//        'id': item.Id,
-//        'parent': "9898ad09-4434-4484-b04b-a47b065186fd",
-//        'title': item.Title,
-//        'cardType': item.CardType,
-//        'supportingText': item.SupportingText,
-//        'size': item.Size,
-//        'sortOrder': item.SortOrder,
-//        'colour': item.Colour,
-//        'titleClass': '',
-//        'media': item.Media,
-//        'data': item.Data,
-//        'created_at': item.Created_x0020_Date,
-//   })
-//   return acc
-// }, cards)
