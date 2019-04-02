@@ -1,2 +1,2 @@
 <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-<df-deck [cards]="cards" (onAction)="handleAction($event)"></df-deck>
+<df-deck [cards]="cards" [selectedCard]="selectedCard" (onAction)="handleAction($event)"></df-deck>

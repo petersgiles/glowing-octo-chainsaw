@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { cards } from "./deck-data"
+import { deckItems } from "./deck-data"
 import { BehaviorSubject, Observable } from "rxjs"
 import {
   MdcCardModule,
@@ -26,9 +26,11 @@ import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
 import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-story.component"
 
-const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(cards)
+const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
+
+const selectedCard$: BehaviorSubject<DeckItem> = new BehaviorSubject(null)
 
 const displayCards$: Observable<DeckItem[]> = parent$.pipe(
   withLatestFrom(cards$),
@@ -54,7 +56,10 @@ const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
+  selectedCard$: selectedCard$,
   handleEvent: ($event, name) => {
+
+    selectedCard$.next($event)
     action(name)($event)
   },
   handleGoBack: parent => {
@@ -101,7 +106,7 @@ storiesOf("Deck", module)
   .add("Editable", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cards]="cards$ | async" [readOnly]="false" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck [cards]="cards$ | async" [readOnly]="false" [selectedCard]="selectedCard$ | async"  (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
     props: props
   }))

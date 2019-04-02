@@ -10,5 +10,7 @@ export enum CardType {
     Chart = "CHART",
     Image = "IMAGE",
     Newtab = "NEWTAB",
-    Refiner = "REFINER"
+    Refiner = "REFINER",
+    BriefSummary = "BRIEFSUMMARY",
+    CommitmentSummary = "COMMITMENTSUMMARY"
   }

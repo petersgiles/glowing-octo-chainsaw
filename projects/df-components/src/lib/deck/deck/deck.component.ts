@@ -19,6 +19,9 @@ export class DeckComponent implements OnInit {
   public readOnly = true
 
   @Input()
+  public selectedCard: DeckItem
+
+  @Input()
   public cards: DeckItem[]
 
   @Output()

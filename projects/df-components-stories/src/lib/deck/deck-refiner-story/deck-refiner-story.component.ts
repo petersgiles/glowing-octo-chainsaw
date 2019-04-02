@@ -17,12 +17,18 @@ export class DeckRefinerStoryComponent implements OnInit {
   
   @Input()
   public cards: DeckItem[]
+
+  @Input()
+  public selectedCard: DeckItem
+
   // tslint:disable-next-line:no-empty
   public ngOnInit(): void {}
 
   public handleAction($event) {
     // tslint:disable-next-line:no-console
     console.log($event)
+
+    this.selectedCard = $event
   }
 
   public handleGoBack(gp) {

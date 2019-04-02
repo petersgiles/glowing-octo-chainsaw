@@ -70,8 +70,21 @@ export const cards: DeckItem[] = [
     actions: [
       { url: "http://vm-dev-lbs13/SitePages/index.aspx/brief|Go", title: "Go" }
     ],
-    sortOrder: "12",
+    sortOrder: "4",
     colour: "CornflowerBlue",
+    titleClass: null,
+    media: null,
+    data: null
+  },  {
+    id: "9898ad09-4434-4484-b04b-a47b065186fd",
+    parent: null,
+    title: "Red Book",
+    supportingText: `<p>Bacon ipsum dolor amet spare ribs frankfurter rump, shank picanha pancetta pig doner pork loin ham.  Pork chop swine t-bone, chuck capicola biltong pancetta alcatra corned beef porchetta.  Fatback chicken frankfurter tongue strip steak bacon ball tip kielbasa drumstick.  Brisket cupim alcatra buffalo ham kielbasa tenderloin jerky beef ribs cow drumstick meatloaf.</p><p>Boudin ground round salami meatloaf doner.  Ham hock meatball swine salami venison pastrami shoulder ground round chicken pork belly pork ribeye short ribs jowl.  Swine filet mignon venison jowl t-bone.  Burgdoggen meatloaf landjaeger biltong, chuck salami strip steak ground round shoulder tongue.  Chicken pork loin buffalo drumstick spare ribs salami shank.  Short loin prosciutto tail pig turkey, ground round bacon flank swine burgdoggen.</p>`,
+    size: "4",
+    cardType: CardType.Parent,
+    actions: [],
+    sortOrder: "1",
+    colour: "DarkRed",
     titleClass: null,
     media: null,
     data: null
@@ -81,7 +94,7 @@ export const cards: DeckItem[] = [
     parent: null,
     title: "Chart Cards",
     supportingText: `<div><img src="https://www.chartjs.org/img/chartjs-logo.svg"></div>`,
-    size: "12",
+    size: "4",
     cardType: CardType.Parent,
     actions: [
       { url: "https://www.chartjs.org", title: "Go" }
@@ -97,7 +110,7 @@ export const cards: DeckItem[] = [
     parent: "95828ec3-e4dd-5ff6-9795-364a3b6a2151",
     title: "Line Chart",
     supportingText: "cheese",
-    size: "6",
+    size: "4",
     cardType: CardType.Chart,
     actions: [],
     sortOrder: "1",
@@ -177,3 +190,30 @@ export const cards: DeckItem[] = [
     data: null
   }
 ]
+
+// import * as data from "./sp-deck-data"
+
+// const importedData: DeckItem[] = data.spData || []
+
+
+
+export const deckItems = cards
+
+
+// importedData.reduce((acc: any, item: any) => {
+//   acc.push({
+//        'id': item.Id,
+//        'parent': "9898ad09-4434-4484-b04b-a47b065186fd",
+//        'title': item.Title,
+//        'cardType': item.CardType,
+//        'supportingText': item.SupportingText,
+//        'size': item.Size,
+//        'sortOrder': item.SortOrder,
+//        'colour': item.Colour,
+//        'titleClass': '',
+//        'media': item.Media,
+//        'data': item.Data,
+//        'created_at': item.Created_x0020_Date,
+//   })
+//   return acc
+// }, cards)

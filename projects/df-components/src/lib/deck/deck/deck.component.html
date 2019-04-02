@@ -21,6 +21,30 @@
   </div>
 </ng-template>
 
+<ng-template #editActions let-card>
+    <div
+      class="df-card__actions df-card--border"
+      *ngIf="selectedCard && selectedCard.id === card.id"
+    >
+    <a
+       
+    mdc-button
+    dense
+    
+    >cancel</a
+  >
+      <a
+       
+        mdc-button
+        dense
+        
+        >SAVE</a
+      >
+   
+      <div class="df-layout-spacer"></div>
+    </div>
+  </ng-template>
+
 <ng-template #cardMenu let-card>
   <div *ngIf="!readOnly" class="df-card__menu {{ card?.colour }} transparent">
     <a (click)="onEdit.emit(card)" mdc-icon-button dense icon="edit"></a>
@@ -47,6 +71,9 @@
 </ng-template>
 
 <ng-template #standardCard let-card>
+    <ng-container *ngIf="selectedCard && selectedCard.id === card.id">
+        <p>EDITING</p>
+      </ng-container>
   <ng-container
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
   ></ng-container>
@@ -57,8 +84,13 @@
     *ngTemplateOutlet="cardActions; context: { $implicit: card }"
   ></ng-container>
   <ng-container
+  *ngTemplateOutlet="editActions; context: { $implicit: card }"
+></ng-container>
+  <ng-container
     *ngTemplateOutlet="cardMenu; context: { $implicit: card }"
   ></ng-container>
+
+-
 </ng-template>
 
 <ng-template #embedCard let-card>
