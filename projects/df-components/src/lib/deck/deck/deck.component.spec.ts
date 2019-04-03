@@ -2,6 +2,16 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { DeckComponent } from "./deck.component"
 import { BaseChartDirective } from "ng2-charts/ng2-charts"
+import { NgxWigModule } from "ngx-wig"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
+import {
+  MdcCardModule,
+  MdcButtonModule,
+  MdcIconModule,
+  MdcIconButtonModule,
+  MdcFormFieldModule,
+  MdcTextFieldModule
+} from "@angular-mdc/web"
 
 describe("DeckComponent", () => {
   let component: DeckComponent
@@ -9,6 +19,17 @@ describe("DeckComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        MdcButtonModule,
+        MdcIconModule,
+        MdcIconButtonModule,
+        MdcCardModule,
+        MdcFormFieldModule,
+        MdcTextFieldModule,
+        NgxWigModule
+      ],
       declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()
   }))
