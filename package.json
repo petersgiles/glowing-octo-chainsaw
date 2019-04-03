@@ -34,6 +34,7 @@
     "@types/jest": "^24.0.11",
     "core-js": "^2.6.5",
     "material-icons": "^0.3.0",
+    "ngx-wig": "^2.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

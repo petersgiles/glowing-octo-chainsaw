@@ -11,9 +11,7 @@ import {
   MdcCardModule,
   MdcButtonModule,
   MdcIconModule,
-  MdcIconButtonModule,
-  MdcImageListModule
-} from "@angular-mdc/web"
+  MdcIconButtonModule} from "@angular-mdc/web"
 
 import {
   DeckModule,
@@ -29,8 +27,6 @@ import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-sto
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
-
-const selectedCard$: BehaviorSubject<DeckItem> = new BehaviorSubject(null)
 
 const displayCards$: Observable<DeckItem[]> = parent$.pipe(
   withLatestFrom(cards$),
@@ -56,10 +52,9 @@ const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
-  selectedCard$: selectedCard$,
   handleEvent: ($event, name) => {
-
-    selectedCard$.next($event)
+    console.log($event)
+    //selectedCard$.next($event)
     action(name)($event)
   },
   handleGoBack: parent => {
@@ -74,6 +69,9 @@ const props = {
     } else {
       action("Button Action")($event)
     }
+  },
+  handelSubmitted:$event=>{
+    console.log({"edited card":$event})
   }
 }
 
@@ -106,7 +104,7 @@ storiesOf("Deck", module)
   .add("Editable", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cards]="cards$ | async" [readOnly]="false" [selectedCard]="selectedCard$ | async"  (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handelSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
     props: props
   }))

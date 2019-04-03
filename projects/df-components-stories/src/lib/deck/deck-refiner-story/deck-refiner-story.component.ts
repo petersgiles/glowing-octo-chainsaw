@@ -14,7 +14,7 @@ import { withLatestFrom, map, switchMap } from "rxjs/operators"
 export class DeckRefinerStoryComponent implements OnInit {
   @Input()
   public grandParent: DeckItem
-  
+
   @Input()
   public cards: DeckItem[]
 
@@ -27,8 +27,11 @@ export class DeckRefinerStoryComponent implements OnInit {
   public handleAction($event) {
     // tslint:disable-next-line:no-console
     console.log($event)
+    // if submit edited card then handle it here
+  }
 
-    this.selectedCard = $event
+  public handelSubmitted($event) {
+    console.log($event)
   }
 
   public handleGoBack(gp) {

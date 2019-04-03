@@ -1,3 +1,48 @@
+<div [formGroup]="cardForm">
+  <ng-template #editCardTitle let-card>
+    <div class="df-card__title {{ card?.colour }}">
+      <mdc-form-field fluid>
+        <mdc-text-field
+          label="Title"
+          formControlName="title"
+          outlined
+          required
+        ></mdc-text-field>
+        <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+      </mdc-form-field>
+    </div>
+  </ng-template>
+  <ng-template #editCardSupportingText let-card>
+    <ngx-wig formControlName="supportingText"></ngx-wig>
+  </ng-template>
+  <ng-template #editCardActions let-card>
+    <div
+      class="df-card__actions df-card--border"
+      *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
+    ></div>
+    <mdc-form-field *ngFor="let action of card?.actions">
+      <mdc-text-field label="Action"></mdc-text-field>
+    </mdc-form-field>
+    <div class="df-layout-spacer"></div>
+  </ng-template>
+  <ng-template #saveCard let-card>
+    <div
+      class="df-card__actions df-card--border"
+      *ngIf="selectedCard && selectedCard.id === card.id"
+    >
+      <a mdc-button dense>Cancel</a>
+      <a
+        mdc-button
+        dense
+        [ngClass]="{ isDisabled: !cardForm.valid }"
+        (click)="saveEditedCard(card)"
+        >Save</a
+      >
+      <div class="df-layout-spacer"></div>
+    </div>
+  </ng-template>
+</div>
+
 <ng-template #cardActions let-card>
   <div
     class="df-card__actions df-card--border"
@@ -20,34 +65,14 @@
     <div class="df-layout-spacer"></div>
   </div>
 </ng-template>
-
-<ng-template #editActions let-card>
-    <div
-      class="df-card__actions df-card--border"
-      *ngIf="selectedCard && selectedCard.id === card.id"
-    >
-    <a
-       
-    mdc-button
-    dense
-    
-    >cancel</a
-  >
-      <a
-       
-        mdc-button
-        dense
-        
-        >SAVE</a
-      >
-   
-      <div class="df-layout-spacer"></div>
-    </div>
-  </ng-template>
-
 <ng-template #cardMenu let-card>
   <div *ngIf="!readOnly" class="df-card__menu {{ card?.colour }} transparent">
-    <a (click)="onEdit.emit(card)" mdc-icon-button dense icon="edit"></a>
+    <a
+      (click)="cardEdit.next({ $event: $event, currentCard: card })"
+      mdc-icon-button
+      dense
+      icon="edit"
+    ></a>
   </div>
 </ng-template>
 
@@ -65,34 +90,43 @@
     (click)="navigate(card)"
   ></div>
 </ng-template>
-
 <ng-template #cardData let-card>
   <div *ngIf="card?.data" [innerHtml]="card?.data"></div>
 </ng-template>
 
 <ng-template #standardCard let-card>
-    <ng-container *ngIf="selectedCard && selectedCard.id === card.id">
-        <p>EDITING</p>
-      </ng-container>
   <ng-container
-    *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
+    *ngTemplateOutlet="
+      selectedCard?.id === card.id ? editCardTitle : cardTitle;
+      context: { $implicit: card }
+    "
   ></ng-container>
   <ng-container
-    *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }"
+    *ngTemplateOutlet="
+      selectedCard?.id === card.id
+        ? editCardSupportingText
+        : cardSupportingText;
+      context: { $implicit: card }
+    "
   ></ng-container>
   <ng-container
-    *ngTemplateOutlet="cardActions; context: { $implicit: card }"
+    *ngTemplateOutlet="
+      selectedCard?.id === card.id ? editCardActions : cardActions;
+      context: { $implicit: card }
+    "
   ></ng-container>
+  <ng-container *ngIf="selectedCard?.id === card.id">
+    <ng-container
+      *ngTemplateOutlet="saveCard; context: { $implicit: card }"
+    ></ng-container>
+  </ng-container>
   <ng-container
-  *ngTemplateOutlet="editActions; context: { $implicit: card }"
-></ng-container>
-  <ng-container
-    *ngTemplateOutlet="cardMenu; context: { $implicit: card }"
+    *ngTemplateOutlet="
+      selectedCard?.id === card.id ? null : cardMenu;
+      context: { $implicit: card }
+    "
   ></ng-container>
-
--
 </ng-template>
-
 <ng-template #embedCard let-card>
   <ng-container
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
@@ -106,13 +140,12 @@
 </ng-template>
 
 <ng-template #imageCard let-card>
-
   <ng-container
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
   ></ng-container>
   <div class="df-card__media" (click)="navigate(card)">
-      <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
-    </div>
+    <img class="deck-image" src="{{ card?.media?.url }}" border="0" alt="" />
+  </div>
   <ng-container
     *ngTemplateOutlet="cardSupportingText; context: { $implicit: card }"
   ></ng-container>
@@ -160,8 +193,9 @@
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
   ></ng-container>
   <video controls>
-      <source [attr.src]="card?.media?.url" [attr.type]="card?.media?.type" />
-    Your browser does not support the video tag.    </video>
+    <source [attr.src]="card?.media?.url" [attr.type]="card?.media?.type" />
+    Your browser does not support the video tag.
+  </video>
   <ng-container
     *ngTemplateOutlet="cardMenu; context: { $implicit: card }"
   ></ng-container>
@@ -268,7 +302,7 @@
       <ng-container
         *ngTemplateOutlet="refinerCard; context: { $implicit: card }"
       ></ng-container>
-    </ng-container>  
+    </ng-container>
     <ng-container *ngSwitchDefault>
       <ng-container
         *ngTemplateOutlet="standardCard; context: { $implicit: card }"
