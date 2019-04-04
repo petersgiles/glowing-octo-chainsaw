@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { DeckComponent } from "./deck/deck.component"
 import { ChartsModule } from "ng2-charts/ng2-charts"
+import { NgSelectModule } from '@ng-select/ng-select'
 import{ReactiveFormsModule}from "@angular/forms"
 import {
   MdcCardModule,
@@ -19,6 +20,7 @@ const COMPONENTS = [DeckComponent]
   imports: [
     CommonModule,
     ChartsModule,
+    NgSelectModule,
     MdcButtonModule,
     MdcIconModule,
     MdcIconButtonModule,

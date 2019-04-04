@@ -1,3 +1,9 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+ng-select select-dropdown > div {
+    z-index: 2;
+}
+
 @import "./scss/variables";
 @import "./scss/mixins";
 @import "./scss/color-web-safe";

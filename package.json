@@ -31,6 +31,7 @@
     "@angular/platform-browser": "^7.2.9",
     "@angular/platform-browser-dynamic": "^7.2.9",
     "@angular/router": "^7.2.9",
+    "@ng-select/ng-select": "^2.16.4",
     "@types/jest": "^24.0.11",
     "core-js": "^2.6.5",
     "material-icons": "^0.3.0",

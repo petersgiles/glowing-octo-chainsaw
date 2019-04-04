@@ -12,6 +12,7 @@ import {
   MdcFormFieldModule,
   MdcTextFieldModule
 } from "@angular-mdc/web"
+import { NgSelectModule } from '@ng-select/ng-select'
 
 describe("DeckComponent", () => {
   let component: DeckComponent
@@ -21,6 +22,7 @@ describe("DeckComponent", () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
+        NgSelectModule,
         FormsModule,
         MdcButtonModule,
         MdcIconModule,

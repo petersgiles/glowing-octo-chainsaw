@@ -11,6 +11,24 @@
         <mdc-helper-text persistent validation>*Required</mdc-helper-text>
       </mdc-form-field>
     </div>
+
+    <div class="df-card__supporting-text df-card--border deck-color-selector">
+      <mdc-form-field fluid>
+          <ng-select
+          appendTo="body"
+          [items]="webSafeColours$ | async"
+          placeholder="Colour"
+          required
+          formControlName="colour"
+        >
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <h5 class="color-title" [ngClass]="item">{{item}}</h5>
+        </ng-template>
+        </ng-select>
+        <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+      </mdc-form-field>
+    </div>
+
     <div class="df-card__supporting-text df-card--border">
       <ngx-wig formControlName="supportingText"></ngx-wig>
     </div>
@@ -62,7 +80,10 @@
   </div>
 </ng-template>
 <ng-template #cardMenu let-card>
-  <div *ngIf="!readOnly && !selectedCard" class="df-card__menu {{ card?.colour }} transparent">
+  <div
+    *ngIf="!readOnly && !selectedCard"
+    class="df-card__menu {{ card?.colour }} transparent"
+  >
     <a
       (click)="cardEdit.next({ $event: $event, currentCard: card })"
       mdc-icon-button

@@ -11,7 +11,9 @@ import {
   MdcCardModule,
   MdcButtonModule,
   MdcIconModule,
-  MdcIconButtonModule} from "@angular-mdc/web"
+  MdcIconButtonModule,
+  MdcFormFieldModule,
+  MdcTextFieldModule} from "@angular-mdc/web"
 
 import {
   DeckModule,
@@ -23,6 +25,9 @@ import {
 import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
 import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-story.component"
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxWigModule } from 'ngx-wig';
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
@@ -82,10 +87,16 @@ storiesOf("Deck", module)
       imports: [
         BrowserModule,
         ChartsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        FormsModule,
         MdcButtonModule,
         MdcIconModule,
-        MdcCardModule,
         MdcIconButtonModule,
+        MdcCardModule,
+        MdcFormFieldModule,
+        MdcTextFieldModule,
+        NgxWigModule,
         DeckModule,
         ButtonModule
       ],

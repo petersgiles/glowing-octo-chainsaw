@@ -3,8 +3,9 @@ import { DeckItem } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
 import { getContrastYIQ } from "../../utils/colour"
 import { Validators, FormBuilder, FormGroup } from "@angular/forms"
-import { Subject, Subscription } from "rxjs"
+import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounce, debounceTime, distinctUntilChanged } from "rxjs/operators"
+import { webSafeColours } from "../../utils/web-safe-colours"
 
 const defaultCard = {
   title: "New Card",
@@ -27,7 +28,7 @@ const defaultCard = {
 })
 export class DeckComponent implements OnInit {
   // tslint:disable-next-line:no-empty
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {  }
   // tslint:disable-next-line:no-empty
 
   private selectedCardSubscription: Subscription
@@ -45,7 +46,9 @@ export class DeckComponent implements OnInit {
   @Output()
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
 
-  protected selectedCard: DeckItem
+  public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(webSafeColours)
+
+  public selectedCard: DeckItem
   public cardForm: FormGroup = this.fb.group({
     id: [],
     title: ["", Validators.required],
@@ -61,6 +64,7 @@ export class DeckComponent implements OnInit {
   })
 
   public ngOnInit() {
+
     this.selectedCardSubscription = this.cardEdit
       .pipe(
         debounceTime(400),
