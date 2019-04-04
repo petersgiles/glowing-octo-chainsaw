@@ -1,5 +1,5 @@
 <ng-template #editCard let-card>
-  <div [formGroup]="cardForm">
+  <form [formGroup]="cardForm" (ngSubmit)="handleSubmit(card)">
     <div class="df-card__title {{ card?.colour }}">
       <mdc-form-field fluid>
         <mdc-text-field
@@ -40,21 +40,24 @@
     <mdc-form-field *ngFor="let action of card?.actions">
       <mdc-text-field label="Action"></mdc-text-field>
     </mdc-form-field>
+    <div class="df-card__supporting-text df-card--border">
+    <p>
+        Form Status: {{ cardForm.status }}
+      </p>
+    </div>
     <div class="df-layout-spacer"></div>
     <div
       class="df-card__actions df-card--border"
       *ngIf="selectedCard && selectedCard.id === card.id"
     >
-      <a mdc-button dense (click)="handleCancelEditCard(card)">Cancel</a>
-      <a
+      <button mdc-button dense (click)="handleCancelEditCard(card)">Cancel</button>
+      <button
         mdc-button
         dense
-        [ngClass]="{ isDisabled: !cardForm.valid }"
-        (click)="saveEditedCard(card)"
-        >Save</a
-      >
+        type="submit" [disabled]="!cardForm.valid"
+        >Save</button>
     </div>
-  </div>
+  </form>
 </ng-template>
 
 <ng-template #cardActions let-card>

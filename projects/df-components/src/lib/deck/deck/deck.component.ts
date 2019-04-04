@@ -128,15 +128,13 @@ export class DeckComponent implements OnInit {
     this.selectedCard = null
   }
 
-  public saveEditedCard(card: DeckItem) {
+  public handleSubmit(card: DeckItem) {
+
     if (!this.cardForm.valid) return
     const editCard = this.mapCard(this.cardForm.value)
-    card.title = editCard.title
-    card.supportingText = editCard.supportingText
 
-    console.log(editCard)
     // emit this to parent for further process
-    this.onSubmitted.emit(card)
+    this.onSubmitted.emit(editCard)
     this.selectedCard = null
   }
 

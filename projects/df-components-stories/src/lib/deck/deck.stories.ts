@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions"
 import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
 import { deckItems } from "./deck-data"
-import { BehaviorSubject, Observable } from "rxjs"
+import { BehaviorSubject, Observable, combineLatest } from "rxjs"
 import {
   MdcCardModule,
   MdcButtonModule,
@@ -33,8 +33,10 @@ const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
 
-const displayCards$: Observable<DeckItem[]> = parent$.pipe(
-  withLatestFrom(cards$),
+const displayCards$: Observable<DeckItem[]> = combineLatest(
+  parent$,
+  cards$
+).pipe(
   map(([parentId, cards]) =>
     cards
       .filter(c => {
@@ -75,8 +77,17 @@ const props = {
       action("Button Action")($event)
     }
   },
-  handelSubmitted:$event=>{
-    console.log({"edited card":$event})
+  handleSubmitted: submittedCard => {
+
+    action("🦊 Submitted")(submittedCard)
+    const oldCards = cards$.getValue()    
+    action("🦊 OldCards")(oldCards)
+    const newCards = oldCards.filter(p => submittedCard.id !== p.id)
+    newCards.push(submittedCard)
+    action("🦊 NewCards")(newCards)
+    cards$.next(newCards)
+    action("🦊 Edited Card")(submittedCard)
+ 
   }
 }
 
@@ -115,7 +126,7 @@ storiesOf("Deck", module)
   .add("Editable", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handelSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
     props: props
   }))
