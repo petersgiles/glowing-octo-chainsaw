@@ -5,6 +5,21 @@ import { getContrastYIQ } from "../../utils/colour"
 import { Validators, FormBuilder, FormGroup } from "@angular/forms"
 import { Subject, Subscription } from "rxjs"
 import { debounce, debounceTime, distinctUntilChanged } from "rxjs/operators"
+
+const defaultCard = {
+  title: "New Card",
+  supportingText: null,
+  id: null,
+  parent: null,
+  size: "4",
+  cardType: CardType.Standard,
+  sortOrder: "999",
+  colour: "DarkSlateGrey",
+  titleClass: null,
+  media: null,
+  data: null
+}
+
 @Component({
   selector: "df-deck",
   templateUrl: "./deck.component.html",
@@ -104,12 +119,17 @@ export class DeckComponent implements OnInit {
   // Leave this it's the weird way you have to do enums in the template
   public cardType = CardType
 
+  public handleCancelEditCard(card) {
+    this.cardForm.reset()
+    this.selectedCard = null
+  }
+
   public saveEditedCard(card: DeckItem) {
     if (!this.cardForm.valid) return
     const editCard = this.mapCard(this.cardForm.value)
     card.title = editCard.title
     card.supportingText = editCard.supportingText
-      
+
     console.log(editCard)
     // emit this to parent for further process
     this.onSubmitted.emit(card)
