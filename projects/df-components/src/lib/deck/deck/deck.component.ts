@@ -64,7 +64,11 @@ export class DeckComponent implements OnInit {
     sortOrder: [],
     colour: [],
     titleClass: [],
-    media: [],
+    media: this.fb.group({
+      id: [],
+      type: [],
+      url: []
+    }),
     // actions: this.fb.group({}),
     data: []
   })
@@ -95,7 +99,11 @@ export class DeckComponent implements OnInit {
       sortOrder: this.selectedCard.sortOrder,
       colour: this.selectedCard.colour,
       titleClass: this.selectedCard.titleClass,
-      media: this.selectedCard.media ? this.selectedCard.media.url : "",
+      media: {
+        type: this.selectedCard.media ? this.selectedCard.media.type : "",
+        url: this.selectedCard.media ? this.selectedCard.media.url : "",
+        id: this.selectedCard.media ? this.selectedCard.media.id : ""
+      },
       data: this.selectedCard.data
     }
     this.cardForm.patchValue(patchCard)

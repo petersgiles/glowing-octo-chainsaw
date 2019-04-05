@@ -27,7 +27,7 @@
           let-search="searchTerm"
         >
           <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
-        </ng-template>k
+      </ng-template>
       </ng-select>
       </mdc-form-field>
     </div>
@@ -57,8 +57,8 @@
     <div class="df-card__supporting-text df-card--border">
       <ngx-wig formControlName="supportingText"></ngx-wig>
     </div>
-    <div *ngIf="card.cardType== cardType.Audio || card.cardType== cardType.Video || card.cardType== cardType.Image" class="df-card__supporting-text df-card--border">
-      <mdc-text-field label formControlName="media"></mdc-text-field>
+    <div  formGroupName="media"  *ngIf="card.cardType== cardType.Audio || card.cardType== cardType.Video || card.cardType== cardType.Image" class="df-card__supporting-text df-card--border">
+      <mdc-text-field label formControlName="url"></mdc-text-field>
     </div>
     <div
       class="df-card__supporting-text df-card--border"
