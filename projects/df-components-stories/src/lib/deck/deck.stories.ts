@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { deckItems } from "./deck-data"
+import { deckItems, cardTypes } from "./deck-data"
 import { BehaviorSubject, Observable, combineLatest } from "rxjs"
 import {
   MdcCardModule,
@@ -13,7 +13,8 @@ import {
   MdcIconModule,
   MdcIconButtonModule,
   MdcFormFieldModule,
-  MdcTextFieldModule} from "@angular-mdc/web"
+  MdcTextFieldModule
+} from "@angular-mdc/web"
 
 import {
   DeckModule,
@@ -25,13 +26,15 @@ import {
 import { withLatestFrom, map } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
 import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-story.component"
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { NgxWigModule } from 'ngx-wig';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms"
+import { NgSelectModule } from "@ng-select/ng-select"
+import { NgxWigModule } from "ngx-wig"
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
+
+const cardTypes$: BehaviorSubject<string[]> = new BehaviorSubject(cardTypes)
 
 const displayCards$: Observable<DeckItem[]> = combineLatest(
   parent$,
@@ -59,6 +62,8 @@ const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
+  cardTypes$: cardTypes$,
+  //cardTypes$: cardTypes$,
   handleEvent: ($event, name) => {
     console.log($event)
     //selectedCard$.next($event)
@@ -78,16 +83,14 @@ const props = {
     }
   },
   handleSubmitted: submittedCard => {
-
     action("🦊 Submitted")(submittedCard)
-    const oldCards = cards$.getValue()    
+    const oldCards = cards$.getValue()
     action("🦊 OldCards")(oldCards)
     const newCards = oldCards.filter(p => submittedCard.id !== p.id)
     newCards.push(submittedCard)
     action("🦊 NewCards")(newCards)
     cards$.next(newCards)
     action("🦊 Edited Card")(submittedCard)
- 
   }
 }
 
@@ -119,20 +122,20 @@ storiesOf("Deck", module)
   .add("ReadOnly", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cards]="cards$ | async" (onAction)="handleAction($event)"></df-deck>
+    <df-deck  [cards]="cards$ | async" (onAction)="handleAction($event)"></df-deck>
     `,
     props: props
   }))
   .add("Editable", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck [cardTypes]="cardTypes$ | async"  [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
     props: props
   }))
   .add("Big Story", () => ({
     template: `
-       <df-deck-refiner-story [cards]="cards$ | async"></df-deck-refiner-story>
+       <df-deck-refiner-story  [cards]="cards$ | async"></df-deck-refiner-story>
     `,
     props: props
   }))

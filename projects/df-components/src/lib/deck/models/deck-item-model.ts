@@ -1,8 +1,14 @@
 import { CardType } from "./card-type-enum"
 
 export interface DeckItemMedia {
+  id?: string
   url: string
   type?: string
+}
+export interface DeckItemAction {
+  id?: string
+  title: string
+  url: string
 }
 
 export interface DeckItemChartColor {

@@ -28,7 +28,7 @@ const defaultCard = {
 })
 export class DeckComponent implements OnInit {
   // tslint:disable-next-line:no-empty
-  constructor(private fb: FormBuilder) {  }
+  constructor(private fb: FormBuilder) {}
   // tslint:disable-next-line:no-empty
 
   private selectedCardSubscription: Subscription
@@ -40,13 +40,18 @@ export class DeckComponent implements OnInit {
   @Input()
   public cards: DeckItem[]
 
+  @Input()
+  public cardTypes: string[]
+
   @Output()
   public onAction: EventEmitter<any> = new EventEmitter()
 
   @Output()
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
 
-  public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(webSafeColours)
+  public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(
+    webSafeColours
+  )
 
   public selectedCard: DeckItem
   public cardForm: FormGroup = this.fb.group({
@@ -60,46 +65,37 @@ export class DeckComponent implements OnInit {
     colour: [],
     titleClass: [],
     media: [],
+    // actions: this.fb.group({}),
     data: []
   })
 
   public ngOnInit() {
-
     this.selectedCardSubscription = this.cardEdit
       .pipe(
         debounceTime(400),
         distinctUntilChanged()
       )
       .subscribe((payload: { $event: any; currentCard: DeckItem }) => {
-        if (
-          this.selectedCard &&
-          payload.currentCard.id !== this.selectedCard.id
-        ) {
-          if (confirm("are you sure you want to discard existing editing?")) {
-            this.populateEditCardFormAndEmit(payload)
-          }
-        } else {
-          this.populateEditCardFormAndEmit(payload)
-        }
+        this.populateEditCardForm(payload)
       })
   }
 
-  private populateEditCardFormAndEmit(payload: {
+  private populateEditCardForm(payload: {
     $event: any
     currentCard: DeckItem
   }) {
     this.selectedCard = payload.currentCard
     const patchCard = {
-      title: this.selectedCard.title,
-      supportingText: this.selectedCard.supportingText,
       id: this.selectedCard.id,
+      title: this.selectedCard.title,
       parent: this.selectedCard.parent,
+      supportingText: this.selectedCard.supportingText,
       size: this.selectedCard.size,
       cardType: this.selectedCard.cardType,
       sortOrder: this.selectedCard.sortOrder,
       colour: this.selectedCard.colour,
       titleClass: this.selectedCard.titleClass,
-      media: this.selectedCard.media,
+      media: this.selectedCard.media ? this.selectedCard.media.url : "",
       data: this.selectedCard.data
     }
     this.cardForm.patchValue(patchCard)
@@ -129,11 +125,9 @@ export class DeckComponent implements OnInit {
   }
 
   public handleSubmit(card: DeckItem) {
-
     if (!this.cardForm.valid) return
-    const editCard = this.mapCard(this.cardForm.value)
 
-    // emit this to parent for further process
+    const editCard = this.mapCard(this.cardForm.value)
     this.onSubmitted.emit(editCard)
     this.selectedCard = null
   }

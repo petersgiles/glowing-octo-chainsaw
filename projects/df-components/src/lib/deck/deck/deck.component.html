@@ -11,19 +11,44 @@
         <mdc-helper-text persistent validation>*Required</mdc-helper-text>
       </mdc-form-field>
     </div>
+    <div class="df-card__supporting-text df-card--border deck-color-selector">
+      <mdc-form-field fluid> 
+        <ng-select
+        appendTo="body"
+        [items]="cardTypes"
+        placeholder="Card Type"
+        required
+        formControlName="cardType"
+      >
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
+        </ng-template>k
+      </ng-select>
+      </mdc-form-field>
+    </div>
 
     <div class="df-card__supporting-text df-card--border deck-color-selector">
-      <mdc-form-field fluid>
-          <ng-select
+       <mdc-form-field fluid>
+       <ng-select
           appendTo="body"
           [items]="webSafeColours$ | async"
           placeholder="Colour"
           required
           formControlName="colour"
         >
-        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-          <h5 class="color-title" [ngClass]="item">{{item}}</h5>
-        </ng-template>
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
+          </ng-template>
         </ng-select>
         <mdc-helper-text persistent validation>*Required</mdc-helper-text>
       </mdc-form-field>
@@ -32,7 +57,9 @@
     <div class="df-card__supporting-text df-card--border">
       <ngx-wig formControlName="supportingText"></ngx-wig>
     </div>
-
+    <div *ngIf="card.cardType== cardType.Audio || card.cardType== cardType.Video || card.cardType== cardType.Image" class="df-card__supporting-text df-card--border">
+      <mdc-text-field label formControlName="media"></mdc-text-field>
+    </div>
     <div
       class="df-card__supporting-text df-card--border"
       *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
@@ -41,21 +68,19 @@
       <mdc-text-field label="Action"></mdc-text-field>
     </mdc-form-field>
     <div class="df-card__supporting-text df-card--border">
-    <p>
-        Form Status: {{ cardForm.status }}
-      </p>
+      <p>Form Status: {{ cardForm.status }}</p>
     </div>
     <div class="df-layout-spacer"></div>
     <div
       class="df-card__actions df-card--border"
       *ngIf="selectedCard && selectedCard.id === card.id"
     >
-      <button mdc-button dense (click)="handleCancelEditCard(card)">Cancel</button>
-      <button
-        mdc-button
-        dense
-        type="submit" [disabled]="!cardForm.valid"
-        >Save</button>
+      <button mdc-button dense (click)="handleCancelEditCard(card)">
+        Cancel
+      </button>
+      <button mdc-button dense type="submit" [disabled]="!cardForm.valid">
+        Save
+      </button>
     </div>
   </form>
 </ng-template>

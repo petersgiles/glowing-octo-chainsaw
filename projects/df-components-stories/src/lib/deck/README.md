@@ -10,7 +10,7 @@ Exported As: DeckComponent
 | Name              | Description    |
 | ----------------- | -------------- |
 | cards: DeckItem[] | The deck cards |
-
+| cardTypes: string[]| The card types|
 ## Examples
 
 `npm i --save @df/components`
