@@ -2,10 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { DeckItem } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
 import { getContrastYIQ } from "../../utils/colour"
-import { Validators, FormBuilder, FormGroup } from "@angular/forms"
+import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounce, debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
+import { validateConfig } from "@angular/router/src/config"
 
 const defaultCard = {
   title: "New Card",
@@ -31,9 +32,6 @@ export class DeckComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   // tslint:disable-next-line:no-empty
 
-  private selectedCardSubscription: Subscription
-  public cardEdit: Subject<any> = new Subject<any>()
-
   @Input()
   public readOnly = true
 
@@ -53,25 +51,45 @@ export class DeckComponent implements OnInit {
     webSafeColours
   )
 
+  private selectedCardSubscription: Subscription
+  public cardEdit: Subject<any> = new Subject<any>()
+  public showEditSupportingText: boolean = true
+  public showEditActions: boolean = true
+  public showEditMedia: boolean = false
+  public currrentCardColour: any
   public selectedCard: DeckItem
+  public actions: FormArray
   public cardForm: FormGroup = this.fb.group({
     id: [],
     title: ["", Validators.required],
     parent: [""],
-    supportingText: ["", Validators.required],
-    size: [""],
-    cardType: [],
+    supportingText: [""],
+    size: ["", Validators.required],
+    cardType: ["", Validators.required],
     sortOrder: [],
-    colour: [],
+    colour: ["", Validators.required],
     titleClass: [],
     media: this.fb.group({
       id: [],
       type: [],
-      url: []
+      url: [""]
     }),
-    // actions: this.fb.group({}),
+    actions: this.fb.array([this.createActionControls()]),
     data: []
   })
+
+  private createActionControls(): FormGroup {
+    return this.fb.group({
+      id: [],
+      title: [],
+      url: []
+    })
+  }
+
+  public addAction(): void {
+    this.actions = this.cardForm.get("actions") as FormArray
+    this.actions.push(this.createActionControls())
+  }
 
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
@@ -79,34 +97,18 @@ export class DeckComponent implements OnInit {
         debounceTime(400),
         distinctUntilChanged()
       )
-      .subscribe((payload: { $event: any; currentCard: DeckItem }) => {
+      .subscribe((payload: { currentCard: DeckItem }) => {
         this.populateEditCardForm(payload)
       })
-  }
 
-  private populateEditCardForm(payload: {
-    $event: any
-    currentCard: DeckItem
-  }) {
-    this.selectedCard = payload.currentCard
-    const patchCard = {
-      id: this.selectedCard.id,
-      title: this.selectedCard.title,
-      parent: this.selectedCard.parent,
-      supportingText: this.selectedCard.supportingText,
-      size: this.selectedCard.size,
-      cardType: this.selectedCard.cardType,
-      sortOrder: this.selectedCard.sortOrder,
-      colour: this.selectedCard.colour,
-      titleClass: this.selectedCard.titleClass,
-      media: {
-        type: this.selectedCard.media ? this.selectedCard.media.type : "",
-        url: this.selectedCard.media ? this.selectedCard.media.url : "",
-        id: this.selectedCard.media ? this.selectedCard.media.id : ""
-      },
-      data: this.selectedCard.data
-    }
-    this.cardForm.patchValue(patchCard)
+    this.cardForm.get("colour").valueChanges.subscribe(value => {
+      if (value) {
+        this.selectedCard.colour = value
+      }
+    })
+    this.cardForm.get("cardType").valueChanges.subscribe(value => {
+      this.handleCardType(value)
+    })
   }
 
   public navigate(card: DeckItem) {
@@ -114,7 +116,7 @@ export class DeckComponent implements OnInit {
       if (card.cardType === CardType.Parent) {
         this.onAction.emit(card)
       }
-      if (card.actions[0]) {
+      if (card.actions && card.actions[0]) {
         this.onAction.emit(card.actions[0])
       }
     }
@@ -149,5 +151,57 @@ export class DeckComponent implements OnInit {
       ...deckItem
     }
     return map
+  }
+
+  // Card Type determins a few UI controls to be visible or not
+  private handleCardType(typeName: any) {
+    switch (typeName) {
+      case "IMAGE":
+      case "AUDIO":
+        this.showEditMedia = true
+        this.showEditSupportingText = true
+        break
+      case "VIDEO":
+        this.showEditMedia = true
+        this.showEditSupportingText = false
+        break
+      default:
+        this.showEditMedia = false
+        this.showEditSupportingText = true
+    }
+    if (this.showEditMedia) {
+      this.cardForm
+        .get("media")
+        .get("url")
+        .setValidators(Validators.required)
+    } else {
+      this.cardForm
+        .get("media")
+        .get("url")
+        .clearValidators()
+    }
+  }
+
+  private populateEditCardForm(payload: { currentCard: DeckItem }) {
+    this.selectedCard = payload.currentCard
+    const patchCard = {
+      id: this.selectedCard.id,
+      title: this.selectedCard.title,
+      parent: this.selectedCard.parent,
+      supportingText: this.selectedCard.supportingText,
+      size: this.selectedCard.size,
+      cardType: this.selectedCard.cardType,
+      sortOrder: this.selectedCard.sortOrder,
+      colour: this.selectedCard.colour,
+      titleClass: this.selectedCard.titleClass,
+      media: {
+        type: this.selectedCard.media ? this.selectedCard.media.type : "",
+        url: this.selectedCard.media ? this.selectedCard.media.url : "",
+        id: this.selectedCard.media ? this.selectedCard.media.id : ""
+      },
+      data: this.selectedCard.data
+    }
+    this.handleCardType(this.selectedCard.cardType)
+    this.cardForm.patchValue(patchCard)
   }
 }

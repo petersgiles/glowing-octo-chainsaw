@@ -1,6 +1,7 @@
 <ng-template #editCard let-card>
   <form [formGroup]="cardForm" (ngSubmit)="handleSubmit(card)">
-    <div class="df-card__title {{ card?.colour }}">
+    <div class="df-card__title {{ card?.colour }}"></div>
+    <div class="df-card__title">
       <mdc-form-field fluid>
         <mdc-text-field
           label="Title"
@@ -8,33 +9,54 @@
           outlined
           required
         ></mdc-text-field>
-        <mdc-helper-text persistent validation>*Required</mdc-helper-text>
       </mdc-form-field>
     </div>
-    <div class="df-card__supporting-text df-card--border deck-color-selector">
-      <mdc-form-field fluid> 
-        <ng-select
-        appendTo="body"
-        [items]="cardTypes"
-        placeholder="Card Type"
-        required
-        formControlName="cardType"
-      >
-        <ng-template
-          ng-option-tmp
-          let-item="item"
-          let-index="index"
-          let-search="searchTerm"
-        >
-          <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
-      </ng-template>
-      </ng-select>
+    <div class="df-card__title">
+      <mdc-form-field fluid>
+        <mdc-text-field
+          label="Size"
+          formControlName="size"
+          type="number"
+          outlined
+          required
+        ></mdc-text-field>
+      </mdc-form-field>
+    </div>
+    <div class="df-card__title">
+      <mdc-form-field fluid>
+        <mdc-text-field
+          label="Sort Order"
+          formControlName="sortOrder"
+          type="number"
+          outlined
+        ></mdc-text-field>
       </mdc-form-field>
     </div>
 
     <div class="df-card__supporting-text df-card--border deck-color-selector">
-       <mdc-form-field fluid>
-       <ng-select
+      <mdc-form-field fluid>
+        <ng-select
+          appendTo="body"
+          [items]="cardTypes"
+          placeholder="Card Type"
+          required
+          formControlName="cardType"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
+          </ng-template>
+        </ng-select>
+      </mdc-form-field>
+    </div>
+
+    <div class="df-card__supporting-text df-card--border deck-color-selector">
+      <mdc-form-field fluid>
+        <ng-select
           appendTo="body"
           [items]="webSafeColours$ | async"
           placeholder="Colour"
@@ -50,15 +72,37 @@
             <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
           </ng-template>
         </ng-select>
-        <mdc-helper-text persistent validation>*Required</mdc-helper-text>
       </mdc-form-field>
     </div>
-
-    <div class="df-card__supporting-text df-card--border">
-      <ngx-wig formControlName="supportingText"></ngx-wig>
+    <div
+      *ngIf="showEditSupportingText"
+      class="df-card__supporting-text df-card--border"
+    >
+      <mdc-form-field>
+        <ngx-wig
+          formControlName="supportingText"
+          [placeholder]="'Enter supporting text here.'"
+        ></ngx-wig>
+      </mdc-form-field>
     </div>
-    <div  formGroupName="media"  *ngIf="card.cardType== cardType.Audio || card.cardType== cardType.Video || card.cardType== cardType.Image" class="df-card__supporting-text df-card--border">
-      <mdc-text-field label formControlName="url"></mdc-text-field>
+    <div
+      formGroupName="media"
+      *ngIf="showEditMedia"
+      class="df-card__supporting-text df-card--border"
+    >
+      <mdc-text-field
+        type="url"
+        required
+        outlined
+        label="Media web address"
+        formControlName="url"
+        [helperText] = "mediaAddressHelper"
+      ></mdc-text-field>
+      <mdc-helper-text #mediaAddressHelper persistent validation>
+        <ng-container *ngIf="url.hasError">
+
+        </ng-container>
+      </mdc-helper-text>
     </div>
     <div
       class="df-card__supporting-text df-card--border"
@@ -67,9 +111,11 @@
     <mdc-form-field *ngFor="let action of card?.actions">
       <mdc-text-field label="Action"></mdc-text-field>
     </mdc-form-field>
+
     <div class="df-card__supporting-text df-card--border">
       <p>Form Status: {{ cardForm.status }}</p>
     </div>
+
     <div class="df-layout-spacer"></div>
     <div
       class="df-card__actions df-card--border"
@@ -113,7 +159,7 @@
     class="df-card__menu {{ card?.colour }} transparent"
   >
     <a
-      (click)="cardEdit.next({ $event: $event, currentCard: card })"
+      (click)="cardEdit.next({ currentCard: card })"
       mdc-icon-button
       dense
       icon="edit"
@@ -221,7 +267,7 @@
     *ngTemplateOutlet="cardTitle; context: { $implicit: card }"
   ></ng-container>
   <video controls>
-    <source [attr.src]="card?.media?.url" [attr.type]="card?.media?.type" />
+    <source [attr.src]="card?.media?.url" />
     Your browser does not support the video tag.
   </video>
   <ng-container
@@ -292,7 +338,7 @@
       class="df-card df-cell df-cell--{{ card?.size }}-col df-shadow--4dp"
     >
       <ng-container
-        *ngTemplateOutlet="editCard; context: { $implicit: card }"
+        *ngTemplateOutlet="editCard; context: { $implicit: selectedCard }"
       ></ng-container>
     </div>
 

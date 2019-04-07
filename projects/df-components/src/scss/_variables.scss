@@ -9,12 +9,14 @@ $accent-color: #536dfe !default;
 $primary-text-color: #212121 !default;
 $secondary-text-color: #757575 !default;
 $divider-color: #bdbdbd !default;
-
+$mdc-theme-error:#b00020 !default;
 $background: #fff !default;
 
 $mdc-theme-primary: $primary-color-dark;
 $mdc-theme-secondary: $primary-color;
 $mdc-theme-background: $background;
+
+
 
 $spacing-xs: 4px;
 $spacing-md: 8px;
