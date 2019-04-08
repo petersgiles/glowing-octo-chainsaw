@@ -22,6 +22,11 @@ const defaultCard = {
   data: null
 }
 
+const actionGroupItem = {
+  title: [""],
+  url: [""]
+}
+
 @Component({
   selector: "df-deck",
   templateUrl: "./deck.component.html",
@@ -58,7 +63,7 @@ export class DeckComponent implements OnInit {
   public showEditMedia: boolean = false
   public currrentCardColour: any
   public selectedCard: DeckItem
-  public actions: FormArray
+
   public cardForm: FormGroup = this.fb.group({
     id: [],
     title: ["", Validators.required],
@@ -74,21 +79,27 @@ export class DeckComponent implements OnInit {
       type: [],
       url: [""]
     }),
-    actions: this.fb.array([this.createActionControls()]),
+    actions: this.fb.array([]),
     data: []
   })
 
-  private createActionControls(): FormGroup {
-    return this.fb.group({
-      id: [],
-      title: [],
-      url: []
-    })
+  get actions(): FormArray {
+    return this.cardForm.get("actions") as FormArray
+  }
+
+  get action(): FormGroup {
+    return this.fb.group(actionGroupItem)
   }
 
   public addAction(): void {
-    this.actions = this.cardForm.get("actions") as FormArray
-    this.actions.push(this.createActionControls())
+    this.actions.push(this.fb.group(actionGroupItem))
+  }
+
+  public handleRemoveAction(index: any, action: any) {
+    // tslint:disable-next-line:no-console
+    console.log(index, action)
+
+    this.actions.removeAt(index)
   }
 
   public ngOnInit() {
@@ -184,6 +195,9 @@ export class DeckComponent implements OnInit {
 
   private populateEditCardForm(payload: { currentCard: DeckItem }) {
     this.selectedCard = payload.currentCard
+
+    console.log("actions", this.selectedCard.actions)
+
     const patchCard = {
       id: this.selectedCard.id,
       title: this.selectedCard.title,
@@ -199,9 +213,18 @@ export class DeckComponent implements OnInit {
         url: this.selectedCard.media ? this.selectedCard.media.url : "",
         id: this.selectedCard.media ? this.selectedCard.media.id : ""
       },
+      actions: this.selectedCard.actions,
       data: this.selectedCard.data
     }
+
+    this.selectedCard.actions.forEach(p => {
+      console.log("load action", p)
+      this.actions.push(this.action)
+    })
+
     this.handleCardType(this.selectedCard.cardType)
     this.cardForm.patchValue(patchCard)
+
+
   }
 }

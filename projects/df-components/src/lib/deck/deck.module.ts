@@ -10,6 +10,7 @@ import {
   MdcIconModule,
   MdcIconButtonModule,
   MdcFormFieldModule,
+  MdcListModule,
   MdcTextFieldModule,
 } from "@angular-mdc/web"
 
@@ -26,6 +27,7 @@ const COMPONENTS = [DeckComponent]
     MdcIconButtonModule,
     MdcCardModule,
     MdcFormFieldModule,
+    MdcListModule,
     MdcTextFieldModule,
     NgxWigModule,
     ReactiveFormsModule

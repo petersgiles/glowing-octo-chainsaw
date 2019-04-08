@@ -6,7 +6,6 @@
         <mdc-text-field
           label="Title"
           formControlName="title"
-          outlined
           required
         ></mdc-text-field>
       </mdc-form-field>
@@ -17,7 +16,6 @@
           label="Size"
           formControlName="size"
           type="number"
-          outlined
           required
         ></mdc-text-field>
       </mdc-form-field>
@@ -28,7 +26,6 @@
           label="Sort Order"
           formControlName="sortOrder"
           type="number"
-          outlined
         ></mdc-text-field>
       </mdc-form-field>
     </div>
@@ -93,24 +90,42 @@
       <mdc-text-field
         type="url"
         required
-        outlined
         label="Media web address"
         formControlName="url"
-        [helperText] = "mediaAddressHelper"
+        [helperText]="mediaAddressHelper"
       ></mdc-text-field>
       <mdc-helper-text #mediaAddressHelper persistent validation>
-        <ng-container *ngIf="url.hasError">
-
-        </ng-container>
+        <ng-container *ngIf="url.hasError"> </ng-container>
       </mdc-helper-text>
     </div>
     <div
       class="df-card__supporting-text df-card--border"
       *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
     ></div>
-    <mdc-form-field *ngFor="let action of card?.actions">
-      <mdc-text-field label="Action"></mdc-text-field>
-    </mdc-form-field>
+
+    <mdc-list formArrayName="actions">
+      <mdc-list-item
+        *ngFor="let actionEditor of actions.controls; let actionIndex = index"
+        [formGroupName]="actionIndex"
+      >
+        <mdc-text-field label="Title" formControlName="title"></mdc-text-field>
+        <mdc-text-field label="Url" formControlName="url"></mdc-text-field>
+        <mdc-icon mdcListItemMeta (click)="handleRemoveAction(i, actions[i])"
+          >delete_forever</mdc-icon
+        >
+      </mdc-list-item>
+    </mdc-list>
+    <div
+    class="df-card__actions df-card--border"
+    
+  >
+
+    <a mdc-button dense (click)="addAction()">
+      Add Action
+    </a>
+  </div>
+
+
 
     <div class="df-card__supporting-text df-card--border">
       <p>Form Status: {{ cardForm.status }}</p>

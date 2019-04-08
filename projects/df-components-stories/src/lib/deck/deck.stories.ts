@@ -13,7 +13,8 @@ import {
   MdcIconModule,
   MdcIconButtonModule,
   MdcFormFieldModule,
-  MdcTextFieldModule
+  MdcTextFieldModule,
+  MdcListModule
 } from "@angular-mdc/web"
 
 import {
@@ -108,6 +109,7 @@ storiesOf("Deck", module)
         MdcIconModule,
         MdcIconButtonModule,
         MdcCardModule,
+        MdcListModule,
         MdcFormFieldModule,
         MdcTextFieldModule,
         NgxWigModule,
