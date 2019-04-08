@@ -1,6 +1,8 @@
 <ng-template #editCard let-card>
   <form [formGroup]="cardForm" (ngSubmit)="handleSubmit(card)">
-    <div class="df-card__title {{ card?.colour }}"></div>
+    <div class="df-card__title {{ card?.colour }}">
+        <h2 class="df-card__title-text">{{ card?.title }}</h2>
+    </div>
     <div class="df-card__title">
       <mdc-form-field fluid>
         <mdc-text-field
