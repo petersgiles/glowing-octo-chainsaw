@@ -18,6 +18,7 @@ const defaultCard = {
   colour: "DarkSlateGrey",
   titleClass: null,
   media: null,
+  actions: null,
   data: null
 }
 
@@ -90,7 +91,7 @@ export class DeckComponent implements OnInit {
     return this.fb.group(actionGroupItem)
   }
 
-  public addAction(): void {
+  public handleAddAction(): void {
     this.actions.push(this.fb.group(actionGroupItem))
   }
 
@@ -195,8 +196,6 @@ export class DeckComponent implements OnInit {
   private populateEditCardForm(payload: { currentCard: DeckItem }) {
     this.selectedCard = payload.currentCard
 
-    console.log("actions", this.selectedCard.actions)
-
     const patchCard = {
       id: this.selectedCard.id,
       title: this.selectedCard.title,
@@ -217,7 +216,6 @@ export class DeckComponent implements OnInit {
     }
 
     this.selectedCard.actions.forEach(p => {
-      console.log("load action", p)
       this.actions.push(this.action)
     })
 
