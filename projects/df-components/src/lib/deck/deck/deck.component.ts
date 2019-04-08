@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
+import { cards } from "projects/df-components-stories/src/lib/deck/deck-data"
 
 const defaultCard = {
   title: "New Card",
@@ -61,8 +62,11 @@ export class DeckComponent implements OnInit {
   public showEditSupportingText: boolean = true
   public showEditActions: boolean = true
   public showEditMedia: boolean = false
+  public showEditData: boolean = true
   public currrentCardColour: any
   public selectedCard: DeckItem
+  // Leave this it's the weird way you have to do enums in the template
+  public cardType = CardType
 
   public cardForm: FormGroup = this.fb.group({
     id: [],
@@ -91,17 +95,6 @@ export class DeckComponent implements OnInit {
     return this.fb.group(actionGroupItem)
   }
 
-  public handleAddAction(): void {
-    this.actions.push(this.fb.group(actionGroupItem))
-  }
-
-  public handleRemoveAction(index: any, action: any) {
-    // tslint:disable-next-line:no-console
-    console.log(index, action)
-
-    this.actions.removeAt(index)
-  }
-
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
       .pipe(
@@ -109,7 +102,7 @@ export class DeckComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe((payload: { currentCard: DeckItem }) => {
-        this.populateEditCardForm(payload)
+        this.populateEditCardForm(payload.currentCard)
       })
 
     this.cardForm.get("colour").valueChanges.subscribe(value => {
@@ -120,6 +113,19 @@ export class DeckComponent implements OnInit {
     this.cardForm.get("cardType").valueChanges.subscribe(value => {
       this.handleCardType(value)
     })
+  }
+
+  public handelAddNewCard(): void {
+    this.populateEditCardForm(defaultCard)
+    this.cards.push(defaultCard)
+  }
+
+  public handleAddAction(): void {
+    this.actions.push(this.fb.group(actionGroupItem))
+  }
+
+  public handleRemoveAction(index: any, action: any) {
+    this.actions.removeAt(index)
   }
 
   public navigate(card: DeckItem) {
@@ -137,20 +143,21 @@ export class DeckComponent implements OnInit {
     return getContrastYIQ(hexcolour)
   }
 
-  // Leave this it's the weird way you have to do enums in the template
-  public cardType = CardType
-
   public handleCancelEditCard(card) {
+    this.clearEditedData()
     this.cardForm.reset()
-    this.selectedCard = null
+    // remove new card
+    if (!card.id) {
+      const cardItems = this.cards.filter(item => item.id)
+      this.cards = cardItems
+    }
   }
 
   public handleSubmit(card: DeckItem) {
     if (!this.cardForm.valid) return
-
     const editCard = this.mapCard(this.cardForm.value)
     this.onSubmitted.emit(editCard)
-    this.selectedCard = null
+    this.clearEditedData()
   }
 
   public ngOnDestroy(): void {
@@ -164,21 +171,37 @@ export class DeckComponent implements OnInit {
     return map
   }
 
+  private clearEditedData(): void {
+    this.selectedCard = null
+    // As form.reset won't clear form array controls
+    // hence we have to do it here
+    this.cardForm.setControl("actions", new FormArray([]))
+  }
+
   // Card Type determins a few UI controls to be visible or not
+  // TODO: a better way to handle the UI changes, maybe split to several edit tempalte?
   private handleCardType(typeName: any) {
     switch (typeName) {
       case "IMAGE":
       case "AUDIO":
         this.showEditMedia = true
         this.showEditSupportingText = true
+        this.showEditData = false
         break
       case "VIDEO":
         this.showEditMedia = true
+        this.showEditSupportingText = false
+        this.showEditData = false
+        break
+      case "BRIEFSUMMARY":
+        this.showEditData = true
+        this.showEditMedia = false
         this.showEditSupportingText = false
         break
       default:
         this.showEditMedia = false
         this.showEditSupportingText = true
+        this.showEditData = false
     }
     if (this.showEditMedia) {
       this.cardForm
@@ -193,8 +216,8 @@ export class DeckComponent implements OnInit {
     }
   }
 
-  private populateEditCardForm(payload: { currentCard: DeckItem }) {
-    this.selectedCard = payload.currentCard
+  private populateEditCardForm(currentCard: DeckItem) {
+    this.selectedCard = currentCard
 
     const patchCard = {
       id: this.selectedCard.id,
@@ -211,17 +234,17 @@ export class DeckComponent implements OnInit {
         url: this.selectedCard.media ? this.selectedCard.media.url : "",
         id: this.selectedCard.media ? this.selectedCard.media.id : ""
       },
-      actions: this.selectedCard.actions,
+      actions: this.selectedCard.actions ? this.selectedCard.actions : [],
       data: this.selectedCard.data
     }
 
-    this.selectedCard.actions.forEach(p => {
-      this.actions.push(this.action)
-    })
+    if (this.selectedCard.actions) {
+      this.selectedCard.actions.forEach(p => {
+        this.actions.push(this.action)
+      })
+    }
 
     this.handleCardType(this.selectedCard.cardType)
     this.cardForm.patchValue(patchCard)
-
-
   }
 }

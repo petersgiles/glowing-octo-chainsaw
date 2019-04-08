@@ -10,7 +10,8 @@ import {
   MdcIconModule,
   MdcIconButtonModule,
   MdcFormFieldModule,
-  MdcTextFieldModule
+  MdcTextFieldModule,
+  MdcRippleModule,
 } from "@angular-mdc/web"
 import { NgSelectModule } from '@ng-select/ng-select'
 
@@ -30,7 +31,8 @@ describe("DeckComponent", () => {
         MdcCardModule,
         MdcFormFieldModule,
         MdcTextFieldModule,
-        NgxWigModule
+        NgxWigModule,
+        MdcRippleModule,
       ],
       declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()

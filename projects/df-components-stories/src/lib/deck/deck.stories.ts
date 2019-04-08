@@ -14,7 +14,8 @@ import {
   MdcIconButtonModule,
   MdcFormFieldModule,
   MdcTextFieldModule,
-  MdcListModule
+  MdcListModule,
+  MdcRippleModule
 } from "@angular-mdc/web"
 
 import {
@@ -88,6 +89,9 @@ const props = {
     const oldCards = cards$.getValue()
     action("🦊 OldCards")(oldCards)
     const newCards = oldCards.filter(p => submittedCard.id !== p.id)
+    if (!submittedCard.id) {
+      submittedCard.id = Math.random().toString()
+    }
     newCards.push(submittedCard)
     action("🦊 NewCards")(newCards)
     cards$.next(newCards)
@@ -114,7 +118,8 @@ storiesOf("Deck", module)
         MdcTextFieldModule,
         NgxWigModule,
         DeckModule,
-        ButtonModule
+        ButtonModule,
+        MdcRippleModule
       ],
       declarations: [DeckRefinerStoryComponent]
     })

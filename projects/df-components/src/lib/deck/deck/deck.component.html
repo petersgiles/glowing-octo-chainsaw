@@ -84,6 +84,12 @@
         ></ngx-wig>
       </mdc-form-field>
     </div>
+    <div *ngIf="showEditData" class="df-card__supporting-text df-card--border">
+      <mdc-form-field fluid>
+        <mdc-textarea label="Data" formControlName="data" rows="5">
+        </mdc-textarea>
+      </mdc-form-field>
+    </div>
     <div
       formGroupName="media"
       *ngIf="showEditMedia"
@@ -94,50 +100,50 @@
         required
         label="Media web address"
         formControlName="url"
-        [helperText]="mediaAddressHelper"
       ></mdc-text-field>
-      <mdc-helper-text #mediaAddressHelper persistent validation>
-        <ng-container *ngIf="url.hasError"> </ng-container>
-      </mdc-helper-text>
     </div>
-    <div
-      class="df-card__supporting-text df-card--border"
-      *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
-    ></div>
-
-    <mdc-list formArrayName="actions">
-      <mdc-list-item
+    <mdc-card outlined formArrayName="actions" class="df-card__actions-edit">
+      <div class="df-card__actions-heading" mdcSubtitle2>Actions</div>
+      <ng-container
         *ngFor="let actionEditor of actions.controls; let actionIndex = index"
         [formGroupName]="actionIndex"
       >
-        <mdc-text-field label="Title" formControlName="title"></mdc-text-field>
-        <mdc-text-field label="Url" formControlName="url"></mdc-text-field>
-        <mdc-icon mdcListItemMeta (click)="handleRemoveAction(i, actions[i])"
-          >delete_forever</mdc-icon
-        >
-      </mdc-list-item>
-    </mdc-list>
-    <div
-    class="df-card__actions df-card--border"
-    
-  >
-
-    <a mdc-button dense (click)="handleAddAction()">
-      Add Action
-    </a>
-  </div>
-
-
-
+        <mdc-list-divider></mdc-list-divider>
+        <mdc-ripple class="df-card__actions-content">
+          <mdc-form-field fluid class="">
+            <mdc-text-field
+              label="Title"
+              formControlName="title"
+            ></mdc-text-field>
+          </mdc-form-field>
+          <mdc-form-field fluid>
+            <mdc-text-field
+              label="Url"
+              type="url"
+              formControlName="url"
+            ></mdc-text-field>
+          </mdc-form-field>
+          <a
+            mdc-button
+            dense
+            (click)="handleRemoveAction(actionIndex, actions[actionIndex])"
+            >Delete</a
+          >
+        </mdc-ripple>
+      </ng-container>
+      <mdc-list-divider></mdc-list-divider>
+      <div class="df-card__actions-footer">
+        <a mdc-button dense (click)="handleAddAction()">
+          Add Action
+        </a>
+      </div>
+    </mdc-card>
     <div class="df-card__supporting-text df-card--border">
       <p>Form Status: {{ cardForm.status }}</p>
     </div>
 
     <div class="df-layout-spacer"></div>
-    <div
-      class="df-card__actions df-card--border"
-      *ngIf="selectedCard && selectedCard.id === card.id"
-    >
+    <div class="df-card__actions df-card--border">
       <button mdc-button dense (click)="handleCancelEditCard(card)">
         Cancel
       </button>
@@ -195,7 +201,6 @@
     *ngIf="card?.supportingText"
     class="df-card__supporting-text"
     [innerHtml]="card?.supportingText"
-    (click)="navigate(card)"
   ></div>
 </ng-template>
 
@@ -411,4 +416,9 @@
       </ng-container>
     </div>
   </ng-container>
+  <div *ngIf="!selectedCard" class="df-card__supporting-text">
+    <button mdc-button dense (click)="handelAddNewCard()">
+      Create New Card
+    </button>
+  </div>
 </section>
