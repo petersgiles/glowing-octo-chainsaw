@@ -14,7 +14,8 @@ import {
   MdcIconButtonModule,
   MdcFormFieldModule,
   MdcTextFieldModule,
-  MdcListModule
+  MdcListModule,
+  MdcRippleModule
 } from "@angular-mdc/web"
 
 import {
@@ -114,7 +115,8 @@ storiesOf("Deck", module)
         MdcTextFieldModule,
         NgxWigModule,
         DeckModule,
-        ButtonModule
+        ButtonModule,
+        MdcRippleModule
       ],
       declarations: [DeckRefinerStoryComponent]
     })

@@ -12,6 +12,7 @@ import {
   MdcFormFieldModule,
   MdcListModule,
   MdcTextFieldModule,
+  MdcRippleModule,
 } from "@angular-mdc/web"
 
 import { NgxWigModule } from "ngx-wig"
@@ -30,7 +31,8 @@ const COMPONENTS = [DeckComponent]
     MdcListModule,
     MdcTextFieldModule,
     NgxWigModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MdcRippleModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

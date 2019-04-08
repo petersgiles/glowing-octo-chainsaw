@@ -21,9 +21,6 @@ export class DeckRefinerStoryComponent implements OnInit {
   @Input()
   public cardTypes: string[]
 
-  @Input()
-  public selectedCard: DeckItem
-
   // tslint:disable-next-line:no-empty
   public ngOnInit(): void {}
 

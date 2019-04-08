@@ -96,9 +96,6 @@ export class DeckComponent implements OnInit {
   }
 
   public handleRemoveAction(index: any, action: any) {
-    // tslint:disable-next-line:no-console
-    console.log(index, action)
-
     this.actions.removeAt(index)
   }
 
@@ -141,16 +138,15 @@ export class DeckComponent implements OnInit {
   public cardType = CardType
 
   public handleCancelEditCard(card) {
+    this.clearEditedData()
     this.cardForm.reset()
-    this.selectedCard = null
   }
 
   public handleSubmit(card: DeckItem) {
     if (!this.cardForm.valid) return
-
     const editCard = this.mapCard(this.cardForm.value)
     this.onSubmitted.emit(editCard)
-    this.selectedCard = null
+    this.clearEditedData()
   }
 
   public ngOnDestroy(): void {
@@ -162,6 +158,13 @@ export class DeckComponent implements OnInit {
       ...deckItem
     }
     return map
+  }
+
+  private clearEditedData(): void {
+    this.selectedCard = null
+    // As form.reset won't clear form array controls
+    // hence we have to do it here
+    this.cardForm.setControl("actions", new FormArray([]))
   }
 
   // Card Type determins a few UI controls to be visible or not
@@ -215,13 +218,13 @@ export class DeckComponent implements OnInit {
       data: this.selectedCard.data
     }
 
-    this.selectedCard.actions.forEach(p => {
-      this.actions.push(this.action)
-    })
+    if (this.selectedCard.actions) {
+      this.selectedCard.actions.forEach(p => {
+        this.actions.push(this.action)
+      })
+    }
 
     this.handleCardType(this.selectedCard.cardType)
     this.cardForm.patchValue(patchCard)
-
-
   }
 }
