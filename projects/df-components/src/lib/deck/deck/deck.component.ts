@@ -4,9 +4,8 @@ import { CardType } from "../models/card-type-enum"
 import { getContrastYIQ } from "../../utils/colour"
 import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
-import { debounce, debounceTime, distinctUntilChanged } from "rxjs/operators"
+import { debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
-import { validateConfig } from "@angular/router/src/config"
 
 const defaultCard = {
   title: "New Card",
