@@ -32,7 +32,6 @@
     "@angular/platform-browser-dynamic": "^7.2.9",
     "@angular/router": "^7.2.9",
     "@ng-select/ng-select": "^2.16.4",
-    "@types/jest": "^24.0.11",
     "core-js": "^2.6.5",
     "material-icons": "^0.3.0",
     "ngx-wig": "^2.0.1",
@@ -42,7 +41,10 @@
   },
   "peerDependencies": {
     "@swimlane/ngx-datatable": "^14.0.0",
-    "@angular-mdc/web": "^0.44.0"
+    "@angular-mdc/web": "^0.44.0",
+    "@ng-select/ng-select": "^2.16.4",
+    "material-icons": "^0.3.0",
+    "ngx-wig": "^2.0.1"
   },
   "devDependencies": {
     "@angular-builders/jest": "^7.3.1",
@@ -65,6 +67,7 @@
     "@swimlane/ngx-datatable": "^14.0.0",
     "@types/jasmine": "^3.3.11",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "^24.0.11",
     "@types/node": "^11.11.3",
     "@types/storybook__addon-options": "^4.0.1",
     "angular-tree-component": "^8.3.0",

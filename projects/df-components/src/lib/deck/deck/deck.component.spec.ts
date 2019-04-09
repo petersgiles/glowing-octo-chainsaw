@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing"
 
 import { DeckComponent } from "./deck.component"
-import { BaseChartDirective } from "ng2-charts/ng2-charts"
+import { BaseChartDirective, ChartsModule } from "ng2-charts/ng2-charts"
 import { NgxWigModule } from "ngx-wig"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import {
@@ -12,8 +12,11 @@ import {
   MdcFormFieldModule,
   MdcTextFieldModule,
   MdcRippleModule,
+  MdcListModule
 } from "@angular-mdc/web"
-import { NgSelectModule } from '@ng-select/ng-select'
+import { NgSelectModule } from "@ng-select/ng-select"
+import { BrowserModule } from "@angular/platform-browser"
+
 
 describe("DeckComponent", () => {
   let component: DeckComponent
@@ -22,6 +25,7 @@ describe("DeckComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserModule,
         ReactiveFormsModule,
         NgSelectModule,
         FormsModule,
@@ -29,10 +33,11 @@ describe("DeckComponent", () => {
         MdcIconModule,
         MdcIconButtonModule,
         MdcCardModule,
+        MdcListModule,
         MdcFormFieldModule,
         MdcTextFieldModule,
         NgxWigModule,
-        MdcRippleModule,
+        MdcRippleModule
       ],
       declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()
