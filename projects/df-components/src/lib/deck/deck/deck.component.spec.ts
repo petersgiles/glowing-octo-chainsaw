@@ -12,6 +12,8 @@ import {
   MdcFormFieldModule,
   MdcTextFieldModule,
   MdcRippleModule,
+  MdcListModule
+  
 } from "@angular-mdc/web"
 import { NgSelectModule } from '@ng-select/ng-select'
 
@@ -33,6 +35,7 @@ describe("DeckComponent", () => {
         MdcTextFieldModule,
         NgxWigModule,
         MdcRippleModule,
+        MdcListModule,
       ],
       declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()

@@ -4,9 +4,10 @@ import { CardType } from "../models/card-type-enum"
 import { getContrastYIQ } from "../../utils/colour"
 import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
-import { debounceTime, distinctUntilChanged } from "rxjs/operators"
+import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
 import { cards } from "projects/df-components-stories/src/lib/deck/deck-data"
+import { getElementDepthCount } from "@angular/core/src/render3/state"
 
 const defaultCard = {
   title: "New Card",
@@ -45,6 +46,9 @@ export class DeckComponent implements OnInit {
   public cards: DeckItem[]
 
   @Input()
+  public eligibleParentCards: DeckItem[]
+  
+  @Input()
   public cardTypes: string[]
 
   @Output()
@@ -53,10 +57,12 @@ export class DeckComponent implements OnInit {
   @Output()
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
 
+  @Output()
+  public onItemEditing:EventEmitter<DeckItem> = new EventEmitter()
+
   public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(
     webSafeColours
   )
-
   private selectedCardSubscription: Subscription
   public cardEdit: Subject<any> = new Subject<any>()
   public showEditSupportingText: boolean = true
@@ -65,6 +71,7 @@ export class DeckComponent implements OnInit {
   public showEditData: boolean = true
   public currrentCardColour: any
   public selectedCard: DeckItem
+ 
   // Leave this it's the weird way you have to do enums in the template
   public cardType = CardType
 
@@ -94,7 +101,6 @@ export class DeckComponent implements OnInit {
   get action(): FormGroup {
     return this.fb.group(actionGroupItem)
   }
-
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
       .pipe(
@@ -103,6 +109,7 @@ export class DeckComponent implements OnInit {
       )
       .subscribe((payload: { currentCard: DeckItem }) => {
         this.populateEditCardForm(payload.currentCard)
+        this.onItemEditing.emit(payload.currentCard)
       })
 
     this.cardForm.get("colour").valueChanges.subscribe(value => {
@@ -146,7 +153,7 @@ export class DeckComponent implements OnInit {
   public handleCancelEditCard(card) {
     this.clearEditedData()
     this.cardForm.reset()
-    // remove new card
+    // remove card just created
     if (!card.id) {
       const cardItems = this.cards.filter(item => item.id)
       this.cards = cardItems
@@ -218,7 +225,6 @@ export class DeckComponent implements OnInit {
 
   private populateEditCardForm(currentCard: DeckItem) {
     this.selectedCard = currentCard
-
     const patchCard = {
       id: this.selectedCard.id,
       title: this.selectedCard.title,
@@ -243,7 +249,6 @@ export class DeckComponent implements OnInit {
         this.actions.push(this.action)
       })
     }
-
     this.handleCardType(this.selectedCard.cardType)
     this.cardForm.patchValue(patchCard)
   }
