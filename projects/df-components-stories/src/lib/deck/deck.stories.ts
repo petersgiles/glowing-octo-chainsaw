@@ -31,12 +31,15 @@ import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-sto
 import { ReactiveFormsModule, FormsModule } from "@angular/forms"
 import { NgSelectModule } from "@ng-select/ng-select"
 import { NgxWigModule } from "ngx-wig"
+import { stringify } from "querystring"
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
 
 const cardTypes$: BehaviorSubject<string[]> = new BehaviorSubject(cardTypes)
+
+const selectedCard$: BehaviorSubject<DeckItem> = new BehaviorSubject(null)
 
 const displayCards$: Observable<DeckItem[]> = combineLatest(
   parent$,
@@ -60,15 +63,31 @@ const grandParent$: Observable<DeckItem> = parent$.pipe(
   })
 )
 
+const eligibleParents$: Observable<
+  { id: string; title: string }[]
+> = selectedCard$.pipe(withLatestFrom(cards$)).pipe(
+  map(([selectedCard, cards]) => {
+    if (selectedCard) {
+      return cards
+        .filter(c => c.id !== selectedCard.id)
+        .map(c => ({ id: c.id, title: c.title }))
+    }
+  })
+)
+
 const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
   cardTypes$: cardTypes$,
-  //cardTypes$: cardTypes$,
+  eligibleParents$: eligibleParents$,
+  selectedCard$: selectedCard$,
   handleEvent: ($event, name) => {
     console.log($event)
-    //selectedCard$.next($event)
+    switch (name) {
+      case "onEdit":
+        selectedCard$.next($event)
+    }
     action(name)($event)
   },
   handleGoBack: parent => {
@@ -136,7 +155,7 @@ storiesOf("Deck", module)
   .add("Editable", () => ({
     template: `
     <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cardTypes]="cardTypes$ | async"  [cards]="cards$ | async" [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck [cardTypes]="cardTypes$ | async"  [cards]="cards$ | async" [parent] = "parent$ | async" [eligibleParents] = "eligibleParents$ | async"  [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
     `,
     props: props
   }))

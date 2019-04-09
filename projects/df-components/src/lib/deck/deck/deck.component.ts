@@ -44,11 +44,17 @@ export class DeckComponent implements OnInit {
   public cards: DeckItem[]
 
   @Input()
-  public eligibleParentCards: DeckItem[]
-  
+  public eligibleParents: any[]
+
   @Input()
   public cardTypes: string[]
 
+  @Input()
+  public parent: string
+
+  @Input()
+  public selectedCard: DeckItem
+  
   @Output()
   public onAction: EventEmitter<any> = new EventEmitter()
 
@@ -56,11 +62,12 @@ export class DeckComponent implements OnInit {
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
 
   @Output()
-  public onItemEditing:EventEmitter<DeckItem> = new EventEmitter()
+  public onEdit: EventEmitter<DeckItem> = new EventEmitter()
 
   public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(
     webSafeColours
   )
+
   private selectedCardSubscription: Subscription
   public cardEdit: Subject<any> = new Subject<any>()
   public showEditSupportingText: boolean = true
@@ -68,8 +75,7 @@ export class DeckComponent implements OnInit {
   public showEditMedia: boolean = false
   public showEditData: boolean = true
   public currrentCardColour: any
-  public selectedCard: DeckItem
- 
+
   // Leave this it's the weird way you have to do enums in the template
   public cardType = CardType
 
@@ -102,12 +108,12 @@ export class DeckComponent implements OnInit {
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
       .pipe(
-        debounceTime(400),
+        debounceTime(100),
         distinctUntilChanged()
       )
       .subscribe((payload: { currentCard: DeckItem }) => {
         this.populateEditCardForm(payload.currentCard)
-        this.onItemEditing.emit(payload.currentCard)
+        this.onEdit.emit(payload.currentCard)
       })
 
     this.cardForm.get("colour").valueChanges.subscribe(value => {
@@ -121,6 +127,7 @@ export class DeckComponent implements OnInit {
   }
 
   public handelAddNewCard(): void {
+    defaultCard.parent = this.parent
     this.populateEditCardForm(defaultCard)
     this.cards.push(defaultCard)
   }

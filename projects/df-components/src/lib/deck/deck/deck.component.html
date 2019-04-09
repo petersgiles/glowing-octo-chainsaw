@@ -1,7 +1,7 @@
 <ng-template #editCard let-card>
   <form [formGroup]="cardForm" (ngSubmit)="handleSubmit(card)">
     <div class="df-card__title {{ card?.colour }}">
-        <h2 class="df-card__title-text">{{ card?.title }}</h2>
+      <h2 class="df-card__title-text">{{ card?.title }}</h2>
     </div>
     <div class="df-card__title">
       <mdc-form-field fluid>
@@ -73,6 +73,29 @@
         </ng-select>
       </mdc-form-field>
     </div>
+
+    <div class="df-card__supporting-text df-card--border deck-color-selector">
+      <mdc-form-field fluid>
+        <ng-select
+          appendTo="body"
+          [items]="eligibleParents"
+          placeholder="Parent"
+          bindLabel="title"
+          bindValue="id"
+          formControlName="parent"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <h5 class="color-title" [ngClass]="item">{{ item.title }}</h5>
+          </ng-template>
+        </ng-select>
+      </mdc-form-field>
+    </div>
+
     <div
       *ngIf="showEditSupportingText"
       class="df-card__supporting-text df-card--border"
@@ -141,7 +164,6 @@
     <div class="df-card__supporting-text df-card--border">
       <p>Form Status: {{ cardForm.status }}</p>
     </div>
-
     <div class="df-layout-spacer"></div>
     <div class="df-card__actions df-card--border">
       <button mdc-button dense (click)="handleCancelEditCard(card)">
