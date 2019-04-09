@@ -1,10 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core"
-import {
-  MegaTagsService,
-  DeckItem
-} from "../../../../../df-components/src/public_api"
-import { BehaviorSubject, Subscription, Observable } from "rxjs"
-import { withLatestFrom, map, switchMap } from "rxjs/operators"
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
+import { DeckItem, CardType } from "../../../../../df-components/src/public_api"
 
 @Component({
   selector: "df-deck-refiner-story",
@@ -21,21 +16,23 @@ export class DeckRefinerStoryComponent implements OnInit {
   @Input()
   public cardTypes: string[]
 
+  @Output()
+  public onAction: EventEmitter<any> = new EventEmitter()
+
+  @Output()
+  public goBack: EventEmitter<any> = new EventEmitter()
+ // Leave this it's the weird way you have to do enums in the template
+ public cardType = CardType
   // tslint:disable-next-line:no-empty
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+  }
 
   public handleAction($event) {
-    // tslint:disable-next-line:no-console
-    console.log($event)
-    // if submit edited card then handle it here
+    this.onAction.emit($event)
   }
 
-  public handelSubmitted($event) {
-    console.log($event)
-  }
-
-  public handleGoBack(gp) {
-    // tslint:disable-next-line:no-console
-    console.log(gp)
+  public handleGoBack() {
+    console.log("where")
+    this.goBack.emit(this.grandParent)
   }
 }

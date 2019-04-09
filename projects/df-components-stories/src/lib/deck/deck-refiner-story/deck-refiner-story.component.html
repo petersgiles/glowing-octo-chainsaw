@@ -1,16 +1,17 @@
-<section>
+<section *ngIf="grandParent">
   <button
-    *ngIf="(grandParent$ | async) as gp"
     mdc-button
     dense
-    (click)="handleGoBack(gp)"
+    (click)="handleGoBack()"
   >
-    {{ gp?.title }}
+    {{ grandParent?.title }}
   </button>
 </section>
 <df-deck
   [cards]="cards"
-  [cardTypes] ="cardTypes"
+  [cardTypes]="cardTypes"
   (onAction)="handleAction($event)"
-  (onSubmitted) ="handelSubmitted($event)"
+
 ></df-deck>
+
+

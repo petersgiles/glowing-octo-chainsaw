@@ -1,8 +1,7 @@
 import { Component, Output, EventEmitter } from "@angular/core"
 import { MdcDialog } from "@angular-mdc/web"
 import { first } from "rxjs/operators"
-import { DialogAreYouSureComponent } from '../../../../../../projects/df-components/src/public_api';
-
+import { DialogAreYouSureComponent } from "../../../../../../projects/df-components/src/public_api"
 
 @Component({
   selector: "df-dialog-story",
@@ -25,9 +24,7 @@ import { DialogAreYouSureComponent } from '../../../../../../projects/df-compone
   ]
 })
 export class DialogStoryComponent {
-  constructor(
-    public dialog: MdcDialog
-    ) {}
+  constructor(public dialog: MdcDialog) {}
 
   @Output()
   public onStoryEvent: EventEmitter<any> = new EventEmitter()
@@ -35,7 +32,9 @@ export class DialogStoryComponent {
   public openDialog() {
     // tslint:disable-next-line:no-console
     console.log("handleDangerousAction")
-    const dialogRef = this.dialog.open(DialogAreYouSureComponent, { })
+    const dialogRef = this.dialog.open(DialogAreYouSureComponent, {
+      data: ""
+    })
 
     dialogRef
       .afterClosed()

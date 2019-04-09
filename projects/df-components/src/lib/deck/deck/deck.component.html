@@ -161,9 +161,6 @@
         </a>
       </div>
     </mdc-card>
-    <div class="df-card__supporting-text df-card--border">
-      <p>Form Status: {{ cardForm.status }}</p>
-    </div>
     <div class="df-layout-spacer"></div>
     <div class="df-card__actions df-card--border">
       <button mdc-button dense (click)="handleCancelEditCard(card)">
@@ -438,7 +435,7 @@
       </ng-container>
     </div>
   </ng-container>
-  <div *ngIf="!selectedCard" class="df-card__supporting-text">
+  <div *ngIf="!selectedCard && !readOnly" class="df-card__supporting-text">
     <button mdc-button dense (click)="handelAddNewCard()">
       Create New Card
     </button>

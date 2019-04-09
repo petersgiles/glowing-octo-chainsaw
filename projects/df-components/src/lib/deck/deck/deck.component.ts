@@ -54,7 +54,7 @@ export class DeckComponent implements OnInit {
 
   @Input()
   public selectedCard: DeckItem
-  
+
   @Output()
   public onAction: EventEmitter<any> = new EventEmitter()
 
@@ -63,6 +63,9 @@ export class DeckComponent implements OnInit {
 
   @Output()
   public onEdit: EventEmitter<DeckItem> = new EventEmitter()
+
+  @Output()
+  public onCancel: EventEmitter<string> = new EventEmitter()
 
   public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(
     webSafeColours
@@ -117,10 +120,11 @@ export class DeckComponent implements OnInit {
       })
 
     this.cardForm.get("colour").valueChanges.subscribe(value => {
-      if (value) {
+      if (this.selectedCard) {
         this.selectedCard.colour = value
       }
     })
+
     this.cardForm.get("cardType").valueChanges.subscribe(value => {
       this.handleCardType(value)
     })
@@ -130,6 +134,7 @@ export class DeckComponent implements OnInit {
     defaultCard.parent = this.parent
     this.populateEditCardForm(defaultCard)
     this.cards.push(defaultCard)
+    this.onEdit.emit(defaultCard)
   }
 
   public handleAddAction(): void {
@@ -167,8 +172,8 @@ export class DeckComponent implements OnInit {
 
   public handleSubmit(card: DeckItem) {
     if (!this.cardForm.valid) return
-    const editCard = this.mapCard(this.cardForm.value)
-    this.onSubmitted.emit(editCard)
+    const editedCard = this.mapCard(this.cardForm.value)
+    this.onSubmitted.emit(editedCard)
     this.clearEditedData()
   }
 
@@ -184,6 +189,7 @@ export class DeckComponent implements OnInit {
   }
 
   private clearEditedData(): void {
+    this.onCancel.emit("onCancel")
     this.selectedCard = null
     // As form.reset won't clear form array controls
     // hence we have to do it here
@@ -191,7 +197,7 @@ export class DeckComponent implements OnInit {
   }
 
   // Card Type determins a few UI controls to be visible or not
-  // TODO: a better way to handle the UI changes, maybe split to several edit tempalte?
+  // TODO: a better way to handle the UI changes, maybe split to several edit tempaltes?
   private handleCardType(typeName: any) {
     switch (typeName) {
       case "IMAGE":

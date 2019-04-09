@@ -15,23 +15,29 @@ import {
   MdcFormFieldModule,
   MdcTextFieldModule,
   MdcListModule,
-  MdcRippleModule
+  MdcRippleModule,
+  MdcDialogModule,
+  MdcDialog
 } from "@angular-mdc/web"
 
 import {
   DeckModule,
   ButtonModule,
   CardType,
-  DeckItem
+  DeckItem,
+  DialogsModule,
+  DialogAreYouSureComponent
 } from "../../../../../projects/df-components/src/public_api"
 
-import { withLatestFrom, map } from "rxjs/operators"
+import { withLatestFrom, map, first } from "rxjs/operators"
 import { ChartsModule } from "ng2-charts/ng2-charts"
 import { DeckRefinerStoryComponent } from "./deck-refiner-story/deck-refiner-story.component"
 import { ReactiveFormsModule, FormsModule } from "@angular/forms"
 import { NgSelectModule } from "@ng-select/ng-select"
 import { NgxWigModule } from "ngx-wig"
-import { stringify } from "querystring"
+import { DeckEditCardStoryComponent } from "./deck-edit-card-story/deck-edit-card-story.component"
+
+const ENTRYCOMPONENTS = [DialogAreYouSureComponent]
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
 
@@ -71,6 +77,8 @@ const eligibleParents$: Observable<
       return cards
         .filter(c => c.id !== selectedCard.id)
         .map(c => ({ id: c.id, title: c.title }))
+    } else {
+      return []
     }
   })
 )
@@ -87,6 +95,9 @@ const props = {
     switch (name) {
       case "onEdit":
         selectedCard$.next($event)
+        break
+      case "onCancel":
+        selectedCard$.next(null)
     }
     action(name)($event)
   },
@@ -138,9 +149,12 @@ storiesOf("Deck", module)
         NgxWigModule,
         DeckModule,
         ButtonModule,
-        MdcRippleModule
+        MdcRippleModule,
+        MdcDialogModule,
+        DialogsModule
       ],
-      declarations: [DeckRefinerStoryComponent]
+      declarations: [DeckRefinerStoryComponent, DeckEditCardStoryComponent],
+      entryComponents: ENTRYCOMPONENTS
     })
   )
   .addDecorator(withReadme(Readme))
@@ -154,14 +168,16 @@ storiesOf("Deck", module)
   }))
   .add("Editable", () => ({
     template: `
-    <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck [cardTypes]="cardTypes$ | async"  [cards]="cards$ | async" [parent] = "parent$ | async" [eligibleParents] = "eligibleParents$ | async"  [readOnly]="false" (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onEdit)="handleEvent($event, 'onEdit')"></df-deck>
+    <df-deck-edit-card-story [cardTypes]="cardTypes$ | async" [selectedCard]="selectedCard$ | async"  [cards]="cards$ | async" [grandParent]="(grandParent$ | async)"  [parent] = "parent$ | async" [eligibleParents] = "eligibleParents$ | async" [readOnly]="false" 
+    (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onCancel)="handleEvent($event, 'onCancel')" (onEdit)="handleEvent($event, 'onEdit')" (goBack) ="handleGoBack($event)">
+    </df-deck-edit-card-story>
     `,
+
     props: props
   }))
   .add("Big Story", () => ({
     template: `
-       <df-deck-refiner-story  [cards]="cards$ | async"></df-deck-refiner-story>
+       <df-deck-refiner-story [grandParent]="(grandParent$ | async)" [cards]="cards$ | async" (onAction)="handleAction($event)" (goBack) ="handleGoBack($event)"></df-deck-refiner-story>
     `,
     props: props
   }))

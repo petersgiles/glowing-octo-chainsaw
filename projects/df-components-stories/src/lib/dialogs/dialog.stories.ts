@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { MdcButtonModule, MdcDialog, MdcDialogModule } from "@angular-mdc/web"
+import { MdcButtonModule, MdcDialogModule } from "@angular-mdc/web"
 
 import { DialogStoryComponent } from "./dialog-story/dialog-story.component"
 import {

@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core"
-import { MdcDialogRef } from "@angular-mdc/web"
+import { Component, OnInit, Input, Inject } from "@angular/core"
+import { MdcDialogRef, MDC_DIALOG_DATA } from "@angular-mdc/web"
 
 export const ARE_YOU_SURE_ACCEPT = "accept"
 export const ARE_YOU_SURE_CLOSE = "close"
@@ -12,6 +12,9 @@ export const ARE_YOU_SURE_CLOSE = "close"
         <mdc-dialog-title
           >Are you sure you want to take this action?</mdc-dialog-title
         >
+        <mdc-dialog-content>
+          {{ content }}
+        </mdc-dialog-content>
         <mdc-dialog-actions>
           <button mdcDialogButton mdcDialogAction="${ARE_YOU_SURE_CLOSE}">
             No
@@ -30,7 +33,10 @@ export const ARE_YOU_SURE_CLOSE = "close"
   styles: [``]
 })
 export class DialogAreYouSureComponent implements OnInit {
-  constructor(public dialogRef: MdcDialogRef<DialogAreYouSureComponent>) {}
+  constructor(
+    public dialogRef: MdcDialogRef<DialogAreYouSureComponent>,
+    @Inject(MDC_DIALOG_DATA) public content: any
+  ) {}
 
   // tslint:disable-next-line:no-empty
   public ngOnInit() {}

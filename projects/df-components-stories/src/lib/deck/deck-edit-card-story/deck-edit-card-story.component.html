@@ -1,0 +1,18 @@
+<section *ngIf="grandParent">
+  <button mdc-button dense (click)="handleGoBack()">
+    {{ grandParent?.title }}
+  </button>
+</section>
+<df-deck
+  [cardTypes]="cardTypes"
+  [cards]="cards"
+  [parent]="parent"
+  [eligibleParents]="eligibleParents"
+  [readOnly]="false"
+  [selectedCard] ="selectedCard"
+  (onSubmitted)="handleSubmitted($event)"
+  (onAction)="handleAction($event)"
+  (onEdit) ="handleEdit($event)"
+  (onCancel) = "handleCancel($event)"
+>
+</df-deck>
