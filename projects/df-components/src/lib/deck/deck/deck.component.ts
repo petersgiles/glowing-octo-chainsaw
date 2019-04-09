@@ -6,8 +6,6 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
-import { cards } from "projects/df-components-stories/src/lib/deck/deck-data"
-import { getElementDepthCount } from "@angular/core/src/render3/state"
 
 const defaultCard = {
   title: "New Card",
