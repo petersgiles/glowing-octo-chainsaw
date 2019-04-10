@@ -32,7 +32,6 @@ export class DeckRefinerStoryComponent implements OnInit {
   }
 
   public handleGoBack() {
-    console.log("where")
     this.goBack.emit(this.grandParent)
   }
 }

@@ -36,6 +36,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms"
 import { NgSelectModule } from "@ng-select/ng-select"
 import { NgxWigModule } from "ngx-wig"
 import { DeckEditCardStoryComponent } from "./deck-edit-card-story/deck-edit-card-story.component"
+import { DeckHelper } from "../../../../df-components/src/lib/deck/deck-helper"
 
 const ENTRYCOMPONENTS = [DialogAreYouSureComponent]
 
@@ -51,15 +52,19 @@ const displayCards$: Observable<DeckItem[]> = combineLatest(
   parent$,
   cards$
 ).pipe(
-  map(([parentId, cards]) =>
-    cards
+  map(([parentId, cards]) => {
+    const value = cards
       .filter(c => {
         return c.parent == parentId
       })
       .sort((a, b) => {
         return Number(a.sortOrder) < Number(b.sortOrder) ? -1 : 1
       })
-  )
+    value.forEach(c => {
+      c.hasChildren = cards.filter(x => x.parent == c.id).length > 0
+    })
+    return value
+  })
 )
 
 const grandParent$: Observable<DeckItem> = parent$.pipe(
@@ -77,6 +82,9 @@ const eligibleParents$: Observable<
       return cards
         .filter(c => c.id !== selectedCard.id)
         .map(c => ({ id: c.id, title: c.title }))
+        .sort((a, b) => {
+          return a.title < b.title ? -1 : 1
+        })
     } else {
       return []
     }
@@ -107,7 +115,7 @@ const props = {
   },
   handleAction: $event => {
     const cardType = CardType
-    if ($event.cardType == cardType.Parent) {
+    if ($event.cardType == cardType.Parent || $event.hasChildren) {
       parent$.next($event.id)
       action("Parent Navigation")($event.id)
     } else {
@@ -119,6 +127,14 @@ const props = {
     const oldCards = cards$.getValue()
     action("🦊 OldCards")(oldCards)
     const newCards = oldCards.filter(p => submittedCard.id !== p.id)
+    const oldCard = oldCards.find(p => p.id === submittedCard.id)
+    if (oldCard && submittedCard.parent !== oldCard.parent) {
+      const cards = cards$.getValue()
+      if (DeckHelper.isSelectedParentACurrentDescendant(submittedCard, cards)) {
+        DeckHelper.liftUpChildren(oldCard, cards)
+      }
+    }
+
     if (!submittedCard.id) {
       submittedCard.id = Math.random().toString()
     }
@@ -126,6 +142,7 @@ const props = {
     action("🦊 NewCards")(newCards)
     cards$.next(newCards)
     action("🦊 Edited Card")(submittedCard)
+    selectedCard$.next(null)
   }
 }
 

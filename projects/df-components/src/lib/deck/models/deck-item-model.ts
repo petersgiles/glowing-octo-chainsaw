@@ -49,4 +49,5 @@ export interface DeckItem {
   titleClass: string
   media: DeckItemMedia
   data: any
+  hasChildren?: boolean
 }

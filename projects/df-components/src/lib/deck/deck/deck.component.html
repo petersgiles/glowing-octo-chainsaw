@@ -176,7 +176,7 @@
 <ng-template #cardActions let-card>
   <div
     class="df-card__actions df-card--border"
-    *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0"
+    *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0 || card?.hasChildren"
   >
     <a
       *ngFor="let action of card?.actions"
@@ -186,7 +186,7 @@
       >{{ action.title }}</a
     >
     <a
-      *ngIf="card?.cardType == cardType.Parent"
+      *ngIf="card?.cardType == cardType.Parent || card?.hasChildren"
       (click)="onAction.emit(card)"
       mdc-button
       dense

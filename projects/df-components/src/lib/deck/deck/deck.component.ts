@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
+import { cards } from "projects/df-components-stories/src/lib/deck/deck-data"
 
 const defaultCard = {
   title: "New Card",
@@ -19,7 +20,8 @@ const defaultCard = {
   titleClass: null,
   media: null,
   actions: null,
-  data: null
+  data: null,
+  hasChildren: false
 }
 
 const actionGroupItem = {
@@ -109,6 +111,7 @@ export class DeckComponent implements OnInit {
     return this.fb.group(actionGroupItem)
   }
   public ngOnInit() {
+    
     this.selectedCardSubscription = this.cardEdit
       .pipe(
         debounceTime(100),
@@ -189,7 +192,6 @@ export class DeckComponent implements OnInit {
   }
 
   private clearEditedData(): void {
-    this.onCancel.emit("onCancel")
     this.selectedCard = null
     // As form.reset won't clear form array controls
     // hence we have to do it here
