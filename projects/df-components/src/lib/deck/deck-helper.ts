@@ -1,4 +1,4 @@
-import { DeckItem } from "projects/df-components/src/lib/deck"
+import { DeckItem } from "./models/deck-item-model"
 
 export class DeckHelper {
   public static lookForAllDescendants(
@@ -25,8 +25,10 @@ export class DeckHelper {
   }
 
   public static liftUpChildren(parent: DeckItem, cards: DeckItem[]) {
-    cards.filter(c => c.parent === parent.id).forEach(c => {
-      c.parent = parent.parent
-    })
+    cards
+      .filter(c => c.parent === parent.id)
+      .forEach(c => {
+        c.parent = parent.parent
+      })
   }
 }
