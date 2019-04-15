@@ -96,10 +96,7 @@
       </mdc-form-field>
     </div>
 
-    <div
-      *ngIf="showEditSupportingText"
-      class="df-card__supporting-text df-card--border"
-    >
+    <div *ngIf="!showEditData" class="df-card__supporting-text df-card--border">
       <mdc-form-field>
         <ngx-wig
           formControlName="supportingText"
@@ -107,6 +104,33 @@
         ></ngx-wig>
       </mdc-form-field>
     </div>
+
+    <div *ngIf="showBriefList" class="df-card__supporting-text df-card--border deck-color-selector">
+      <mdc-form-field fluid>
+        <ng-select
+          appendTo="body"
+          [items]="briefs"
+          bindLabel="name"
+          placeholder="Select Brief"
+          [multiple] ="true"
+          (change) = "handleChangeBrief($event)"
+          [clearable]="false"
+          [hideSelected]="true"
+          [virtualScroll]="true"
+          formControlName="selectedBriefs"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <h5 class="color-title" [ngClass]="item">{{ item.name }}</h5>
+          </ng-template>
+        </ng-select>
+      </mdc-form-field>
+    </div>
+
     <div *ngIf="showEditData" class="df-card__supporting-text df-card--border">
       <mdc-form-field fluid>
         <mdc-textarea label="Data" formControlName="data" rows="5">
@@ -116,7 +140,7 @@
     <div
       formGroupName="media"
       *ngIf="showEditMedia"
-      class="df-card__supporting-text df-card--border"
+      class="df-card__title"
     >
       <mdc-text-field
         type="url"
@@ -176,7 +200,11 @@
 <ng-template #cardActions let-card>
   <div
     class="df-card__actions df-card--border"
-    *ngIf="card?.cardType == cardType.Parent || card?.actions?.length > 0 || card?.hasChildren"
+    *ngIf="
+      card?.cardType == cardType.Parent ||
+      card?.actions?.length > 0 ||
+      card?.hasChildren
+    "
   >
     <a
       *ngFor="let action of card?.actions"

@@ -1,5 +1,9 @@
 import { CardType } from "./card-type-enum"
 
+export interface Brief {
+  id: string
+  name: string
+}
 export interface DeckItemMedia {
   id?: string
   url: string

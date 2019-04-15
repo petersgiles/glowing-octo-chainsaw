@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import {
   DeckItem,
   DialogAreYouSureComponent,
-  CardType
+  CardType,
+  Brief
 } from "../../../../../df-components/src/public_api"
 import { MdcDialog } from "@angular-mdc/web"
 import { first } from "rxjs/operators"
@@ -22,6 +23,9 @@ export class DeckEditCardStoryComponent implements OnInit {
 
   @Input()
   public cards: DeckItem[]
+
+  @Input()
+  public briefs: Brief[]
 
   @Input()
   public eligibleParents: any[]
@@ -65,11 +69,34 @@ export class DeckEditCardStoryComponent implements OnInit {
   }
 
   public handleCancel($event) {
+    this.selectedCard = null
     this.onCancel.emit($event)
   }
 
   public handleAction($event) {
-    this.onAction.emit($event)
+    const cardType = CardType
+    if ($event.cardType === cardType.Parent || $event.hasChildren) {
+      if (this.selectedCard) {
+        const dialogRef = this.dialog.open(DialogAreYouSureComponent, {
+          data: `It looks like you have been editing a card: ${
+            this.selectedCard.title
+          } . If you leave before saving, your changes will be lost.`
+        })
+        dialogRef
+          .afterClosed()
+          .pipe(first())
+          .subscribe(result => {
+            if (result === "accept") {
+              this.onAction.emit($event)
+              this.selectedCard = null
+            }
+          })
+      } else {
+        this.onAction.emit($event)
+      }
+    } else {
+      this.onAction.emit($event)
+    }
   }
 
   public handleGoBack() {

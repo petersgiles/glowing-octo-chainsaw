@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions"
 
 import { withReadme } from "storybook-readme/backwardCompatibility"
 import * as Readme from "./README.md"
-import { deckItems, cardTypes } from "./deck-data"
+import { deckItems, cardTypes, cards, briefs } from "./deck-data"
 import { BehaviorSubject, Observable, combineLatest } from "rxjs"
 import {
   MdcCardModule,
@@ -26,7 +26,8 @@ import {
   CardType,
   DeckItem,
   DialogsModule,
-  DialogAreYouSureComponent
+  DialogAreYouSureComponent,
+  Brief
 } from "../../../../../projects/df-components/src/public_api"
 
 import { withLatestFrom, map, first } from "rxjs/operators"
@@ -41,6 +42,8 @@ import { DeckHelper } from "../../../../df-components/src/lib/deck/deck-helper"
 const ENTRYCOMPONENTS = [DialogAreYouSureComponent]
 
 const cards$: BehaviorSubject<DeckItem[]> = new BehaviorSubject(deckItems)
+
+const briefs$: BehaviorSubject<Brief[]> = new BehaviorSubject(briefs)
 
 const parent$: BehaviorSubject<string> = new BehaviorSubject(null)
 
@@ -95,9 +98,11 @@ const props = {
   parent$: parent$,
   grandParent$: grandParent$,
   cards$: displayCards$,
+  briefs$: briefs$,
   cardTypes$: cardTypes$,
   eligibleParents$: eligibleParents$,
   selectedCard$: selectedCard$,
+
   handleEvent: ($event, name) => {
     console.log($event)
     switch (name) {
@@ -106,6 +111,7 @@ const props = {
         break
       case "onCancel":
         selectedCard$.next(null)
+        break
     }
     action(name)($event)
   },
@@ -178,23 +184,51 @@ storiesOf("Deck", module)
   .addDecorator(withLinks)
   .add("ReadOnly", () => ({
     template: `
-    <section><button *ngIf="(grandParent$ | async) as gp" mdc-button dense (click)="handleGoBack(gp)">{{gp?.title}}</button></section>
-    <df-deck  [cards]="cards$ | async" (onAction)="handleAction($event)"></df-deck>
+    <section>
+      <button
+        *ngIf="(grandParent$ | async) as gp"
+        mdc-button
+        dense
+        (click)="handleGoBack(gp)"
+      >
+        {{ gp?.title }}
+      </button>
+    </section>
+    <df-deck [cards]="cards$ | async" (onAction)="handleAction($event)"></df-deck>
     `,
     props: props
   }))
   .add("Editable", () => ({
     template: `
-    <df-deck-edit-card-story [cardTypes]="cardTypes$ | async" [selectedCard]="selectedCard$ | async"  [cards]="cards$ | async" [grandParent]="(grandParent$ | async)"  [parent] = "parent$ | async" [eligibleParents] = "eligibleParents$ | async" [readOnly]="false" 
-    (onSubmitted)="handleSubmitted($event)" (onAction)="handleAction($event)" (onCancel)="handleEvent($event, 'onCancel')" (onEdit)="handleEvent($event, 'onEdit')" (goBack) ="handleGoBack($event)">
-    </df-deck-edit-card-story>
+    <df-deck-edit-card-story
+      [cardTypes]="cardTypes$ | async"
+      [briefs]="briefs$ | async"
+      [selectedCard]="selectedCard$ | async"
+      [cards]="cards$ | async"
+      [grandParent]="grandParent$ | async"
+      [parent]="parent$ | async"
+      [eligibleParents]="eligibleParents$ | async"
+      [readOnly]="false"
+      (onSubmitted)="handleSubmitted($event)"
+      (onAction)="handleAction($event)"
+      (onCancel)="handleEvent($event, 'onCancel')"
+      (onEdit)="handleEvent($event, 'onEdit')"
+      (goBack)="handleGoBack($event)"
+    >
+  </df-deck-edit-card-story>
     `,
 
     props: props
   }))
   .add("Big Story", () => ({
     template: `
-       <df-deck-refiner-story [grandParent]="(grandParent$ | async)" [cards]="cards$ | async" (onAction)="handleAction($event)" (goBack) ="handleGoBack($event)"></df-deck-refiner-story>
+    <df-deck-refiner-story
+    [grandParent]="grandParent$ | async"
+    [cards]="cards$ | async"
+    (onAction)="handleAction($event)"
+    (goBack)="handleGoBack($event)"
+    ></df-deck-refiner-story>
+  
     `,
     props: props
   }))

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
-import { DeckItem } from "../models/deck-item-model"
+import { DeckItem, Brief } from "../models/deck-item-model"
 import { CardType } from "../models/card-type-enum"
 import { getContrastYIQ } from "../../utils/colour"
 import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
@@ -45,6 +45,9 @@ export class DeckComponent implements OnInit {
   public cards: DeckItem[]
 
   @Input()
+  public briefs: Brief[]
+
+  @Input()
   public eligibleParents: any[]
 
   @Input()
@@ -75,7 +78,7 @@ export class DeckComponent implements OnInit {
   private selectedCardSubscription: Subscription
   public cardEdit: Subject<any> = new Subject<any>()
   public showEditSupportingText: boolean = true
-  public showEditActions: boolean = true
+  public showBriefList: boolean = true
   public showEditMedia: boolean = false
   public showEditData: boolean = true
   public currrentCardColour: any
@@ -99,7 +102,8 @@ export class DeckComponent implements OnInit {
       url: [""]
     }),
     actions: this.fb.array([]),
-    data: []
+    data: [],
+    selectedBriefs: []
   })
 
   get actions(): FormArray {
@@ -110,7 +114,6 @@ export class DeckComponent implements OnInit {
     return this.fb.group(actionGroupItem)
   }
   public ngOnInit() {
-    
     this.selectedCardSubscription = this.cardEdit
       .pipe(
         debounceTime(100),
@@ -163,23 +166,24 @@ export class DeckComponent implements OnInit {
   }
 
   public handleCancelEditCard(card) {
-    this.clearEditedData()
-    this.cardForm.reset()
+    this.onCancel.emit(card)
     // remove card just created
-    if (!card.id) {
+    if (!card! || card.id) {
       const cardItems = this.cards.filter(item => item.id)
       this.cards = cardItems
     }
+    this.clearEditedData(card)
   }
 
   public handleSubmit(card: DeckItem) {
     if (!this.cardForm.valid) return
     const editedCard = this.mapCard(this.cardForm.value)
     this.onSubmitted.emit(editedCard)
-    this.clearEditedData()
+    this.clearEditedData(card)
   }
 
   public ngOnDestroy(): void {
+    this.selectedCard = null
     this.selectedCardSubscription.unsubscribe()
   }
 
@@ -190,8 +194,9 @@ export class DeckComponent implements OnInit {
     return map
   }
 
-  private clearEditedData(): void {
+  private clearEditedData(card): void {
     this.selectedCard = null
+    this.cardForm.reset()
     // As form.reset won't clear form array controls
     // hence we have to do it here
     this.cardForm.setControl("actions", new FormArray([]))
@@ -200,28 +205,11 @@ export class DeckComponent implements OnInit {
   // Card Type determins a few UI controls to be visible or not
   // TODO: a better way to handle the UI changes, maybe split to several edit tempaltes?
   private handleCardType(typeName: any) {
-    switch (typeName) {
-      case "IMAGE":
-      case "AUDIO":
-        this.showEditMedia = true
-        this.showEditSupportingText = true
-        this.showEditData = false
-        break
-      case "VIDEO":
-        this.showEditMedia = true
-        this.showEditSupportingText = false
-        this.showEditData = false
-        break
-      case "BRIEFSUMMARY":
-        this.showEditData = true
-        this.showEditMedia = false
-        this.showEditSupportingText = false
-        break
-      default:
-        this.showEditMedia = false
-        this.showEditSupportingText = true
-        this.showEditData = false
-    }
+    this.showEditMedia =
+      typeName === "IMAGE" || typeName === "AUDIO" || typeName === "VIDEO"
+    this.showBriefList = typeName === "BRIEFSUMMARY"
+    this.showEditData = typeName === "BRIEFSUMMARY" || typeName === "CHART"
+
     if (this.showEditMedia) {
       this.cardForm
         .get("media")
@@ -262,6 +250,22 @@ export class DeckComponent implements OnInit {
       })
     }
     this.handleCardType(this.selectedCard.cardType)
+
+    if (
+      this.selectedCard.cardType === CardType.BriefSummary &&
+      this.selectedCard.data
+    ) {
+      const selectedBriefs = JSON.parse(this.selectedCard.data)
+      this.cardForm.get("selectedBriefs").setValue(selectedBriefs)
+      console.log(selectedBriefs)
+    }
     this.cardForm.patchValue(patchCard)
+  }
+  public handleChangeBrief($event) {
+    this.cardForm
+      .get("data")
+      .setValue(
+        JSON.stringify(this.cardForm.get("selectedBriefs").value, null, "\t")
+      )
   }
 }
