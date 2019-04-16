@@ -15,6 +15,7 @@
       [options]="options" 
       (moveNode)="onMoveNode.emit($event)" 
       (activate)="handleActivate($event)"
+      (toggleExpanded)="handleToggleExpanded($event)"
       (dblclick)="handleDblClick($event)">
     <ng-template
       #treeNodeFullTemplate

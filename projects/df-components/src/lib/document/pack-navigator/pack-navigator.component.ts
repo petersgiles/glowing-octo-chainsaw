@@ -7,9 +7,15 @@ import {
   ViewChild
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
-import { debounceTime, distinctUntilChanged, map, filter, tap } from "rxjs/operators"
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  filter,
+  tap
+} from "rxjs/operators"
 import { Subject } from "rxjs"
-import { TreeModel, TreeNode } from 'angular-tree-component';
+import { TreeModel, TreeNode } from "angular-tree-component"
 
 @Component({
   selector: "df-pack-navigator",
@@ -37,6 +43,9 @@ export class PackNavigatorComponent implements OnInit {
   public nodes: NavigatorTreeNode[]
 
   @Output()
+  public onToggleExpand: EventEmitter<any> = new EventEmitter()
+
+  @Output()
   public onSelect: EventEmitter<any> = new EventEmitter()
 
   @Output()
@@ -46,8 +55,6 @@ export class PackNavigatorComponent implements OnInit {
   public onMoveNode: EventEmitter<any> = new EventEmitter()
 
   public handleActivate($event) {
-    // tslint:disable-next-line:no-console
-    console.log("handleActivate =>", $event)
     const node = $event.node
     if (!node.children) {
       this.onSelect.emit(node)
@@ -59,38 +66,44 @@ export class PackNavigatorComponent implements OnInit {
     console.log("handleClick =>", $event)
   }
 
+  public handleToggleExpanded($event) {
+    this.onToggleExpand.emit($event)
+  }
+
   public ngOnInit() {
     this.options = {
-      actionMapping:  {
+      actionMapping: {
         mouse: {
           contextMenu: (tree, node, $event) => {
-            if(!this.readOnly)
-            {
-              $event.preventDefault();
+            if (!this.readOnly) {
+              $event.preventDefault()
               node.data.edit = !node.data.edit
             }
           },
-          drop: (tree: TreeModel, node: TreeNode, $event: any, {from , to}: {from: any, to: any}) => {
+          drop: (
+            tree: TreeModel,
+            node: TreeNode,
+            $event: any,
+            { from, to }: { from: any; to: any }
+          ) => {
             // default action assumes from = node, to = {parent, index}
             if ($event.ctrlKey) {
-              tree.copyNode(from, to);
+              tree.copyNode(from, to)
             } else {
-              tree.moveNode(from, to);
+              tree.moveNode(from, to)
             }
           }
         }
       },
       allowDrag: node => {
-        if(this.readOnly)
-        {
+        if (this.readOnly) {
           return false
         }
 
         return node.isLeaf
       },
       allowDrop: (element, { parent, index }) => {
-        if(this.readOnly)
-        {
+        if (this.readOnly) {
           return false
         }
         return true // parent.hasChildren
@@ -115,31 +128,31 @@ export class PackNavigatorComponent implements OnInit {
         }
       })
 
-
-      this.nodeEdit
+    this.nodeEdit
       .pipe(
         debounceTime(400),
-        distinctUntilChanged(),
+        distinctUntilChanged()
       )
-      .subscribe((payload: {$event: any, val: string, node: any }) => {
+      .subscribe((payload: { $event: any; val: string; node: any }) => {
         // tslint:disable-next-line:no-console
         console.log(payload.$event, payload.$event.key)
-        if(payload.$event.key === "Enter"){
+        if (payload.$event.key === "Enter") {
           payload.node.data.caption = payload.val
           payload.node.data.edit = false
-          this.onNodeEdited.emit({id: payload.node.id, caption: payload.val})
+          this.onNodeEdited.emit({ id: payload.node.id, caption: payload.val })
         }
-        if(payload.$event.key === undefined || payload.$event.key === "Escape"){
+        if (
+          payload.$event.key === undefined ||
+          payload.$event.key === "Escape"
+        ) {
           payload.node.data.edit = false
         }
       })
-
   }
 
-  public clearFilter(){
-    
-    this.filterInput.value=null
-    this.filter.next('');
+  public clearFilter() {
+    this.filterInput.value = null
+    this.filter.next("")
   }
 
   public getNodeColour(node) {
