@@ -59,4 +59,13 @@ export class StoryPackNavigatorComponent implements OnInit, OnDestroy {
     ]
     this.navData$.next(list)
   }
+
+  public expandNode(){
+    this.storyData = this.storyData.map(p => ({
+      ...p,
+      expanded: true}
+      ))
+
+    this.navData$.next(this.storyData)
+  }
 }

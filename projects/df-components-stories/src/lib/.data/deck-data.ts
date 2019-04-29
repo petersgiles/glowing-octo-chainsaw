@@ -9,7 +9,7 @@ export const navigatorData: NavigatorTreeNode[] = [
       colour: "GoldenRod",
       order: 17,
       active: false,
-      expanded: true
+      expanded: false
     },
     {
       id: "d28dd1d7-7a03-53e2-8620-7cc9801fb091",

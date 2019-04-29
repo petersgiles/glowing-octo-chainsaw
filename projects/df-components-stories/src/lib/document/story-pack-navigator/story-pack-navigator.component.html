@@ -7,6 +7,11 @@
       <button mdc-button (click)="treeDataVisible = !treeDataVisible">
             Tree Data: {{ treeDataVisible ? "Hide" : "Show" }}
           </button>
+
+
+      <button mdc-button (click)="expandNode()">
+        Expand Node
+      </button>
   </div>
 
   <df-pack-navigator

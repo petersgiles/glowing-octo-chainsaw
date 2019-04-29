@@ -5,7 +5,9 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import {
@@ -23,11 +25,14 @@ import { TreeModel, TreeNode } from "angular-tree-component"
   templateUrl: "./pack-navigator.component.html",
   styleUrls: ["./pack-navigator.component.scss"]
 })
-export class PackNavigatorComponent implements OnInit, AfterViewInit {
+export class PackNavigatorComponent implements OnInit, OnChanges {
+
   public options: any
   public filter: Subject<string> = new Subject<string>()
   public nodeEdit: Subject<any> = new Subject<any>()
   public treeDataVisible: boolean
+// tslint:disable-next-line: variable-name
+  public _nodes: NavigatorTreeNode[];
   // tslint:disable-next-line:no-empty
   constructor() {}
 
@@ -41,7 +46,8 @@ export class PackNavigatorComponent implements OnInit, AfterViewInit {
   public readOnly: boolean
 
   @Input()
-  public nodes: NavigatorTreeNode[]
+  public nodes
+ 
 
   @Output()
   public onToggleExpand: EventEmitter<any> = new EventEmitter()
@@ -151,6 +157,15 @@ export class PackNavigatorComponent implements OnInit, AfterViewInit {
       })
   }
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.nodes) {
+      return
+    }
+    this.nodes.forEach(node => {
+      this.expandNode(node)
+    })
+  }
+
   public ngAfterViewInit(): void {
     if (!this.nodes) {
       return
@@ -161,7 +176,7 @@ export class PackNavigatorComponent implements OnInit, AfterViewInit {
   }
 
   private expandNode(node) {
-    if (node.expanded) {
+    if (node && node.expanded) {
       const expandNode = this.tree.treeModel.getNodeById(node.id)
       expandNode.expand()
       node.children.forEach(child => {
