@@ -152,16 +152,15 @@ export class PackNavigatorComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    // tslint:disable-next-line:no-console
-    console.log(`🐹 -  ngAfterViewInit`, this.nodes)
+    if (!this.nodes) {
+      return
+    }
     this.nodes.forEach(node => {
       this.expandNode(node)
     })
   }
 
   private expandNode(node) {
-    // tslint:disable-next-line:no-console
-    console.log(`🦊 -  expandNode`, node)
     if (node.expanded) {
       const expandNode = this.tree.treeModel.getNodeById(node.id)
       expandNode.expand()
