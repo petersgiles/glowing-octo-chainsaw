@@ -4,7 +4,8 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild
+  ViewChild,
+  AfterViewInit
 } from "@angular/core"
 import { NavigatorTreeNode } from "../models/navigator-tree-node"
 import {
@@ -22,7 +23,7 @@ import { TreeModel, TreeNode } from "angular-tree-component"
   templateUrl: "./pack-navigator.component.html",
   styleUrls: ["./pack-navigator.component.scss"]
 })
-export class PackNavigatorComponent implements OnInit {
+export class PackNavigatorComponent implements OnInit, AfterViewInit {
   public options: any
   public filter: Subject<string> = new Subject<string>()
   public nodeEdit: Subject<any> = new Subject<any>()
@@ -148,6 +149,26 @@ export class PackNavigatorComponent implements OnInit {
           payload.node.data.edit = false
         }
       })
+  }
+
+  public ngAfterViewInit(): void {
+    // tslint:disable-next-line:no-console
+    console.log(`🐹 -  ngAfterViewInit`, this.nodes)
+    this.nodes.forEach(node => {
+      this.expandNode(node)
+    })
+  }
+
+  private expandNode(node) {
+    // tslint:disable-next-line:no-console
+    console.log(`🦊 -  expandNode`, node)
+    if (node.expanded) {
+      const expandNode = this.tree.treeModel.getNodeById(node.id)
+      expandNode.expand()
+      node.children.forEach(child => {
+        this.expandNode(child)
+      })
+    }
   }
 
   public clearFilter() {
