@@ -42,6 +42,9 @@ export class DeckComponent implements OnInit {
   public readOnly = true
 
   @Input()
+  public allowMutate = true
+
+  @Input()
   public cards: DeckItem[]
 
   @Input()
@@ -138,7 +141,9 @@ export class DeckComponent implements OnInit {
   public handelAddNewCard(): void {
     defaultCard.parent = this.parent
     this.populateEditCardForm(defaultCard)
-    this.cards.push(defaultCard)
+    if(this.allowMutate){
+      this.cards.push(defaultCard)
+    }
     this.onEdit.emit(defaultCard)
   }
 
