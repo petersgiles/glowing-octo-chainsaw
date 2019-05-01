@@ -138,7 +138,7 @@ export class DeckComponent implements OnInit {
     })
   }
 
-  public handelAddNewCard(): void {
+  public handleAddNewCard(): void {
     defaultCard.parent = this.parent
     this.populateEditCardForm(defaultCard)
     if(this.allowMutate){
