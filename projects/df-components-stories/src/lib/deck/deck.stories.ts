@@ -38,6 +38,7 @@ import { NgSelectModule } from "@ng-select/ng-select"
 import { NgxWigModule } from "ngx-wig"
 import { DeckEditCardStoryComponent } from "./deck-edit-card-story/deck-edit-card-story.component"
 import { DeckHelper } from "../../../../df-components/src/lib/deck/deck-helper"
+import { NgJsonEditorModule } from 'ang-jsoneditor';
 
 const ENTRYCOMPONENTS = [DialogAreYouSureComponent]
 
@@ -174,7 +175,8 @@ storiesOf("Deck", module)
         ButtonModule,
         MdcRippleModule,
         MdcDialogModule,
-        DialogsModule
+        DialogsModule,
+        NgJsonEditorModule
       ],
       declarations: [DeckRefinerStoryComponent, DeckEditCardStoryComponent],
       entryComponents: ENTRYCOMPONENTS

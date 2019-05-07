@@ -133,8 +133,7 @@
 
     <div *ngIf="showEditData" class="df-card__supporting-text df-card--border">
       <mdc-form-field fluid>
-        <mdc-textarea label="Data" formControlName="data" rows="5">
-        </mdc-textarea>
+        <json-editor [options]="editorOptions" formControlName="data"></json-editor>
       </mdc-form-field>
     </div>
     <div

@@ -33,10 +33,12 @@
     "@angular/router": "^7.2.9",
     "@ng-select/ng-select": "^2.16.4",
     "core-js": "^2.6.5",
+    "file-loader": "^3.0.1",
     "material-icons": "^0.3.0",
     "ngx-wig": "^2.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
+    "url-loader": "^1.1.2",
     "zone.js": "~0.8.26"
   },
   "peerDependencies": {
@@ -71,6 +73,8 @@
     "@types/node": "^11.11.3",
     "@types/storybook__addon-options": "^4.0.1",
     "angular-tree-component": "^8.3.0",
+    "ang-jsoneditor": "^1.7.4",
+    "jsoneditor": "^5.32.2",
     "babel-loader": "^8.0.5",
     "chart.js": "^2.7.3",
     "codelyzer": "~4.5.0",

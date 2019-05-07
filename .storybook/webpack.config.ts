@@ -12,9 +12,21 @@ module.exports = {
               parser: "typescript"
             }
           }
+         
         ],
         include: [path.resolve(__dirname, "../projects")],
         enforce: "pre"
+      },
+      {
+        test: /\.(gif|svg|jpg|png)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   }

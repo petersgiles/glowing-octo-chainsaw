@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
 
 const defaultCard = {
   title: "New Card",
@@ -34,9 +35,6 @@ const actionGroupItem = {
   styleUrls: ["./deck.component.scss"]
 })
 export class DeckComponent implements OnInit {
-  // tslint:disable-next-line:no-empty
-  constructor(private fb: FormBuilder) {}
-  // tslint:disable-next-line:no-empty
 
   @Input()
   public readOnly = true
@@ -78,6 +76,8 @@ export class DeckComponent implements OnInit {
     webSafeColours
   )
 
+  public editorOptions: JsonEditorOptions = new JsonEditorOptions()
+
   private selectedCardSubscription: Subscription
   public cardEdit: Subject<any> = new Subject<any>()
   public showEditSupportingText: boolean = true
@@ -116,6 +116,13 @@ export class DeckComponent implements OnInit {
   get action(): FormGroup {
     return this.fb.group(actionGroupItem)
   }
+
+  constructor(private fb: FormBuilder) {
+    this.editorOptions.mode = 'tree'
+    this.editorOptions.modes = ['code', 'form', 'text', 'tree', 'view']
+  }
+
+
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
       .pipe(
@@ -209,11 +216,10 @@ export class DeckComponent implements OnInit {
 
   // Card Type determins a few UI controls to be visible or not
   // TODO: a better way to handle the UI changes, maybe split to several edit tempaltes?
-  private handleCardType(typeName: any) {
-    this.showEditMedia =
-      typeName === "IMAGE" || typeName === "AUDIO" || typeName === "VIDEO"
-    this.showBriefList = typeName === "BRIEFSUMMARY"
-    this.showEditData = typeName === "BRIEFSUMMARY" || typeName === "CHART"
+  private handleCardType(typeName: CardType) {
+    this.showEditMedia = typeName === CardType.Image || typeName === CardType.Audio || typeName === CardType.Video
+    this.showBriefList = typeName === CardType.BriefSummary
+    this.showEditData = typeName === CardType.BriefSummary || typeName === CardType.Chart
 
     if (this.showEditMedia) {
       this.cardForm
@@ -260,8 +266,9 @@ export class DeckComponent implements OnInit {
       this.selectedCard.cardType === CardType.BriefSummary &&
       this.selectedCard.data
     ) {
-      const selectedBriefs = JSON.parse(this.selectedCard.data)
+      const selectedBriefs = this.selectedCard.data
       this.cardForm.get("selectedBriefs").setValue(selectedBriefs)
+// tslint:disable-next-line: no-console
       console.log(selectedBriefs)
     }
     this.cardForm.patchValue(patchCard)
@@ -270,7 +277,7 @@ export class DeckComponent implements OnInit {
     this.cardForm
       .get("data")
       .setValue(
-        JSON.stringify(this.cardForm.get("selectedBriefs").value, null, "\t")
+        this.cardForm.get("selectedBriefs").value
       )
   }
 }
