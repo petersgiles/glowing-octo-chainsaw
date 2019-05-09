@@ -96,7 +96,7 @@
       </mdc-form-field>
     </div>
 
-    <div *ngIf="!showEditData" class="df-card__supporting-text df-card--border">
+    <div *ngIf="!showEditData && !showViewData" class="df-card__supporting-text df-card--border">
       <mdc-form-field>
         <ngx-wig
           formControlName="supportingText"
@@ -133,9 +133,16 @@
 
     <div *ngIf="showEditData" class="df-card__supporting-text df-card--border">
       <mdc-form-field fluid>
-        <json-editor [options]="editorOptions" formControlName="data"></json-editor>
+        <mdc-textarea label="Data" formControlName="data" rows="5"></mdc-textarea>
       </mdc-form-field>
     </div>
+
+    <div *ngIf="showViewData" class="df-card__supporting-text df-card--border">
+        <input type="hidden" formControlName="data" />
+
+        <pre>{{briefdata | json}}</pre>
+    </div>
+
     <div
       formGroupName="media"
       *ngIf="showEditMedia"

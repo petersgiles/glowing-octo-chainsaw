@@ -16,7 +16,6 @@ import {
 } from "@angular-mdc/web"
 import { NgSelectModule } from "@ng-select/ng-select"
 import { BrowserModule } from "@angular/platform-browser"
-import { NgJsonEditorModule } from 'ang-jsoneditor'
 
 describe("DeckComponent", () => {
   let component: DeckComponent
@@ -38,8 +37,7 @@ describe("DeckComponent", () => {
         MdcTextFieldModule,
         NgxWigModule,
         MdcRippleModule,
-        MdcListModule,
-        NgJsonEditorModule
+        MdcListModule
       ],
       declarations: [DeckComponent, BaseChartDirective]
     }).compileComponents()

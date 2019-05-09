@@ -4,5 +4,5 @@
   "lib": {
     "entryFile": "src/public_api.ts"
   },
-  "whitelistedNonPeerDependencies": ["ng2-charts", "chart.js", "ngx-file-drop", "ang-jsoneditor", "jsoneditor"]
+  "whitelistedNonPeerDependencies": ["ng2-charts", "chart.js", "ngx-file-drop"]
 }

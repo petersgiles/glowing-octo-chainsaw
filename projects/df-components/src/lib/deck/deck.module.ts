@@ -15,7 +15,7 @@ import {
   MdcTextFieldModule,
   MdcRippleModule
 } from "@angular-mdc/web"
-import { NgJsonEditorModule } from 'ang-jsoneditor'
+
 import { NgxWigModule } from 'ngx-wig'
 
 const COMPONENTS = [DeckComponent]
@@ -35,7 +35,6 @@ const COMPONENTS = [DeckComponent]
     MdcTextFieldModule,
     MdcRippleModule,
     NgxWigModule, 
-    NgJsonEditorModule,
     ReactiveFormsModule,
   ],
   declarations: COMPONENTS,

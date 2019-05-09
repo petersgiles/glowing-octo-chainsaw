@@ -73,8 +73,6 @@
     "@types/node": "^11.11.3",
     "@types/storybook__addon-options": "^4.0.1",
     "angular-tree-component": "^8.3.0",
-    "ang-jsoneditor": "^1.7.4",
-    "jsoneditor": "^5.32.2",
     "babel-loader": "^8.0.5",
     "chart.js": "^2.7.3",
     "codelyzer": "~4.5.0",

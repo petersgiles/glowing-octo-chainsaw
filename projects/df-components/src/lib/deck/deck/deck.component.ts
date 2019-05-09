@@ -6,7 +6,6 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
-import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
 
 const defaultCard = {
   title: "New Card",
@@ -35,7 +34,6 @@ const actionGroupItem = {
   styleUrls: ["./deck.component.scss"]
 })
 export class DeckComponent implements OnInit {
-
   @Input()
   public readOnly = true
 
@@ -76,14 +74,14 @@ export class DeckComponent implements OnInit {
     webSafeColours
   )
 
-  public editorOptions: JsonEditorOptions = new JsonEditorOptions()
-
   private selectedCardSubscription: Subscription
   public cardEdit: Subject<any> = new Subject<any>()
   public showEditSupportingText: boolean = true
   public showBriefList: boolean = true
   public showEditMedia: boolean = false
   public showEditData: boolean = true
+  public showViewData: boolean = false
+  
   public currrentCardColour: any
 
   // Leave this it's the weird way you have to do enums in the template
@@ -108,6 +106,7 @@ export class DeckComponent implements OnInit {
     data: [],
     selectedBriefs: []
   })
+  briefdata: any;
 
   get actions(): FormArray {
     return this.cardForm.get("actions") as FormArray
@@ -118,10 +117,8 @@ export class DeckComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder) {
-    this.editorOptions.mode = 'tree'
-    this.editorOptions.modes = ['code', 'form', 'text', 'tree', 'view']
+  
   }
-
 
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
@@ -148,7 +145,7 @@ export class DeckComponent implements OnInit {
   public handleAddNewCard(): void {
     defaultCard.parent = this.parent
     this.populateEditCardForm(defaultCard)
-    if(this.allowMutate){
+    if (this.allowMutate) {
       this.cards.push(defaultCard)
     }
     this.onEdit.emit(defaultCard)
@@ -217,10 +214,17 @@ export class DeckComponent implements OnInit {
   // Card Type determins a few UI controls to be visible or not
   // TODO: a better way to handle the UI changes, maybe split to several edit tempaltes?
   private handleCardType(typeName: CardType) {
-    this.showEditMedia = typeName === CardType.Image || typeName === CardType.Audio || typeName === CardType.Video
-    this.showBriefList = typeName === CardType.BriefSummary
-    this.showEditData = typeName === CardType.BriefSummary || typeName === CardType.Chart
+    this.showEditMedia =
+      typeName === CardType.Image ||
+      typeName === CardType.Audio ||
+      typeName === CardType.Video
 
+    this.showBriefList = typeName === CardType.BriefSummary
+    this.showViewData = this.showBriefList
+
+    this.showEditData = typeName === CardType.Chart
+
+   
     if (this.showEditMedia) {
       this.cardForm
         .get("media")
@@ -268,16 +272,17 @@ export class DeckComponent implements OnInit {
     ) {
       const selectedBriefs = this.selectedCard.data
       this.cardForm.get("selectedBriefs").setValue(selectedBriefs)
-// tslint:disable-next-line: no-console
+      // tslint:disable-next-line: no-console
       console.log(selectedBriefs)
     }
     this.cardForm.patchValue(patchCard)
   }
   public handleChangeBrief($event) {
+
+this.briefdata = this.cardForm.get("selectedBriefs").value
+
     this.cardForm
       .get("data")
-      .setValue(
-        this.cardForm.get("selectedBriefs").value
-      )
+      .setValue(this.cardForm.get("selectedBriefs").value)
   }
 }
