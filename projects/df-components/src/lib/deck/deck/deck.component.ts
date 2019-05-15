@@ -62,6 +62,9 @@ export class DeckComponent implements OnInit {
   public onAction: EventEmitter<any> = new EventEmitter()
 
   @Output()
+  public onSelectedCardTypeChange: EventEmitter<any> = new EventEmitter()
+
+  @Output()
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
 
   @Output()
@@ -236,6 +239,8 @@ export class DeckComponent implements OnInit {
         .get("url")
         .clearValidators()
     }
+
+    this.onSelectedCardTypeChange.emit(typeName)
   }
 
   private populateEditCardForm(currentCard: DeckItem) {

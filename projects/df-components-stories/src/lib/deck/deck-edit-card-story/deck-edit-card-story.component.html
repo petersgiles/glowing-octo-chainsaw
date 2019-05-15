@@ -11,6 +11,7 @@
   [eligibleParents]="eligibleParents"
   [readOnly]="false"
   [selectedCard] ="selectedCard"
+  (onSelectedCardTypeChange)="handleSelectedCardTypeChange($event)"
   (onSubmitted)="handleSubmitted($event)"
   (onAction)="handleAction($event)"
   (onEdit) ="handleEdit($event)"

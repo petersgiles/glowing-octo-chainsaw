@@ -99,6 +99,10 @@ export class DeckEditCardStoryComponent implements OnInit {
     }
   }
 
+  public handleSelectedCardTypeChange($event){
+    this.onAction.emit({$event, title: 'handleSelectedCardTypeChange'})
+  }
+
   public handleGoBack() {
     if (this.selectedCard) {
       const dialogRef = this.dialog.open(DialogAreYouSureComponent, {

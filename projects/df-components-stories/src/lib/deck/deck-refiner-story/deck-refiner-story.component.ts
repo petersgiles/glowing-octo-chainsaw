@@ -21,11 +21,10 @@ export class DeckRefinerStoryComponent implements OnInit {
 
   @Output()
   public goBack: EventEmitter<any> = new EventEmitter()
- // Leave this it's the weird way you have to do enums in the template
- public cardType = CardType
+  // Leave this it's the weird way you have to do enums in the template
+  public cardType = CardType
   // tslint:disable-next-line:no-empty
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 
   public handleAction($event) {
     this.onAction.emit($event)

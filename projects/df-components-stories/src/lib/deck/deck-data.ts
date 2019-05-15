@@ -367,15 +367,15 @@ export const cardTypes: string[] = Object.keys(CardType).map(
 export const briefs: Brief[] = [
   {
     id: "21066c5a-95e5-4d02-92e7-57b51ad350f5",
-    name: "Brife Summary For One"
+    name: "Brief Summary For One"
   },
   {
     id: "5e1ce060-1e74-48a7-9847-f4698c23c0b4",
-    name: "Brife Summary For Redbook"
+    name: "Brief Summary For Redbook"
   },
   {
     id: "30f81c55-2ad5-4874-b396-d70e4d97b2ee",
-    name: "Brife Summary For Redbook 2"
+    name: "Brief Summary For Redbook 2"
   },
   {
     id: "6ea78eab-8174-487b-af86-ee5a782eddc4",
