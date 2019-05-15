@@ -84,7 +84,7 @@ export class DeckComponent implements OnInit {
   public showEditMedia: boolean = false
   public showEditData: boolean = true
   public showViewData: boolean = false
-  
+
   public currrentCardColour: any
 
   // Leave this it's the weird way you have to do enums in the template
@@ -109,7 +109,8 @@ export class DeckComponent implements OnInit {
     data: [],
     selectedBriefs: []
   })
-  briefdata: any;
+  
+  public briefdata: any
 
   get actions(): FormArray {
     return this.cardForm.get("actions") as FormArray
@@ -119,9 +120,7 @@ export class DeckComponent implements OnInit {
     return this.fb.group(actionGroupItem)
   }
 
-  constructor(private fb: FormBuilder) {
-  
-  }
+  constructor(private fb: FormBuilder) {}
 
   public ngOnInit() {
     this.selectedCardSubscription = this.cardEdit
@@ -227,7 +226,6 @@ export class DeckComponent implements OnInit {
 
     this.showEditData = typeName === CardType.Chart
 
-   
     if (this.showEditMedia) {
       this.cardForm
         .get("media")
@@ -283,8 +281,7 @@ export class DeckComponent implements OnInit {
     this.cardForm.patchValue(patchCard)
   }
   public handleChangeBrief($event) {
-
-this.briefdata = this.cardForm.get("selectedBriefs").value
+    this.briefdata = this.cardForm.get("selectedBriefs").value
 
     this.cardForm
       .get("data")
