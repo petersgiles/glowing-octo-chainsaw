@@ -11,5 +11,8 @@ export enum CardType {
     Image = "Image",
     Newtab = "NewTab",
     Refiner = "Refiner",
-    BriefSummary = "BriefSummary"
+    BriefSummary = "BriefSummary",
+    StandardNonNav = "StandardNonNav",
+    StandardNonNavNoActions = "StandardNonNavNoActions",
+    SummaryLinksNoActions = "SummaryLinksNoActions"
   }
