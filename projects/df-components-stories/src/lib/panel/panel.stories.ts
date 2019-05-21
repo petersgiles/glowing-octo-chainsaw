@@ -10,7 +10,8 @@ import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import {
   PanelModule,
   ButtonModule,
-  PipesModule
+  PipesModule,
+  ViewGuardComponent
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
@@ -191,6 +192,7 @@ storiesOf("Panel", module)
     <ng-container operation-type="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
+    component: ViewGuardComponent,
     props: {
       userOperation$: userReadOperation$,
 
