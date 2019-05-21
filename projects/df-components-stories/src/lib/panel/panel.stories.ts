@@ -18,6 +18,7 @@ const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
+const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
 
 storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
@@ -181,3 +182,15 @@ storiesOf("Panel", module)
       handleEvent: ($event, name) => action(name)($event)
     }
   }))
+  .add("View Guard", () => ({
+    template: `<df-view-guard
+    [operation]="getRight(userOperation$)">
+    <ng-container operation-type="read"><p>read only </p> </ng-container>
+    </df-view-guard>
+    `,
+    props: {
+      userOperation$: userReadOperation$,
+      getRight(userOperation$) {
+        userReadOperation$.next("read")
+      }
+    }}))
