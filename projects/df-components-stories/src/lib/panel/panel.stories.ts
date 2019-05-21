@@ -10,8 +10,7 @@ import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import {
   PanelModule,
   ButtonModule,
-  PipesModule,
-  ViewGuardComponent
+  PipesModule
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
@@ -28,7 +27,6 @@ storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
   .addDecorator(
     moduleMetadata({
-      declarations: [ViewGuardComponent],
       imports: [
         BrowserModule,
         PanelModule,
