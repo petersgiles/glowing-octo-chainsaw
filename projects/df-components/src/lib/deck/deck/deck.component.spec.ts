@@ -12,7 +12,8 @@ import {
   MdcFormFieldModule,
   MdcTextFieldModule,
   MdcRippleModule,
-  MdcListModule
+  MdcListModule,
+  MdcSelectModule
 } from "@angular-mdc/web"
 import { NgSelectModule } from "@ng-select/ng-select"
 import { BrowserModule } from "@angular/platform-browser"
@@ -35,6 +36,7 @@ describe("DeckComponent", () => {
         MdcListModule,
         MdcFormFieldModule,
         MdcTextFieldModule,
+        MdcSelectModule,
         NgxWigModule,
         MdcRippleModule,
         MdcListModule

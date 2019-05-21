@@ -17,6 +17,7 @@ import {
   MdcListModule,
   MdcRippleModule,
   MdcDialogModule,
+  MdcSelectModule,
   MdcDialog
 } from "@angular-mdc/web"
 
@@ -38,7 +39,7 @@ import { NgSelectModule } from "@ng-select/ng-select"
 import { NgxWigModule } from "ngx-wig"
 import { DeckEditCardStoryComponent } from "./deck-edit-card-story/deck-edit-card-story.component"
 import { DeckHelper } from "../../../../df-components/src/lib/deck/deck-helper"
-
+import { generateGUID } from '../../../../df-components/src/lib/utils';
 
 const ENTRYCOMPONENTS = [DialogAreYouSureComponent]
 
@@ -131,6 +132,10 @@ const props = {
   },
   handleSubmitted: submittedCard => {
     action("🦊 Submitted")(submittedCard)
+    if(!submittedCard.id){
+      // we have a new card
+      submittedCard.id = generateGUID()
+    }
     const oldCards = cards$.getValue()
     action("🦊 OldCards")(oldCards)
     const newCards = oldCards.filter(p => submittedCard.id !== p.id)
@@ -174,6 +179,7 @@ storiesOf("Deck", module)
         DeckModule,
         ButtonModule,
         MdcRippleModule,
+        MdcSelectModule,
         MdcDialogModule,
         DialogsModule
       ],
@@ -204,7 +210,6 @@ storiesOf("Deck", module)
     <df-deck-edit-card-story
       [cardTypes]="cardTypes$ | async"
       [briefs]="briefs$ | async"
-      [selectedCard]="selectedCard$ | async"
       [cards]="cards$ | async"
       [grandParent]="grandParent$ | async"
       [parent]="parent$ | async"
@@ -212,8 +217,6 @@ storiesOf("Deck", module)
       [readOnly]="false"
       (onSubmitted)="handleSubmitted($event)"
       (onAction)="handleAction($event)"
-      (onCancel)="handleEvent($event, 'onCancel')"
-      (onEdit)="handleEvent($event, 'onEdit')"
       (goBack)="handleGoBack($event)"
     >
   </df-deck-edit-card-story>

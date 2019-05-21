@@ -34,7 +34,7 @@
 
     <div class="df-card__supporting-text df-card--border deck-color-selector">
       <mdc-form-field fluid>
-        <ng-select
+          <ng-select
           appendTo="body"
           [items]="cardTypes"
           placeholder="Card Type"
@@ -50,12 +50,14 @@
             <h5 class="color-title" [ngClass]="item">{{ item }}</h5>
           </ng-template>
         </ng-select>
+
       </mdc-form-field>
     </div>
 
     <div class="df-card__supporting-text df-card--border deck-color-selector">
+
       <mdc-form-field fluid>
-        <ng-select
+          <ng-select
           appendTo="body"
           [items]="webSafeColours$ | async"
           placeholder="Colour"
@@ -76,7 +78,7 @@
 
     <div class="df-card__supporting-text df-card--border deck-color-selector">
       <mdc-form-field fluid>
-        <ng-select
+          <ng-select
           appendTo="body"
           [items]="eligibleParents"
           placeholder="Parent"
@@ -93,10 +95,15 @@
             <h5 class="color-title" [ngClass]="item">{{ item.title }}</h5>
           </ng-template>
         </ng-select>
+
+
       </mdc-form-field>
     </div>
 
-    <div *ngIf="!showEditData && !showViewData" class="df-card__supporting-text df-card--border">
+    <div
+      *ngIf="!showEditData && !showViewData"
+      class="df-card__supporting-text df-card--border"
+    >
       <mdc-form-field>
         <ngx-wig
           formControlName="supportingText"
@@ -105,15 +112,18 @@
       </mdc-form-field>
     </div>
 
-    <div *ngIf="showBriefList" class="df-card__supporting-text df-card--border deck-color-selector">
+    <div
+      *ngIf="showBriefList"
+      class="df-card__supporting-text df-card--border deck-color-selector"
+    >
       <mdc-form-field fluid>
         <ng-select
           appendTo="body"
           [items]="briefs"
           bindLabel="name"
           placeholder="Select Brief"
-          [multiple] ="true"
-          (change) = "handleChangeBrief($event)"
+          [multiple]="true"
+          (change)="handleChangeBrief($event)"
           [clearable]="false"
           [hideSelected]="true"
           [virtualScroll]="true"
@@ -133,21 +143,20 @@
 
     <div *ngIf="showEditData" class="df-card__supporting-text df-card--border">
       <mdc-form-field fluid>
-        <mdc-textarea label="Data" formControlName="data" rows="5"></mdc-textarea>
+        <mdc-textarea
+          label="Data"
+          formControlName="data"
+          rows="5"
+        ></mdc-textarea>
       </mdc-form-field>
     </div>
 
     <div *ngIf="showViewData" class="df-card__supporting-text df-card--border">
-        <input type="hidden" formControlName="data" />
-
-        <pre>{{briefdata | json}}</pre>
+      <input type="hidden" formControlName="data" />
+      <pre>{{ cardForm.get("data").value | json }}</pre>
     </div>
 
-    <div
-      formGroupName="media"
-      *ngIf="showEditMedia"
-      class="df-card__title"
-    >
+    <div formGroupName="media" *ngIf="showEditMedia" class="df-card__title">
       <mdc-text-field
         type="url"
         required
@@ -193,7 +202,7 @@
     </mdc-card>
     <div class="df-layout-spacer"></div>
     <div class="df-card__actions df-card--border">
-      <button mdc-button dense (click)="handleCancelEditCard(card)">
+      <button mdc-button dense type="reset" (click)="handleCancelEditCard(card)">
         Cancel
       </button>
       <button mdc-button dense type="submit" [disabled]="!cardForm.valid">
@@ -235,7 +244,7 @@
     class="df-card__menu {{ card?.colour }} transparent"
   >
     <a
-      (click)="cardEdit.next({ currentCard: card })"
+      (click)="cardEdit.next(card)"
       mdc-icon-button
       dense
       icon="edit"

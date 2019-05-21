@@ -58,7 +58,11 @@ export class DeckEditCardStoryComponent implements OnInit {
   public cardType = CardType
 
   // tslint:disable-next-line:no-empty
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+
+
+    
+  }
 
   public handleSubmitted($event) {
     this.onSubmitted.emit($event)

@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms"
 import { Subject, Subscription, BehaviorSubject } from "rxjs"
 import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators"
 import { webSafeColours } from "../../utils/web-safe-colours"
+import { clamp } from '../../utils/math';
 
 const defaultCard = {
   title: "New Card",
@@ -34,6 +35,8 @@ const actionGroupItem = {
   styleUrls: ["./deck.component.scss"]
 })
 export class DeckComponent implements OnInit {
+  public selectedCard: DeckItem
+
   @Input()
   public readOnly = true
 
@@ -55,23 +58,11 @@ export class DeckComponent implements OnInit {
   @Input()
   public parent: string
 
-  @Input()
-  public selectedCard: DeckItem
-
   @Output()
   public onAction: EventEmitter<any> = new EventEmitter()
 
   @Output()
-  public onSelectedCardTypeChange: EventEmitter<any> = new EventEmitter()
-
-  @Output()
   public onSubmitted: EventEmitter<DeckItem> = new EventEmitter()
-
-  @Output()
-  public onEdit: EventEmitter<DeckItem> = new EventEmitter()
-
-  @Output()
-  public onCancel: EventEmitter<string> = new EventEmitter()
 
   public webSafeColours$: BehaviorSubject<any> = new BehaviorSubject(
     webSafeColours
@@ -109,8 +100,6 @@ export class DeckComponent implements OnInit {
     data: [],
     selectedBriefs: []
   })
-  
-  public briefdata: any
 
   get actions(): FormArray {
     return this.cardForm.get("actions") as FormArray
@@ -128,9 +117,23 @@ export class DeckComponent implements OnInit {
         debounceTime(100),
         distinctUntilChanged()
       )
-      .subscribe((payload: { currentCard: DeckItem }) => {
-        this.populateEditCardForm(payload.currentCard)
-        this.onEdit.emit(payload.currentCard)
+      .subscribe((currentCard: DeckItem) => {
+        this.selectedCard = currentCard
+        if (currentCard) {
+          this.populateEditCardForm(currentCard)
+        }
+      })
+
+      this.cardForm.get("title").valueChanges.subscribe(value => {
+        if (this.selectedCard) {
+          this.selectedCard.title = value
+        }
+      })
+
+      this.cardForm.get("size").valueChanges.subscribe(value => {
+        if (this.selectedCard) {
+          this.selectedCard.size = clamp(value, 1, 12)
+        }
       })
 
     this.cardForm.get("colour").valueChanges.subscribe(value => {
@@ -144,13 +147,17 @@ export class DeckComponent implements OnInit {
     })
   }
 
+  public ngOnDestroy(): void {
+    this.selectedCardSubscription.unsubscribe()
+  }
+
+  // EDITING THE DECK
+
   public handleAddNewCard(): void {
-    defaultCard.parent = this.parent
-    this.populateEditCardForm(defaultCard)
-    if (this.allowMutate) {
-      this.cards.push(defaultCard)
-    }
-    this.onEdit.emit(defaultCard)
+    const newCard = JSON.parse(JSON.stringify(defaultCard))
+    newCard.parent = this.parent
+    this.cards.push(newCard)
+    this.cardEdit.next(newCard)
   }
 
   public handleAddAction(): void {
@@ -160,6 +167,74 @@ export class DeckComponent implements OnInit {
   public handleRemoveAction(index: any, action: any) {
     this.actions.removeAt(index)
   }
+
+  public handleCancelEditCard(card) {
+    this.clearEditedData(card)
+  }
+
+  public handleSubmit(card: DeckItem) {
+    if (!this.cardForm.valid) return
+    const editedCard = this.cardForm.value
+    this.onSubmitted.emit(editedCard)
+    this.clearEditedData(card)
+  }
+
+  private clearEditedData(card): void {
+
+    // remove card just created
+    if (!card.id) {
+      const cardItems = this.cards.filter(item => {
+        if (item && item.id) {
+          return card.id !== item.id
+        }
+      })
+
+      this.cards = cardItems
+    }
+
+    this.cardEdit.next(null)
+    this.cardForm.reset()
+    // As form.reset won't clear form array controls
+    // hence we have to do it here
+    this.cardForm.setControl("actions", new FormArray([]))
+  }
+
+  private populateEditCardForm(currentCard: DeckItem) {
+    const patchCard = {
+      id: currentCard.id,
+      title: currentCard.title,
+      parent: currentCard.parent,
+      supportingText: currentCard.supportingText,
+      size: currentCard.size,
+      cardType: currentCard.cardType,
+      sortOrder: currentCard.sortOrder,
+      colour: currentCard.colour,
+      titleClass: currentCard.titleClass,
+      media: {
+        type: currentCard.media ? currentCard.media.type : "",
+        url: currentCard.media ? currentCard.media.url : "",
+        id: currentCard.media ? currentCard.media.id : ""
+      },
+      actions: currentCard.actions ? currentCard.actions : [],
+      data: currentCard.data,
+      selectedBriefs:
+        currentCard.cardType === CardType.BriefSummary && currentCard.data
+          ? currentCard.data
+          : null
+    }
+
+    this.handleCardType(currentCard.cardType)
+    this.cardForm.patchValue(patchCard)
+  }
+
+  public handleChangeBrief($event) {
+    const briefdata = this.cardForm.get("selectedBriefs").value
+
+    console.log(`👺`, briefdata)
+    this.cardForm.patchValue({ data: briefdata })
+  }
+
+  // USING THE DECK
 
   public navigate(card: DeckItem) {
     if (card) {
@@ -176,43 +251,6 @@ export class DeckComponent implements OnInit {
     return getContrastYIQ(hexcolour)
   }
 
-  public handleCancelEditCard(card) {
-    this.onCancel.emit(card)
-    // remove card just created
-    if (!card! || card.id) {
-      const cardItems = this.cards.filter(item => item.id)
-      this.cards = cardItems
-    }
-    this.clearEditedData(card)
-  }
-
-  public handleSubmit(card: DeckItem) {
-    if (!this.cardForm.valid) return
-    const editedCard = this.mapCard(this.cardForm.value)
-    this.onSubmitted.emit(editedCard)
-    this.clearEditedData(card)
-  }
-
-  public ngOnDestroy(): void {
-    this.selectedCard = null
-    this.selectedCardSubscription.unsubscribe()
-  }
-
-  private mapCard(deckItem): any {
-    const map: DeckItem = {
-      ...deckItem
-    }
-    return map
-  }
-
-  private clearEditedData(card): void {
-    this.selectedCard = null
-    this.cardForm.reset()
-    // As form.reset won't clear form array controls
-    // hence we have to do it here
-    this.cardForm.setControl("actions", new FormArray([]))
-  }
-
   // Card Type determins a few UI controls to be visible or not
   // TODO: a better way to handle the UI changes, maybe split to several edit tempaltes?
   private handleCardType(typeName: CardType) {
@@ -223,7 +261,6 @@ export class DeckComponent implements OnInit {
 
     this.showBriefList = typeName === CardType.BriefSummary
     this.showViewData = this.showBriefList
-
     this.showEditData = typeName === CardType.Chart
 
     if (this.showEditMedia) {
@@ -237,54 +274,5 @@ export class DeckComponent implements OnInit {
         .get("url")
         .clearValidators()
     }
-
-    this.onSelectedCardTypeChange.emit(typeName)
-  }
-
-  private populateEditCardForm(currentCard: DeckItem) {
-    this.selectedCard = currentCard
-    const patchCard = {
-      id: this.selectedCard.id,
-      title: this.selectedCard.title,
-      parent: this.selectedCard.parent,
-      supportingText: this.selectedCard.supportingText,
-      size: this.selectedCard.size,
-      cardType: this.selectedCard.cardType,
-      sortOrder: this.selectedCard.sortOrder,
-      colour: this.selectedCard.colour,
-      titleClass: this.selectedCard.titleClass,
-      media: {
-        type: this.selectedCard.media ? this.selectedCard.media.type : "",
-        url: this.selectedCard.media ? this.selectedCard.media.url : "",
-        id: this.selectedCard.media ? this.selectedCard.media.id : ""
-      },
-      actions: this.selectedCard.actions ? this.selectedCard.actions : [],
-      data: this.selectedCard.data
-    }
-
-    if (this.selectedCard.actions) {
-      this.selectedCard.actions.forEach(p => {
-        this.actions.push(this.action)
-      })
-    }
-    this.handleCardType(this.selectedCard.cardType)
-
-    if (
-      this.selectedCard.cardType === CardType.BriefSummary &&
-      this.selectedCard.data
-    ) {
-      const selectedBriefs = this.selectedCard.data
-      this.cardForm.get("selectedBriefs").setValue(selectedBriefs)
-      // tslint:disable-next-line: no-console
-      console.log(selectedBriefs)
-    }
-    this.cardForm.patchValue(patchCard)
-  }
-  public handleChangeBrief($event) {
-    this.briefdata = this.cardForm.get("selectedBriefs").value
-
-    this.cardForm
-      .get("data")
-      .setValue(this.cardForm.get("selectedBriefs").value)
   }
 }
