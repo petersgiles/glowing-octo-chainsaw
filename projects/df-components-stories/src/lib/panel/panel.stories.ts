@@ -195,10 +195,9 @@ storiesOf("Panel", module)
     `,
     props: {
       userOperation$: userReadOperation$,
-      handleUserOperation(){
-         userReadOperation$.next("pmchandlingadvice: 'read'")
-      },
+
       getRight(operations) {
+        userReadOperation$.next("pmchandlingadvice: 'read'")
        return operations[OPERATION_PMC_HANDLING_ADVICE]
        
       }
