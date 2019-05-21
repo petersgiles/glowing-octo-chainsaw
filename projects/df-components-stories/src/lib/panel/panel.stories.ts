@@ -10,7 +10,8 @@ import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import {
   PanelModule,
   ButtonModule,
-  PipesModule
+  PipesModule,
+  ViewGuardComponent
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
@@ -27,6 +28,7 @@ storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
   .addDecorator(
     moduleMetadata({
+      declarations: [ViewGuardComponent],
       imports: [
         BrowserModule,
         PanelModule,
@@ -197,7 +199,6 @@ storiesOf("Panel", module)
          userReadOperation$.next("pmchandlingadvice: 'read'")
       },
       getRight(operations) {
-       console.log('operations', operations)
        return operations[OPERATION_PMC_HANDLING_ADVICE]
        
       }
