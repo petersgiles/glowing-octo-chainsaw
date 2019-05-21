@@ -1,4 +1,5 @@
 export const webSafeColours = [
+  'IGBGreen',
   "AliceBlue",
   "Amber",
   "AntiqueWhite",
