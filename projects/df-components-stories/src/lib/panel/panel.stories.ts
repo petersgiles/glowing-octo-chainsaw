@@ -14,6 +14,9 @@ import {
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
+ const OPERATION_PMO_HANDLING_ADVICE = 'pmohandlingadvice'
+ const OPERATION_PMC_HANDLING_ADVICE = 'pmchandlingadvice'
+
 const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
@@ -184,13 +187,15 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `<df-view-guard
-    [operation]="getRight(userOperation$)">
+    [operation]="getRight(userOperation$ | async)">
     <ng-container operation-type="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
     props: {
       userOperation$: userReadOperation$,
-      getRight(userOperation$) {
-        userReadOperation$.next("read")
+      
+      getRight(operations) {
+        userReadOperation$.next("pmchandlingadvice: 'read'")
+       return operations[OPERATION_PMC_HANDLING_ADVICE]
       }
     }}))
