@@ -9,7 +9,7 @@ import {
   templateUrl: './view-guard.component.html',
   styles: [``]
 })
-export class CommitmentViewGuardComponent implements OnInit {
+export class ViewGuardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
