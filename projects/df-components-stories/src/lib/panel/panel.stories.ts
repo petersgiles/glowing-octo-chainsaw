@@ -190,16 +190,16 @@ storiesOf("Panel", module)
     template: `
     <p>test 3</p>
     <df-view-guard
-    [operation]="getRight(userOperation$ | async)">
+    [operation]="operation">
     <ng-container operation="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
     props: {
-      userOperation$: userReadOperation$.next("read"),
+      operation: "read"
+      /*userOperation$: userReadOperation$.next("read"),
       getRight(operations){
-        console.log('ops', operations)
        return "read"
-      }
+      }*/
       
       
     }}))
