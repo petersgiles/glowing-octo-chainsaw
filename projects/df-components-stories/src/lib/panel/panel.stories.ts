@@ -193,14 +193,14 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 15 </p>
+    <p>test 16 </p>
     <df-view-guard [operation]="getRight(userOperation$ | async)">
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-     userOperation$:  userReadOperation$.next("read"),
+     userOperation$:  userReadOperation$,
      //operation: "read"
      getRight(operations){
        console.log('ops', operations)
