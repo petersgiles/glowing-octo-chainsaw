@@ -188,7 +188,7 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `<df-view-guard
-    [operation]="getRight()">
+    [operation]="getRight(userOperation$ | async)">
     <div [ngSwitch]="operation">
     <div *ngSwitchCase="READ">
         <ng-content select="[operation-type=read]"></ng-content>
@@ -207,13 +207,12 @@ storiesOf("Panel", module)
     component: ViewGuardComponent,
     props: {
      // operation: "READ"
-     // userOperation$: userReadOperation$,
-      getRight(){
-        return "READ"
-      }
-      /*getRight(operations) {
+      userOperation$: userReadOperation$,
+
+      getRight(operations) {
         userReadOperation$.next("pmchandlingadvice: 'read'")
-       return operations[OPERATION_PMC_HANDLING_ADVICE]
+        console.log('ops', operations)
+        return operations[OPERATION_PMC_HANDLING_ADVICE]
        
-      }*/
+      }
     }}))
