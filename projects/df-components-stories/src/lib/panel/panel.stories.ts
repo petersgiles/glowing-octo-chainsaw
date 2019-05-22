@@ -17,14 +17,14 @@ import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
 import { Component, Input } from '@angular/core';
 
- const OPERATION_PMO_HANDLING_ADVICE = 'pmohandlingadvice'
- const OPERATION_PMC_HANDLING_ADVICE = 'pmchandlingadvice'
+ const OPERATION_AGENT = 'agent'
+ 
 
 const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
-const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
+const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("agent: 'read'")
 
 
 
@@ -193,7 +193,7 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 16 </p>
+    <p>test 17 </p>
     <df-view-guard [operation]="getRight(userOperation$ | async)">
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
@@ -201,9 +201,9 @@ storiesOf("Panel", module)
     component: ViewGuardComponent,
     props: {
      userOperation$:  userReadOperation$,
-     //operation: "read"
+     
      getRight(operations){
        console.log('ops', operations)
-       return 'read'
+       return operations[OPERATION_AGENT]
      }
     }}))
