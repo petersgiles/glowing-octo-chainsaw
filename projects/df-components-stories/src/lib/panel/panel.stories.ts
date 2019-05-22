@@ -10,7 +10,8 @@ import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import {
   PanelModule,
   ButtonModule,
-  PipesModule
+  PipesModule,
+  ViewGuardComponent
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
@@ -25,40 +26,13 @@ const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
 const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
 
-@Component({
-  selector: 'df-view-guard',
-  template: `<div [ngSwitch]="operation">
-  <div *ngSwitchCase="READ">
-      <ng-content select="[operation-type=read]"></ng-content>
-  </div>
-  <div *ngSwitchCase="WRITE">
-      <ng-content select="[operation-type=write]"></ng-content>
-  </div>
-  <div *ngSwitchCase="HIDE">
-      <ng-content select="[operation-type=hide]"></ng-content>
-  </div>
-  <div *ngSwitchDefault></div>
-</div>
-`
-})
-class GuardComponent {
-  constructor() {}
-  
 
-  @Input()
-  operation
-
-  
-  WRITE = 'WRITE'
-  READ = 'READ'
-  HIDE = 'HIDE'
-}
 
 storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
   .addDecorator(
     moduleMetadata({
-      declarations:[GuardComponent],
+     
       imports: [
         BrowserModule,
         PanelModule,
@@ -224,7 +198,7 @@ storiesOf("Panel", module)
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
-    component: GuardComponent,
+    component: ViewGuardComponent,
     props: {
       //userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'"),
      operation: "READ"
