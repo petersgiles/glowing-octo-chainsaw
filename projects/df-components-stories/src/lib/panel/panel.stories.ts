@@ -189,7 +189,7 @@ storiesOf("Panel", module)
   .add("View Guard", () => ({
     template: `<df-view-guard>
     
-    <ng-container ><p>read only </p> </ng-container>
+    <p>read only </p>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
