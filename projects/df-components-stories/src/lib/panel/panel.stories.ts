@@ -203,7 +203,7 @@ storiesOf("Panel", module)
      userOperation$:  userReadOperation$,
      
      getRight(operations){
-       console.log('ops', operations)
-       return operations[OPERATION_AGENT]
+       console.log('ops', operations[OPERATION_AGENT])
+       return 'read'
      }
     }}))
