@@ -188,15 +188,13 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <df-expander-panel title="edit me expander panel" [expanded]="expanded$ | async" (onToggleExpand)="handleToggleExpand($event)" [readOnly]="false">
-      Should NOT see readonly content
-      <ng-container panel-content-edit>Editable content is placed inside a container with 'panel-content-edit' and it will be available when readOnly is false</ng-container>
-    </df-expander-panel>
+    <df-view-guard
+    [operation]="getRight(userOperation$ | async)">
+    <ng-container operation="read"><p>read only </p> </ng-container>
+    </df-view-guard>
     `,
     props: {
-      expanded$: editExpanded$,
-      handleToggleExpand($event) {
-        editExpanded$.next($event)
-        action("On Toggle Expand")($event)
-      }
+      userOperation$: userReadOperation$.next("read")
+      
+      
     }}))
