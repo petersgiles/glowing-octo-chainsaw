@@ -17,15 +17,16 @@ import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
 import { Component, Input } from '@angular/core';
 
- const OPERATION_AGENT = 'agent'
+ const OPERATION_USER = 'user'
  
 
 const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
-const userReadOperation$: BehaviorSubject<any> = new BehaviorSubject({agent: 'read'})
-const userWriteOperation$: BehaviorSubject<string> = new BehaviorSubject("agent: 'write'")
+const userReadOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'read'})
+const userWriteOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'write'})
+const userHideOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'write'})
 
 
 
@@ -194,12 +195,12 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 18 </p>
+    <p>test 20 </p>
     <df-view-guard [operation]="getRead(userOperation_R$ | async)">
     <ng-container operation-type="read">
         <div>
             <label for="uname">Choose a username: </label>
-            <input type="text" [name]="name">
+            <input type="text" name="name" value="Fred">
         </div>
     </ng-container>
     </df-view-guard>
@@ -210,19 +211,29 @@ storiesOf("Panel", module)
             <input type="text"  name="name">
         </div>
     </ng-container>
+    <p>Hidden applied</p>
+    <df-view-guard [operation]="getHidden(userOperation_H$ | async)">
+    <ng-container operation-type="hide">
+        <div>
+            <label for="uname">Choose a username: </label>
+            <input type="text"  name="name">
+        </div>
+    </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-     name: 'Fred',
      userOperation_R$:  userReadOperation$,
      userOperation_W$:  userWriteOperation$,
+     userOperation_H$:  userHideOperation$,
      
      getRead(operations){
-       console.log('ops', operations[OPERATION_AGENT])
-       return 'read'
+       return operations[OPERATION_USER]
      },
      getWrite(operations){
-      return 'write'
+      operations[OPERATION_USER]
+    },
+    getHidden(operations){
+      operations[OPERATION_USER]
     }
     }}))
