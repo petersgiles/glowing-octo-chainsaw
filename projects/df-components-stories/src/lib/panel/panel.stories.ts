@@ -48,6 +48,7 @@ class ViewGuardComponent {
   @Input()
   operation
 
+  
   WRITE = 'WRITE'
   READ = 'READ'
   HIDE = 'HIDE'
@@ -57,6 +58,7 @@ storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
   .addDecorator(
     moduleMetadata({
+      declarations:[ViewGuardComponent],
       imports: [
         BrowserModule,
         PanelModule,
@@ -217,16 +219,13 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 13 </p>
-    <df-view-guard [operation]="getRight(userOperation$ | async)">
+    <p>test 14 </p>
+    <df-view-guard [operation]="operation">
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-      userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'"),
-      getRight(operations) {
-        console.log('ops', operations)
-        return operations[OPERATION_PMC_HANDLING_ADVICE]
-      }
+      //userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'"),
+     operation: "READ"
     }}))
