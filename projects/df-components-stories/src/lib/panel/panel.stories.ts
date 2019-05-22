@@ -43,10 +43,7 @@ const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
 })
 class ViewGuardComponent {
   constructor() {}
-  getRight(operations) {
-    console.log('ops', operations)
-    return operations[OPERATION_PMC_HANDLING_ADVICE]
-  }
+  
 
   @Input()
   operation
@@ -220,12 +217,16 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 12 </p>
+    <p>test 13 </p>
     <df-view-guard [operation]="getRight(userOperation$ | async)">
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-      userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'")
+      userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'"),
+      getRight(operations) {
+        console.log('ops', operations)
+        return operations[OPERATION_PMC_HANDLING_ADVICE]
+      }
     }}))
