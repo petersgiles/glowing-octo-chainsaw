@@ -41,7 +41,7 @@ const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
 </div>
 `
 })
-class ViewGuardComponent {
+class GuardComponent {
   constructor() {}
   
 
@@ -58,7 +58,7 @@ storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
   .addDecorator(
     moduleMetadata({
-      declarations:[ViewGuardComponent],
+      declarations:[GuardComponent],
       imports: [
         BrowserModule,
         PanelModule,
@@ -224,7 +224,7 @@ storiesOf("Panel", module)
     <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
-    component: ViewGuardComponent,
+    component: GuardComponent,
     props: {
       //userOperation$:  userReadOperation$.next("pmcAdviceHandler: 'read'"),
      operation: "READ"
