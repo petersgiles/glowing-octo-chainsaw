@@ -188,9 +188,10 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 5</p>
+    
     <df-view-guard
     [operation]="operation">
+    <p>test 6 {{operation}}</p>
     <div [ngSwitch]="operation">
     <div *ngSwitchCase="READ">
         <ng-content select="[operation-type=read]"></ng-content>
