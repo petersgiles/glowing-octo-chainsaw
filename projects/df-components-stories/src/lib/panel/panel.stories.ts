@@ -15,7 +15,6 @@ import {
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
 
-import { Component, Input } from '@angular/core';
 
  const OPERATION_USER = 'user'
  
@@ -26,7 +25,7 @@ const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
 const userReadOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'read'})
 const userWriteOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'write'})
-const userHideOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'write'})
+const userHideOperation$: BehaviorSubject<any> = new BehaviorSubject({user: 'hide'})
 
 
 
@@ -195,11 +194,10 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 20 </p>
     <df-view-guard [operation]="getRead(userOperation_R$ | async)">
     <ng-container operation-type="read">
         <div>
-            <label for="uname">Choose a username: </label>
+            <label for="uname">User name: </label>
             <input type="text" name="name" value="Fred">
         </div>
     </ng-container>
@@ -207,7 +205,7 @@ storiesOf("Panel", module)
     <df-view-guard [operation]="getWrite(userOperation_W$ | async)">
     <ng-container operation-type="write">
         <div>
-            <label for="uname">Choose a username: </label>
+            <label for="uname">Choose a user name: </label>
             <input type="text"  name="name">
         </div>
     </ng-container>
@@ -215,7 +213,7 @@ storiesOf("Panel", module)
     <df-view-guard [operation]="getHidden(userOperation_H$ | async)">
     <ng-container operation-type="hide">
         <div>
-            <label for="uname">Choose a username: </label>
+            <label for="uname">Choose a user name: </label>
             <input type="text"  name="name">
         </div>
     </ng-container>
