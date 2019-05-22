@@ -22,7 +22,7 @@ const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
-const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("")
+const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
 
 storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
@@ -189,17 +189,29 @@ storiesOf("Panel", module)
   .add("View Guard", () => ({
     template: `<df-view-guard
     [operation]="operation">
-   
-    <ng-container operation="read"><p>read only </p> </ng-container>
+    <div [ngSwitch]="operation">
+    <div *ngSwitchCase="READ">
+        <ng-content select="[operation-type=read]"></ng-content>
+    </div>
+    <div *ngSwitchCase="WRITE">
+        <ng-content select="[operation-type=write]"></ng-content>
+    </div>
+    <div *ngSwitchCase="HIDE">
+        <ng-content select="[operation-type=hide]"></ng-content>
+    </div>
+    <div *ngSwitchDefault></div>
+</div>
+    <ng-container operation-type="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-      operation: "read" //userReadOperation$.next("pmchandlingadvice: 'read'"),
-     // userOperation$: userReadOperation$,
-      
-     
-        
+      operation: "READ"
+     /* userOperation$: userReadOperation$,
+
+      getRight(operations) {
+        userReadOperation$.next("pmchandlingadvice: 'read'")
+       return operations[OPERATION_PMC_HANDLING_ADVICE]
        
-      
+      }*/
     }}))
