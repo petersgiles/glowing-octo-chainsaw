@@ -194,7 +194,6 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 21</p>
     <df-view-guard [operation]="getRead(userOperation_R$ | async)">
     <ng-container operation-type="read">
         <div>
@@ -210,7 +209,7 @@ storiesOf("Panel", module)
             <input type="text"  name="uname">
         </div>
     </ng-container>
-    <p>Hidden applied</p>
+    </df-view-guard>
     <df-view-guard [operation]="getHidden(userOperation_H$ | async)">
     <ng-container operation-type="hide">
         <div>
