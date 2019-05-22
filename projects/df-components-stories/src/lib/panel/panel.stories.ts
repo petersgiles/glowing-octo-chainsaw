@@ -188,36 +188,20 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 8 </p>
+    <p>test 9 </p>
     <df-view-guard
     [operation]="getRight(userOperation$ | async)">
-    
-    <div [ngSwitch]="operation">
-    <div *ngSwitchCase="READ">
-        <ng-content select="[operation-type=read]"></ng-content>
-    </div>
-    <div *ngSwitchCase="WRITE">
-        <ng-content select="[operation-type=write]"></ng-content>
-    </div>
-    <div *ngSwitchCase="HIDE">
-        <ng-content select="[operation-type=hide]"></ng-content>
-    </div>
-    <div *ngSwitchDefault></div>
-</div>
     <ng-container operation-type="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
+    component: ViewGuardComponent,
     props: {
-     
       userOperation$:  userReadOperation$.next("READ"),
       //getRight: val => {console.log('VAL', val)},
     
       
       getRight(operations){
-        userReadOperation$.subscribe(val => {
-          console.log('ops', val)
-          
-        })
+        console.log('ops', operations)
         return "READ"
       }
       
