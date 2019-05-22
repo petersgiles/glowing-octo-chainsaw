@@ -188,13 +188,19 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
+    <p>test</p>
     <df-view-guard
     [operation]="getRight(userOperation$ | async)">
     <ng-container operation="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
     props: {
-      userOperation$: userReadOperation$.next("read")
+      userOperation$: userReadOperation$.next("read"),
+      getRight(operations){
+        userReadOperation$.subscribe(val =>{
+          return val
+        })
+      }
       
       
     }}))
