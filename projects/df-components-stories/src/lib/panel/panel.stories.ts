@@ -190,9 +190,9 @@ storiesOf("Panel", module)
     template: `
     
     <df-view-guard
-    [operation]="operation">
-    <p>test 6 {{operation}}</p>
-    <div [ngSwitch]="operation">
+    [operation]="get">
+    <p>test 6 </p>
+    <div [ngSwitch]="getRight(userOperation$ | async)">
     <div *ngSwitchCase="READ">
         <ng-content select="[operation-type=read]"></ng-content>
     </div>
@@ -208,9 +208,11 @@ storiesOf("Panel", module)
     </df-view-guard>
     `,
     props: {
-      operation: "READ"
-      /*userOperation$: userReadOperation$.next("read"),
-      getRight(operations){
+     
+      userOperation$:  userReadOperation$.next("READ"),
+      getRight: val => {console.log('VAL', val)}
+      
+      /*getRight(operations){
        return "read"
       }*/
       
