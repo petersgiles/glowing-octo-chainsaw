@@ -198,7 +198,7 @@ storiesOf("Panel", module)
     <ng-container operation-type="read">
         <div>
             <label for="uname">User name: </label>
-            <input type="text" name="name" value="Fred">
+            <input type="text" name="uname" value="Fred" readonly>
         </div>
     </ng-container>
     </df-view-guard>
@@ -206,15 +206,14 @@ storiesOf("Panel", module)
     <ng-container operation-type="write">
         <div>
             <label for="uname">Choose a user name: </label>
-            <input type="text"  name="name">
+            <input type="text"  name="uname">
         </div>
     </ng-container>
     <p>Hidden applied</p>
     <df-view-guard [operation]="getHidden(userOperation_H$ | async)">
     <ng-container operation-type="hide">
         <div>
-            <label for="uname">Choose a user name: </label>
-            <input type="text"  name="name">
+            <p>Nothing to see</p>
         </div>
     </ng-container>
     </df-view-guard>
