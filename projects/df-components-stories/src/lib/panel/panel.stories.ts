@@ -201,7 +201,7 @@ storiesOf("Panel", module)
     </div>
     <div *ngSwitchDefault></div>
 </div>
-    <ng-container operation-type="read"><p>read only </p> </ng-container>
+    <ng-container ><p>read only </p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
