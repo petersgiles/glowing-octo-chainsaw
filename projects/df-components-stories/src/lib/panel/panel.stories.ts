@@ -197,7 +197,7 @@ storiesOf("Panel", module)
     props: {
       userOperation$: userReadOperation$.next("read"),
       getRight(operations){
-       operations
+       return operations
       }
       
       
