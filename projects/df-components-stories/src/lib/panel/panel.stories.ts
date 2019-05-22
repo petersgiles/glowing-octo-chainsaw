@@ -24,7 +24,8 @@ const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
-const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("agent: 'read'")
+const userReadOperation$: BehaviorSubject<any> = new BehaviorSubject({agent: 'read'})
+const userWriteOperation$: BehaviorSubject<string> = new BehaviorSubject("agent: 'write'")
 
 
 
@@ -193,17 +194,35 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 17 </p>
-    <df-view-guard [operation]="getRight(userOperation$ | async)">
-    <ng-container operation-type="read"><p> read only</p> </ng-container>
+    <p>test 18 </p>
+    <df-view-guard [operation]="getRead(userOperation_R$ | async)">
+    <ng-container operation-type="read">
+        <div>
+            <label for="uname">Choose a username: </label>
+            <input type="text" [name]="name">
+        </div>
+    </ng-container>
+    </df-view-guard>
+    <df-view-guard [operation]="getWrite(userOperation_W$ | async)">
+    <ng-container operation-type="write">
+        <div>
+            <label for="uname">Choose a username: </label>
+            <input type="text"  name="name">
+        </div>
+    </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-     userOperation$:  userReadOperation$,
+     name: 'Fred',
+     userOperation_R$:  userReadOperation$,
+     userOperation_W$:  userWriteOperation$,
      
-     getRight(operations){
+     getRead(operations){
        console.log('ops', operations[OPERATION_AGENT])
        return 'read'
-     }
+     },
+     getWrite(operations){
+      return 'write'
+    }
     }}))
