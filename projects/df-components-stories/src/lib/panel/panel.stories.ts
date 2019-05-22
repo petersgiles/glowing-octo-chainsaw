@@ -190,9 +190,9 @@ storiesOf("Panel", module)
     template: `
     
     <df-view-guard
-    [operation]="get">
-    <p>test 6 </p>
-    <div [ngSwitch]="getRight(userOperation$ | async)">
+    [operation]="getRight(userOperation$ | async)">
+    <p>test 7 </p>
+    <div [ngSwitch]="operation">
     <div *ngSwitchCase="READ">
         <ng-content select="[operation-type=read]"></ng-content>
     </div>
