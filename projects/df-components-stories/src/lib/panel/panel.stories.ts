@@ -204,7 +204,7 @@ storiesOf("Panel", module)
     <ng-container operation-type="read"><p>read only </p> </ng-container>
     </df-view-guard>
     `,
-    component: ViewGuardComponent,
+   
     props: {
       operation: "READ" //userReadOperation$.next("pmchandlingadvice: 'read'"),
      // userOperation$: userReadOperation$,
