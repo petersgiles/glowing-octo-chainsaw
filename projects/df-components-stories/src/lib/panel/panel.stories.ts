@@ -188,7 +188,7 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 7 </p>
+    <p>test 8 </p>
     <df-view-guard
     [operation]="getRight(userOperation$ | async)">
     
@@ -214,7 +214,11 @@ storiesOf("Panel", module)
     
       
       getRight(operations){
-        console.log('VAL', operations)
+        userReadOperation$.subscribe(val => {
+          console.log('ops', val)
+          
+        })
+        return "READ"
       }
       
       
