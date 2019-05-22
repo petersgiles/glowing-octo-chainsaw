@@ -22,7 +22,7 @@ const slimExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
-const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
+const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("")
 
 storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
@@ -206,11 +206,11 @@ storiesOf("Panel", module)
     `,
     component: ViewGuardComponent,
     props: {
-     // operation: "READ"
+      operation: userReadOperation$.next("pmchandlingadvice: 'read'"),
       userOperation$: userReadOperation$,
-
+      
       getRight(operations) {
-        userReadOperation$.next("pmchandlingadvice: 'read'")
+        
         userReadOperation$.subscribe(op =>{
           return operations[OPERATION_PMC_HANDLING_ADVICE]
         })
