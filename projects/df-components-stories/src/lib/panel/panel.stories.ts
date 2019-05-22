@@ -10,10 +10,11 @@ import { MdcButtonModule, MdcIconModule } from "@angular-mdc/web"
 import {
   PanelModule,
   ButtonModule,
-  PipesModule,
-  ViewGuardComponent
+  PipesModule
 } from "../../../../df-components/src/public_api"
 import { getRandomColor } from "../../../../df-components/src/lib/utils/colour"
+
+import { Component, Input } from '@angular/core';
 
  const OPERATION_PMO_HANDLING_ADVICE = 'pmohandlingadvice'
  const OPERATION_PMC_HANDLING_ADVICE = 'pmchandlingadvice'
@@ -23,6 +24,36 @@ const readOnlyExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const editExpanded$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 const background$: BehaviorSubject<string> = new BehaviorSubject("#000000")
 const userReadOperation$: BehaviorSubject<string> = new BehaviorSubject("read")
+
+@Component({
+  selector: 'df-view-guard',
+  template: `<div [ngSwitch]="operation">
+  <div *ngSwitchCase="READ">
+      <ng-content select="[operation-type=read]"></ng-content>
+  </div>
+  <div *ngSwitchCase="WRITE">
+      <ng-content select="[operation-type=write]"></ng-content>
+  </div>
+  <div *ngSwitchCase="HIDE">
+      <ng-content select="[operation-type=hide]"></ng-content>
+  </div>
+  <div *ngSwitchDefault></div>
+</div>
+`
+})
+class ViewGuardComponent {
+  constructor() {}
+  getRight(operations) {
+    return operations[OPERATION_PMC_HANDLING_ADVICE]
+  }
+
+  @Input()
+  operation
+
+  WRITE = 'WRITE'
+  READ = 'READ'
+  HIDE = 'HIDE'
+}
 
 storiesOf("Panel", module)
   .addParameters({ jest: ["expander-panel.component"] })
@@ -188,22 +219,18 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test 9 </p>
-    <df-view-guard
-    [operation]="getRight(userOperation$ | async)">
-    <ng-container operation-type="read"><p>read only </p> </ng-container>
+    <p>test 10 </p>
+    <df-view-guard [operation]="operation">
+    <ng-container operation-type="read"><p> read only</p> </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
     props: {
-      userOperation$:  userReadOperation$.next("READ"),
+      //userOperation$:  userReadOperation$.next("READ"),
       //getRight: val => {console.log('VAL', val)},
     
       
-      getRight(operations){
-        console.log('ops', operations)
-        return "READ"
-      }
+     operation: "pmcAdviceHandler: 'read'"
       
       
     }}))
