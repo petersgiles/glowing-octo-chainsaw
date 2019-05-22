@@ -211,8 +211,10 @@ storiesOf("Panel", module)
 
       getRight(operations) {
         userReadOperation$.next("pmchandlingadvice: 'read'")
-        console.log('ops', operations)
-        return operations[OPERATION_PMC_HANDLING_ADVICE]
+        userReadOperation$.subscribe(op =>{
+          return op[OPERATION_PMC_HANDLING_ADVICE]
+        })
+        
        
       }
     }}))
