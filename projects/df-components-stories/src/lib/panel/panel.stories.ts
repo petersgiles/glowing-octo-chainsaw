@@ -194,29 +194,31 @@ storiesOf("Panel", module)
   }))
   .add("View Guard", () => ({
     template: `
-    <p>test</p>
+    <p>Read test</p>
     <df-view-guard [operation]="getRead(userOperation_R$ | async)">
-    <ng-container operation-type="read">
-        <div>
-            <label for="uname">User name: </label>
-            <input type="text" name="uname" value="Fred" readonly>
-        </div>
-    </ng-container>
+        <ng-container operation-type="read">
+            <div>
+                <label for="uname">User name: </label>
+                <input type="text" name="uname" value="Fred" readonly>
+            </div>
+        </ng-container>
     </df-view-guard>
+    <p>Write test</p>
     <df-view-guard [operation]="getWrite(userOperation_W$ | async)">
-    <ng-container operation-type="write">
-        <div>
-            <label for="uname">Choose a user name: </label>
-            <input type="text"  name="uname">
-        </div>
-    </ng-container>
+        <ng-container operation-type="write">
+            <div>
+                <label for="uname">Choose a user name: </label>
+                <input type="text" name="uname">
+            </div>
+        </ng-container>
     </df-view-guard>
+    <p>Hide test</p>
     <df-view-guard [operation]="getHidden(userOperation_H$ | async)">
-    <ng-container operation-type="hide">
-        <div>
-            <p>Nothing to see</p>
-        </div>
-    </ng-container>
+        <ng-container operation-type="hide">
+            <div>
+                <p>Nothing to see</p>
+            </div>
+        </ng-container>
     </df-view-guard>
     `,
     component: ViewGuardComponent,
@@ -229,11 +231,9 @@ storiesOf("Panel", module)
        return operations[OPERATION_USER]
      },
      getWrite(operations){
-      console.log('write', operations[OPERATION_USER])
-      operations[OPERATION_USER]
+      return operations[OPERATION_USER]
     },
     getHidden(operations){
-      console.log('hidden', operations[OPERATION_USER])
-      operations[OPERATION_USER]
+      return operations[OPERATION_USER]
     }
     }}))
