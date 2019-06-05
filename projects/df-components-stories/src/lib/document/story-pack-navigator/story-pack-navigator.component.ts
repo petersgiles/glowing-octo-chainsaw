@@ -2,8 +2,11 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core"
 import { Observable, BehaviorSubject, Subscription } from "rxjs"
 import { map } from "rxjs/operators"
 import { navigatorData } from "../../.data/deck-data"
-import { toTree, sortBy } from '../../../../../../projects/df-components/src/lib/utils/array-to-tree';
-import { NavigatorTreeNode } from '../../../../../../projects/df-components/src/public_api';
+import {
+  toTree,
+  sortBy
+} from "../../../../../../projects/df-components/src/lib/utils/array-to-tree"
+import { NavigatorTreeNode } from "../../../../../../projects/df-components/src/public_api"
 
 @Component({
   selector: "df-story-pack-navigator",
@@ -14,9 +17,11 @@ export class StoryPackNavigatorComponent implements OnInit, OnDestroy {
   public nodes$: Observable<any>
   public storyData: NavigatorTreeNode[]
 
-  public navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject([])
+  public navData$: BehaviorSubject<NavigatorTreeNode[]> = new BehaviorSubject(
+    []
+  )
   public nodesSubscription$: Subscription
-  public tree: any;
+  public tree: any
 
   constructor() {
     this.storyData = navigatorData
@@ -36,7 +41,7 @@ export class StoryPackNavigatorComponent implements OnInit, OnDestroy {
       })
     )
 
-    this.nodesSubscription$ = this.nodes$.subscribe(p => this.tree = p)
+    this.nodesSubscription$ = this.nodes$.subscribe(p => (this.tree = p))
   }
 
   public ngOnDestroy() {
@@ -53,18 +58,15 @@ export class StoryPackNavigatorComponent implements OnInit, OnDestroy {
     const navData = this.storyData.map(n => ({ ...n, active: false }))
     const found = { ...navData.find(n => n.id === node.id) }
     found.active = true
-    const list = [
-      ...navData.filter(n => n.id !== node.id),
-      found
-    ]
+    const list = [...navData.filter(n => n.id !== node.id), found]
     this.navData$.next(list)
   }
 
-  public expandNode(){
+  public expandNode() {
     this.storyData = this.storyData.map(p => ({
       ...p,
-      expanded: true}
-      ))
+      expanded: true
+    }))
 
     this.navData$.next(this.storyData)
   }
