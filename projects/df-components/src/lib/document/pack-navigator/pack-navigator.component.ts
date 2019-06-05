@@ -26,20 +26,19 @@ import { TreeModel, TreeNode } from "angular-tree-component"
   styleUrls: ["./pack-navigator.component.scss"]
 })
 export class PackNavigatorComponent implements OnInit, OnChanges {
-
   public options: any
   public filter: Subject<string> = new Subject<string>()
   public nodeEdit: Subject<any> = new Subject<any>()
   public treeDataVisible: boolean
-// tslint:disable-next-line: variable-name
-  public _nodes: NavigatorTreeNode[];
+  // tslint:disable-next-line: variable-name
+  public _nodes: NavigatorTreeNode[]
   // tslint:disable-next-line:no-empty
   constructor() {}
 
-  @ViewChild("filterInput")
+  @ViewChild("filterInput", { static: true })
   public filterInput
 
-  @ViewChild("tree")
+  @ViewChild("tree", { static: true })
   public tree
 
   @Input()
@@ -47,7 +46,6 @@ export class PackNavigatorComponent implements OnInit, OnChanges {
 
   @Input()
   public nodes
- 
 
   @Output()
   public onToggleExpand: EventEmitter<any> = new EventEmitter()

@@ -19,7 +19,6 @@ import { DebugElement } from "@angular/core"
 describe("DataTableComponent", () => {
   let component: DataTableComponent
   let fixture: ComponentFixture<DataTableComponent>
-  let dataTableComponent: DebugElement
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
