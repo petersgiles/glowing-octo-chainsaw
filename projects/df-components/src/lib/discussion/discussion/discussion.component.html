@@ -30,9 +30,9 @@
           size="35"
           [background]="comment?.author?.color"
         ></df-avatar>
-        <mdc-list-item-text [secondaryText]="getSecondaryText(comment)">{{
-          comment.text
-        }}</mdc-list-item-text>
+        <mdc-list-item-text [secondaryText]="getSecondaryText(comment)">
+          <span [innerHtml]="comment.text | safeHtml"></span>
+        </mdc-list-item-text>
         <div class="discussion-actions">
           <a
             mdcListItemMeta

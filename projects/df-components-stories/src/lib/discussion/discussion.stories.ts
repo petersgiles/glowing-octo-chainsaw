@@ -18,7 +18,8 @@ import { toTree } from "../../../../../projects/df-components/src/lib/utils/arra
 import { discussionTree, demoAuthor, discussionItems } from "./discussion-data"
 import {
   AvatarModule,
-  DiscussionModule
+  DiscussionModule,
+  PipesModule
 } from "../../../../../projects/df-components/src/public_api"
 
 const comments$: BehaviorSubject<Comment[]> = new BehaviorSubject(
@@ -86,7 +87,8 @@ storiesOf("Discussion", module)
         MdcListModule,
         MdcTextFieldModule,
         AvatarModule,
-        DiscussionModule
+        DiscussionModule,
+        PipesModule
       ]
     })
   )

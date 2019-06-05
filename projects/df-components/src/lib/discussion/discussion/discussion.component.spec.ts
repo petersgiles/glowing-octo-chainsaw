@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MdcButtonModule, MdcIconModule, MdcListModule, MdcTextFieldModule } from '@angular-mdc/web';
 import { AvatarModule } from '../../avatar/avatar.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { PipesModule } from '../../pipes';
 
 describe('DiscussionComponent', () => {
   let component: DiscussionComponent;
@@ -14,14 +15,15 @@ describe('DiscussionComponent', () => {
     TestBed.configureTestingModule({
       // TODO: work out how to test recursive templates
       schemas: [NO_ERRORS_SCHEMA],
-      // imports: [
+      imports: [
       //   CommonModule,
       //   MdcButtonModule,
       //   MdcIconModule,
       //   MdcListModule,
       //   MdcTextFieldModule,
       //   AvatarModule,
-      // ],
+      PipesModule
+      ],
       declarations: [ DiscussionComponent ]
     })
     .compileComponents();
