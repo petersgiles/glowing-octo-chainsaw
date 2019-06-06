@@ -55,14 +55,14 @@ describe("DataTableComponent", () => {
     fixture.detectChanges()
     expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(false)
   })
-  it("should vertical scroll when limit is not set", () => {
-    component.limit = undefined
-    fixture.detectChanges()
-    expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
-  })
-  it("should vertical scroll when limit is set to 0 or less", () => {
-    component.limit = 0
-    fixture.detectChanges()
-    expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
-  })
+  // it("should vertical scroll when limit is not set", () => {
+  //   component.limit = undefined
+  //   fixture.detectChanges()
+  //   expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
+  // })
+  // it("should vertical scroll when limit is set to 0 or less", () => {
+  //   component.limit = 0
+  //   fixture.detectChanges()
+  //   expect(this.dataTableComponent.classes["scroll-vertical"]).toBe(true)
+  // })
 })
