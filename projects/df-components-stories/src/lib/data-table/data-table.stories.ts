@@ -27,7 +27,10 @@ const props = {
   rows$: fruits$,
   columns: columns,
   count: fruitList.length,
-  handleEvent: ($event, name) => action(name)($event),
+  handleEvent: ($event, name) => {
+    console.log($event)
+    action(name)($event)
+  },
   handleFilter: ($event: any) => {
     const val = $event.target.value.toLowerCase()
     filterFruits(val)
@@ -64,7 +67,7 @@ class DataTableTemplateStory implements OnInit {
   @Input()
   public rows
 
-  @ViewChild("editTmpl")
+  @ViewChild("editTmpl", { static: true })
   public editTmpl: TemplateRef<any>
 
   public columns
@@ -100,6 +103,7 @@ storiesOf("Data Table", module)
     [rows]="rows$ | async"
     [columns]="columns"
     [count]="count"
+    
     (onPage)="handleEvent($event, 'onPage')"
     (onSelect)="handleEvent($event, 'onSelect')"
     >
