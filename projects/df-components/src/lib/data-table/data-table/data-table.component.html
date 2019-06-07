@@ -16,6 +16,7 @@
   [count]="count"
   [limit]="limit"
   [selectionType]="'single'"
+  (select)="onSelect.emit($event.selected[0])"
   [offset]="0"
   [messages]="messages"
   [externalPaging]="false"
