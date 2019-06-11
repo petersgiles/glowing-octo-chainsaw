@@ -1,11 +1,15 @@
 <div class="center">
-  <file-drop
-    headertext="Drop files here"
+  <ngx-file-drop
+    dropZoneLabel="Drop files here"
     (onFileDrop)="dropped($event)"
     (onFileOver)="fileOver($event)"
     (onFileLeave)="fileLeave($event)"
   >
-  </file-drop>
+    <ng-template let-openFileSelector="openFileSelector">
+      Optional custom content that replaces the the entire default content.
+      <button type="button" (click)="openFileSelector()">Browse Files</button>
+    </ng-template>
+  </ngx-file-drop>
   <mdc-list>
     <mdc-list-item *ngFor="let item of files; let i = index"
       >{{ item.relativePath }}

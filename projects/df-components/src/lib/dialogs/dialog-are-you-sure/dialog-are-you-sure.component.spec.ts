@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing"
+import { async, TestBed } from "@angular/core/testing"
 
 import { DialogAreYouSureComponent } from "./dialog-are-you-sure.component"
 import { CommonModule } from "@angular/common"
@@ -9,7 +9,7 @@ describe("DialogAreYouSureComponent", () => {
   // let fixture: ComponentFixture<DialogAreYouSureComponent>
   const mockPortalInstance = new MdcDialogPortal(null)
   const mockDialogRef = new MdcDialogRef(new OverlayRef(null,null,null,null,null,null), mockPortalInstance);
-  mockDialogRef.componentInstance = new DialogAreYouSureComponent(null)
+  mockDialogRef.componentInstance = new DialogAreYouSureComponent(null,null)
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

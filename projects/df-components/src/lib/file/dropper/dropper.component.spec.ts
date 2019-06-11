@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FileDropModule } from 'ngx-file-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { MdcButtonModule, MdcIconModule, MdcListModule } from '@angular-mdc/web';
 
 describe('DropperComponent', () => {
@@ -18,7 +18,7 @@ describe('DropperComponent', () => {
       BrowserModule,
       FormsModule,
       HttpClientModule,
-      FileDropModule,
+      NgxFileDropModule,
       MdcButtonModule,
       MdcIconModule,
       MdcListModule,

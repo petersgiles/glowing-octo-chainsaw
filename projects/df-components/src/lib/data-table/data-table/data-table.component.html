@@ -11,9 +11,9 @@
   [rows]="rows"
   [columnMode]="'force'"
   [headerHeight]="50"
-  [scrollbarV]="!limit || limit <= 0"
   [footerHeight]="50"
   [rowHeight]="50"
+  [scrollbarV]="!limit || limit <= 0"
   [count]="count"
   [limit]="limit"
   [selectionType]="'single'"
@@ -21,7 +21,6 @@
   [offset]="0"
   [messages]="messages"
   (page)="onPage.emit($event)"
-
 >
   <ngx-datatable-column
     *ngFor="let column of columns"

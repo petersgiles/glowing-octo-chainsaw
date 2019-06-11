@@ -1,17 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 
 @Component({
-  selector: 'df-discussion',
-  templateUrl: './discussion.component.html',
-  styleUrls: ['./discussion.component.scss']
+  selector: "df-discussion",
+  templateUrl: "./discussion.component.html",
+  styleUrls: ["./discussion.component.scss"]
 })
 export class DiscussionComponent implements OnInit {
-
   // tslint:disable-next-line:no-empty
   constructor() {}
 
-// tslint:disable-next-line:no-empty
-  public ngOnInit() { }
+  // tslint:disable-next-line:no-empty
+  public ngOnInit() {}
 
   @Input()
   public activeComment
@@ -33,17 +32,16 @@ export class DiscussionComponent implements OnInit {
   @Output() public onAddComment: EventEmitter<any> = new EventEmitter()
 
   public getIndent(level): any {
-    return { 'margin-left.px': level * 10 }
+    return { "margin-left.px": level * 10 }
   }
 
   public getSecondaryText(comment) {
-
     const text = []
     if (comment.author) {
       text.push(comment.author.name)
     }
 
-    return text.join(', ')
+    return text.join(", ")
   }
 
   public hasChildren(comment): boolean {
@@ -75,7 +73,4 @@ export class DiscussionComponent implements OnInit {
 
     input.setValue(null)
   }
-
-
-
 }
