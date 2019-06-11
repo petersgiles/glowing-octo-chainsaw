@@ -40,7 +40,7 @@ export class DataTableComponent implements OnInit {
   public count
 
   @Input()
-  public limit = 10
+  public limit
 
   @Input()
   public messages: any = {
