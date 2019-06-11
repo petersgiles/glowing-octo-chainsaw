@@ -45,7 +45,7 @@
   },
   "peerDependencies": {
     "@swimlane/ngx-datatable": "^14.0.0",
-    "@angular-mdc/web": "^0.44.0",
+    "@angular-mdc/web": "^1.0.3",
     "@ng-select/ng-select": "^2.16.4",
     "material-icons": "^0.3.0",
     "ngx-wig": "^2.0.1"
