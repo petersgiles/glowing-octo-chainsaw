@@ -4,8 +4,8 @@ import { ExpanderPanelComponent } from './expander-panel.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { MdcButtonModule, MdcIconModule } from '@angular-mdc/web';
-import { PipesModule } from '../../pipes';
-import { ButtonModule } from '../../button';
+import { PipesModule } from '../../pipes/pipes.module';
+import { ButtonModule } from '../../button/button.module';
 
 describe('ExpanderPanelComponent', () => {
   let component: ExpanderPanelComponent;

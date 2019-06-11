@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MdcButtonModule, MdcIconModule, MdcListModule, MdcTextFieldModule } from '@angular-mdc/web';
 import { AvatarModule } from '../../avatar/avatar.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { PipesModule } from '../../pipes';
+import { PipesModule } from '../../pipes/pipes.module';
 
 describe('DiscussionComponent', () => {
   let component: DiscussionComponent;
