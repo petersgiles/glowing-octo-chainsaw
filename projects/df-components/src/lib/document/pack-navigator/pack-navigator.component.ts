@@ -175,11 +175,17 @@ export class PackNavigatorComponent implements OnInit, OnChanges {
 
   private expandNode(node) {
     if (node && node.expanded) {
-      const expandNode = this.tree.treeModel.getNodeById(node.id)
-      expandNode.expand()
-      node.children.forEach(child => {
-        this.expandNode(child)
-      })
+      if (this.tree.treeModel.virtualRoot) {
+        const expandNode = this.tree.treeModel.getNodeBy(
+          p => `${p.id}` === `${node.id}`
+        )
+        expandNode.expand()
+        if (node.children) {
+          node.children.forEach(child => {
+            this.expandNode(child)
+          })
+        }
+      }
     }
   }
 
