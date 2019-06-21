@@ -66,7 +66,7 @@ export class UploaderComponent implements OnInit {
   /**
    * Maintains a reference to the view DOM element of the underlying <input> node
    */
-  @ViewChild("fileInput", { static: true }) public fileInput
+  @ViewChild("fileInput", { static: false }) public fileInput
   /**
    * The list of files that have been submitted to be uploaded
    */

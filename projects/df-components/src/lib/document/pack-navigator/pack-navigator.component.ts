@@ -35,7 +35,7 @@ export class PackNavigatorComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-empty
   constructor() {}
 
-  @ViewChild("filterInput", { static: true })
+  @ViewChild("filterInput", { static: false })
   public filterInput
 
   @ViewChild("tree", { static: true })
