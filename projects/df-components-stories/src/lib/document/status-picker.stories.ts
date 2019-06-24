@@ -87,7 +87,9 @@ storiesOf("Status Picker", module)
   }))
   .add("Form", () => ({
     template: `
-    <df-status-picker-story></df-status-picker-story>
+    <df-status-picker-story
+    (selectionClicked)="handleEvent($event, 'selection')"
+    ></df-status-picker-story>
     `,
     props: props
   }))

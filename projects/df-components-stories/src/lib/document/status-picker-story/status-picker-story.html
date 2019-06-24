@@ -7,7 +7,7 @@
     >
       <df-rating-input formControlName="stars"></df-rating-input>
       <df-status-picker
-        (onChange)="handleChange($event)"
+        (selectionClicked)="handleSelectionClicked($event)"
         [statuses]="documentStatusList$ | async"
         formControlName="status"
       ></df-status-picker>

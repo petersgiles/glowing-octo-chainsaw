@@ -4,7 +4,9 @@ import {
   Input,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Output,
+  EventEmitter
 } from "@angular/core"
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms"
 import { DocumentStatus } from "../models/document-status"
@@ -42,6 +44,9 @@ export class StatusPickerComponent implements ControlValueAccessor {
   @Input()
   public statuses: DocumentStatus[]
 
+  @Output()
+  public selectionClicked: EventEmitter<any> = new EventEmitter()
+
   // tslint:disable-next-line:no-empty
   public propagateChange = (_: any) => {}
 
@@ -62,5 +67,7 @@ export class StatusPickerComponent implements ControlValueAccessor {
 
   public onSelectionChange(sli) {
     this.status = sli.id
+
+    this.selectionClicked.emit(this.status)
   }
 }
