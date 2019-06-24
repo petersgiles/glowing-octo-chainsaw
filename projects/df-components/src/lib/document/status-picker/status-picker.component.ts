@@ -44,9 +44,6 @@ export class StatusPickerComponent implements ControlValueAccessor {
   @Input()
   public statuses: DocumentStatus[]
 
-  @Output()
-  public selectionClicked: EventEmitter<any> = new EventEmitter()
-
   // tslint:disable-next-line:no-empty
   public propagateChange = (_: any) => {}
 
@@ -67,7 +64,5 @@ export class StatusPickerComponent implements ControlValueAccessor {
 
   public onSelectionChange(sli) {
     this.status = sli.id
-
-    this.selectionClicked.emit(this.status)
   }
 }
