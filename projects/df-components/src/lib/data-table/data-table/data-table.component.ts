@@ -31,6 +31,9 @@ export class DataTableComponent implements OnInit {
   public hasFilter = false
 
   @Input()
+  public selectionType = "single"
+  
+  @Input()
   public rows
 
   @Input()

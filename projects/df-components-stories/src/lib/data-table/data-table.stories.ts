@@ -57,9 +57,10 @@ export const filterFruits = (expression: string) => {
 @Component({
   selector: "data-table-template-story",
   template: `
-    <df-data-table [rows]="rows" [columns]="columns"> </df-data-table>
+    <df-data-table [rows]="rows" [columns]="columns" [selectionType]='none'> </df-data-table>
     <ng-template #editTmpl let-row="row" let-value="value">
-      custom template {{ value }}
+      custom template
+      <a href="https://www.google.com.au/search?q={{ value }} "> {{ value }}</a>
     </ng-template>
   `
 })
