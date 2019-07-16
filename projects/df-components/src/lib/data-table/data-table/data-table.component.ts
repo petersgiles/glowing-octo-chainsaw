@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core"
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  OnDestroy
+} from "@angular/core"
 import { Page } from "../models/data-table-model"
 import { Subject } from "rxjs"
 import { debounceTime, distinctUntilChanged, map } from "rxjs/operators"
@@ -8,7 +15,7 @@ import { debounceTime, distinctUntilChanged, map } from "rxjs/operators"
   templateUrl: "./data-table.component.html",
   styleUrls: ["./data-table.component.scss"]
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent implements OnInit, OnDestroy {
   public filter: Subject<string> = new Subject<string>()
 
   // tslint:disable-next-line:no-empty
@@ -32,7 +39,7 @@ export class DataTableComponent implements OnInit {
 
   @Input()
   public selectionType = "single"
-  
+
   @Input()
   public rows
 
@@ -69,4 +76,8 @@ export class DataTableComponent implements OnInit {
 
   @Output()
   public onFilter: EventEmitter<string> = new EventEmitter()
+
+  public ngOnDestroy(): void {
+    this.filter.unsubscribe()
+  }
 }
